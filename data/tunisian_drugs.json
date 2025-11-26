@@ -1,0 +1,302 @@
+{
+  "Paracétamol 500mg": {
+    "name": "Paracétamol",
+    "dosage": "500mg",
+    "usage": "Analgésique et antipyrétique. Pour le traitement de la douleur légère à modérée et de la fièvre.",
+    "side_effects": "Rares: réactions allergiques, troubles hépatiques en cas de surdosage",
+    "instructions": "Adultes: 1-2 comprimés toutes les 4-6 heures. Maximum 4g par jour.",
+    "warnings": "Ne pas dépasser la dose recommandée. Éviter l'alcool.",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Doliprane 1000mg": {
+    "name": "Doliprane (Paracétamol)",
+    "dosage": "1000mg",
+    "usage": "Traitement symptomatique de la douleur et de la fièvre",
+    "side_effects": "Rares: réactions cutanées, troubles hépatiques",
+    "instructions": "Adultes: 1 comprimé toutes les 6-8 heures. Maximum 3g par jour.",
+    "warnings": "Consulter un médecin si les symptômes persistent plus de 3 jours",
+    "manufacturer": "Sanofi",
+    "country": "Tunisia"
+  },
+  "Amoxicilline 500mg": {
+    "name": "Amoxicilline",
+    "dosage": "500mg",
+    "usage": "Antibiotique pour traiter les infections bactériennes",
+    "side_effects": "Diarrhée, nausées, éruptions cutanées, réactions allergiques",
+    "instructions": "Adultes: 1 gélule 3 fois par jour. Terminer le traitement complet.",
+    "warnings": "Informer le médecin en cas d'allergie aux pénicillines",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Aspirine 100mg": {
+    "name": "Aspirine (Acide acétylsalicylique)",
+    "dosage": "100mg",
+    "usage": "Antiagrégant plaquettaire, prévention cardiovasculaire",
+    "side_effects": "Troubles digestifs, saignements, réactions allergiques",
+    "instructions": "1 comprimé par jour, de préférence le soir",
+    "warnings": "Ne pas utiliser en cas d'ulcère gastrique ou de troubles de coagulation",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Oméprazole 20mg": {
+    "name": "Oméprazole",
+    "dosage": "20mg",
+    "usage": "Inhibiteur de la pompe à protons, traitement du reflux gastro-œsophagien et ulcères",
+    "side_effects": "Maux de tête, diarrhée, nausées, douleurs abdominales",
+    "instructions": "1 gélule le matin à jeun, 30 minutes avant le repas",
+    "warnings": "Utilisation prolongée peut réduire l'absorption de vitamine B12",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Metformine 850mg": {
+    "name": "Metformine",
+    "dosage": "850mg",
+    "usage": "Antidiabétique oral pour le diabète de type 2",
+    "side_effects": "Troubles digestifs, diarrhée, nausées, goût métallique",
+    "instructions": "1 comprimé 2-3 fois par jour pendant les repas",
+    "warnings": "Surveiller la fonction rénale. Arrêter avant examens avec produit de contraste iodé",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Augmentin 1g": {
+    "name": "Augmentin (Amoxicilline + Acide clavulanique)",
+    "dosage": "1g",
+    "usage": "Antibiotique à large spectre pour infections bactériennes",
+    "side_effects": "Diarrhée, nausées, candidose, réactions allergiques",
+    "instructions": "1 comprimé 2-3 fois par jour pendant les repas",
+    "warnings": "Terminer le traitement complet. Risque d'allergie aux pénicillines",
+    "manufacturer": "GSK",
+    "country": "Tunisia"
+  },
+  "Voltarène 50mg": {
+    "name": "Voltarène (Diclofénac)",
+    "dosage": "50mg",
+    "usage": "Anti-inflammatoire non stéroïdien pour douleurs et inflammations",
+    "side_effects": "Troubles digestifs, ulcères, risques cardiovasculaires",
+    "instructions": "1 comprimé 2-3 fois par jour pendant les repas",
+    "warnings": "Ne pas utiliser en cas d'ulcère gastrique actif. Limiter la durée d'utilisation",
+    "manufacturer": "Novartis",
+    "country": "Tunisia"
+  },
+  "Lexomil 6mg": {
+    "name": "Lexomil (Bromazépam)",
+    "dosage": "6mg",
+    "usage": "Anxiolytique pour traitement de l'anxiété et troubles du sommeil",
+    "side_effects": "Somnolence, dépendance, troubles de mémoire, vertiges",
+    "instructions": "1/2 à 1 comprimé le soir. Traitement de courte durée",
+    "warnings": "Risque de dépendance. Ne pas arrêter brutalement. Éviter l'alcool",
+    "manufacturer": "Roche",
+    "country": "Tunisia"
+  },
+  "Flagyl 500mg": {
+    "name": "Flagyl (Métronidazole)",
+    "dosage": "500mg",
+    "usage": "Antibiotique et antiparasitaire pour infections bactériennes et parasitaires",
+    "side_effects": "Goût métallique, nausées, troubles digestifs",
+    "instructions": "1 comprimé 2-3 fois par jour",
+    "warnings": "Éviter absolument l'alcool pendant et 48h après le traitement",
+    "manufacturer": "Sanofi",
+    "country": "Tunisia"
+  },
+  "Ventoline": {
+    "name": "Ventoline (Salbutamol)",
+    "dosage": "100µg/dose",
+    "usage": "Bronchodilatateur pour traitement de l'asthme et bronchospasme",
+    "side_effects": "Tremblements, tachycardie, nervosité",
+    "instructions": "1-2 bouffées en cas de crise. Maximum 8 bouffées par jour",
+    "warnings": "Si utilisation fréquente, consulter un médecin",
+    "manufacturer": "GSK",
+    "country": "Tunisia"
+  },
+  "Mopral 20mg": {
+    "name": "Mopral (Oméprazole)",
+    "dosage": "20mg",
+    "usage": "Inhibiteur de la pompe à protons pour reflux et ulcères",
+    "side_effects": "Maux de tête, diarrhée, nausées",
+    "instructions": "1 gélule le matin à jeun",
+    "warnings": "Utilisation prolongée peut affecter l'absorption de vitamine B12 et magnésium",
+    "manufacturer": "AstraZeneca",
+    "country": "Tunisia"
+  },
+  "Glucophage 850mg": {
+    "name": "Glucophage (Metformine)",
+    "dosage": "850mg",
+    "usage": "Antidiabétique oral pour diabète de type 2",
+    "side_effects": "Troubles digestifs, diarrhée, nausées",
+    "instructions": "1 comprimé 2-3 fois par jour pendant les repas",
+    "warnings": "Surveiller la fonction rénale. Arrêter avant examens avec contraste",
+    "manufacturer": "Merck",
+    "country": "Tunisia"
+  },
+  "Efferalgan 1g": {
+    "name": "Efferalgan (Paracétamol)",
+    "dosage": "1g",
+    "usage": "Analgésique et antipyrétique pour douleur et fièvre",
+    "side_effects": "Rares: réactions allergiques, troubles hépatiques en surdosage",
+    "instructions": "1 comprimé toutes les 6-8 heures. Maximum 3g par jour",
+    "warnings": "Ne pas dépasser la dose. Éviter l'alcool",
+    "manufacturer": "UPSA",
+    "country": "Tunisia"
+  },
+  "Advil 400mg": {
+    "name": "Advil (Ibuprofène)",
+    "dosage": "400mg",
+    "usage": "Anti-inflammatoire pour douleurs, fièvre et inflammations",
+    "side_effects": "Troubles digestifs, ulcères, risques cardiovasculaires",
+    "instructions": "1 comprimé 2-3 fois par jour pendant les repas",
+    "warnings": "Ne pas utiliser en cas d'ulcère. Limiter la durée",
+    "manufacturer": "Pfizer",
+    "country": "Tunisia"
+  },
+  "Spasfon": {
+    "name": "Spasfon (Phloroglucinol)",
+    "dosage": "80mg",
+    "usage": "Antispasmodique pour douleurs abdominales et spasmes",
+    "side_effects": "Rares: réactions allergiques",
+    "instructions": "1-2 comprimés 3 fois par jour",
+    "warnings": "Consulter si douleurs persistent plus de 2 jours",
+    "manufacturer": "Teva",
+    "country": "Tunisia"
+  },
+  "Celestene 2mg": {
+    "name": "Célestène (Bétaméthasone)",
+    "dosage": "2mg",
+    "usage": "Corticoïde pour inflammations et allergies",
+    "side_effects": "Prise de poids, rétention d'eau, hyperglycémie, ostéoporose",
+    "instructions": "Selon prescription médicale. Prendre le matin",
+    "warnings": "Ne pas arrêter brutalement. Surveillance médicale nécessaire",
+    "manufacturer": "MSD",
+    "country": "Tunisia"
+  },
+  "Daflon 500mg": {
+    "name": "Daflon (Diosmine)",
+    "dosage": "500mg",
+    "usage": "Veinotonique pour insuffisance veineuse et hémorroïdes",
+    "side_effects": "Troubles digestifs légers",
+    "instructions": "2 comprimés par jour pendant les repas",
+    "warnings": "Consulter si symptômes persistent",
+    "manufacturer": "Servier",
+    "country": "Tunisia"
+  },
+  "Seretide": {
+    "name": "Seretide (Fluticasone + Salmétérol)",
+    "dosage": "250/25µg",
+    "usage": "Traitement de fond de l'asthme",
+    "side_effects": "Candidose buccale, enrouement, tachycardie",
+    "instructions": "2 bouffées 2 fois par jour. Rincer la bouche après",
+    "warnings": "Ne pas utiliser pour les crises aiguës. Traitement de fond uniquement",
+    "manufacturer": "GSK",
+    "country": "Tunisia"
+  },
+  "Zithromax 250mg": {
+    "name": "Zithromax (Azithromycine)",
+    "dosage": "250mg",
+    "usage": "Antibiotique macrolide pour infections respiratoires et ORL",
+    "side_effects": "Troubles digestifs, diarrhée, nausées",
+    "instructions": "1 comprimé par jour pendant 3 jours",
+    "warnings": "Terminer le traitement complet",
+    "manufacturer": "Pfizer",
+    "country": "Tunisia"
+  },
+  "Inexium 40mg": {
+    "name": "Inexium (Esoméprazole)",
+    "dosage": "40mg",
+    "usage": "Inhibiteur de la pompe à protons pour reflux sévère",
+    "side_effects": "Maux de tête, diarrhée, nausées",
+    "instructions": "1 comprimé le matin à jeun",
+    "warnings": "Utilisation prolongée nécessite surveillance médicale",
+    "manufacturer": "AstraZeneca",
+    "country": "Tunisia"
+  },
+  "Lyrica 75mg": {
+    "name": "Lyrica (Prégabaline)",
+    "dosage": "75mg",
+    "usage": "Traitement des douleurs neuropathiques et épilepsie",
+    "side_effects": "Somnolence, vertiges, prise de poids, œdèmes",
+    "instructions": "Selon prescription médicale. 2-3 fois par jour",
+    "warnings": "Risque de dépendance. Ne pas arrêter brutalement",
+    "manufacturer": "Pfizer",
+    "country": "Tunisia"
+  },
+  "Xanax 0.25mg": {
+    "name": "Xanax (Alprazolam)",
+    "dosage": "0.25mg",
+    "usage": "Anxiolytique pour anxiété et attaques de panique",
+    "side_effects": "Somnolence, dépendance, troubles de mémoire",
+    "instructions": "1/2 à 1 comprimé 2-3 fois par jour. Traitement court",
+    "warnings": "Forte dépendance. Ne pas arrêter brutalement. Éviter l'alcool",
+    "manufacturer": "Pfizer",
+    "country": "Tunisia"
+  },
+  "Kardegic 75mg": {
+    "name": "Kardégic (Acide acétylsalicylique)",
+    "dosage": "75mg",
+    "usage": "Antiagrégant plaquettaire pour prévention cardiovasculaire",
+    "side_effects": "Troubles digestifs, saignements",
+    "instructions": "1 sachet par jour",
+    "warnings": "Ne pas utiliser en cas d'ulcère ou troubles de coagulation",
+    "manufacturer": "Sanofi",
+    "country": "Tunisia"
+  },
+  "Levothyrox 50µg": {
+    "name": "Levothyrox (Lévothyroxine)",
+    "dosage": "50µg",
+    "usage": "Traitement de l'hypothyroïdie",
+    "side_effects": "Palpitations, nervosité, perte de poids si surdosage",
+    "instructions": "1 comprimé le matin à jeun, 30 min avant petit-déjeuner",
+    "warnings": "Surveillance régulière de la TSH nécessaire",
+    "manufacturer": "Merck",
+    "country": "Tunisia"
+  },
+  "Fervex": {
+    "name": "Fervex (Paracétamol + Vitamine C + Phéniramine)",
+    "dosage": "500mg paracétamol",
+    "usage": "Traitement symptomatique du rhume et des états grippaux: fièvre, douleurs, écoulement nasal",
+    "side_effects": "Somnolence, sécheresse buccale, troubles urinaires, réactions allergiques",
+    "instructions": "1 sachet à dissoudre dans l'eau chaude, 2-3 fois par jour. Maximum 3 sachets par jour",
+    "warnings": "Ne pas associer avec d'autres médicaments contenant du paracétamol. Éviter l'alcool. Peut causer de la somnolence",
+    "manufacturer": "UPSA",
+    "country": "Tunisia"
+  },
+  "Mesopral 20mg": {
+    "name": "Mesopral (Oméprazole)",
+    "dosage": "20mg",
+    "usage": "Inhibiteur de la pompe à protons pour traitement du reflux gastro-œsophagien, ulcères gastriques et duodénaux",
+    "side_effects": "Maux de tête, diarrhée, nausées, douleurs abdominales, constipation",
+    "instructions": "1 gélule le matin à jeun, 30 minutes avant le repas. Avaler entière sans croquer",
+    "warnings": "Utilisation prolongée peut réduire l'absorption de vitamine B12 et magnésium. Consulter si symptômes persistent",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Calmoss": {
+    "name": "Calmoss (Bromazépam)",
+    "dosage": "6mg",
+    "usage": "Anxiolytique benzodiazépine pour traitement de l'anxiété, troubles du sommeil et tension nerveuse",
+    "side_effects": "Somnolence, dépendance physique et psychique, troubles de mémoire, vertiges, confusion",
+    "instructions": "1/2 à 1 comprimé le soir au coucher. Traitement de courte durée (2-4 semaines maximum)",
+    "warnings": "Risque élevé de dépendance. Ne pas arrêter brutalement. Éviter absolument l'alcool. Ne pas conduire",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Inflamyl 100mg": {
+    "name": "Inflamyl (Kétoprofène)",
+    "dosage": "100mg",
+    "usage": "Anti-inflammatoire non stéroïdien pour traitement des douleurs et inflammations: arthrose, rhumatismes, douleurs musculaires",
+    "side_effects": "Troubles digestifs, ulcères, nausées, risques cardiovasculaires, réactions cutanées",
+    "instructions": "1 comprimé 2 fois par jour pendant les repas. Durée limitée",
+    "warnings": "Ne pas utiliser en cas d'ulcère gastrique actif, insuffisance cardiaque ou rénale. Limiter la durée d'utilisation",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  },
+  "Inflamyl Fort 150mg": {
+    "name": "Inflamyl Fort (Kétoprofène)",
+    "dosage": "150mg",
+    "usage": "Anti-inflammatoire non stéroïdien à libération prolongée pour douleurs et inflammations intenses: arthrose, rhumatismes, traumatismes",
+    "side_effects": "Troubles digestifs, ulcères, nausées, risques cardiovasculaires et rénaux, réactions cutanées",
+    "instructions": "1 comprimé par jour pendant le repas. Avaler entier sans croquer",
+    "warnings": "Ne pas utiliser en cas d'ulcère, insuffisance cardiaque/rénale sévère. Surveillance médicale nécessaire. Limiter la durée",
+    "manufacturer": "Various",
+    "country": "Tunisia"
+  }
+}

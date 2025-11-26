@@ -1,0 +1,25 @@
+# Core API
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# Image Processing & OCR
+pillow==10.1.0
+pytesseract==0.3.10
+opencv-python==4.8.1.78
+easyocr==1.7.1
+
+# HTTP & Utilities
+requests==2.31.0
+
+# AI Agent (LangGraph + Ollama)
+langgraph>=1.0.0
+langchain>=1.0.0
+langchain-ollama>=1.0.0
+langchain-community>=0.3.0
+
+# Production Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.0  # PostgreSQL
+# pymysql>=1.1.0  # MySQL (uncomment if needed)
