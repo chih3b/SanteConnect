@@ -1,10 +1,41 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 import uvicorn
 from services.vision import identify_medication
 from services.drug_db import get_drug_info
+from services.auth import (
+    register_user, login_user, verify_token,
+    create_conversation, get_conversations, get_conversation_messages,
+    add_message, delete_conversation
+)
 from PIL import Image
 import io
+from typing import Optional
+
+
+# Pydantic models for auth
+class RegisterRequest(BaseModel):
+    email: str
+    password: str
+    name: str
+
+class LoginRequest(BaseModel):
+    email: str
+    password: str
+
+class MessageRequest(BaseModel):
+    content: str
+    conversation_id: Optional[int] = None
+
+
+def get_current_user(authorization: str = Header(None)):
+    """Dependency to get current user from token"""
+    if not authorization:
+        return None
+    
+    token = authorization.replace("Bearer ", "")
+    return verify_token(token)
 
 app = FastAPI(
     title="SanteConnect API",
@@ -54,6 +85,108 @@ async def identify(file: UploadFile = File(...)):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+# ============== AUTH ENDPOINTS ==============
+
+@app.post("/auth/register")
+async def register(request: RegisterRequest):
+    """Register a new user"""
+    result = register_user(request.email, request.password, request.name)
+    if not result["success"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+@app.post("/auth/login")
+async def login(request: LoginRequest):
+    """Login user"""
+    result = login_user(request.email, request.password)
+    if not result["success"]:
+        raise HTTPException(status_code=401, detail=result["error"])
+    return result
+
+@app.get("/auth/me")
+async def get_me(user: dict = Depends(get_current_user)):
+    """Get current user info"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    return {"user": user}
+
+# ============== CONVERSATION ENDPOINTS ==============
+
+@app.get("/conversations")
+async def list_conversations(user: dict = Depends(get_current_user)):
+    """Get all conversations for current user"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    return {"conversations": get_conversations(user["id"])}
+
+@app.post("/conversations")
+async def new_conversation(user: dict = Depends(get_current_user)):
+    """Create a new conversation"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    return create_conversation(user["id"])
+
+@app.get("/conversations/{conversation_id}")
+async def get_conversation(conversation_id: int, user: dict = Depends(get_current_user)):
+    """Get messages in a conversation"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    messages = get_conversation_messages(conversation_id, user["id"])
+    return {"messages": messages}
+
+@app.delete("/conversations/{conversation_id}")
+async def remove_conversation(conversation_id: int, user: dict = Depends(get_current_user)):
+    """Delete a conversation"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    result = delete_conversation(conversation_id, user["id"])
+    if not result["success"]:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+class SaveMessageRequest(BaseModel):
+    role: str
+    content: str
+
+@app.post("/conversations/{conversation_id}/messages")
+async def save_message(conversation_id: int, request: SaveMessageRequest, user: dict = Depends(get_current_user)):
+    """Save a message to conversation (no AI response)"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    add_message(conversation_id, user["id"], request.role, request.content)
+    return {"success": True}
+
+@app.post("/conversations/{conversation_id}/message")
+async def send_message(conversation_id: int, request: MessageRequest, user: dict = Depends(get_current_user)):
+    """Send a message and get AI response"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    # Save user message
+    add_message(conversation_id, user["id"], "user", request.content)
+    
+    # Get AI response
+    from fast_query import fast_query, should_use_fast_path
+    from agent_langgraph import ask_langgraph_agent
+    
+    if should_use_fast_path(request.content):
+        result = fast_query(request.content)
+        if not result:
+            result = ask_langgraph_agent(request.content)
+    else:
+        result = ask_langgraph_agent(request.content)
+    
+    # Save AI response
+    ai_content = result.get("answer", "Sorry, I couldn't process your request.")
+    add_message(conversation_id, user["id"], "assistant", ai_content, {
+        "tool_calls": result.get("tool_calls", []),
+        "confidence": result.get("confidence")
+    })
+    
+    return result
+
+# ============== DRUG ENDPOINTS ==============
 
 @app.get("/drug/{name}")
 async def get_drug(name: str):

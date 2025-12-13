@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Test files
+test_*.py
+*_test.py
+test_images/
+
+# Frontend (separate container)
+frontend/
+
+# Database files (use volume mount instead)
+*.db
+medications.db
+
+# Logs
+*.log
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Documentation
+README.md
+*.md
+
+# Misc
+.DS_Store
+.env.local
+.env.*.local

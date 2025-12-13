@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: santeconnect-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+      - ESPRIT_API_KEY=sk-e16d16a054744585bfb2ef09bb52315c
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount data directory for persistence
+      - ./data:/app/data:ro
+      # Mount cache directory (optional)
+      - santeconnect-cache:/app/.cache
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    # For Apple Silicon Macs, use this to access host Ollama
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  santeconnect-cache:

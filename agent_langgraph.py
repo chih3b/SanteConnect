@@ -4,7 +4,7 @@ Fully Functional Agentic AI System using LangGraph
 Production-grade medication identification agent with reasoning
 """
 
-from typing import TypedDict, Annotated, Sequence, Literal
+from typing import TypedDict, Annotated, Sequence, Literal, Optional
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, ToolMessage
 from langchain_ollama import ChatOllama
 from langchain_core.tools import tool
@@ -263,18 +263,21 @@ def find_alternatives_tool(drug_name: str) -> dict:
     Useful for finding generic equivalents or different brands.
     
     Args:
-        drug_name: Name of the medication
+        drug_name: Name of the medication (can be partial, e.g., "Doliprane" will find "Doliprane 1000mg")
     
     Returns:
         Dictionary with alternative medications
     """
+    # Try exact match first
     drug_info = get_drug_info(drug_name)
     
+    # If not found, try fuzzy search
     if not drug_info:
         results = search_similar_drugs(drug_name, limit=1)
-        if results and results[0]["similarity_score"] >= 60:
+        if results and results[0]["similarity_score"] >= 50:  # Lower threshold
             drug_info = results[0]["info"]
             drug_name = results[0]["drug_name"]
+            print(f"✅ Found drug via fuzzy search: '{drug_name}'")
     
     if not drug_info:
         return {"found": False, "alternatives": []}
@@ -486,6 +489,60 @@ def compare_medications_tool(drug1: str, drug2: str) -> dict:
 
 
 @tool
+def check_pregnancy_safety_tool(drug_name: str) -> dict:
+    """
+    Check if a medication is safe during pregnancy and breastfeeding.
+    Provides safety category and recommendations from the database.
+    
+    Args:
+        drug_name: Name of the medication
+    
+    Returns:
+        Dictionary with pregnancy safety information
+    """
+    drug_info = get_drug_info(drug_name)
+    
+    if not drug_info:
+        results = search_similar_drugs(drug_name, limit=1)
+        if results and results[0]["similarity_score"] >= 60:
+            drug_info = results[0]["info"]
+            drug_name = results[0]["drug_name"]
+    
+    if not drug_info:
+        return {
+            "found": False,
+            "drug_name": drug_name,
+            "message": "Médicament non trouvé dans la base de données"
+        }
+    
+    # Check if pregnancy info exists in database
+    if "pregnancy_category" not in drug_info:
+        return {
+            "found": True,
+            "drug_name": drug_name,
+            "safety_info": None,
+            "message": "⚠️ Informations de sécurité grossesse non disponibles pour ce médicament. CONSULTER IMPÉRATIVEMENT UN MÉDECIN."
+        }
+    
+    # Extract active ingredient for display
+    active_ingredient = drug_info["name"].split("(")[1].split(")")[0] if "(" in drug_info["name"] else drug_info["name"]
+    
+    # Build response from database fields
+    return {
+        "found": True,
+        "drug_name": drug_name,
+        "active_ingredient": active_ingredient,
+        "category": drug_info.get("pregnancy_category", "UNKNOWN"),
+        "pregnancy": drug_info.get("pregnancy_info", "Information non disponible"),
+        "breastfeeding": drug_info.get("breastfeeding_info", "Information non disponible"),
+        "breastfeeding_safe": drug_info.get("breastfeeding_safe", False),
+        "trimester_notes": drug_info.get("pregnancy_trimester_notes", "Consulter un médecin"),
+        "recommendation": drug_info.get("pregnancy_recommendation", "Consulter un professionnel de santé"),
+        "warning": "⚠️ IMPORTANT: Toujours consulter un médecin ou sage-femme avant de prendre un médicament pendant la grossesse ou l'allaitement."
+    }
+
+
+@tool
 def get_database_stats_tool() -> dict:
     """
     Get statistics about the medication database.
@@ -497,10 +554,146 @@ def get_database_stats_tool() -> dict:
     return get_database_stats()
 
 
+@tool
+def check_fda_drug_info_tool(drug_name: str) -> dict:
+    """
+    Get official FDA drug information including warnings and adverse reactions.
+    Uses external MCP server to access FDA database.
+    
+    Args:
+        drug_name: Name of the medication
+    
+    Returns:
+        FDA drug information
+    """
+    try:
+        import asyncio
+        from services.mcp_client import get_mcp_service
+        
+        # Create new event loop for this call
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            mcp = get_mcp_service()
+            result = loop.run_until_complete(mcp.get_fda_drug_info(drug_name))
+            return result
+        finally:
+            loop.close()
+    except Exception as e:
+        return {"error": str(e), "source": "FDA MCP", "found": False}
+
+
+@tool
+def search_medical_literature_tool(query: str) -> dict:
+    """
+    Search PubMed for recent medical literature and studies.
+    Uses external MCP server to access PubMed database.
+    
+    Args:
+        query: Search query (e.g., "paracetamol pregnancy safety")
+    
+    Returns:
+        Recent medical literature
+    """
+    try:
+        import asyncio
+        from services.mcp_client import get_mcp_service
+        
+        # Create new event loop for this call
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            mcp = get_mcp_service()
+            result = loop.run_until_complete(mcp.search_pubmed(query, max_results=3))
+            return result
+        finally:
+            loop.close()
+    except Exception as e:
+        return {"error": str(e), "source": "PubMed MCP", "found": False}
+
+
+@tool
+def check_drug_recalls_tool(drug_name: str) -> dict:
+    """
+    Check if a medication has any FDA recalls or safety alerts.
+    Uses external MCP server to access FDA enforcement database.
+    
+    Args:
+        drug_name: Name of the medication
+    
+    Returns:
+        Recall information
+    """
+    try:
+        import asyncio
+        from services.mcp_client import get_mcp_service
+        
+        # Create new event loop for this call
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            mcp = get_mcp_service()
+            result = loop.run_until_complete(mcp.check_drug_recalls(drug_name))
+            return result
+        finally:
+            loop.close()
+    except Exception as e:
+        return {"error": str(e), "source": "FDA Recalls MCP", "found": False}
+
+
+@tool
+def search_web_drug_info_tool(drug_name: str) -> dict:
+    """
+    FALLBACK: Search medical websites (Drugs.com, WebMD, MedlinePlus, RxList) for drug information.
+    Use this ONLY when the drug is NOT found in local database AND NOT found in FDA/MCP sources.
+    Scrapes trusted medical websites for drug uses, side effects, warnings, and dosage.
+    
+    Args:
+        drug_name: Name of the medication to search on the web
+    
+    Returns:
+        Dictionary with drug information from web sources
+    """
+    try:
+        from services.web_scraper import search_web_for_drug
+        
+        result = search_web_for_drug(drug_name)
+        
+        if result.get('found') and result.get('summary'):
+            return {
+                "found": True,
+                "source": "Web Search",
+                "sources_checked": result.get('sources_checked', []),
+                "drug_name": drug_name,
+                "brand_name": result['summary'].get('brand_name', drug_name),
+                "uses": result['summary'].get('uses', 'Not available'),
+                "side_effects": result['summary'].get('side_effects', 'See source'),
+                "warnings": result['summary'].get('warnings', 'Consult healthcare provider'),
+                "dosage": result['summary'].get('dosage', 'Follow prescription'),
+                "source_urls": result['summary'].get('source_urls', []),
+                "disclaimer": "⚠️ Information from web sources. Always verify with healthcare professional."
+            }
+        else:
+            return {
+                "found": False,
+                "source": "Web Search",
+                "sources_checked": result.get('sources_checked', []),
+                "drug_name": drug_name,
+                "message": f"Could not find '{drug_name}' on medical websites"
+            }
+    except Exception as e:
+        return {
+            "found": False,
+            "source": "Web Search",
+            "error": str(e),
+            "drug_name": drug_name
+        }
+
+
 # Define agent state
 class AgentState(TypedDict):
     messages: Annotated[Sequence[BaseMessage], add_messages]
-    image_data: str | None
+    image_data: Optional[str]
 
 
 # Create the agent
@@ -519,24 +712,36 @@ class MedicationAgent:
         """
         if model_name is None:
             model_name = MODEL_NAME
-            
-        # Initialize LLM with optimized settings balancing speed and quality
-        self.llm = ChatOllama(
-            model=model_name,
-            temperature=0.1,
-            base_url=OLLAMA_BASE_URL,
-            num_predict=512,  # Longer responses for better explanations
-            num_ctx=2048,     # Larger context for complex queries
-            top_k=10,         # Faster sampling
-            top_p=0.85,       # Slightly more focused
-            repeat_penalty=1.1,
-            num_thread=8      # Use more CPU threads
-        )
+        
+        # Check if MLX should be used
+        try:
+            from config import USE_MLX, MLX_MODEL
+            use_mlx = USE_MLX
+        except:
+            use_mlx = False
+        
+        # Initialize LLM based on backend choice
+        if use_mlx:
+            print("🚀 Using MLX-LM (Apple Silicon optimized)")
+            from services.mlx_llm import get_mlx_llm
+            self.llm = get_mlx_llm(MLX_MODEL)
+            self.backend = "MLX"
+        else:
+            print("🔧 Using Ollama")
+            self.llm = ChatOllama(
+                model=model_name,
+                temperature=0.1,
+                base_url=OLLAMA_BASE_URL,
+                num_predict=512,
+                num_ctx=4096
+            )
+            self.backend = "Ollama"
         
         self.model_name = model_name
         
         # Define tools
         self.tools = [
+            # Local database tools
             identify_medication_tool,
             search_medication_tool,
             search_by_symptom_tool,
@@ -544,8 +749,28 @@ class MedicationAgent:
             check_drug_interactions_tool,
             find_alternatives_tool,
             compare_medications_tool,
+            check_pregnancy_safety_tool,
             get_database_stats_tool
         ]
+        
+        # Add MCP tools if enabled
+        try:
+            from config import USE_MCP
+            if USE_MCP:
+                self.tools.extend([
+                    check_fda_drug_info_tool,
+                    search_medical_literature_tool,
+                    check_drug_recalls_tool
+                ])
+                print("✅ MCP tools enabled")
+        except:
+            # MCP disabled or config not available
+            print("⚠️  MCP tools disabled")
+            pass
+        
+        # Add web scraping fallback tool (always enabled)
+        self.tools.append(search_web_drug_info_tool)
+        print("✅ Web scraping fallback enabled")
         
         # Bind tools to LLM
         self.llm_with_tools = self.llm.bind_tools(self.tools)
@@ -598,7 +823,7 @@ class MedicationAgent:
         
         return "end"
     
-    def process_query(self, query: str, image: Image.Image | None = None) -> dict:
+    def process_query(self, query: str, image: Optional[Image.Image] = None) -> dict:
         """
         Process a user query with full agentic reasoning
         
@@ -611,41 +836,93 @@ class MedicationAgent:
         """
         
         # Prepare initial message
-        system_prompt = """Tu es un assistant médical expert avec accès DIRECT à une base de données de 25 médicaments tunisiens.
+        system_prompt = """Tu es un assistant médical expert avec accès DIRECT à une base de données de 30 médicaments tunisiens.
 
-TU DOIS TOUJOURS utiliser les outils disponibles pour répondre:
+RÈGLE ABSOLUE: TU DOIS OBLIGATOIREMENT UTILISER LES OUTILS POUR CHAQUE QUESTION.
+NE RÉPONDS JAMAIS DIRECTEMENT SANS APPELER UN OUTIL.
+
+IMPORTANT: Les noms de médicaments dans la base incluent le dosage (ex: "Doliprane 1000mg", "Advil 400mg").
+Si l'utilisateur demande juste "Doliprane", cherche "Doliprane 1000mg" ou utilise search_medication_tool.
+
+PROCESSUS OBLIGATOIRE:
+1. Analyser la question
+2. Choisir le(s) outil(s) approprié(s)
+3. APPELER L'OUTIL (ne jamais répondre sans outil)
+4. Utiliser le résultat de l'outil pour répondre
 
 🔧 OUTILS DISPONIBLES (UTILISE-LES!):
+
+📊 OUTILS LOCAUX (Base de données tunisienne):
 - get_drug_details_tool: Obtenir TOUTES les informations d'un médicament (usage, dosage, effets secondaires, précautions, interactions)
 - search_by_symptom_tool: Chercher des médicaments par symptôme (ex: "fièvre", "douleur", "rhume") - UTILISE pour "quel médicament pour X?"
 - compare_medications_tool: Comparer deux médicaments et vérifier si substitution possible (UTILISE TOUJOURS pour "X au lieu de Y")
+- check_pregnancy_safety_tool: Vérifier si un médicament est sûr pendant la grossesse et l'allaitement (UTILISE pour questions grossesse/allaitement)
 - search_medication_tool: Rechercher des médicaments par nom
 - check_drug_interactions_tool: Vérifier les interactions entre médicaments
 - find_alternatives_tool: Trouver des alternatives/génériques
 - identify_medication_tool: Identifier un médicament depuis une image (SEULEMENT si image fournie!)
 - get_database_stats_tool: Statistiques de la base de données
 
-⚠️ RÈGLES STRICTES:
+🌐 OUTILS EXTERNES (MCP - Données internationales):
+- check_fda_drug_info_tool: Obtenir informations officielles FDA (warnings, adverse reactions)
+- search_medical_literature_tool: Chercher études médicales récentes sur PubMed
+- check_drug_recalls_tool: Vérifier si le médicament a des rappels ou alertes de sécurité
+
+🔍 OUTIL WEB (Fallback - Scraping sites médicaux):
+- search_web_drug_info_tool: Chercher sur Drugs.com, WebMD, MedlinePlus, RxList
+  UTILISE UNIQUEMENT si le médicament n'est PAS trouvé dans la base locale ET PAS trouvé dans FDA!
+
+⚠️ RÈGLES STRICTES - ORDRE DE RECHERCHE:
 1. TOUJOURS utiliser get_drug_details_tool quand on te demande des infos sur un médicament
-2. Pour les questions de COMPARAISON ou SUBSTITUTION (ex: "puis-je utiliser X au lieu de Y?"):
+2. Si le médicament N'EST PAS trouvé dans la base locale:
+   - ÉTAPE 2: UTILISE check_fda_drug_info_tool pour chercher dans la base FDA internationale
+   - Si check_fda_drug_info_tool retourne "found": true, UTILISE CES DONNÉES pour répondre
+3. Si le médicament N'EST PAS trouvé dans FDA non plus:
+   - ÉTAPE 3: UTILISE search_web_drug_info_tool pour chercher sur les sites médicaux (Drugs.com, WebMD, etc.)
+   - Ce tool scrape les sites web médicaux de confiance
+   - Si trouvé, utilise ces informations avec le disclaimer approprié
+4. NE DIS JAMAIS "non trouvé" si un des tools a retourné des données!
+5. UTILISE TOUJOURS les résultats des tools - ne les ignore JAMAIS
+6. Pour les questions de COMPARAISON ou SUBSTITUTION (ex: "puis-je utiliser X au lieu de Y?"):
    - UTILISE compare_medications_tool avec les deux médicaments
-   - Ce tool te dira si la substitution est POSSIBLE ou NON
    - RESPECTE la réponse du tool - ne contredis JAMAIS son verdict
-   - Répète les avertissements du tool dans ta réponse
-3. NE JAMAIS dire que tu n'as pas accès à la base de données - TU L'AS!
-4. Si un médicament n'est pas trouvé, utilise search_medication_tool pour trouver des similaires
-5. Fournis des réponses complètes et détaillées en français
-6. Inclus TOUJOURS les avertissements de sécurité
+7. Fournis des réponses complètes et détaillées en français
+8. Inclus TOUJOURS les avertissements de sécurité
 
-📊 BASE DE DONNÉES: 25 médicaments tunisiens avec informations COMPLÈTES disponibles MAINTENANT.
+📊 BASE DE DONNÉES: 30 médicaments tunisiens avec informations COMPLÈTES disponibles MAINTENANT.
 
-💡 EXEMPLES DE BONNES RÉPONSES:
-- "Quel médicament pour la fièvre?" → Utilise search_by_symptom_tool avec "fièvre"
-- "Medicine for pain?" → Utilise search_by_symptom_tool avec "pain"
-- "Puis-je utiliser X au lieu de Y?" → Utilise compare_medications_tool avec X et Y
-- "Quelle est la différence entre X et Y?" → Utilise get_drug_details_tool pour X ET Y, puis explique
-- "Info sur doliprane" → Utilise get_drug_details_tool avec "doliprane"
-- "Identifier cette image" → Utilise identify_medication_tool (SEULEMENT si image fournie!)"""
+💡 ASTUCE: Si un médicament n'est pas trouvé directement, utilise search_medication_tool pour trouver des variantes (ex: "Doliprane" → "Doliprane 1000mg").
+
+💡 EXEMPLES DE BONNES RÉPONSES (TOUJOURS AVEC OUTIL):
+
+Question: "Quel médicament pour la fièvre?"
+Action: APPELER search_by_symptom_tool(symptom="fièvre")
+Réponse: Utiliser le résultat de l'outil
+
+Question: "Info sur doliprane"
+Action: APPELER get_drug_details_tool(drug_name="Doliprane 1000mg")
+Réponse: Utiliser le résultat de l'outil
+
+Question: "Puis-je utiliser X au lieu de Y?"
+Action: APPELER compare_medications_tool(drug1="X", drug2="Y")
+Réponse: Utiliser le résultat de l'outil
+
+Question: "Est-ce que Doliprane est sûr pendant la grossesse?"
+Action: APPELER check_pregnancy_safety_tool(drug_name="Doliprane")
+Réponse: Utiliser le résultat de l'outil
+
+Question: "Tell me about Tylenol" (médicament non-tunisien)
+Action 1: APPELER get_drug_details_tool(drug_name="Tylenol") → Pas trouvé
+Action 2: APPELER check_fda_drug_info_tool(drug_name="Tylenol") → Trouvé dans FDA!
+Réponse: Utiliser les informations FDA
+
+Question: "Info sur Aspégic" (médicament rare)
+Action 1: APPELER get_drug_details_tool(drug_name="Aspégic") → Pas trouvé
+Action 2: APPELER check_fda_drug_info_tool(drug_name="Aspégic") → Pas trouvé
+Action 3: APPELER search_web_drug_info_tool(drug_name="Aspégic") → Trouvé sur Drugs.com!
+Réponse: Utiliser les informations web avec disclaimer
+
+⚠️ INTERDIT: Répondre directement sans appeler d'outil!"""
 
         # Add image data if provided
         image_data = None
@@ -712,7 +989,7 @@ TU DOIS TOUJOURS utiliser les outils disponibles pour répondre:
                 "confidence": "low"
             }
     
-    def stream_response(self, query: str, image: Image.Image | None = None):
+    def stream_response(self, query: str, image: Optional[Image.Image] = None):
         """Stream the agent's response in real-time"""
         
         messages = [HumanMessage(content=query)]
@@ -747,7 +1024,7 @@ def get_agent(model_name: str = None) -> MedicationAgent:
     return _agent_instance
 
 
-def ask_langgraph_agent(query: str, image: Image.Image | None = None) -> dict:
+def ask_langgraph_agent(query: str, image: Optional[Image.Image] = None) -> dict:
     """
     Convenience function to ask the agent
     Uses model from config.py (default: qwen2.5:1.5b for speed)

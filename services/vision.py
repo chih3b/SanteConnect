@@ -82,6 +82,11 @@ def identify_medication(image: Image.Image) -> dict:
     try:
         print("🤖 Using LLaVA vision model as fallback...")
         result = identify_with_ollama(image)
+        
+        # Check if LLaVA detected no medication in the image
+        if result.get("no_medication"):
+            return {"error": "No medication detected in image. Please take a photo of a medication box or packaging.", "drug_name": None, "no_medication": True}
+        
         if result.get("drug_name"):
             # Check if LLaVA result is in database
             from services.drug_db import get_drug_info, search_similar_drugs
@@ -154,49 +159,113 @@ def is_valid_drug_name(name: str) -> bool:
     return True
 
 def identify_with_ollama(image: Image.Image) -> dict:
-    """Use Ollama LLaVA to identify medication"""
+    """Use ESPRIT Token Factory LLaVA API to identify medication"""
     
     # Convert image to base64
     buffered = io.BytesIO()
     image.save(buffered, format="PNG")
     img_base64 = base64.b64encode(buffered.getvalue()).decode()
     
-    # Use the most effective prompt
-    prompt = "What is the brand name of the medication shown in this image? Answer with just the medication name."
+    # Use ESPRIT API
+    result = identify_with_esprit(image, img_base64)
+    if result and result.get("drug_name"):
+        return result
     
-    best_result = None
-    
-    for attempt in range(1):  # Single attempt with best prompt
-        try:
-            response = requests.post(
-                "http://localhost:11434/api/generate",
-                json={
-                    "model": "llava",
-                    "prompt": prompt,
-                    "images": [img_base64],
-                    "stream": False
-                },
-                timeout=60  # Increased timeout for complex images
-            )
+    return {"drug_name": None, "method": "esprit_llava", "confidence": 0}
+
+
+def identify_with_esprit(image: Image.Image, img_base64: str = None) -> dict:
+    """Use ESPRIT Token Factory LLaVA API to identify medication"""
+    try:
+        import httpx
+        from openai import OpenAI
+        from config import ESPRIT_API_KEY, ESPRIT_API_URL, ESPRIT_VISION_MODEL
+        
+        if not img_base64:
+            buffered = io.BytesIO()
+            image.save(buffered, format="PNG")
+            img_base64 = base64.b64encode(buffered.getvalue()).decode()
+        
+        print("🌐 Using ESPRIT Token Factory LLaVA API...")
+        
+        # Create client with SSL verification disabled and timeout (as per ESPRIT docs)
+        http_client = httpx.Client(verify=False, timeout=httpx.Timeout(60.0, connect=10.0))
+        
+        client = OpenAI(
+            api_key=ESPRIT_API_KEY,
+            base_url=ESPRIT_API_URL,
+            http_client=http_client
+        )
+        
+        response = client.chat.completions.create(
+            model=ESPRIT_VISION_MODEL,
+            messages=[
+                {
+                    'role': 'user',
+                    'content': [
+                        {'type': 'text', 'text': '''Look at this image carefully. Is there a medication box, pill bottle, or medicine packaging visible?
+
+If YES: Reply with ONLY the brand name of the medication (e.g., "Doliprane", "Fervex", "Augmentin").
+If NO medication is visible (e.g., it's a selfie, person, landscape, food, or any non-medication image): Reply with exactly "NO_MEDICATION_FOUND".
+
+Important: Only identify actual medication packaging. Do not guess or hallucinate drug names.'''},
+                        {'type': 'image_url', 'image_url': {'url': f'data:image/png;base64,{img_base64}'}}
+                    ]
+                }
+            ],
+            max_tokens=50,
+            temperature=0.1
+        )
+        
+        response_text = response.choices[0].message.content.strip()
+        print(f"✅ ESPRIT LLaVA response: {response_text}")
+        
+        # Check if no medication was found
+        no_med_indicators = ['no_medication', 'no medication', 'not a medication', 'no drug', 'no medicine', 
+                            'cannot identify', "can't identify", 'not visible', 'no packaging', 'selfie',
+                            'person', 'face', 'human']
+        response_lower = response_text.lower()
+        if any(indicator in response_lower for indicator in no_med_indicators):
+            print("ℹ️ No medication detected in image")
+            return {"drug_name": None, "method": "esprit_llava", "confidence": 0, "no_medication": True}
+        
+        # Parse the response
+        parsed = parse_ollama_response(response_text)
+        
+        if parsed.get("drug_name"):
+            parsed["method"] = "esprit_llava"
+            parsed["confidence"] = 0.75
+            return parsed
+        
+        # If parsing failed, try to use the raw response as drug name
+        clean_name = response_text.strip().split('\n')[0].strip()
+        if clean_name and len(clean_name) >= 3 and len(clean_name) <= 30:
+            # Try fuzzy match before returning
+            from services.drug_db import search_similar_drugs
+            similar = search_similar_drugs(clean_name, limit=3)
+            if similar and similar[0]["similarity_score"] >= 50:
+                matched_name = similar[0]["drug_name"]
+                print(f"✅ ESPRIT fuzzy match: '{clean_name}' → '{matched_name}' (score: {similar[0]['similarity_score']})")
+                return {
+                    "drug_name": matched_name,
+                    "original_response": clean_name,
+                    "method": "esprit_llava",
+                    "confidence": 0.7,
+                    "fuzzy_match": True
+                }
             
-            if response.status_code == 200:
-                result = response.json()
-                parsed = parse_ollama_response(result.get("response", ""))
-                
-                if parsed.get("drug_name"):
-                    best_result = parsed
-                    break
-        except Exception as e:
-            print(f"LLaVA prompt failed: {e}")
-            continue
-    
-    if best_result:
-        best_result["method"] = "llava"
-        if "confidence" not in best_result:
-            best_result["confidence"] = 0.7
-        return best_result
-    
-    return {"drug_name": None, "method": "llava", "confidence": 0}
+            return {
+                "drug_name": clean_name,
+                "method": "esprit_llava",
+                "confidence": 0.7,
+                "raw_response": response_text
+            }
+        
+        return None
+        
+    except Exception as e:
+        print(f"⚠️ ESPRIT API error: {e}")
+        return None
 
 def parse_ollama_response(response_text: str) -> dict:
     """Parse Ollama response to extract drug information"""

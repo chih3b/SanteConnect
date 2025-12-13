@@ -41,6 +41,10 @@ def is_simple_query(query: str) -> tuple[bool, Optional[str]]:
         # Questions about specific uses: "does X help with Y?"
         r'^(?:does|est-ce\s+que|is)\s+([a-zàâäéèêëïîôùûüÿç]+)\s+(?:help|aide|good|bon)\s+(?:with|for|pour|contre)\s+',
         r'^([a-zàâäéèêëïîôùûüÿç]+)\s+(?:helps?|aide)\s+(?:with|for|pour|contre)\s+',
+        
+        # When to use questions: "when do we use X?"
+        r'^(?:when|quand)\s+(?:do\s+we|to|do\s+i)?\s*(?:use|utiliser|prendre)\s+([a-zàâäéèêëïîôùûüÿç]+)\s*\??$',
+        r'^(?:when|quand)\s+(?:do\s+we|to|do\s+i)?\s*(?:use|utiliser|prendre)\s+([a-zàâäéèêëïîôùûüÿç\s]+)\s*\??$',
     ]
     
     for pattern in patterns:
