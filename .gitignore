@@ -5,6 +5,49 @@ __pycache__/
 .Python
 venv/
 env/
+.venv/
 *.log
 .DS_Store
 uploads/
+
+# Node modules
+node_modules/
+frontend/node_modules/
+
+# Model checkpoints (large files - download from HuggingFace instead)
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+checkpoints/
+backend/checkpoints/
+backend/segment-anything-2/checkpoints/
+
+# HuggingFace cache
+.cache/
+models--*/
+backend/medication_db/.cache/
+
+# Environment files with secrets
+.env
+backend/.env
+
+# IDE
+.vscode/
+.idea/
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+frontend/build/
+
+# Temporary files
+*.tmp
+*.temp
+.ipynb_checkpoints/
+
+# Database files (downloaded from HuggingFace)
+backend/medication_db/faiss_index.bin
+medication_db/
