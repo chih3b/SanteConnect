@@ -2,6 +2,13 @@
 Configuration for Medication Identification System
 """
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from backend/.env if it exists
+backend_env_path = Path(__file__).parent / 'backend' / '.env'
+if backend_env_path.exists():
+    load_dotenv(backend_env_path)
 
 # ESPRIT Token Factory API Configuration
 ESPRIT_API_KEY = os.environ.get("ESPRIT_API_KEY", "sk-e16d16a054744585bfb2ef09bb52315c")
@@ -9,6 +16,12 @@ ESPRIT_API_URL = "https://tokenfactory.esprit.tn/api"
 ESPRIT_VISION_MODEL = "hosted_vllm/llava-1.5-7b-hf"
 ESPRIT_LLM_MODEL = "hosted_vllm/Llama-3.1-70B-Instruct"
 USE_ESPRIT_VISION = True  # Use ESPRIT LLaVA instead of local Ollama LLaVA
+
+# Prescription Scanner (Azure Vision + HuggingFace) Configuration
+AZURE_VISION_ENDPOINT = os.environ.get("AZURE_VISION_ENDPOINT", "")
+AZURE_VISION_KEY = os.environ.get("AZURE_VISION_KEY", "")
+HF_TOKEN = os.environ.get("HF_TOKEN", "")
+SAM2_HF_REPO = os.environ.get("SAM2_HF_REPO", "firasaa/sam2-medical-ocr")
 
 # Model Configuration
 # Choose based on your needs:

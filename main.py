@@ -11,7 +11,18 @@ from services.auth import (
 )
 from PIL import Image
 import io
-from typing import Optional
+from typing import Optional, List
+import cv2
+import numpy as np
+import base64
+import sys
+import os
+
+# Add backend folder to path for prescription scan imports
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'backend'))
+
+# Global agent system instance for prescription scanning
+_prescription_agent_system = None
 
 
 # Pydantic models for auth
@@ -85,6 +96,138 @@ async def identify(file: UploadFile = File(...)):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============== PRESCRIPTION SCAN ENDPOINTS ==============
+
+async def get_prescription_agent_system():
+    """Get or initialize the prescription agent system."""
+    global _prescription_agent_system
+    if _prescription_agent_system is None:
+        try:
+            from backend.agent_system import get_agent_system
+            _prescription_agent_system = await get_agent_system()
+            print("✅ Prescription Agent System initialized")
+        except Exception as e:
+            print(f"⚠️ Failed to initialize Prescription Agent System: {e}")
+            return None
+    return _prescription_agent_system
+
+
+@app.post("/prescription/scan")
+async def scan_prescription(
+    file: UploadFile = File(...),
+    filter_phi: bool = True
+):
+    """
+    Scan a prescription image using the AI agent system.
+    
+    This endpoint:
+    1. Segments the prescription image using SAM2
+    2. Extracts text using OCR (Azure Vision API)
+    3. Filters PHI (Protected Health Information) if enabled
+    4. Extracts medication names and dosages
+    5. Queries drug databases for alternatives (RxNorm, FDA, LLaMA)
+    
+    Args:
+        file: Prescription image file
+        filter_phi: Whether to redact patient information (default: True)
+    
+    Returns:
+        JSON with extracted text, medications, and drug alternatives
+    """
+    agent_system = await get_prescription_agent_system()
+    
+    if agent_system is None:
+        raise HTTPException(
+            status_code=503, 
+            detail="Prescription scanning service is initializing. Please try again in a moment."
+        )
+    
+    try:
+        # Read image
+        contents = await file.read()
+        nparr = np.frombuffer(contents, np.uint8)
+        image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        
+        if image is None:
+            raise HTTPException(status_code=400, detail="Invalid image file")
+        
+        # Process through agent system
+        result = await agent_system.process_image(
+            image=image,
+            mode="full",
+            filter_phi=filter_phi,
+            include_regions=False
+        )
+        
+        if not result['success']:
+            raise HTTPException(status_code=500, detail=result.get('error', 'Processing failed'))
+        
+        # Format response for frontend
+        data = result.get('data', {})
+        
+        # Text recognition
+        text_data = data.get('text_recognition', {})
+        extracted_text = text_data.get('text', '')
+        
+        # PHI filtering
+        phi_data = data.get('phi_filtering', {})
+        redacted_text = phi_data.get('redacted_text', extracted_text)
+        phi_entities = phi_data.get('phi_entities', [])
+        
+        # Drug information
+        drug_data = data.get('drug_information', {})
+        medications = drug_data.get('medications', [])
+        drug_alternatives = drug_data.get('drug_alternatives', [])
+        
+        # Convert image to base64 for display
+        _, buffer = cv2.imencode('.png', image)
+        image_base64 = base64.b64encode(buffer).decode()
+        
+        response = {
+            "success": True,
+            "extracted_text": extracted_text,
+            "redacted_text": redacted_text if filter_phi else extracted_text,
+            "phi_detected": len(phi_entities) > 0,
+            "phi_entities": phi_entities if filter_phi else [],
+            "medications": medications,
+            "drug_alternatives": drug_alternatives,
+            "total_medications": len(medications),
+            "original_image": f"data:image/png;base64,{image_base64}",
+            "agent_used": result.get('agent_name', 'OCRAgent'),
+            "tools_used": result.get('tools_used', [])
+        }
+        
+        return response
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error processing prescription: {e}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Error processing prescription: {str(e)}")
+
+
+@app.get("/prescription/status")
+async def prescription_status():
+    """Check the status of the prescription scanning system."""
+    agent_system = await get_prescription_agent_system()
+    
+    if agent_system is None:
+        return {
+            "status": "initializing",
+            "message": "Agent system is being initialized"
+        }
+    
+    status = agent_system.get_status()
+    return {
+        "status": "ready" if status.get('initialized') else "initializing",
+        "models": status.get('models', {}),
+        "agents_available": list(status.get('system', {}).get('agents', {}).keys()) if status.get('system') else []
+    }
+
 
 # ============== AUTH ENDPOINTS ==============
 

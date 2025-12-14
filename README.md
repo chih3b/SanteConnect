@@ -223,3 +223,346 @@ MIT License - see LICENSE file for details
 ---
 
 Made with ❤️ for Tunisia 🇹🇳
+
+---
+
+# 📋 Advanced Prescription Scanner Module
+
+## 🆕 New Features (v2.1)
+
+The **Prescription Scanner** module adds powerful medical document processing capabilities:
+
+### 📄 Prescription Scanning
+- **SAM2 Image Segmentation**: Meta's Segment Anything 2 model for precise text region detection
+- **Azure Vision OCR**: Microsoft's cloud OCR for accurate text extraction from prescriptions
+- **Multi-Agent Architecture**: Specialized AI agents for each processing step
+
+### 🔒 HIPAA Compliance
+- **PHI Detection & Redaction**: Automatically detects and redacts Protected Health Information
+- **Named Entity Recognition**: Uses BERT-based NER to identify names, addresses, IDs
+- **Regex-based Fallback**: Pattern matching for SSN, phone numbers, dates, etc.
+
+### 💊 Drug Intelligence
+- **Vector Database Search**: FAISS-based semantic search across medication database
+- **FDA API Integration**: Real-time drug information from FDA OpenFDA API
+- **RxNorm API Integration**: NIH's normalized medication naming system
+- **LLaMA AI Fallback**: AI-generated drug information when APIs unavailable
+
+### 🌐 Cloud Integration
+- **HuggingFace Hub**: Model and database storage (free tier)
+- **Azure Cognitive Services**: Vision API for OCR
+- **OpenRouter API**: Access to various LLM providers
+
+---
+
+## 🔑 Environment Setup
+
+### Step 1: Create `.env` file in `backend/` folder
+
+Create a file named `.env` inside the `backend/` directory:
+
+```bash
+cd backend
+touch .env  # On Windows: type nul > .env
+```
+
+### Step 2: Add API Keys
+
+Edit `backend/.env` with your API credentials:
+
+```env
+# ===========================================
+# AZURE COGNITIVE SERVICES (Required for OCR)
+# ===========================================
+# Get from: https://portal.azure.com → Create "Computer Vision" resource
+AZURE_VISION_ENDPOINT=https://your-resource-name.cognitiveservices.azure.com/
+AZURE_VISION_KEY=your-azure-vision-api-key
+
+# ===========================================
+# HUGGINGFACE (Required for models & database)
+# ===========================================
+# Get from: https://huggingface.co/settings/tokens
+HF_TOKEN=hf_your_huggingface_token
+
+# SAM2 Model Repository (for image segmentation)
+SAM2_HF_REPO=firasaa/sam2-medical-ocr
+
+# Medication Vector Database Repository
+HF_MEDICATION_DB_REPO=firasaa/medication-vector-db
+
+# ===========================================
+# OPENROUTER (Required for AI drug info)
+# ===========================================
+# Get from: https://openrouter.ai/keys
+OPENROUTER_API_KEY=sk-or-v1-your-openrouter-api-key
+GROK_MODEL=anthropic/claude-3.5-sonnet
+
+# ===========================================
+# OPTIONAL: NER Model for PHI detection
+# ===========================================
+HF_NER_MODEL=dslim/bert-base-NER
+```
+
+### Step 3: Get Your API Keys
+
+#### 🔷 Azure Vision API (for OCR)
+
+1. Go to [Azure Portal](https://portal.azure.com)
+2. Click **Create a resource** → Search **"Computer Vision"**
+3. Create the resource (Free tier: 5,000 calls/month)
+4. Go to **Keys and Endpoint** → Copy **KEY 1** and **Endpoint**
+
+#### 🟠 HuggingFace Token (for models)
+
+1. Go to [HuggingFace Settings](https://huggingface.co/settings/tokens)
+2. Click **New token** → Give it a name
+3. Select **Read** access (or Write if uploading)
+4. Copy the token
+
+#### 🟢 OpenRouter API (for AI)
+
+1. Go to [OpenRouter](https://openrouter.ai/keys)
+2. Sign up / Log in
+3. Click **Create Key**
+4. Copy the API key
+
+---
+
+## 🏗️ Backend Architecture
+
+```
+backend/
+├── .env                        # API keys and configuration
+├── agent_system.py             # Main agent orchestration system
+├── medication_vector_db.py     # FAISS vector database with HF Hub sync
+├── drugs.json                  # Local drug database (200+ medications)
+├── agents/
+│   ├── orchestrator.py         # Routes requests to appropriate agents
+│   ├── ocr_agent.py            # Coordinates OCR processing
+│   ├── segmentation_agent.py   # SAM2 image segmentation
+│   ├── text_recognition_agent.py # Azure Vision OCR
+│   ├── phi_filter_agent.py     # HIPAA PHI redaction
+│   ├── drug_information_agent.py # Drug lookup & alternatives
+│   └── tools.py                # Reusable tools for agents
+├── segment-anything-2/         # SAM2 model package
+└── checkpoints/                # Downloaded model weights
+```
+
+### Agent Pipeline
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PRESCRIPTION SCAN FLOW                    │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  1. IMAGE INPUT                                              │
+│     • Upload prescription photo (JPEG, PNG)                  │
+│     • Base64 encoded for processing                          │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  2. SEGMENTATION AGENT (SAM2)                                │
+│     • Detect text regions in image                           │
+│     • Segment prescription into readable areas               │
+│     • Fallback: Use full image if segmentation fails         │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  3. TEXT RECOGNITION AGENT (Azure Vision)                    │
+│     • OCR on segmented regions                               │
+│     • Extract text from prescription                         │
+│     • Handle handwritten + printed text                      │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  4. PHI FILTER AGENT (HIPAA Compliance)                      │
+│     • NER-based entity detection (names, locations)          │
+│     • Regex patterns (SSN, phone, dates, IDs)                │
+│     • Redact: "John Smith" → "[PERSON_REDACTED]"             │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  5. MEDICATION EXTRACTION                                    │
+│     • Regex patterns for drug names + dosages                │
+│     • Match against known medication database                │
+│     • Extract: "Doliprane 1000mg" → {name, dosage}           │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  6. DRUG INFORMATION AGENT                                   │
+│     ┌─────────────┐  ┌─────────────┐  ┌─────────────┐       │
+│     │ Vector DB   │  │  FDA API    │  │ RxNorm API  │       │
+│     │ (FAISS)     │  │             │  │             │       │
+│     └──────┬──────┘  └──────┬──────┘  └──────┬──────┘       │
+│            │                │                │               │
+│            └────────────────┴────────────────┘               │
+│                             │                                │
+│                             ▼                                │
+│     ┌─────────────────────────────────────────────────┐     │
+│     │  LLaMA AI Fallback (via OpenRouter)              │     │
+│     │  If no results from APIs, use AI to generate     │     │
+│     └─────────────────────────────────────────────────┘     │
+└─────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────┐
+│  7. RESPONSE                                                 │
+│     • Extracted text (redacted if PHI filter enabled)        │
+│     • Medications found with dosages                         │
+│     • Drug alternatives with sources                         │
+│     • AI-generated information                               │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 📦 Additional Installation Steps
+
+### 1. Install SAM2 (Segment Anything 2)
+
+```bash
+cd backend/segment-anything-2
+pip install -e .
+```
+
+### 2. Install Backend Dependencies
+
+```bash
+pip install sentence-transformers faiss-cpu huggingface-hub python-dotenv
+```
+
+### 3. Build & Upload Vector Database (Optional)
+
+If you want to create your own medication database:
+
+```bash
+cd backend
+python build_and_upload_db.py
+```
+
+This will:
+- Load medications from `drugs.json`
+- Create FAISS embeddings using SentenceTransformers
+- Upload to HuggingFace Hub (requires write access token)
+
+---
+
+## 📝 New API Endpoints
+
+```
+POST /prescription/scan      - Scan prescription image
+     Query params:
+       - filter_phi: bool    - Enable HIPAA PHI redaction (default: true)
+     Body: multipart/form-data with 'file' field
+     
+GET  /prescription/status    - Check if agent system is ready
+```
+
+### Example Response
+
+```json
+{
+  "success": true,
+  "extracted_text": "Dr. [PERSON_REDACTED]\nPrescription for [PERSON_REDACTED]\n\nDoliprane 1000mg - 3x daily\nAmoxicilline 500mg - 2x daily",
+  "redacted_text": "Dr. [PERSON_REDACTED]\nPrescription for [PERSON_REDACTED]\n\nDoliprane 1000mg - 3x daily\nAmoxicilline 500mg - 2x daily",
+  "phi_detected": true,
+  "phi_entities": [
+    {"type": "PERSON", "original": "Dr. Smith"},
+    {"type": "PERSON", "original": "John Doe"}
+  ],
+  "medications": [
+    {"name": "doliprane", "dosage": "1000mg"},
+    {"name": "amoxicilline", "dosage": "500mg"}
+  ],
+  "total_medications": 2,
+  "drug_alternatives": [
+    {
+      "original_drug": {"name": "doliprane", "dosage": "1000mg"},
+      "drug_info": {
+        "sources_found": ["Essential Medicines DB", "FDA API"],
+        "alternatives": [
+          {"generic_name": "paracetamol", "brand_names": ["Efferalgan", "Panadol"]}
+        ],
+        "text_from_llm": "Doliprane is a brand name for paracetamol..."
+      }
+    }
+  ],
+  "tools_used": ["azure_vision_ocr", "phi_filter", "vector_db_search"]
+}
+```
+
+---
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+#### 1. "No module named 'sam2'"
+```bash
+cd backend/segment-anything-2
+pip install -e .
+```
+
+#### 2. "Could not load vector database" (FAISS error with non-ASCII path)
+This happens when your project folder contains special characters (é, è, etc.). The code automatically handles this by copying to a temp directory.
+
+#### 3. "Azure Vision OCR not working"
+- Check that `AZURE_VISION_ENDPOINT` and `AZURE_VISION_KEY` are set in `backend/.env`
+- Verify your Azure resource is in the correct region
+- Check Azure portal for API quota/limits
+
+#### 4. "MedicationVectorDB: got unexpected keyword argument 'use_hub'"
+Update to the latest `medication_vector_db.py` which supports the `use_hub` parameter.
+
+#### 5. "HuggingFace download failed"
+- Check your `HF_TOKEN` is valid
+- Verify the repository exists and is accessible
+- Check your internet connection
+
+---
+
+## 📊 Extended Database
+
+The prescription scanner includes **200+ medications** from the Tunisian essential medicines list:
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| **Analgesics** | 25+ | Paracétamol, Tramadol, Morphine |
+| **Antibiotics** | 40+ | Amoxicilline, Ciprofloxacine, Azithromycine |
+| **Cardiovascular** | 30+ | Amlodipine, Atenolol, Lisinopril |
+| **Antidiabetics** | 15+ | Metformine, Glibenclamide, Insuline |
+| **Psychiatric** | 20+ | Diazepam, Halopéridol, Fluoxétine |
+| **Respiratory** | 15+ | Salbutamol, Béclométhasone, Théophylline |
+| **And more...** | 55+ | Various therapeutic categories |
+
+---
+
+## 🌐 Data Sources
+
+| Source | Type | Purpose |
+|--------|------|---------|
+| **FAISS Vector DB** | Local/Cloud | Semantic medication search |
+| **FDA OpenFDA API** | REST API | Drug labels, interactions, NDC codes |
+| **NIH RxNorm API** | REST API | Normalized drug names, RxCUI codes |
+| **OpenRouter (LLaMA)** | LLM API | AI-generated drug information |
+| **HuggingFace Hub** | Cloud Storage | Model weights, vector database |
+| **Azure Vision** | Cloud API | OCR for prescription images |
+
+---
+
+## 🔒 Security Notes
+
+1. **Never commit `.env` files** - Add to `.gitignore`
+2. **API keys are sensitive** - Use environment variables in production
+3. **PHI data is redacted** - But original data is processed in memory
+4. **HTTPS recommended** - For production deployments
+5. **Rate limits apply** - Check API provider documentation
+
+---

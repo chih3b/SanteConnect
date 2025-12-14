@@ -8,6 +8,7 @@ const ImageUpload = React.lazy(() => import('./components/ImageUpload'));
 const ChatInterface = React.lazy(() => import('./components/ChatInterface'));
 const SearchBar = React.lazy(() => import('./components/SearchBar'));
 const MedicationCard = React.lazy(() => import('./components/MedicationCard'));
+const PrescriptionScan = React.lazy(() => import('./components/PrescriptionScan'));
 
 function Spinner() {
   return (
@@ -27,13 +28,15 @@ function MainApp() {
   const titles = {
     identify: 'Medication Identification',
     search: 'Search Medications', 
-    chat: 'AI Medical Assistant'
+    chat: 'AI Medical Assistant',
+    'scan-prescription': 'Scan your Prescription'
   };
   
   const subtitles = {
     identify: 'Upload an image to identify medications',
     search: 'Search our database of Tunisian medications',
-    chat: 'Ask questions about medications'
+    chat: 'Ask questions about medications',
+    'scan-prescription': 'Upload your prescription for analysis'
   };
 
   const handleConversationCreated = (conv) => {
@@ -65,6 +68,7 @@ function MainApp() {
           <div className="max-w-6xl mx-auto">
             <React.Suspense fallback={<Spinner />}>
               {activeTab === 'identify' && <ImageUpload setResult={setResult} setLoading={setLoading} />}
+              {activeTab === 'scan-prescription' && <PrescriptionScan setResult={setResult} setLoading={setLoading} />}
               {activeTab === 'search' && <SearchBar setResult={setResult} setLoading={setLoading} />}
               {activeTab === 'chat' && (
                 <ChatInterface 
@@ -84,7 +88,7 @@ function MainApp() {
                   </Card>
                 </div>
               )}
-              {result && !loading && activeTab !== 'chat' && <MedicationCard result={result} />}
+              {result && !loading && activeTab !== 'chat' && activeTab !== 'scan-prescription' && <MedicationCard result={result} />}
             </React.Suspense>
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { Plus, MessageSquare, Trash2, LogOut, Image, Search, Menu, X } from 'lucide-react';
+import { Plus, MessageSquare, Trash2, LogOut, Image, Search, Menu, X, FileText } from 'lucide-react';
 import { Button } from './ui/button';
 
 export default function Sidebar({ activeTab, onTabChange, currentConversation, onSelectConversation, refreshTrigger }) {
@@ -80,6 +80,7 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
         <p className="text-xs text-muted-foreground px-2 mb-2">Navigation</p>
         {[
           { id: 'chat', icon: MessageSquare, label: 'AI Assistant' },
+          { id: 'scan-prescription', icon: FileText, label: 'Scan Prescription' },
           { id: 'identify', icon: Image, label: 'Identify Medication' },
           { id: 'search', icon: Search, label: 'Search Database' }
         ].map(({ id, icon: Icon, label }) => (
