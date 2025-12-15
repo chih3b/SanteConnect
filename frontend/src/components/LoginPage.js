@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { useAuth } from './AuthContext';
-import { Button } from './ui/button';
-import { Card } from './ui/card';
+import { useState } from "react";
+import { useAuth } from "./AuthContext";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { ArrowLeft, User } from "lucide-react";
 
-const LoginPage = () => {
+const LoginPage = ({ onBack }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,17 +42,28 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-6 sm:p-8 card-glow mx-4 sm:mx-0">
+        {/* Back Button */}
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
+          >
+            <ArrowLeft size={18} />
+            <span className="text-sm">Back to role selection</span>
+          </button>
+        )}
+
         {/* Logo */}
         <div className="text-center mb-8">
-          <img 
-            src="/logo.png" 
-            alt="SanteConnect Logo" 
-            className="w-20 h-20 mx-auto mb-4 object-contain"
-          />
-          <h1 className="text-2xl font-bold">SanteConnect</h1>
-          <p className="text-muted-foreground mt-1 text-sm">Your AI Medical Assistant</p>
+          <div className="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <User size={32} className="text-primary" />
+          </div>
+          <h1 className="text-2xl font-bold">Patient Portal</h1>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Access your health dashboard
+          </p>
         </div>
 
         {/* Tabs */}

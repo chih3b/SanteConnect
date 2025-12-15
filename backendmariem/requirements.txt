@@ -1,0 +1,29 @@
+# Core Framework
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+python-dotenv==1.0.0
+
+# Data Validation
+pydantic==2.5.0
+
+# AI & LLM
+groq==0.4.1
+
+# OCR & Document Processing
+pytesseract==0.3.10
+Pillow==10.1.0
+pdf2image==1.16.3
+pdfplumber==0.10.3
+
+# PDF Generation
+reportlab==4.0.7
+
+# Google APIs (for Gmail & Calendar)
+google-auth==2.25.2
+google-auth-oauthlib==1.2.0
+google-auth-httplib2==0.2.0
+google-api-python-client==2.110.0
+
+# Utilities
+requests==2.31.0
