@@ -1,0 +1,792 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "maladie": "Infarctus du myocarde",
+      "description": "Nécrose du muscle cardiaque due à l'obstruction d'une artère coronaire, urgence médicale absolue",
+      "symptomes": [
+        "Douleur thoracique intense et prolongée (plus de 20 minutes)",
+        "Sensation d'oppression ou d'écrasement dans la poitrine",
+        "Douleur irradiant vers le bras gauche, la mâchoire, le cou ou le dos",
+        "Sueurs froides profuses",
+        "Nausées et vomissements",
+        "Essoufflement important",
+        "Anxiété intense, sentiment de mort imminente",
+        "Pâleur cutanée",
+        "Faiblesse généralisée"
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Immédiat - Chaque minute compte",
+      "traitement": [
+        "Appel immédiat du 190 (SAMU)",
+        "Aspirine 300mg à croquer immédiatement",
+        "Angioplastie coronaire en urgence (moins de 90 minutes)",
+        "Pose de stent(s) coronaire(s)",
+        "Anticoagulants intraveineux (héparine)",
+        "Bêta-bloquants",
+        "Inhibiteurs de l'ECA",
+        "Statines à forte dose",
+        "Double antiagrégation plaquettaire",
+        "Surveillance en unité de soins intensifs cardiologiques (USIC)",
+        "Réadaptation cardiaque post-infarctus"
+      ],
+      "facteurs_risque": [
+        "Tabagisme",
+        "Hypertension artérielle",
+        "Diabète",
+        "Hypercholestérolémie",
+        "Obésité",
+        "Sédentarité",
+        "Stress chronique",
+        "Antécédents familiaux"
+      ]
+    },
+    {
+      "id": 2,
+      "maladie": "Angine de poitrine stable",
+      "description": "Douleur thoracique prévisible survenant à l'effort due à un rétrécissement des artères coronaires",
+      "symptomes": [
+        "Douleur thoracique lors d'effort physique",
+        "Sensation de serrement dans la poitrine",
+        "Essoufflement à l'effort",
+        "Disparition des symptômes au repos (5-10 minutes)",
+        "Douleur reproductible au même niveau d'effort",
+        "Irradiation possible vers le bras gauche",
+        "Fatigue à l'effort"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Consultation cardiologique sous 48-72h",
+      "traitement": [
+        "Trinitrine sublinguale en cas de crise",
+        "Bêta-bloquants (métoprolol, bisoprolol)",
+        "Inhibiteurs calciques (amlodipine, diltiazem)",
+        "Statines pour contrôler le cholestérol",
+        "Aspirine à faible dose (antiagrégant)",
+        "Modification du mode de vie",
+        "Activité physique adaptée et progressive",
+        "Régime alimentaire équilibré (méditerranéen)",
+        "Arrêt du tabac obligatoire",
+        "Gestion du stress",
+        "Éventuellement angioplastie ou pontage si sévère"
+      ],
+      "facteurs_risque": [
+        "Athérosclérose coronarienne",
+        "Hypertension",
+        "Diabète",
+        "Hyperlipidémie"
+      ]
+    },
+    {
+      "id": 3,
+      "maladie": "Insuffisance cardiaque congestive",
+      "description": "Incapacité du cœur à pomper suffisamment de sang pour répondre aux besoins de l'organisme",
+      "symptomes": [
+        "Essoufflement progressif (dyspnée d'effort puis de repos)",
+        "Fatigue chronique et faiblesse musculaire",
+        "Œdème des jambes, chevilles et pieds",
+        "Prise de poids rapide (rétention d'eau)",
+        "Difficulté à respirer en position allongée (orthopnée)",
+        "Toux nocturne avec expectorations mousseuses",
+        "Distension abdominale (ascite)",
+        "Perte d'appétit",
+        "Confusion mentale (chez les personnes âgées)",
+        "Nycturie (uriner fréquemment la nuit)"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré à élevé",
+      "delai_intervention": "Consultation urgente si aggravation, sinon sous 1 semaine",
+      "traitement": [
+        "Diurétiques (furosémide, bumétanide)",
+        "Inhibiteurs de l'ECA (ramipril, énalapril)",
+        "Bêta-bloquants (carvédilol, bisoprolol)",
+        "Antagonistes de l'aldostérone (spironolactone)",
+        "Inhibiteurs SGLT2 (dapagliflozine)",
+        "Régime pauvre en sel (< 2g/jour)",
+        "Restriction hydrique (1-1.5L/jour)",
+        "Surveillance du poids quotidien",
+        "Repos et activité physique adaptée",
+        "Vaccination antigrippale et anti-pneumococcique",
+        "Défibrillateur implantable si fraction d'éjection < 35%",
+        "Resynchronisation cardiaque si nécessaire"
+      ],
+      "facteurs_risque": [
+        "Infarctus du myocarde antérieur",
+        "Hypertension non contrôlée",
+        "Valvulopathies",
+        "Cardiomyopathies"
+      ]
+    },
+    {
+      "id": 4,
+      "maladie": "Fibrillation auriculaire",
+      "description": "Trouble du rythme cardiaque caractérisé par une contraction anarchique des oreillettes",
+      "symptomes": [
+        "Palpitations cardiaques (sensation de battements irréguliers)",
+        "Rythme cardiaque rapide et irrégulier",
+        "Essoufflement même au repos",
+        "Fatigue importante et inhabituelle",
+        "Étourdissements ou vertiges",
+        "Douleur thoracique légère ou gêne",
+        "Anxiété",
+        "Faiblesse généralisée",
+        "Parfois asymptomatique (découverte fortuite)"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Consultation cardiologique sous 24-48h si première crise",
+      "traitement": [
+        "Anticoagulants oraux (warfarine, apixaban, rivaroxaban, dabigatran)",
+        "Antiarythmiques (amiodarone, flécaïnide, propafénone)",
+        "Bêta-bloquants pour contrôle de fréquence (métoprolol)",
+        "Inhibiteurs calciques (diltiazem, vérapamil)",
+        "Cardioversion électrique si nécessaire",
+        "Ablation par cathéter (isolation des veines pulmonaires)",
+        "Surveillance régulière de l'INR si warfarine",
+        "Fermeture de l'auricule gauche si contre-indication aux anticoagulants",
+        "Modification du mode de vie (réduction alcool, caféine)",
+        "Traitement des facteurs déclenchants"
+      ],
+      "facteurs_risque": [
+        "Âge avancé",
+        "Hypertension",
+        "Valvulopathies",
+        "Apnée du sommeil",
+        "Consommation excessive d'alcool"
+      ]
+    },
+    {
+      "id": 5,
+      "maladie": "Embolie pulmonaire",
+      "description": "Obstruction d'une artère pulmonaire par un caillot sanguin, urgence vitale",
+      "symptomes": [
+        "Douleur thoracique soudaine et aiguë",
+        "Essoufflement brutal et intense",
+        "Tachycardie (fréquence cardiaque > 100/min)",
+        "Toux sèche ou avec crachats sanguinolents (hémoptysie)",
+        "Anxiété importante et agitation",
+        "Sueurs profuses",
+        "Sensation de malaise ou syncope",
+        "Cyanose (coloration bleutée des lèvres)",
+        "Douleur dans le mollet (thrombose veineuse)",
+        "Fièvre modérée"
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Immédiat - Urgence vitale",
+      "traitement": [
+        "Hospitalisation immédiate en urgence",
+        "Oxygénothérapie à haut débit",
+        "Anticoagulants en urgence (héparine non fractionnée IV)",
+        "Thrombolyse si embolie massive (alteplase)",
+        "Embolectomie chirurgicale ou par cathéter si choc",
+        "Relais par anticoagulants oraux (3-6 mois minimum)",
+        "Surveillance étroite des signes vitaux",
+        "Repos strict au lit initial",
+        "Bas de contention",
+        "Recherche de thrombophilie si récidivant",
+        "Prévention secondaire à long terme"
+      ],
+      "facteurs_risque": [
+        "Immobilisation prolongée",
+        "Chirurgie récente",
+        "Cancer évolutif",
+        "Thrombophilie",
+        "Contraception œstroprogestative"
+      ]
+    },
+    {
+      "id": 6,
+      "maladie": "Hypertension artérielle",
+      "description": "Élévation chronique de la pression artérielle au-dessus de 140/90 mmHg",
+      "symptomes": [
+        "Souvent asymptomatique (tueur silencieux)",
+        "Maux de tête matinaux occipitaux",
+        "Vertiges et étourdissements",
+        "Bourdonnements d'oreilles (acouphènes)",
+        "Vision floue ou troubles visuels",
+        "Saignements de nez occasionnels (épistaxis)",
+        "Fatigue inhabituelle",
+        "Palpitations",
+        "Essoufflement à l'effort",
+        "Douleur thoracique (si sévère)"
+      ],
+      "urgence": false,
+      "niveau_urgence": "faible à modéré",
+      "delai_intervention": "Consultation médicale programmée, urgente si > 180/110 mmHg",
+      "traitement": [
+        "Inhibiteurs de l'ECA (ramipril, périndopril)",
+        "Antagonistes des récepteurs de l'angiotensine II (ARA II)",
+        "Diurétiques thiazidiques (hydrochlorothiazide)",
+        "Inhibiteurs calciques (amlodipine, nifédipine)",
+        "Bêta-bloquants (aténolol, métoprolol)",
+        "Régime DASH (pauvre en sel, riche en fruits et légumes)",
+        "Exercice régulier (150 min/semaine)",
+        "Perte de poids si surpoids (IMC < 25)",
+        "Réduction de la consommation d'alcool",
+        "Arrêt du tabac",
+        "Gestion du stress (relaxation, méditation)",
+        "Surveillance régulière de la tension (automesure)"
+      ],
+      "facteurs_risque": [
+        "Âge",
+        "Obésité",
+        "Sédentarité",
+        "Alimentation riche en sel",
+        "Stress chronique"
+      ]
+    },
+    {
+      "id": 7,
+      "maladie": "Péricardite aiguë",
+      "description": "Inflammation de l'enveloppe entourant le cœur (péricarde)",
+      "symptomes": [
+        "Douleur thoracique aiguë et intense",
+        "Douleur augmentant en position allongée",
+        "Soulagement en position assise penchée en avant",
+        "Douleur augmentée par la respiration profonde",
+        "Fièvre modérée à élevée (38-39°C)",
+        "Fatigue importante",
+        "Toux sèche irritative",
+        "Frottement péricardique à l'auscultation",
+        "Essoufflement",
+        "Anxiété"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Consultation dans les 24-48h",
+      "traitement": [
+        "Anti-inflammatoires non stéroïdiens à forte dose (ibuprofène 600mg x3/jour)",
+        "Colchicine (traitement de référence, 3 mois)",
+        "Repos strict pendant la phase aiguë",
+        "Éviter l'effort physique pendant 3 mois",
+        "Corticoïdes dans les cas réfractaires",
+        "Surveillance échocardiographique régulière",
+        "Traitement de la cause sous-jacente (virale, auto-immune)",
+        "Ponction péricardique si épanchement important",
+        "Hospitalisation si tamponnade ou myopéricardite",
+        "Prophylaxie des récidives avec colchicine au long cours"
+      ],
+      "facteurs_risque": [
+        "Infections virales récentes",
+        "Infarctus du myocarde récent",
+        "Maladies auto-immunes",
+        "Traumatisme thoracique"
+      ]
+    },
+    {
+      "id": 8,
+      "maladie": "Dissection aortique",
+      "description": "Déchirure de la paroi interne de l'aorte, urgence chirurgicale absolue",
+      "symptomes": [
+        "Douleur thoracique déchirante brutale et maximale d'emblée",
+        "Douleur migrant ou irradiant dans le dos entre les omoplates",
+        "Sensation de déchirement interne",
+        "Différence de tension artérielle entre les deux bras (> 20 mmHg)",
+        "Sueurs profuses et froides",
+        "Pâleur extrême",
+        "Pouls asymétrique ou absent à un membre",
+        "Syncope ou perte de connaissance",
+        "Déficit neurologique possible (AVC associé)",
+        "Insuffisance aortique aiguë"
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Immédiat - Urgence chirurgicale absolue",
+      "traitement": [
+        "Urgence chirurgicale immédiate",
+        "Contrôle strict et rapide de la tension artérielle",
+        "Bêta-bloquants intraveineux (esmolol, labétalol)",
+        "Vasodilatateurs (nitroprussiate de sodium)",
+        "Chirurgie de remplacement de l'aorte ascendante",
+        "Traitement endovasculaire pour dissection descendante",
+        "Réanimation et soins intensifs",
+        "Analgésie puissante (morphine)",
+        "Surveillance neurologique et organes",
+        "Pronostic très grave (mortalité 1-2% par heure non traitée)"
+      ],
+      "facteurs_risque": [
+        "Hypertension sévère non contrôlée",
+        "Syndrome de Marfan",
+        "Athérosclérose aortique",
+        "Traumatisme thoracique"
+      ]
+    },
+    {
+      "id": 9,
+      "maladie": "Cardiomyopathie hypertrophique",
+      "description": "Épaississement anormal du muscle cardiaque, souvent héréditaire",
+      "symptomes": [
+        "Essoufflement progressif à l'effort",
+        "Douleur thoracique angineuse",
+        "Palpitations fréquentes",
+        "Étourdissements à l'effort",
+        "Syncope à l'effort (signe de gravité)",
+        "Fatigue excessive",
+        "Parfois asymptomatique",
+        "Souffle cardiaque à l'auscultation",
+        "Mort subite possible (notamment chez jeunes sportifs)"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Consultation cardiologique spécialisée sous 2-4 semaines",
+      "traitement": [
+        "Bêta-bloquants (bisoprolol, métoprolol)",
+        "Inhibiteurs calciques non dihydropyridiniques (vérapamil)",
+        "Éviter les sports intenses et compétitifs",
+        "Défibrillateur automatique implantable si risque élevé",
+        "Myectomie septale chirurgicale si obstruction sévère",
+        "Ablation septale par alcool (alternative moins invasive)",
+        "Surveillance échocardiographique annuelle",
+        "Conseil génétique et dépistage familial",
+        "Prophylaxie de l'endocardite si besoin",
+        "Évaluation régulière du risque de mort subite"
+      ],
+      "facteurs_risque": [
+        "Antécédents familiaux",
+        "Mutations génétiques (gènes sarcomériques)"
+      ]
+    },
+    {
+      "id": 10,
+      "maladie": "Endocardite infectieuse",
+      "description": "Infection bactérienne des valves cardiaques, maladie grave nécessitant hospitalisation",
+      "symptomes": [
+        "Fièvre prolongée inexpliquée (> 38°C)",
+        "Frissons intenses et répétés",
+        "Fatigue intense et progressive",
+        "Sueurs nocturnes abondantes",
+        "Perte de poids involontaire",
+        "Souffle cardiaque nouveau ou modifié",
+        "Petites hémorragies sous les ongles (hémorragies en flammèches)",
+        "Douleurs articulaires et musculaires",
+        "Nodules d'Osler (nodules douloureux aux doigts)",
+        "Taches de Janeway (hémorragies palmaires/plantaires)",
+        "Complications emboliques (AVC, infarctus)"
+      ],
+      "urgence": true,
+      "niveau_urgence": "élevé",
+      "delai_intervention": "Hospitalisation urgente sous 24h",
+      "traitement": [
+        "Hospitalisation immédiate",
+        "Antibiothérapie intraveineuse prolongée (4-6 semaines)",
+        "Hémocultures répétées avant antibiotiques",
+        "Échocardiographie transthoracique et transœsophagienne",
+        "Chirurgie valvulaire si insuffisance cardiaque ou abcès",
+        "Repos strict au lit",
+        "Surveillance des complications emboliques",
+        "Surveillance biologique régulière (CRP, NFS)",
+        "Prophylaxie ultérieure lors de soins dentaires",
+        "Consultation dentaire systématique après guérison",
+        "Surveillance échocardiographique post-traitement"
+      ],
+      "facteurs_risque": [
+        "Valvulopathies préexistantes",
+        "Prothèses valvulaires",
+        "Toxicomanie intraveineuse",
+        "Mauvaise hygiène dentaire"
+      ]
+    },
+    {
+      "id": 11,
+      "maladie": "Rétrécissement aortique sévère",
+      "description": "Réduction de l'ouverture de la valve aortique empêchant le flux sanguin normal",
+      "symptomes": [
+        "Essoufflement progressif à l'effort puis au repos",
+        "Douleur thoracique angineuse à l'effort",
+        "Syncope ou lipothymie à l'effort",
+        "Fatigue et faiblesse musculaire",
+        "Palpitations",
+        "Souffle systolique éjectionnel à l'auscultation",
+        "Insuffisance cardiaque si non traité",
+        "Œdème des membres inférieurs",
+        "Mort subite possible"
+      ],
+      "urgence": false,
+      "niveau_urgence": "élevé si symptomatique",
+      "delai_intervention": "Consultation cardiologique urgente si symptômes, sinon surveillance régulière",
+      "traitement": [
+        "Remplacement valvulaire chirurgical (si symptomatique)",
+        "TAVI (remplacement valvulaire aortique par cathéter) si haut risque chirurgical",
+        "Valvuloplastie au ballon (palliatif temporaire)",
+        "Surveillance échocardiographique régulière si asymptomatique",
+        "Éviter les efforts intenses",
+        "Prophylaxie de l'endocardite",
+        "Traitement de l'insuffisance cardiaque associée",
+        "Diurétiques prudents si congestion",
+        "Contre-indication aux vasodilatateurs puissants",
+        "Évaluation pré-opératoire complète"
+      ],
+      "facteurs_risque": [
+        "Bicuspidie aortique congénitale",
+        "Rhumatisme articulaire aigu",
+        "Calcifications dégénératives liées à l'âge",
+        "Radiothérapie thoracique"
+      ]
+    },
+    {
+      "id": 12,
+      "maladie": "Myocardite aiguë",
+      "description": "Inflammation du muscle cardiaque, souvent d'origine virale",
+      "symptomes": [
+        "Douleur thoracique ressemblant à un infarctus",
+        "Essoufflement progressif ou brutal",
+        "Fatigue intense et disproportionnée",
+        "Palpitations ou arythmies",
+        "Fièvre modérée",
+        "Douleurs musculaires généralisées",
+        "Symptômes grippaux précédant les symptômes cardiaques",
+        "Œdème des jambes",
+        "Syncope possible",
+        "Choc cardiogénique dans les formes graves"
+      ],
+      "urgence": true,
+      "niveau_urgence": "élevé",
+      "delai_intervention": "Hospitalisation urgente dans les 24h",
+      "traitement": [
+        "Hospitalisation avec surveillance continue",
+        "Repos strict absolu",
+        "Traitement de l'insuffisance cardiaque (diurétiques, IEC)",
+        "Anti-inflammatoires non stéroïdiens",
+        "Immunoglobulines intraveineuses si sévère",
+        "Corticoïdes dans certains cas",
+        "Traitement antiviral si cause identifiée",
+        "Assistance circulatoire mécanique si choc",
+        "IRM cardiaque pour diagnostic",
+        "Biopsie endomyocardique si doute diagnostique",
+        "Éviction sportive pendant 3-6 mois minimum",
+        "Surveillance échocardiographique prolongée"
+      ],
+      "facteurs_risque": [
+        "Infections virales (Coxsackie, adénovirus, parvovirus B19)",
+        "Maladies auto-immunes",
+        "Médicaments cardiotoxiques",
+        "Exercice intense pendant infection virale"
+      ]
+    },
+    {
+      "id": 13,
+      "maladie": "Tamponnade cardiaque",
+      "description": "Compression du cœur par accumulation de liquide dans le péricarde, urgence vitale",
+      "symptomes": [
+        "Hypotension artérielle progressive",
+        "Tachycardie importante (> 120/min)",
+        "Turgescence jugulaire (veines du cou gonflées)",
+        "Assourdissement des bruits cardiaques",
+        "Pouls paradoxal (diminution > 10 mmHg à l'inspiration)",
+        "Dyspnée intense",
+        "Anxiété majeure",
+        "Sueurs froides",
+        "Agitation ou confusion",
+        "Choc cardiogénique imminent"
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Urgence vitale immédiate",
+      "traitement": [
+        "Péricardiocentèse en urgence (drainage du liquide)",
+        "Remplissage vasculaire prudent",
+        "Monitoring hémodynamique continu",
+        "Échocardiographie au lit du malade",
+        "Drainage chirurgical si récidivant",
+        "Oxygénothérapie",
+        "Traitement de la cause (péricardite, traumatisme, cancer)",
+        "Surveillance en soins intensifs",
+        "Inotropes si hypotension sévère",
+        "Fenêtre péricardique chirurgicale si nécessaire"
+      ],
+      "facteurs_risque": [
+        "Péricardite",
+        "Traumatisme thoracique",
+        "Dissection aortique",
+        "Cancer métastatique",
+        "Complications de procédures cardiaques"
+      ]
+    },
+    {
+      "id": 14,
+      "maladie": "Cardiopathie ischémique chronique",
+      "description": "Maladie coronarienne stable avec rétrécissements multiples des artères coronaires",
+      "symptomes": [
+        "Angor d'effort prévisible",
+        "Essoufflement à l'effort",
+        "Fatigue à l'effort",
+        "Capacité d'effort diminuée progressivement",
+        "Parfois asymptomatique (ischémie silencieuse)",
+        "Intolérance croissante à l'exercice",
+        "Dyspnée nocturne paroxystique",
+        "Anxiété liée à la maladie"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Suivi cardiologique régulier tous les 3-6 mois",
+      "traitement": [
+        "Antiagrégants plaquettaires (aspirine + clopidogrel)",
+        "Statines à forte dose",
+        "Bêta-bloquants",
+        "Inhibiteurs de l'ECA",
+        "Dérivés nitrés d'action prolongée",
+        "Revascularisation si symptômes persistants (angioplastie ou pontage)",
+        "Réadaptation cardiaque",
+        "Contrôle strict des facteurs de risque",
+        "Activité physique régulière adaptée",
+        "Régime méditerranéen",
+        "Arrêt du tabac impératif",
+        "Gestion du stress et soutien psychologique"
+      ],
+      "facteurs_risque": [
+        "Athérosclérose coronarienne",
+        "Diabète",
+        "Hypertension",
+        "Dyslipidémie",
+        "Tabagisme actif"
+      ]
+    },
+    {
+      "id": 15,
+      "maladie": "Tachycardie ventriculaire",
+      "description": "Trouble du rythme cardiaque grave originaire des ventricules, potentiellement mortel",
+      "symptomes": [
+        "Palpitations très rapides et régulières",
+        "Étourdissements sévères",
+        "Syncope ou pré-syncope",
+        "Douleur thoracique",
+        "Essoufflement important",
+        "Anxiété majeure",
+        "Sueurs profuses",
+        "Faiblesse généralisée",
+        "Peut dégénérer en fibrillation ventriculaire",
+        "Arrêt cardiaque possible"
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Urgence vitale - Appel du 190 immédiat",
+      "traitement": [
+        "Cardioversion électrique en urgence si instable",
+        "Amiodarone ou lidocaïne intraveineuse",
+        "Défibrillateur automatique implantable (DAI)",
+        "Ablation par radiofréquence des foyers arythmogènes",
+        "Bêta-bloquants",
+        "Correction des troubles électrolytiques",
+        "Traitement de la cardiopathie sous-jacente",
+        "Surveillance en soins intensifs",
+        "Éducation du patient sur l'utilisation du DAI",
+        "Contre-indication aux sports intenses"
+      ],
+      "facteurs_risque": [
+        "Cardiopathie ischémique",
+        "Cardiomyopathie dilatée",
+        "Infarctus ancien",
+        "Troubles électrolytiques sévères"
+      ]
+    },
+    {
+      "id": 16,
+      "maladie": "Syndrome de Brugada",
+      "description": "Maladie génétique des canaux ioniques cardiaques avec risque de mort subite",
+      "symptomes": [
+        "Souvent asymptomatique",
+        "Syncopes inexpliquées",
+        "Palpitations",
+        "Mort subite abortée",
+        "Syncope nocturne",
+        "Convulsions liées à l'arythmie",
+        "Antécédents familiaux de mort subite jeune",
+        "Arythmies ventriculaires",
+        "Diagnostic souvent fortuit sur ECG"
+      ],
+      "urgence": false,
+      "niveau_urgence": "élevé si symptomatique",
+      "delai_intervention": "Consultation spécialisée urgente si symptômes",
+      "traitement": [
+        "Défibrillateur automatique implantable (seul traitement efficace)",
+        "Éviter les médicaments déclencheurs (liste spécifique)",
+        "Traiter rapidement toute fièvre (paracétamol)",
+        "Éviter l'alcool excessif",
+        "Quinidine dans certains cas",
+        "Conseil génétique familial",
+        "Dépistage familial systématique par ECG",
+        "Test à l'ajmaline pour démasquer le syndrome",
+        "Surveillance cardiologique régulière",
+        "Éviter les sports à haut risque"
+      ],
+      "facteurs_risque": [
+        "Origine asiatique",
+        "Sexe masculin",
+        "Antécédents familiaux",
+        "Mutation génétique SCN5A"
+      ]
+    },
+    {
+      "id": 17,
+      "maladie": "Cardiomyopathie dilatée",
+      "description": "Dilatation et dysfonction du ventricule gauche avec insuffisance cardiaque",
+      "symptomes": [
+        "Essoufflement progressif (dyspnée d'effort puis de repos)",
+        "Fatigue chronique intense",
+        "Œdème des membres inférieurs",
+        "Prise de poids rapide",
+        "Orthopnée (dyspnée en position couchée)",
+        "Toux nocturne",
+        "Palpitations",
+        "Douleur thoracique atypique",
+        "Distension abdominale",
+        "Intolérance complète à l'effort"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré à élevé",
+      "delai_intervention": "Consultation cardiologique sous 1-2 semaines",
+      "traitement": [
+        "Inhibiteurs de l'ECA ou ARA II",
+        "Bêta-bloquants (carvédilol, bisoprolol)",
+        "Antagonistes de l'aldostérone",
+        "Inhibiteurs SGLT2",
+        "Diurétiques de l'anse",
+        "Défibrillateur implantable si FE < 35%",
+        "Resynchronisation cardiaque si bloc de branche",
+        "Anticoagulants si fibrillation auriculaire",
+        "Régime hyposodé strict",
+        "Restriction hydrique",
+        "Transplantation cardiaque si réfractaire",
+        "Assistance ventriculaire en attente de greffe"
+      ],
+      "facteurs_risque": [
+        "Alcoolisme chronique",
+        "Myocardite ancienne",
+        "Chimiothérapie cardiotoxique",
+        "Causes génétiques"
+      ]
+    },
+    {
+      "id": 18,
+      "maladie": "Prolapsus de la valve mitrale",
+      "description": "Déformation des feuillets de la valve mitrale, généralement bénigne",
+      "symptomes": [
+        "Souvent asymptomatique",
+        "Palpitations occasionnelles",
+        "Douleur thoracique atypique (piquante, brève)",
+        "Fatigue",
+        "Anxiété",
+        "Essoufflement léger à l'effort",
+        "Syncope rare",
+        "Click mésosystolique à l'auscultation",
+        "Souffle systolique si insuffisance mitrale associée"
+      ],
+      "urgence": false,
+      "niveau_urgence": "faible",
+      "delai_intervention": "Consultation cardiologique de routine",
+      "traitement": [
+        "Rassurance du patient (pronostic excellent)",
+        "Bêta-bloquants si palpitations gênantes",
+        "Surveillance échocardiographique tous les 2-3 ans",
+        "Prophylaxie de l'endocardite si insuffisance mitrale sévère",
+        "Éviter les stimulants (café, tabac)",
+        "Chirurgie de réparation valvulaire si insuffisance sévère",
+        "Activité physique normale autorisée",
+        "Gestion de l'anxiété associée",
+        "Pas de restriction d'activité dans les formes mineures"
+      ],
+      "facteurs_risque": [
+        "Prédominance féminine",
+        "Syndrome de Marfan",
+        "Maladies du tissu conjonctif"
+      ]
+    },
+    {
+      "id": 19,
+      "maladie": "Bloc auriculo-ventriculaire complet",
+      "description": "Interruption complète de la conduction électrique entre oreillettes et ventricules",
+      "symptomes": [
+        "Syncopes à répétition (syndrome de Stokes-Adams)",
+        "Étourdissements fréquents",
+        "Fatigue intense et chronique",
+        "Essoufflement à l'effort",
+        "Bradycardie sévère (< 40/min)",
+        "Intolérance à l'effort",
+        "Confusion mentale (chez personnes âgées)",
+        "Insuffisance cardiaque",
+        "Mort subite possible"
+      ],
+      "urgence": true,
+      "niveau_urgence": "élevé à critique",
+      "delai_intervention": "Hospitalisation urgente, implantation pacemaker en urgence si symptomatique",
+      "traitement": [
+        "Implantation de pacemaker définitif (traitement de référence)",
+        "Stimulation cardiaque temporaire en urgence",
+        "Atropine IV en attendant le pacemaker",
+        "Isoprénaline en perfusion",
+        "Hospitalisation en soins intensifs",
+        "Surveillance continue pré-implantation",
+        "Éducation du patient sur le pacemaker",
+        "Suivi régulier du pacemaker tous les 6-12 mois",
+        "Arrêt des médicaments bradycardisants",
+        "Recherche de la cause (ischémie, médicaments, maladie de Lev)"
+      ],
+      "facteurs_risque": [
+        "Âge avancé",
+        "Cardiopathie ischémique",
+        "Médicaments (digitaliques, bêta-bloquants)",
+        "Calcifications du système de conduction"
+      ]
+    },
+    {
+      "id": 20,
+      "maladie": "Péricardite constrictive chronique",
+      "description": "Épaississement et calcification du péricarde comprimant le cœur",
+      "symptomes": [
+        "Essoufflement progressif",
+        "Fatigue chronique majeure",
+        "Œdème des jambes et ascite importantes",
+        "Distension abdominale majeure",
+        "Turgescence jugulaire permanente",
+        "Hépatomégalie (foie augmenté de volume)",
+        "Intolérance à l'effort",
+        "Perte de poids",
+        "Signes d'insuffisance cardiaque droite",
+        "Bruits du cœur assourdis"
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "delai_intervention": "Consultation spécialisée sous 2-4 semaines",
+      "traitement": [
+        "Péricardiectomie chirurgicale (ablation du péricarde)",
+        "Diurétiques pour soulager la congestion",
+        "Régime hyposodé strict",
+        "Traitement de la cause (tuberculose, radiothérapie)",
+        "Repos et limitation d'activité pré-opératoire",
+        "Évaluation préopératoire complète",
+        "Surveillance hémodynamique",
+        "Nutrition adaptée en cas de cachexie cardiaque",
+        "Antibiothérapie si origine tuberculeuse",
+        "Réadaptation post-opératoire prolongée"
+      ],
+      "facteurs_risque": [
+        "Péricardite tuberculeuse",
+        "Radiothérapie thoracique",
+        "Chirurgie cardiaque antérieure",
+        "Péricardite récidivante"
+      ]
+    }
+  ],
+  "legende": {
+    "niveau_urgence": {
+      "critique": "Appel immédiat du 190, pronostic vital engagé dans l'heure",
+      "élevé": "Consultation urgente ou hospitalisation rapide nécessaire (< 24h)",
+      "modéré": "Consultation médicale dans les jours suivants (24-72h)",
+      "faible": "Suivi médical régulier suffisant, consultation programmée"
+    },
+    "delai_intervention": {
+      "immediat": "< 15 minutes",
+      "urgent": "< 24 heures",
+      "rapide": "24-72 heures",
+      "programme": "1-4 semaines"
+    }
+  },
+  "numeros_urgence": {
+    "SAMU": "190",
+    "Pompiers": "197",
+    "Urgences_Europeennes": "112"
+  },
+  "note_importante": "Ce document est fourni à titre informatif uniquement. En cas de symptômes cardiaques, consultez immédiatement un professionnel de santé. En cas de douleur thoracique intense, appelez le 15 sans délai."
+}

@@ -1,0 +1,247 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "nom": "Patient A",
+      "age": 45,
+      "maladie": "Pneumonie bactérienne",
+      "symptomes": [
+        "Fièvre élevée (39°C)",
+        "Toux avec expectorations purulentes",
+        "Douleur thoracique",
+        "Essoufflement",
+        "Fatigue intense"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé",
+      "traitement": [
+        "Antibiotiques (Amoxicilline ou Azithromycine)",
+        "Repos au lit",
+        "Hydratation abondante",
+        "Antipyrétiques (Paracétamol)",
+        "Surveillance médicale rapprochée"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Patient B",
+      "age": 62,
+      "maladie": "BPCO (Bronchopneumopathie Chronique Obstructive)",
+      "symptomes": [
+        "Essoufflement progressif",
+        "Toux chronique matinale",
+        "Production de mucus",
+        "Respiration sifflante",
+        "Fatigue"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré",
+      "traitement": [
+        "Bronchodilatateurs inhalés",
+        "Corticostéroïdes inhalés",
+        "Arrêt du tabac",
+        "Réhabilitation respiratoire",
+        "Oxygénothérapie si nécessaire",
+        "Vaccination antigrippale annuelle"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Patient C",
+      "age": 28,
+      "maladie": "Asthme aigu sévère",
+      "symptomes": [
+        "Détresse respiratoire importante",
+        "Sibilants intenses",
+        "Incapacité à parler en phrases complètes",
+        "Oppression thoracique sévère",
+        "Anxiété",
+        "Cyanose des lèvres"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Critique",
+      "traitement": [
+        "Bronchodilatateurs en nébulisation d'urgence",
+        "Corticostéroïdes par voie intraveineuse",
+        "Oxygénothérapie",
+        "Hospitalisation immédiate",
+        "Surveillance en soins intensifs si nécessaire"
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Patient D",
+      "age": 55,
+      "maladie": "Embolie pulmonaire",
+      "symptomes": [
+        "Douleur thoracique soudaine",
+        "Essoufflement brutal",
+        "Toux avec sang",
+        "Tachycardie",
+        "Anxiété intense",
+        "Étourdissements"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Critique",
+      "traitement": [
+        "Anticoagulants d'urgence (Héparine)",
+        "Oxygénothérapie",
+        "Hospitalisation immédiate",
+        "Thrombolyse si embolie massive",
+        "Repos strict",
+        "Surveillance cardiaque continue"
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Patient E",
+      "age": 70,
+      "maladie": "Fibrose pulmonaire idiopathique",
+      "symptomes": [
+        "Essoufflement progressif à l'effort",
+        "Toux sèche persistante",
+        "Fatigue chronique",
+        "Perte de poids",
+        "Hippocratisme digital (doigts en baguette de tambour)"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré",
+      "traitement": [
+        "Médicaments antifibrotiques (Pirfénidone, Nintedanib)",
+        "Oxygénothérapie à long terme",
+        "Réhabilitation pulmonaire",
+        "Corticostéroïdes dans certains cas",
+        "Transplantation pulmonaire (cas sévères)",
+        "Suivi pneumologique régulier"
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Patient F",
+      "age": 34,
+      "maladie": "Tuberculose pulmonaire",
+      "symptomes": [
+        "Toux persistante pendant plus de 3 semaines",
+        "Crachats avec traces de sang",
+        "Fièvre vespérale",
+        "Sueurs nocturnes abondantes",
+        "Perte de poids importante",
+        "Fatigue extrême"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé",
+      "traitement": [
+        "Quadrithérapie antituberculeuse (Rifampicine, Isoniazide, Pyrazinamide, Éthambutol)",
+        "Isolement initial",
+        "Traitement de 6 à 9 mois",
+        "Surveillance hépatique régulière",
+        "Déclaration obligatoire",
+        "Dépistage des contacts"
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Patient G",
+      "age": 42,
+      "maladie": "Pneumothorax spontané",
+      "symptomes": [
+        "Douleur thoracique brutale et aiguë",
+        "Essoufflement soudain",
+        "Diminution des mouvements respiratoires",
+        "Toux sèche",
+        "Tachycardie"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé",
+      "traitement": [
+        "Drainage pleural par tube thoracique",
+        "Oxygénothérapie",
+        "Repos",
+        "Hospitalisation",
+        "Chirurgie (pleurodèse) si récidives",
+        "Surveillance radiologique"
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Patient H",
+      "age": 58,
+      "maladie": "Cancer du poumon (Carcinome bronchique)",
+      "symptomes": [
+        "Toux chronique qui s'aggrave",
+        "Hémoptysie (crachats de sang)",
+        "Douleur thoracique persistante",
+        "Essoufflement",
+        "Perte de poids inexpliquée",
+        "Fatigue importante",
+        "Enrouement de la voix"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé",
+      "traitement": [
+        "Chirurgie (lobectomie ou pneumonectomie)",
+        "Chimiothérapie",
+        "Radiothérapie",
+        "Immunothérapie",
+        "Thérapies ciblées selon le type",
+        "Soins palliatifs selon le stade",
+        "Suivi oncologique multidisciplinaire"
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Patient I",
+      "age": 25,
+      "maladie": "Bronchite aiguë virale",
+      "symptomes": [
+        "Toux grasse",
+        "Expectoration jaune ou verte",
+        "Fièvre modérée (38°C)",
+        "Fatigue légère",
+        "Douleur thoracique légère lors de la toux",
+        "Congestion nasale"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Faible",
+      "traitement": [
+        "Repos",
+        "Hydratation abondante",
+        "Antipyrétiques (Paracétamol ou Ibuprofène)",
+        "Antitussifs si toux sèche gênante",
+        "Expectorants si nécessaire",
+        "Humidification de l'air",
+        "Guérison spontanée en 7-10 jours"
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Patient J",
+      "age": 48,
+      "maladie": "Sarcoïdose pulmonaire",
+      "symptomes": [
+        "Essoufflement à l'effort",
+        "Toux sèche persistante",
+        "Fatigue chronique",
+        "Douleurs articulaires",
+        "Adénopathies médiastinales",
+        "Parfois asymptomatique"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Faible à Modéré",
+      "traitement": [
+        "Surveillance régulière (certains cas se résolvent spontanément)",
+        "Corticostéroïdes si symptômes significatifs",
+        "Immunosuppresseurs si corticorésistance",
+        "Traitement symptomatique",
+        "Suivi radiologique et fonctionnel respiratoire",
+        "Éviter l'exposition au soleil (hypercalcémie possible)"
+      ]
+    }
+  ],
+  "legende_urgence": {
+    "Critique": "Nécessite une intervention médicale immédiate - appeler le 15/112",
+    "Élevé": "Consultation médicale urgente dans les 24 heures",
+    "Modéré": "Consultation médicale dans les jours suivants",
+    "Faible": "Consultation médicale de routine, suivi régulier"
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "categorie": "Maladies neurologiques",
+  "version": "2.0_enhanced",
+  "derniere_maj": "2025-01-02",
+  "total_maladies": 10,
+  "maladies_neurologiques": [
+    {
+      "id": 1,
+      "nom": "Accident Vasculaire Cérébral (AVC)",
+      "synonymes": ["attaque cérébrale", "stroke", "infarctus cérébral"],
+      "description": "Interruption soudaine de la circulation sanguine dans le cerveau",
+      "symptomes": [
+        "Paralysie ou faiblesse d'un côté du corps",
+        "Trouble de la parole",
+        "Perte de vision soudaine",
+        "Maux de tête intenses",
+        "Perte d'équilibre",
+        "Confusion soudaine"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Hémiparésie",
+          "synonymes_patient": ["ne peux plus bouger un côté", "bras/jambe paralysé", "moitié corps faible"],
+          "intensite": "variable",
+          "lateralite": "unilatérale"
+        },
+        {
+          "symptome": "Aphasie",
+          "synonymes_patient": ["ne parle plus", "mots ne sortent pas", "parle bizarrement"],
+          "intensite": "variable"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Mon bras ne bouge plus",
+        "Je n'arrive plus à parler",
+        "Un côté de mon visage est tombant",
+        "Je ne vois plus d'un œil"
+      ],
+      "test_fast": {
+        "F": "Face - sourire asymétrique?",
+        "A": "Arms - un bras tombe?",
+        "S": "Speech - difficulté parler?",
+        "T": "Time - APPELER 15 IMMEDIAT"
+      },
+      "urgent": true,
+      "niveau_urgence": "critique",
+      "score_gravite": {
+        "douleur": 5,
+        "urgence": 10,
+        "handicap": 10,
+        "risque_vital": 10,
+        "besoin_consultation": 10
+      },
+      "delai_intervention": "Moins de 4h30",
+      "traitements": [
+        "Thrombolyse intraveineuse (dissolution du caillot)",
+        "Thrombectomie mécanique",
+        "Antiagrégants plaquettaires (aspirine)",
+        "Anticoagulants",
+        "Rééducation neurologique",
+        "Kinésithérapie",
+        "Orthophonie"
+      ],
+      "mots_cles_recherche": [
+        "AVC", "attaque cérébrale", "paralysie soudaine", "ne parle plus", "visage asymétrique"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Maladie de Parkinson",
+      "synonymes": ["Parkinson", "tremblements"],
+      "description": "Maladie neurodégénérative affectant les mouvements",
+      "symptomes": [
+        "Tremblements au repos",
+        "Rigidité musculaire",
+        "Lenteur des mouvements (bradykinésie)",
+        "Instabilité posturale",
+        "Troubles de l'équilibre",
+        "Dépression",
+        "Troubles du sommeil"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Tremblements de repos",
+          "synonymes_patient": ["main qui tremble", "tremblement quand je ne fais rien"],
+          "intensite": "variable",
+          "caracteristique": "au repos"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Ma main tremble quand je ne fais rien",
+        "Je suis très lent dans mes mouvements",
+        "J'ai du mal à garder l'équilibre",
+        "Mes muscles sont raides"
+      ],
+      "urgent": false,
+      "niveau_urgence": "chronique",
+      "score_gravite": {
+        "douleur": 3,
+        "urgence": 2,
+        "handicap": 7,
+        "risque_vital": 2,
+        "besoin_consultation": 8
+      },
+      "traitements": [
+        "Lévodopa (L-DOPA)",
+        "Agonistes dopaminergiques",
+        "Inhibiteurs de la MAO-B",
+        "Kinésithérapie",
+        "Ergothérapie",
+        "Stimulation cérébrale profonde (cas avancés)",
+        "Orthophonie"
+      ],
+      "mots_cles_recherche": [
+        "Parkinson", "tremblements", "lenteur mouvements", "rigidité"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Méningite",
+      "synonymes": ["infection méninges"],
+      "description": "Inflammation des méninges entourant le cerveau et la moelle épinière",
+      "symptomes": [
+        "Maux de tête sévères",
+        "Raideur de la nuque",
+        "Fièvre élevée",
+        "Photophobie",
+        "Vomissements",
+        "Confusion ou altération de la conscience",
+        "Éruption cutanée (purpura si bactérienne)"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Triade méningée",
+          "synonymes_patient": ["mal tête terrible + fièvre + cou raide"],
+          "intensite": "très sévère"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai un terrible mal de tête avec de la fièvre",
+        "Je ne peux pas bouger mon cou",
+        "La lumière me fait très mal",
+        "J'ai des taches rouges sur la peau"
+      ],
+      "urgent": true,
+      "niveau_urgence": "urgence vitale",
+      "score_gravite": {
+        "douleur": 9,
+        "urgence": 10,
+        "handicap": 10,
+        "risque_vital": 10,
+        "besoin_consultation": 10
+      },
+      "delai_intervention": "Immédiat - appeler le 15/112",
+      "traitements": [
+        "Antibiotiques intraveineux (si bactérienne)",
+        "Corticoïdes",
+        "Antiviraux (si virale)",
+        "Réhydratation",
+        "Hospitalisation en urgence",
+        "Surveillance en soins intensifs",
+        "Traitement des complications"
+      ],
+      "mots_cles_recherche": [
+        "méningite", "fièvre nuque raide", "mal tête fièvre", "purpura"
+      ]
+    }
+  ],
+  "metadata": {
+    "source": "Base enrichie Dr. MediBot v2.0",
+    "optimise_pour": "RAG + FAISS + Embeddings"
+  }
+}

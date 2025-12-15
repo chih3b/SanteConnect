@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { Plus, MessageSquare, Trash2, LogOut, Image, Search, Menu, X, FileText } from 'lucide-react';
+import { Plus, MessageSquare, Trash2, LogOut, Image, Search, Menu, X, FileText, Stethoscope } from 'lucide-react';
 import { Button } from './ui/button';
 
 export default function Sidebar({ activeTab, onTabChange, currentConversation, onSelectConversation, refreshTrigger }) {
@@ -55,11 +55,11 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
     <>
       <div className="flex items-center justify-between gap-3 p-4 border-b">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-primary rounded-lg flex items-center justify-center text-primary-foreground">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="SanteConnect Logo" 
+            className="w-10 h-10 object-contain"
+          />
           <div className="flex flex-col min-w-0">
             <span className="text-sm font-semibold">SanteConnect</span>
             <span className="text-xs text-muted-foreground">Medical AI</span>
@@ -80,6 +80,7 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
         <p className="text-xs text-muted-foreground px-2 mb-2">Navigation</p>
         {[
           { id: 'chat', icon: MessageSquare, label: 'AI Assistant' },
+          { id: 'medibot', icon: Stethoscope, label: 'Dr. MediBot' },
           { id: 'scan-prescription', icon: FileText, label: 'Scan Prescription' },
           { id: 'identify', icon: Image, label: 'Identify Medication' },
           { id: 'search', icon: Search, label: 'Search Database' }

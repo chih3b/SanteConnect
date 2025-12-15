@@ -1,0 +1,111 @@
+{
+  "categorie": "Maladies thoraciques et pulmonaires",
+  "version": "2.0_enhanced",
+  "derniere_maj": "2025-01-02",
+  "total_maladies": 10,
+  "maladies_poitrine": [
+    {
+      "id": 1,
+      "nom": "Infarctus du myocarde",
+      "synonymes": ["crise cardiaque", "attaque cardiaque", "IDM"],
+      "description": "Crise cardiaque causée par l'obstruction d'une artère coronaire",
+      "symptomes": [
+        "Douleur intense dans la poitrine (oppression, serrement)",
+        "Douleur irradiant vers le bras gauche, la mâchoire ou le dos",
+        "Essoufflement",
+        "Sueurs froides",
+        "Nausées et vomissements",
+        "Anxiété intense"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Douleur rétrosternale",
+          "synonymes_patient": ["oppression poitrine", "écrasement", "serrement", "étau", "poids sur le torse"],
+          "intensite": "très sévère",
+          "echelle_1_10": "9-10",
+          "duree": "> 20 minutes"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai très mal à la poitrine",
+        "C'est comme un poids énorme sur mon thorax",
+        "La douleur descend dans mon bras gauche",
+        "Je transpire beaucoup et j'ai mal au cœur"
+      ],
+      "urgence": "URGENCE VITALE",
+      "niveau_urgence": "critique",
+      "score_gravite": {
+        "douleur": 10,
+        "urgence": 10,
+        "handicap": 10,
+        "risque_vital": 10,
+        "besoin_consultation": 10
+      },
+      "traitements": [
+        "Appeler immédiatement le 15 (SAMU)",
+        "Angioplastie en urgence",
+        "Thrombolyse (dissolution du caillot)",
+        "Médicaments antiplaquettaires (aspirine)",
+        "Hospitalisation en soins intensifs"
+      ],
+      "mots_cles_recherche": [
+        "infarctus", "crise cardiaque", "oppression poitrine", "douleur thorax bras"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Pneumonie",
+      "synonymes": ["infection pulmonaire", "pneumopathie"],
+      "description": "Infection du tissu pulmonaire",
+      "symptomes": [
+        "Douleur thoracique à la respiration",
+        "Toux productive (avec expectorations)",
+        "Fièvre élevée avec frissons",
+        "Essoufflement",
+        "Fatigue importante",
+        "Confusion (chez les personnes âgées)"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Toux productive",
+          "synonymes_patient": ["toux grasse", "crachat jaune/vert", "glaires"],
+          "intensite": "importante"
+        },
+        {
+          "symptome": "Fièvre",
+          "synonymes_patient": ["forte température", "frissons", "brûlant"],
+          "intensite": "> 38.5°C"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai mal quand je respire profondément",
+        "Je tousse avec des glaires colorées",
+        "J'ai de la fièvre et mal à la poitrine"
+      ],
+      "urgence": "Consultation rapide (24-48h), URGENT si détresse respiratoire",
+      "niveau_urgence": "modéré à élevé",
+      "score_gravite": {
+        "douleur": 6,
+        "urgence": 6,
+        "handicap": 7,
+        "risque_vital": 5,
+        "besoin_consultation": 8
+      },
+      "traitements": [
+        "Antibiotiques",
+        "Antipyrétiques (contre la fièvre)",
+        "Hydratation importante",
+        "Repos",
+        "Hospitalisation si forme sévère",
+        "Oxygénothérapie si besoin"
+      ],
+      "mots_cles_recherche": [
+        "pneumonie", "infection poumon", "toux fièvre", "douleur respiration"
+      ]
+    }
+  ],
+  "metadata": {
+    "source": "Base enrichie Dr. MediBot v2.0",
+    "optimise_pour": "RAG + FAISS + Embeddings"
+  }
+}

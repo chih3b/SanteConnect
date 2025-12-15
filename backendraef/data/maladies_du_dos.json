@@ -1,0 +1,324 @@
+{
+  "categorie": "Maladies du dos et de la colonne vertébrale",
+  "version": "2.0_enhanced",
+  "derniere_maj": "2025-01-02",
+  "total_maladies": 20,
+  "maladies_du_dos": [
+    {
+      "id": 1,
+      "nom": "Hernie discale lombaire",
+      "synonymes": ["sciatique", "hernie", "disque coincé", "lombo-sciatique"],
+      "description": "Protrusion du noyau du disque intervertébral comprimant les racines nerveuses",
+      "categorie_pathologie": "pathologie disco-vertébrale",
+      "symptomes": [
+        "Douleur intense dans le bas du dos (lombalgie)",
+        "Douleur irradiant dans la jambe (sciatique ou cruralgie)",
+        "Engourdissement ou picotements le long du trajet nerveux",
+        "Faiblesse musculaire dans la jambe ou le pied",
+        "Difficulté à se tenir debout ou marcher",
+        "Aggravation par la toux, l'éternuement ou l'effort",
+        "Soulagement relatif en position allongée",
+        "Perte de réflexes ostéotendineux",
+        "Dans les cas graves: troubles sphinctériens (urgence)",
+        "Syndrome de la queue de cheval (urgence chirurgicale)"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Sciatique",
+          "synonymes_patient": ["douleur descend dans la jambe", "électricité dans la jambe", "brûlure cuisse/mollet", "pied engourdi"],
+          "intensite": "sévère",
+          "echelle_1_10": "7-9",
+          "trajet": ["fesse", "cuisse postérieure", "mollet", "pied"],
+          "lateralite": "unilatérale le plus souvent"
+        },
+        {
+          "symptome": "Lombalgielowbackpain",
+          "synonymes_patient": ["mal bas du dos", "reins qui font mal", "tour de rein", "dos bloqué"],
+          "intensite": "modérée à sévère",
+          "localisation": ["L4-L5", "L5-S1"]
+        },
+        {
+          "symptome": "Paresthésies",
+          "synonymes_patient": ["fourmillements", "picotements", "engourdissement", "perte de sensibilité"],
+          "localisation": "trajet nerveux"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai une douleur qui descend dans ma jambe",
+        "Mon dos est bloqué et j'ai mal jusqu'au pied",
+        "J'ai des fourmillements dans la jambe",
+        "Je ne peux plus me pencher en avant",
+        "La douleur empire quand je tousse",
+        "J'ai le pied engourdi et faible"
+      ],
+      "questions_diagnostic": [
+        "La douleur descend-elle dans la jambe?",
+        "De quel côté? Jusqu'où descend-elle (cuisse, mollet, pied)?",
+        "Avez-vous des fourmillements ou engourdissements?",
+        "La douleur augmente-t-elle quand vous toussez ou éternuez?",
+        "Avez-vous une faiblesse dans la jambe ou le pied?",
+        "Pouvez-vous vous tenir sur la pointe des pieds?",
+        "Avez-vous des difficultés pour uriner ou contrôler vos selles?",
+        "Quelle position soulage la douleur?"
+      ],
+      "arbre_decisionnel": {
+        "premiere_question": "Douleur irradie dans la jambe?",
+        "si_oui": {
+          "question_suivante": "Troubles sphinctériens?",
+          "si_oui": {
+            "urgence": "CHIRURGICALE",
+            "action": "Urgences IMMEDIAT"
+          },
+          "si_non": {
+            "question_suivante": "Faiblesse motrice?",
+            "si_oui": {
+              "urgence": "élevée",
+              "delai": "consultation 24-48h"
+            }
+          }
+        }
+      },
+      "profil_patient_type": {
+        "age_moyen": "30-50 ans",
+        "pic_frequence": "40-45 ans",
+        "facteurs_risque": ["port charges", "mouvements torsion", "sédentarité"]
+      },
+      "cas_cliniques_types": [
+        {
+          "cas": "Homme 42 ans, manutentionnaire. Lombalgie depuis 3 jours, maintenant douleur fesse→mollet gauche, fourmillements pied, difficulté marche sur talons",
+          "diagnostic": "Hernie discale L5-S1 avec compression radiculaire",
+          "score_correspondance": 95
+        }
+      ],
+      "urgent": true,
+      "niveau_urgence": "Critique si syndrome de la queue de cheval, sinon modéré",
+      "score_gravite": {
+        "douleur": 8,
+        "urgence": 7,
+        "handicap": 8,
+        "risque_vital": 1,
+        "besoin_consultation": 7
+      },
+      "delai_intervention": "Immédiat si troubles sphinctériens, sinon consultation sous 48-72h",
+      "drapeaux_rouges": [
+        "Troubles sphinctériens (rétention/incontinence)",
+        "Anesthésie en selle",
+        "Déficit moteur important",
+        "Syndrome de la queue de cheval"
+      ],
+      "traitements": [
+        "Repos relatif (éviter l'alitement prolongé > 48h)",
+        "Anti-inflammatoires non stéroïdiens (AINS) - ibuprofène 400mg x3/jour",
+        "Antalgiques palier 1 à 3 selon intensité (paracétamol, tramadol, morphine)",
+        "Myorelaxants (thiocolchicoside)",
+        "Kinésithérapie après phase aiguë (renforcement, étirements)",
+        "Infiltrations épidurales de corticoïdes guidées par scanner",
+        "Ostéopathie après avis médical",
+        "Ergothérapie et conseils posturaux",
+        "Chirurgie (discectomie) en cas d'échec du traitement conservateur après 6-8 semaines",
+        "Chirurgie en urgence si syndrome de la queue de cheval",
+        "Rééducation post-opératoire intensive",
+        "École du dos pour prévention"
+      ],
+      "facteurs_risque": [
+        "Ports de charges lourdes répétés",
+        "Mouvements de torsion du tronc",
+        "Sédentarité et faiblesse musculaire",
+        "Surpoids et obésité",
+        "Tabagisme (diminue l'hydratation discale)"
+      ],
+      "mots_cles_recherche": [
+        "hernie discale", "sciatique", "lombalgie jambe", "douleur fesse mollet",
+        "nerf coincé", "fourmillement pied", "lombo-sciatique"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Lombalgie aiguë",
+      "synonymes": ["lumbago", "tour de rein", "dos bloqué", "lombalgie commune"],
+      "description": "Douleur aiguë du bas du dos par contracture musculaire ou irritation articulaire",
+      "categorie_pathologie": "rachialgie mécanique",
+      "symptomes": [
+        "Douleur soudaine et intense dans le bas du dos",
+        "Raideur musculaire importante",
+        "Difficulté majeure à bouger",
+        "Spasmes musculaires douloureux",
+        "Douleur augmentée par les mouvements, la toux",
+        "Position antalgique (dos penché en avant)",
+        "Impossibilité de se redresser complètement",
+        "Pas d'irradiation dans les jambes"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Lombalgie aiguë",
+          "synonymes_patient": ["mal reins", "bas du dos bloqué", "tour de rein", "dos coincé"],
+          "intensite": "sévère",
+          "echelle_1_10": "6-8",
+          "debut": "brutal",
+          "localisation": ["lombaire L1-L5"]
+        },
+        {
+          "symptome": "Contracture musculaire",
+          "synonymes_patient": ["muscles tendus", "dos dur", "spasmes", "crampe dos"],
+          "intensite": "importante"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Mon dos s'est bloqué d'un coup",
+        "J'ai fait un faux mouvement et maintenant je ne peux plus bouger",
+        "J'ai mal aux reins après avoir soulevé quelque chose",
+        "Je suis coincé, je ne peux plus me redresser",
+        "Mon dos est complètement raide"
+      ],
+      "questions_diagnostic": [
+        "Comment la douleur a-t-elle commencé? (mouvement, effort)",
+        "La douleur reste-t-elle dans le bas du dos ou descend-elle dans les jambes?",
+        "Pouvez-vous vous redresser complètement?",
+        "Avez-vous déjà eu ce type de douleur?",
+        "Avez-vous fait un effort particulier?"
+      ],
+      "profil_patient_type": {
+        "age_moyen": "20-60 ans",
+        "contexte_declencheur": ["effort brusque", "faux mouvement", "port de charge"]
+      },
+      "cas_cliniques_types": [
+        {
+          "cas": "Homme 35 ans. Douleur brutale bas du dos en soulevant carton, impossible se redresser, marche pliée en avant, pas d'irradiation jambe",
+          "diagnostic": "Lombalgie aiguë commune (lumbago)",
+          "score_correspondance": 92
+        }
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent mais consultation recommandée si douleur persiste > 72h",
+      "score_gravite": {
+        "douleur": 7,
+        "urgence": 2,
+        "handicap": 6,
+        "risque_vital": 0,
+        "besoin_consultation": 4
+      },
+      "delai_intervention": "Auto-traitement possible, consultation si > 3 jours",
+      "traitements": [
+        "Application de chaleur (bouillotte) ou de glace (première 48h)",
+        "Antalgiques (paracétamol 1g x4/jour)",
+        "Anti-inflammatoires (ibuprofène 400mg x3/jour pendant 5-7 jours)",
+        "Myorelaxants si spasmes importants",
+        "Repos de courte durée (24-48h maximum)",
+        "Reprise très progressive de l'activité dès amélioration",
+        "Exercices d'étirement doux après 48h",
+        "Massages légers",
+        "Éviter le port de charge pendant 1-2 semaines",
+        "Correction des gestes à risque",
+        "Retour au travail adapté si possible",
+        "Kinésithérapie si récidives fréquentes"
+      ],
+      "mots_cles_recherche": [
+        "lumbago", "tour de rein", "dos bloqué", "lombalgie aiguë",
+        "mal reins", "bas dos coincé", "faux mouvement dos"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Scoliose",
+      "synonymes": ["déviation colonne", "dos tordu", "courbure vertébrale"],
+      "description": "Déviation tridimensionnelle de la colonne vertébrale avec rotation vertébrale",
+      "categorie_pathologie": "déformation rachidienne",
+      "symptomes": [
+        "Courbure latérale visible de la colonne vertébrale",
+        "Épaules de hauteur inégale",
+        "Omoplate proéminente d'un côté (gibbosité)",
+        "Hanches asymétriques",
+        "Taille asymétrique",
+        "Douleurs dorsales (dans les cas sévères)",
+        "Fatigue musculaire du dos",
+        "Gêne esthétique",
+        "Dans les cas graves: troubles respiratoires",
+        "Déformation du thorax"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Gibbosité",
+          "synonymes_patient": ["bosse dans le dos", "dos qui ressort", "omoplate qui dépasse"],
+          "localisation": ["thoracique", "lombaire"],
+          "visible": "test de flexion antérieure"
+        },
+        {
+          "symptome": "Asymétrie épaules",
+          "synonymes_patient": ["épaule plus haute", "épaules pas droites"],
+          "signe_clinique": "inspection"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Mon dos n'est pas droit",
+        "Une épaule est plus haute que l'autre",
+        "On m'a dit que j'ai le dos tordu",
+        "J'ai une bosse dans le dos quand je me penche"
+      ],
+      "questions_diagnostic": [
+        "À quel âge la déformation a-t-elle été remarquée?",
+        "Y a-t-il des antécédents familiaux?",
+        "Avez-vous des douleurs?",
+        "Êtes-vous en période de croissance?",
+        "Avez-vous déjà eu des radiographies?"
+      ],
+      "profil_patient_type": {
+        "age_moyen": "10-18 ans (croissance)",
+        "sexe_predominant": "féminin",
+        "ratio_fille_garcon": "8:1 pour scoliose idiopathique"
+      },
+      "urgent": false,
+      "niveau_urgence": "Suivi régulier nécessaire, surtout chez l'enfant en croissance",
+      "score_gravite": {
+        "douleur": 3,
+        "urgence": 2,
+        "handicap": 4,
+        "risque_vital": 1,
+        "besoin_consultation": 6
+      },
+      "delai_intervention": "Consultation spécialisée sous 1-2 mois",
+      "traitements": [
+        "Surveillance médicale régulière tous les 4-6 mois",
+        "Radiographies de contrôle régulières",
+        "Kinésithérapie spécialisée et exercices spécifiques (méthode Schroth)",
+        "Port de corset orthopédique jour et nuit (scoliose 20-40° en croissance)",
+        "Natation et sports asymétriques contrôlés",
+        "Ostéopathie complémentaire",
+        "Chirurgie avec arthrodèse (scolioses sévères > 40-45 degrés)",
+        "Tiges de croissance chez l'enfant jeune",
+        "Activités physiques adaptées recommandées",
+        "Surveillance jusqu'à fin de croissance",
+        "Soutien psychologique si nécessaire",
+        "Ergothérapie pour adaptation du quotidien"
+      ],
+      "mots_cles_recherche": [
+        "scoliose", "dos tordu", "courbure colonne", "épaules asymétriques",
+        "gibbosité", "déviation vertébrale"
+      ]
+    }
+  ],
+  "notes_importantes": [
+    "Ces informations sont à titre éducatif uniquement et ne remplacent pas une consultation médicale",
+    "Consultez toujours un professionnel de santé pour un diagnostic précis",
+    "Les signaux d'alarme nécessitant une consultation urgente incluent: perte de contrôle sphinctérien, déficit moteur important, douleur insupportable, fièvre associée, traumatisme récent",
+    "Ne jamais s'auto-médiquer sans avis médical",
+    "L'activité physique adaptée est le meilleur traitement et prévention pour la plupart des maux de dos",
+    "Le repos prolongé au lit (> 48h) est contre-productif dans la majorité des cas"
+  ],
+  "prevention_generale": [
+    "Maintenir une activité physique régulière",
+    "Renforcer la musculature profonde du tronc (gainage)",
+    "Adopter de bonnes postures",
+    "Éviter le port de charges lourdes",
+    "Maintenir un poids santé",
+    "Arrêter le tabac",
+    "Gérer le stress",
+    "Ergonomie du poste de travail"
+  ],
+  "metadata": {
+    "source": "Base enrichie Dr. MediBot v2.0",
+    "optimise_pour": "RAG + FAISS + Embeddings",
+    "langue": "français",
+    "niveau_detail": "clinique avancé",
+    "compatibilite_llm": "optimale"
+  }
+}

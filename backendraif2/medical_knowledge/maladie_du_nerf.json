@@ -1,0 +1,323 @@
+{
+  "maladies_neurologiques": [
+    {
+      "id": 1,
+      "nom": "Accident Vasculaire Cérébral (AVC)",
+      "description": "Interruption soudaine de la circulation sanguine dans le cerveau",
+      "symptomes": [
+        "Paralysie ou faiblesse d'un côté du corps",
+        "Trouble de la parole",
+        "Perte de vision soudaine",
+        "Maux de tête intenses",
+        "Perte d'équilibre",
+        "Confusion soudaine"
+      ],
+      "urgent": true,
+      "niveau_urgence": "critique",
+      "delai_intervention": "Moins de 4h30",
+      "traitements": [
+        "Thrombolyse intraveineuse (dissolution du caillot)",
+        "Thrombectomie mécanique",
+        "Antiagrégants plaquettaires (aspirine)",
+        "Anticoagulants",
+        "Rééducation neurologique",
+        "Kinésithérapie",
+        "Orthophonie"
+      ],
+      "prevention": [
+        "Contrôle de la tension artérielle",
+        "Arrêt du tabac",
+        "Activité physique régulière",
+        "Alimentation équilibrée"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Maladie de Parkinson",
+      "description": "Maladie neurodégénérative affectant les mouvements",
+      "symptomes": [
+        "Tremblements au repos",
+        "Rigidité musculaire",
+        "Lenteur des mouvements (bradykinésie)",
+        "Instabilité posturale",
+        "Troubles de l'équilibre",
+        "Dépression",
+        "Troubles du sommeil"
+      ],
+      "urgent": false,
+      "niveau_urgence": "chronique",
+      "delai_intervention": "Consultation dans les semaines suivant les symptômes",
+      "traitements": [
+        "Lévodopa (L-DOPA)",
+        "Agonistes dopaminergiques",
+        "Inhibiteurs de la MAO-B",
+        "Kinésithérapie",
+        "Ergothérapie",
+        "Stimulation cérébrale profonde (cas avancés)",
+        "Orthophonie"
+      ],
+      "prevention": [
+        "Exercice physique régulier",
+        "Alimentation méditerranéenne",
+        "Stimulation cognitive"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Sclérose en Plaques (SEP)",
+      "description": "Maladie auto-immune affectant le système nerveux central",
+      "symptomes": [
+        "Fatigue intense",
+        "Troubles visuels (névrite optique)",
+        "Engourdissements",
+        "Faiblesse musculaire",
+        "Troubles de l'équilibre",
+        "Vertiges",
+        "Troubles de la mémoire",
+        "Problèmes urinaires"
+      ],
+      "urgent": false,
+      "niveau_urgence": "modéré lors des poussées",
+      "delai_intervention": "Consultation rapide lors des poussées (quelques jours)",
+      "traitements": [
+        "Corticoïdes (lors des poussées)",
+        "Immunomodulateurs (interféron bêta)",
+        "Immunosuppresseurs",
+        "Anticorps monoclonaux",
+        "Kinésithérapie",
+        "Traitement symptomatique (fatigue, douleur)",
+        "Soutien psychologique"
+      ],
+      "prevention": [
+        "Supplémentation en vitamine D",
+        "Éviter le tabagisme",
+        "Gestion du stress"
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Épilepsie",
+      "description": "Trouble neurologique caractérisé par des crises récurrentes",
+      "symptomes": [
+        "Convulsions",
+        "Perte de conscience",
+        "Mouvements incontrôlés",
+        "Absences",
+        "Confusion temporaire",
+        "Raideur musculaire",
+        "Sensations étranges (aura)"
+      ],
+      "urgent": true,
+      "niveau_urgence": "urgent si crise prolongée (>5 min) ou répétée",
+      "delai_intervention": "Appel d'urgence si crise >5 minutes",
+      "traitements": [
+        "Antiépileptiques (valproate, carbamazépine, lamotrigine)",
+        "Régime cétogène",
+        "Chirurgie de l'épilepsie (cas réfractaires)",
+        "Stimulation du nerf vague",
+        "Évitement des facteurs déclenchants",
+        "Éducation thérapeutique"
+      ],
+      "prevention": [
+        "Sommeil régulier",
+        "Éviter l'alcool",
+        "Gestion du stress",
+        "Prise régulière des médicaments"
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Maladie d'Alzheimer",
+      "description": "Maladie neurodégénérative causant une perte progressive de mémoire",
+      "symptomes": [
+        "Pertes de mémoire récente",
+        "Désorientation temporelle et spatiale",
+        "Difficultés de langage",
+        "Troubles du jugement",
+        "Changements d'humeur et de personnalité",
+        "Retrait social",
+        "Difficultés à accomplir des tâches familières"
+      ],
+      "urgent": false,
+      "niveau_urgence": "chronique",
+      "delai_intervention": "Consultation dès les premiers signes",
+      "traitements": [
+        "Inhibiteurs de l'acétylcholinestérase",
+        "Mémantine",
+        "Stimulation cognitive",
+        "Ergothérapie",
+        "Soutien psychologique",
+        "Aménagement de l'environnement",
+        "Accompagnement des aidants"
+      ],
+      "prevention": [
+        "Activité physique régulière",
+        "Stimulation intellectuelle",
+        "Vie sociale active",
+        "Contrôle des facteurs cardiovasculaires"
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Migraine",
+      "description": "Maux de tête intenses et récurrents",
+      "symptomes": [
+        "Douleur pulsatile unilatérale",
+        "Nausées et vomissements",
+        "Sensibilité à la lumière (photophobie)",
+        "Sensibilité au bruit (phonophobie)",
+        "Aura visuelle (points lumineux, zigzags)",
+        "Troubles de la concentration"
+      ],
+      "urgent": false,
+      "niveau_urgence": "non urgent (sauf première crise intense)",
+      "delai_intervention": "Consultation programmée",
+      "traitements": [
+        "Antalgiques (paracétamol, AINS)",
+        "Triptans (lors des crises)",
+        "Traitements de fond (bêtabloquants, antiépileptiques)",
+        "Anticorps anti-CGRP",
+        "Relaxation et biofeedback",
+        "Éviction des facteurs déclenchants",
+        "Acupuncture"
+      ],
+      "prevention": [
+        "Sommeil régulier",
+        "Hydratation suffisante",
+        "Éviter les déclencheurs alimentaires",
+        "Gestion du stress"
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Sclérose Latérale Amyotrophique (SLA)",
+      "description": "Maladie neurodégénérative affectant les neurones moteurs",
+      "symptomes": [
+        "Faiblesse musculaire progressive",
+        "Crampes et fasciculations",
+        "Difficultés à parler (dysarthrie)",
+        "Difficultés à avaler (dysphagie)",
+        "Atrophie musculaire",
+        "Difficultés respiratoires",
+        "Émotions labiles"
+      ],
+      "urgent": false,
+      "niveau_urgence": "grave mais évolution progressive",
+      "delai_intervention": "Consultation rapide dès suspicion",
+      "traitements": [
+        "Riluzole (ralentit la progression)",
+        "Edaravone",
+        "Kinésithérapie respiratoire",
+        "Orthophonie",
+        "Ventilation assistée",
+        "Gastrostomie (si troubles de déglutition)",
+        "Soins palliatifs",
+        "Soutien psychologique"
+      ],
+      "prevention": [
+        "Aucune prévention connue"
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Neuropathie Périphérique",
+      "description": "Atteinte des nerfs périphériques",
+      "symptomes": [
+        "Engourdissements des extrémités",
+        "Picotements et fourmillements",
+        "Douleurs brûlantes",
+        "Faiblesse musculaire",
+        "Perte de réflexes",
+        "Troubles de la coordination",
+        "Sensibilité au toucher"
+      ],
+      "urgent": false,
+      "niveau_urgence": "non urgent (sauf syndrome de Guillain-Barré)",
+      "delai_intervention": "Consultation programmée",
+      "traitements": [
+        "Traitement de la cause sous-jacente",
+        "Antalgiques",
+        "Antiépileptiques (gabapentine, prégabaline)",
+        "Antidépresseurs tricycliques",
+        "Kinésithérapie",
+        "Vitamines B (si carence)",
+        "Contrôle glycémique (si diabète)"
+      ],
+      "prevention": [
+        "Contrôle du diabète",
+        "Limitation de l'alcool",
+        "Alimentation équilibrée",
+        "Protection contre les toxines"
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Méningite",
+      "description": "Inflammation des méninges entourant le cerveau et la moelle épinière",
+      "symptomes": [
+        "Maux de tête sévères",
+        "Raideur de la nuque",
+        "Fièvre élevée",
+        "Photophobie",
+        "Vomissements",
+        "Confusion ou altération de la conscience",
+        "Éruption cutanée (purpura si bactérienne)"
+      ],
+      "urgent": true,
+      "niveau_urgence": "urgence vitale",
+      "delai_intervention": "Immédiat - appeler le 15/112",
+      "traitements": [
+        "Antibiotiques intraveineux (si bactérienne)",
+        "Corticoïdes",
+        "Antiviraux (si virale)",
+        "Réhydratation",
+        "Hospitalisation en urgence",
+        "Surveillance en soins intensifs",
+        "Traitement des complications"
+      ],
+      "prevention": [
+        "Vaccination (méningocoque, pneumocoque)",
+        "Hygiène des mains",
+        "Antibioprophylaxie des contacts proches"
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Névralgie du Trijumeau",
+      "description": "Douleur intense affectant le nerf trijumeau du visage",
+      "symptomes": [
+        "Douleur faciale fulgurante",
+        "Décharges électriques dans le visage",
+        "Douleur déclenchée par le toucher, mastication, parole",
+        "Douleur unilatérale",
+        "Spasmes faciaux",
+        "Douleur de courte durée mais intense"
+      ],
+      "urgent": false,
+      "niveau_urgence": "non urgent mais très invalidant",
+      "delai_intervention": "Consultation rapide pour soulagement",
+      "traitements": [
+        "Carbamazépine (traitement de première ligne)",
+        "Oxcarbazépine",
+        "Gabapentine",
+        "Baclofène",
+        "Chirurgie de décompression microvasculaire",
+        "Radiochirurgie gamma knife",
+        "Thermocoagulation"
+      ],
+      "prevention": [
+        "Éviter les facteurs déclenchants",
+        "Hygiène bucco-dentaire",
+        "Protection contre le froid"
+      ]
+    }
+  ],
+  "legende_urgence": {
+    "critique": "Appeler immédiatement les urgences (15/112)",
+    "urgent": "Consultation dans les heures qui suivent",
+    "modéré": "Consultation dans les jours qui suivent",
+    "non_urgent": "Consultation programmée",
+    "chronique": "Suivi régulier nécessaire"
+  },
+  "note_importante": "Ce document est fourni à titre informatif uniquement. En cas de symptômes, consultez toujours un professionnel de santé qualifié."
+}

@@ -3,12 +3,14 @@ import { Card } from './components/ui/card';
 import { AuthProvider, useAuth } from './components/AuthContext';
 import LoginPage from './components/LoginPage';
 import Sidebar from './components/Sidebar';
+import ChatbotPopup from './components/ChatbotPopup';
 
 const ImageUpload = React.lazy(() => import('./components/ImageUpload'));
 const ChatInterface = React.lazy(() => import('./components/ChatInterface'));
 const SearchBar = React.lazy(() => import('./components/SearchBar'));
 const MedicationCard = React.lazy(() => import('./components/MedicationCard'));
 const PrescriptionScan = React.lazy(() => import('./components/PrescriptionScan'));
+const MediBot = React.lazy(() => import('./components/MediBot'));
 
 function Spinner() {
   return (
@@ -29,14 +31,16 @@ function MainApp() {
     identify: 'Medication Identification',
     search: 'Search Medications', 
     chat: 'AI Medical Assistant',
-    'scan-prescription': 'Scan your Prescription'
+    'scan-prescription': 'Scan your Prescription',
+    'medibot': 'Dr. MediBot - Consultation Médicale'
   };
   
   const subtitles = {
     identify: 'Upload an image to identify medications',
     search: 'Search our database of Tunisian medications',
     chat: 'Ask questions about medications',
-    'scan-prescription': 'Upload your prescription for analysis'
+    'scan-prescription': 'Upload your prescription for analysis',
+    'medibot': 'Consultation médicale vocale avec IA'
   };
 
   const handleConversationCreated = (conv) => {
@@ -76,6 +80,7 @@ function MainApp() {
                   onConversationCreated={handleConversationCreated} 
                 />
               )}
+              {activeTab === 'medibot' && <MediBot />}
               {loading && (
                 <div className="fixed inset-0 bg-background/90 flex items-center justify-center z-30">
                   <Card className="p-6 sm:p-8 max-w-sm text-center card-glow mx-4">
@@ -97,6 +102,9 @@ function MainApp() {
           <p className="text-xs sm:text-sm text-muted-foreground">⚠️ For informational purposes only.</p>
         </footer>
       </main>
+      
+      {/* Dr. Raif Chatbot Popup - Fixed bottom right */}
+      <ChatbotPopup />
     </div>
   );
 }

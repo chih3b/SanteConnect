@@ -1,0 +1,229 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "nom": "Patient A",
+      "age": 65,
+      "sexe": "M",
+      "maladie": "Insuffisance rénale chronique stade 4",
+      "symptomes": [
+        "Fatigue extrême",
+        "Perte d'appétit",
+        "Œdème des chevilles",
+        "Nausées",
+        "Hypertension artérielle"
+      ],
+      "urgent": false,
+      "traitements": [
+        "Restriction protéique",
+        "Contrôle de la pression artérielle (IEC/ARA2)",
+        "Supplémentation en fer et EPO",
+        "Surveillance régulière de la fonction rénale",
+        "Préparation à la dialyse"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Patient B",
+      "age": 42,
+      "sexe": "F",
+      "maladie": "Pyélonéphrite aiguë",
+      "symptomes": [
+        "Fièvre élevée (39°C)",
+        "Douleur lombaire intense",
+        "Frissons",
+        "Brûlures mictionnelles",
+        "Nausées et vomissements"
+      ],
+      "urgent": true,
+      "traitements": [
+        "Hospitalisation",
+        "Antibiothérapie intraveineuse (ceftriaxone)",
+        "Hydratation IV",
+        "Antalgiques et antipyrétiques",
+        "Surveillance des signes de sepsis"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Patient C",
+      "age": 28,
+      "sexe": "M",
+      "maladie": "Lithiase rénale (calcul rénal)",
+      "symptomes": [
+        "Colique néphrétique sévère",
+        "Douleur irradiant vers l'aine",
+        "Hématurie",
+        "Agitation",
+        "Nausées"
+      ],
+      "urgent": true,
+      "traitements": [
+        "Antalgiques puissants (morphiniques)",
+        "Anti-inflammatoires (AINS)",
+        "Antispasmodiques",
+        "Hydratation abondante",
+        "Lithotripsie ou urétéroscopie si nécessaire"
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Patient D",
+      "age": 55,
+      "sexe": "F",
+      "maladie": "Néphropathie diabétique",
+      "symptomes": [
+        "Protéinurie",
+        "Œdème des membres inférieurs",
+        "Hypertension",
+        "Fatigue",
+        "Polyurie nocturne"
+      ],
+      "urgent": false,
+      "traitements": [
+        "Contrôle strict de la glycémie",
+        "IEC ou ARA2 pour protéger les reins",
+        "Régime hyposodé",
+        "Contrôle de la pression artérielle",
+        "Surveillance régulière de l'albuminurie"
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Patient E",
+      "age": 70,
+      "sexe": "M",
+      "maladie": "Insuffisance rénale aiguë",
+      "symptomes": [
+        "Oligurie (diminution du volume urinaire)",
+        "Confusion mentale",
+        "Œdème généralisé",
+        "Essoufflement",
+        "Nausées sévères"
+      ],
+      "urgent": true,
+      "traitements": [
+        "Hospitalisation en urgence",
+        "Identification et traitement de la cause",
+        "Équilibration hydroélectrolytique",
+        "Dialyse en urgence si nécessaire",
+        "Surveillance rapprochée"
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Patient F",
+      "age": 35,
+      "sexe": "F",
+      "maladie": "Glomérulonéphrite aiguë",
+      "symptomes": [
+        "Hématurie macroscopique",
+        "Hypertension artérielle",
+        "Œdème facial matinal",
+        "Protéinurie",
+        "Diminution du débit urinaire"
+      ],
+      "urgent": true,
+      "traitements": [
+        "Hospitalisation",
+        "Corticothérapie",
+        "Immunosuppresseurs si nécessaire",
+        "Restriction hydrosodée",
+        "Antihypertenseurs",
+        "Biopsie rénale pour diagnostic précis"
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Patient G",
+      "age": 48,
+      "sexe": "M",
+      "maladie": "Polykystose rénale autosomique dominante",
+      "symptomes": [
+        "Douleurs lombaires chroniques",
+        "Hématurie intermittente",
+        "Hypertension artérielle",
+        "Infections urinaires récurrentes",
+        "Augmentation du volume abdominal"
+      ],
+      "urgent": false,
+      "traitements": [
+        "Contrôle de la pression artérielle",
+        "Hydratation adéquate",
+        "Traitement des infections urinaires",
+        "Analgésiques pour la douleur",
+        "Surveillance de la fonction rénale",
+        "Tolvaptan pour ralentir la progression"
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Patient H",
+      "age": 58,
+      "sexe": "F",
+      "maladie": "Néphropathie hypertensive",
+      "symptomes": [
+        "Hypertension artérielle non contrôlée",
+        "Protéinurie modérée",
+        "Céphalées",
+        "Troubles visuels",
+        "Fatigue"
+      ],
+      "urgent": false,
+      "traitements": [
+        "Antihypertenseurs multiples (IEC, diurétiques)",
+        "Régime hyposodé strict",
+        "Perte de poids si nécessaire",
+        "Activité physique régulière",
+        "Surveillance régulière de la fonction rénale"
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Patient I",
+      "age": 72,
+      "sexe": "M",
+      "maladie": "Insuffisance rénale terminale",
+      "symptomes": [
+        "Urémie sévère",
+        "Prurit généralisé",
+        "Anémie profonde",
+        "Troubles du sommeil",
+        "Péricardite urémique",
+        "Neuropathie périphérique"
+      ],
+      "urgent": true,
+      "traitements": [
+        "Hémodialyse urgente",
+        "Dialyse péritonéale",
+        "Évaluation pour transplantation rénale",
+        "Traitement de l'anémie (EPO)",
+        "Régime strict (potassium, phosphore)",
+        "Chélateurs de phosphore"
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Patient J",
+      "age": 38,
+      "sexe": "F",
+      "maladie": "Syndrome néphrotique",
+      "symptomes": [
+        "Protéinurie massive (>3g/24h)",
+        "Œdème généralisé",
+        "Hypoalbuminémie",
+        "Hyperlipidémie",
+        "Fatigue importante"
+      ],
+      "urgent": false,
+      "traitements": [
+        "Corticothérapie (prednisone)",
+        "Régime hyposodé et hypoprotidique",
+        "Diurétiques pour les œdèmes",
+        "Statines pour l'hyperlipidémie",
+        "Anticoagulation préventive",
+        "Immunosuppresseurs si résistance aux corticoïdes"
+      ]
+    }
+  ]
+}

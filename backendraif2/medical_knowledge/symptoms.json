@@ -1,0 +1,580 @@
+{
+  "symptoms": [
+    {
+      "id": "SYM001",
+      "name": "Fièvre",
+      "description": "Élévation de la température corporelle au-dessus de 38°C (axillaire) ou 38.5°C (rectale)",
+      "severity_levels": {
+        "légère": "38-38.5°C",
+        "modérée": "38.5-39.5°C",
+        "élevée": "39.5-40.5°C",
+        "hyperpyrexie": ">40.5°C - urgence"
+      },
+      "common_causes": [
+        "Infection virale (grippe, COVID-19, gastro-entérite)",
+        "Infection bactérienne (pneumonie, angine, infection urinaire)",
+        "Inflammation (appendicite, maladie auto-immune)",
+        "Coup de chaleur",
+        "Réaction médicamenteuse"
+      ],
+      "associated_diseases": ["DIS001", "DIS003", "DIS005", "DIS009", "DIS011", "DIS012"],
+      "related_questions": [
+        "Depuis combien de temps avez-vous de la fièvre (début brutal ou progressif) ?",
+        "Quelle est votre température exacte mesurée ?",
+        "Avez-vous d'autres symptômes (toux, douleurs, éruption) ?",
+        "Avez-vous voyagé récemment dans une zone à risque ?",
+        "Prenez-vous des médicaments pouvant masquer la fièvre ?"
+      ],
+      "red_flags": [
+        "Fièvre >40°C",
+        "Fièvre persistante >5 jours",
+        "Fièvre chez nourrisson <3 mois",
+        "Fièvre avec raideur nuque (méningite)",
+        "Fièvre avec éruption purpurique (sepsis)",
+        "Fièvre avec altération conscience"
+      ],
+      "home_management": [
+        "Antipyrétiques: paracétamol 1g/6h (adulte)",
+        "Hydratation abondante (2-3L/jour)",
+        "Repos",
+        "Vêtements légers",
+        "Température ambiante fraîche (18-20°C)"
+      ]
+    },
+    {
+      "id": "SYM002",
+      "name": "Toux",
+      "description": "Expulsion forcée d'air des poumons, réflexe protecteur des voies respiratoires",
+      "severity_levels": {
+        "légère": "Occasionnelle, pas invalidante",
+        "modérée": "Fréquente, gêne quotidienne",
+        "sévère": "Incessante, épuisante",
+        "chronique": ">8 semaines"
+      },
+      "types": {
+        "sèche": "Sans expectoration, irritative",
+        "grasse": "Avec expectorations (mucus)",
+        "productive": "Expectorations colorées (jaunes/vertes = infection)",
+        "hémoptoïque": "Avec sang - ALERTE"
+      },
+      "common_causes": [
+        "Infection virale (rhume, grippe, COVID-19)",
+        "Infection bactérienne (pneumonie, coqueluche)",
+        "Allergie, asthme",
+        "Reflux gastro-œsophagien",
+        "Tabagisme",
+        "Médicaments (IEC)"
+      ],
+      "associated_diseases": ["DIS001", "DIS004", "DIS009", "DIS011"],
+      "related_questions": [
+        "Votre toux est-elle sèche ou grasse ?",
+        "Depuis combien de temps toussez-vous ?",
+        "Y a-t-il du sang dans vos expectorations (hémoptysie) ?",
+        "La toux est-elle pire la nuit ou au réveil ?",
+        "Fumez-vous ou avez-vous fumé ?",
+        "Êtes-vous essoufflé(e) ?"
+      ],
+      "red_flags": [
+        "Hémoptysie (sang dans les crachats)",
+        "Toux chronique >8 semaines",
+        "Toux avec dyspnée sévère",
+        "Perte de poids associée",
+        "Fièvre prolongée",
+        "Douleur thoracique"
+      ],
+      "when_to_consult": "Hémoptysie, toux >3 semaines, essoufflement, fièvre persistante, altération état général"
+    },
+    {
+      "id": "SYM003",
+      "name": "Mal de tête (Céphalée)",
+      "description": "Douleur dans la région de la tête ou du cou",
+      "severity_levels": {
+        "légère": "1-3/10 sur échelle douleur",
+        "modérée": "4-6/10",
+        "sévère": "7-9/10",
+        "insupportable": "10/10 - urgence"
+      },
+      "types": {
+        "tension": "Serrement bilatéral en casque, stress",
+        "migraine": "Pulsatile unilatérale, nausées, photo/phonophobie",
+        "cluster": "Unilatérale péri-orbitaire intense, larmoiement",
+        "sinusienne": "Frontale/maxillaire, aggravée position penchée"
+      },
+      "common_causes": [
+        "Stress, tension musculaire",
+        "Déshydratation",
+        "Fatigue, manque de sommeil",
+        "Migraine",
+        "Hypertension artérielle",
+        "Sinusite",
+        "Méningite (urgence)"
+      ],
+      "associated_diseases": ["DIS001", "DIS006", "DIS008", "DIS011"],
+      "related_questions": [
+        "Où se situe exactement la douleur (frontale, temporale, occipitale) ?",
+        "Sur une échelle de 1 à 10, quelle est l'intensité ?",
+        "La douleur est-elle pulsatile (battements) ou constante ?",
+        "Avez-vous des nausées, vomissements, troubles visuels ?",
+        "Y a-t-il des déclencheurs connus (stress, aliments, règles) ?",
+        "Est-ce la pire céphalée de votre vie ?"
+      ],
+      "red_flags": [
+        "Céphalée en coup de tonnerre (brutale, maximale en <1min) - HSA",
+        "Céphalée avec fièvre + raideur nuque - méningite",
+        "Céphalée après traumatisme crânien",
+        "Céphalée avec déficit neurologique",
+        "Céphalée inhabituelle >50 ans (1re fois)",
+        "Céphalée progressive s'aggravant"
+      ],
+      "emergency_signs": [
+        "Apparition brutale maximale",
+        "Raideur de nuque",
+        "Fièvre élevée",
+        "Troubles conscience",
+        "Paralysie, troubles visuels"
+      ]
+    },
+    {
+      "id": "SYM004",
+      "name": "Douleur thoracique",
+      "description": "Douleur ou inconfort dans la région du thorax",
+      "severity_levels": {
+        "légère": "Gêne supportable",
+        "modérée": "Douleur gênante mais tolérable",
+        "sévère": "Douleur intense limitante",
+        "urgence": "Douleur constrictive avec malaise - URGENCE VITALE"
+      },
+      "characteristics": {
+        "constrictive": "Serrement, étau - cardiaque",
+        "pulsatile": "Battements - anévrisme",
+        "déchirante": "Irradiation dos - dissection aortique",
+        "brûlure": "Reflux gastro-œsophagien",
+        "pleurale": "Aiguë inspiratoire - pleurésie, pneumothorax"
+      },
+      "common_causes": [
+        "Infarctus du myocarde - URGENCE",
+        "Angine de poitrine",
+        "Embolie pulmonaire - URGENCE",
+        "Pneumothorax",
+        "Reflux gastro-œsophagien",
+        "Anxiété, crise de panique",
+        "Douleur musculaire (costale)"
+      ],
+      "associated_diseases": ["DIS002", "DIS004"],
+      "emergency_indicators": [
+        "Douleur irradiant vers bras gauche, mâchoire, dos",
+        "Difficulté à respirer (dyspnée)",
+        "Transpiration excessive (sueurs froides)",
+        "Nausées, vomissements",
+        "Malaise, sensation de mort imminente",
+        "Pâleur, cyanose"
+      ],
+      "related_questions": [
+        "La douleur irradie-t-elle vers le bras, la mâchoire ou le dos ?",
+        "Avez-vous des difficultés à respirer ?",
+        "La douleur est-elle déclenchée par l'effort physique ?",
+        "Ressentez-vous des palpitations ?",
+        "Avez-vous des antécédents cardiaques ou facteurs de risque ?",
+        "La douleur dure-t-elle depuis plus de 15 minutes ?"
+      ],
+      "red_flags": [
+        "Douleur constrictive >15 min",
+        "Irradiation bras/mâchoire",
+        "Dyspnée associée",
+        "Malaise, syncope",
+        "Sueurs froides",
+        "Antécédents cardiaques"
+      ],
+      "immediate_action": "Si suspicion infarctus: APPELER 15 IMMÉDIATEMENT, asseoir, aspirine 250mg si disponible"
+    },
+    {
+      "id": "SYM005",
+      "name": "Nausées et vomissements",
+      "description": "Sensation de malaise gastrique avec ou sans expulsion du contenu gastrique",
+      "severity_levels": {
+        "légère": "Nausées occasionnelles sans vomissements",
+        "modérée": "Vomissements <5/jour",
+        "sévère": "Vomissements incoercibles >5/jour",
+        "critique": "Déshydratation, troubles conscience"
+      },
+      "types_vomissements": {
+        "alimentaire": "Récent, non digéré",
+        "bilieux": "Jaune-vert (bile) - obstruction",
+        "fécaloïde": "Odeur fécale - occlusion",
+        "hématémèse": "Sang rouge ou noir (digéré) - URGENCE"
+      },
+      "common_causes": [
+        "Gastro-entérite virale",
+        "Intoxication alimentaire",
+        "Grossesse (nausées matinales)",
+        "Migraine",
+        "Appendicite",
+        "Occlusion intestinale",
+        "Médicaments, chimiothérapie"
+      ],
+      "associated_diseases": ["DIS001", "DIS003", "DIS005", "DIS006"],
+      "related_questions": [
+        "Combien de fois avez-vous vomi dans les dernières 24h ?",
+        "Y a-t-il du sang dans les vomissements (rouge ou noir) ?",
+        "Avez-vous de la diarrhée également ?",
+        "Avez-vous de la fièvre ou des douleurs abdominales ?",
+        "Êtes-vous enceinte ou pourriez-vous l'être ?",
+        "Présentez-vous des signes de déshydratation ?"
+      ],
+      "red_flags": [
+        "Hématémèse (vomissements sanglants)",
+        "Vomissements fécaloïdes",
+        "Déshydratation sévère",
+        "Douleur abdominale intense",
+        "Vomissements avec céphalée brutale",
+        "Absence de selles/gaz (occlusion)"
+      ],
+      "dehydration_signs": [
+        "Bouche et langue sèches",
+        "Soif intense",
+        "Urines foncées rares",
+        "Pli cutané persistant",
+        "Yeux creux",
+        "Hypotension, tachycardie"
+      ]
+    },
+    {
+      "id": "SYM006",
+      "name": "Fatigue intense (Asthénie)",
+      "description": "Épuisement physique ou mental persistant non soulagé par le repos",
+      "severity_levels": {
+        "légère": "Fatigue passagère, récupération rapide",
+        "modérée": "Fatigue quotidienne impactant activités",
+        "sévère": "Épuisement permanent, alitement fréquent",
+        "chronique": ">6 mois - syndrome fatigue chronique"
+      },
+      "types": {
+        "physique": "Faiblesse musculaire, effort difficile",
+        "mentale": "Difficultés concentration, mémoire",
+        "mixte": "Physique et mentale combinées"
+      },
+      "common_causes": [
+        "Anémie ferriprive",
+        "Hypothyroïdie",
+        "Dépression, burn-out",
+        "Troubles du sommeil (apnée, insomnie)",
+        "Infections chroniques",
+        "Diabète",
+        "Cancer",
+        "Syndrome fatigue chronique",
+        "COVID long"
+      ],
+      "associated_diseases": ["DIS001", "DIS007", "DIS010", "DIS011"],
+      "related_questions": [
+        "Depuis combien de temps vous sentez-vous fatigué(e) ?",
+        "Est-ce que le repos améliore votre état ?",
+        "Avez-vous perdu du poids récemment sans raison ?",
+        "Votre sommeil est-il réparateur ?",
+        "Avez-vous d'autres symptômes (fièvre, douleurs, essoufflement) ?",
+        "Votre humeur est-elle affectée (tristesse, irritabilité) ?"
+      ],
+      "red_flags": [
+        "Fatigue brutale inexpliquée",
+        "Perte de poids non intentionnelle",
+        "Fièvre prolongée",
+        "Sueurs nocturnes",
+        "Ganglions persistants",
+        "Pâleur marquée (anémie)"
+      ],
+      "investigations_needed": [
+        "NFS (anémie)",
+        "TSH (thyroïde)",
+        "Glycémie (diabète)",
+        "Ferritine (réserves fer)",
+        "CRP (inflammation)"
+      ]
+    },
+    {
+      "id": "SYM007",
+      "name": "Essoufflement (Dyspnée)",
+      "description": "Difficulté à respirer ou sensation de manque d'air",
+      "severity_levels": {
+        "légère": "Dyspnée aux efforts importants",
+        "modérée": "Dyspnée aux efforts modérés (marche rapide)",
+        "sévère": "Dyspnée aux efforts minimes (habillage)",
+        "critique": "Dyspnée au repos - URGENCE"
+      },
+      "classification_nyha": {
+        "I": "Pas de limitation - asymptomatique",
+        "II": "Limitation légère - activités ordinaires",
+        "III": "Limitation marquée - activités minimes",
+        "IV": "Dyspnée au repos - alitement"
+      },
+      "common_causes": [
+        "Asthme",
+        "BPCO (bronchite chronique)",
+        "Insuffisance cardiaque",
+        "Anémie",
+        "Embolie pulmonaire - URGENCE",
+        "Pneumonie",
+        "Obésité",
+        "Anxiété (hyperventilation)"
+      ],
+      "associated_diseases": ["DIS002", "DIS004", "DIS007", "DIS009"],
+      "emergency_indicators": [
+        "Dyspnée au repos brutale",
+        "Lèvres/ongles bleus (cyanose)",
+        "Tirage intercostal",
+        "Incapacité à parler",
+        "Confusion, agitation",
+        "Douleur thoracique associée"
+      ],
+      "related_questions": [
+        "L'essoufflement survient-il au repos ou à l'effort ?",
+        "Avez-vous des antécédents cardiaques ou pulmonaires ?",
+        "Ressentez-vous une oppression thoracique ?",
+        "Y a-t-il des sifflements respiratoires (wheezing) ?",
+        "Êtes-vous obligé(e) de dormir assis(e) (orthopnée) ?",
+        "Vous réveillez-vous la nuit essoufflé(e) ?"
+      ],
+      "red_flags": [
+        "Dyspnée aiguë brutale",
+        "Cyanose",
+        "Douleur thoracique",
+        "Hémoptysie",
+        "Œdème membres inférieurs",
+        "Tachycardie >120 bpm"
+      ]
+    },
+    {
+      "id": "SYM008",
+      "name": "Douleur abdominale",
+      "description": "Douleur dans la région de l'abdomen",
+      "severity_levels": {
+        "légère": "1-3/10, supportable",
+        "modérée": "4-6/10, gênante",
+        "sévère": "7-9/10, intense",
+        "aiguë": "10/10, insupportable - URGENCE"
+      },
+      "locations": {
+        "hypochondre_droit": "Foie, vésicule (cholécystite, hépatite)",
+        "hypochondre_gauche": "Rate, pancréas (pancréatite)",
+        "épigastre": "Estomac (gastrite, ulcère)",
+        "fosse_iliaque_droite": "Appendice (appendicite) - URGENCE",
+        "fosse_iliaque_gauche": "Sigmoïde (diverticulite)",
+        "péri-ombilicale": "Intestin grêle (occlusion)",
+        "hypogastre": "Vessie, utérus (cystite, gynéco)"
+      },
+      "character": {
+        "colique": "Par vagues, crampes - obstruction",
+        "continue": "Permanente - inflammation",
+        "brûlure": "Reflux, ulcère",
+        "déchirure": "Perforation, dissection"
+      },
+      "common_causes": [
+        "Appendicite - URGENCE",
+        "Gastro-entérite",
+        "Calculs biliaires (colique hépatique)",
+        "Infection urinaire",
+        "Constipation",
+        "Ulcère gastro-duodénal",
+        "Occlusion intestinale - URGENCE"
+      ],
+      "associated_diseases": ["DIS003", "DIS005"],
+      "related_questions": [
+        "Où exactement se situe la douleur (montrer avec 1 doigt) ?",
+        "La douleur est-elle constante ou par vagues (coliques) ?",
+        "Avez-vous de la fièvre ?",
+        "Avez-vous des nausées, vomissements ?",
+        "Avez-vous des troubles du transit (diarrhée, constipation) ?",
+        "La douleur s'aggrave-t-elle en marchant ou en toussant ?"
+      ],
+      "red_flags": [
+        "Douleur aiguë intense soudaine",
+        "Défense/contracture abdominale (ventre de bois)",
+        "Absence de selles/gaz (occlusion)",
+        "Sang dans selles (rectorragie, méléna)",
+        "Vomissements fécaloïdes",
+        "Choc (pâleur, hypotension)"
+      ],
+      "abdomen_aigu": "Douleur abdominale sévère brutale nécessitant évaluation chirurgicale urgente"
+    },
+    {
+      "id": "SYM009",
+      "name": "Vertiges",
+      "description": "Sensation de tournoiement (vertige rotatoire) ou de perte d'équilibre (instabilité)",
+      "types": {
+        "rotatoire": "Environnement qui tourne - origine vestibulaire",
+        "non_rotatoire": "Instabilité, déséquilibre - neurologique",
+        "lipothymie": "Sensation évanouissement - cardiovasculaire"
+      },
+      "severity_levels": {
+        "léger": "Gêne passagère",
+        "modéré": "Limitation activités",
+        "sévère": "Incapacité se lever, vomissements",
+        "urgence": "Avec signes neurologiques"
+      },
+      "common_causes": [
+        "Hypotension orthostatique",
+        "Déshydratation",
+        "Vertige paroxystique positionnel bénin (VPPB)",
+        "Névrite vestibulaire",
+        "Maladie de Ménière",
+        "Anémie",
+        "Anxiété",
+        "AVC postérieur - URGENCE"
+      ],
+      "associated_diseases": ["DIS007", "DIS008"],
+      "related_questions": [
+        "Les vertiges sont-ils rotatoires (tout tourne) ?",
+        "Sont-ils déclenchés par les changements de position ?",
+        "Sont-ils accompagnés de nausées ou vomissements ?",
+        "Surviennent-ils en position debout (orthostatique) ?",
+        "Avez-vous des acouphènes ou baisse audition ?",
+        "Y a-t-il des signes neurologiques associés ?"
+      ],
+      "red_flags": [
+        "Vertige avec céphalée sévère",
+        "Diplopie (vision double)",
+        "Troubles de la parole",
+        "Faiblesse membre",
+        "Troubles de la marche",
+        "Perte de conscience"
+      ],
+      "test_dix_hallpike": "Manœuvre diagnostique pour VPPB - à faire par professionnel"
+    },
+    {
+      "id": "SYM010",
+      "name": "Éruption cutanée (Rash)",
+      "description": "Changements anormaux de la peau (rougeur, boutons, plaques)",
+      "types": {
+        "maculeux": "Taches rouges planes",
+        "papuleux": "Petits boutons en relief",
+        "vésiculeux": "Vésicules (petites bulles liquide)",
+        "pustuleux": "Pustules (pus)",
+        "purpurique": "Taches pourpres ne s'effaçant pas - URGENCE"
+      },
+      "severity_levels": {
+        "légère": "Localisée, pas de signes généraux",
+        "modérée": "Étendue, prurit important",
+        "sévère": "Généralisée, signes systémiques",
+        "urgence": "Purpura fulminans, nécrose"
+      },
+      "common_causes": [
+        "Allergie (médicaments, aliments)",
+        "Infection virale (rougeole, varicelle, rubéole)",
+        "Infection bactérienne (scarlatine, érysipèle)",
+        "Eczéma",
+        "Psoriasis",
+        "Urticaire",
+        "Méningococcémie - URGENCE"
+      ],
+      "related_questions": [
+        "L'éruption démange-t-elle (prurit) ?",
+        "Avez-vous été en contact avec un allergène connu ?",
+        "Y a-t-il de la fièvre associée ?",
+        "Avez-vous pris un nouveau médicament récemment ?",
+        "L'éruption s'efface-t-elle à la pression (vitropression) ?",
+        "Où a débuté l'éruption et comment s'est-elle étendue ?"
+      ],
+      "red_flags": [
+        "Purpura ne s'effaçant pas à la pression",
+        "Éruption avec fièvre élevée et altération conscience",
+        "Décollement cutané (Syndrome de Stevens-Johnson)",
+        "Œdème facial/gorge (anaphylaxie)",
+        "Éruption extensible rapidement",
+        "Signes de sepsis"
+      ],
+      "purpura_test": "Vitropression: presser verre sur lésion. Si ne s'efface pas → purpura → URGENCE (méningite)",
+      "emergency_rashes": [
+        "Purpura fulminans (méningocoque)",
+        "Syndrome Stevens-Johnson",
+        "Nécrolyse épidermique toxique",
+        "Érythrodermie"
+      ]
+    },
+    {
+      "id": "SYM011",
+      "name": "Perte de poids involontaire",
+      "description": "Diminution du poids corporel non intentionnelle",
+      "severity_definition": "Significative si >5% poids en 1 mois ou >10% en 6 mois",
+      "severity_levels": {
+        "légère": "2-5% poids corporel",
+        "modérée": "5-10% poids corporel",
+        "sévère": ">10% poids corporel",
+        "cachexie": "Perte masse musculaire + graisse"
+      },
+      "common_causes": [
+        "Cancer (estomac, pancréas, poumon)",
+        "Hyperthyroïdie",
+        "Diabète non contrôlé",
+        "Dépression sévère",
+        "Malabsorption (maladie cœliaque, Crohn)",
+        "Infections chroniques (tuberculose, VIH)",
+        "Insuffisance cardiaque/rénale avancée"
+      ],
+      "related_questions": [
+        "Combien de kilos avez-vous perdu et en combien de temps ?",
+        "Avez-vous changé votre alimentation ou activité physique ?",
+        "Avez-vous de la fièvre, sueurs nocturnes ?",
+        "Ressentez-vous d'autres symptômes (fatigue, douleurs) ?",
+        "Y a-t-il des troubles digestifs (diarrhée, vomissements) ?",
+        "Avez-vous remarqué des ganglions ou masses ?"
+      ],
+      "red_flags": [
+        "Perte de poids rapide inexpliquée >10%",
+        "Âge >50 ans",
+        "Sueurs nocturnes profuses",
+        "Adénopathies persistantes",
+        "Sang dans selles/urines",
+        "Altération état général"
+      ],
+      "investigations_needed": [
+        "Bilan sanguin complet",
+        "TSH (thyroïde)",
+        "Imagerie selon orientation",
+        "Endoscopie digestive",
+        "Recherche néoplasie"
+      ]
+    },
+    {
+      "id": "SYM012",
+      "name": "Palpitations",
+      "description": "Perception anormale des battements cardiaques",
+      "types": {
+        "tachycardie": "Cœur rapide >100 bpm",
+        "extrasystoles": "Battements irréguliers, \"ratés\"",
+        "flutter": "Battements très rapides réguliers",
+        "fibrillation": "Battements anarchiques irréguliers"
+      },
+      "severity_levels": {
+        "bénignes": "Occasionnelles, brèves, pas de malaise",
+        "modérées": "Fréquentes, gênantes",
+        "sévères": "Persistantes avec symptômes",
+        "urgence": "Avec syncope, douleur thoracique"
+      },
+      "common_causes": [
+        "Stress, anxiété",
+        "Caféine, alcool, tabac",
+        "Effort physique",
+        "Fièvre",
+        "Hyperthyroïdie",
+        "Anémie",
+        "Troubles du rythme (FA, flutter)",
+        "Cardiopathie"
+      ],
+      "related_questions": [
+        "Les palpitations sont-elles régulières ou irrégulières ?",
+        "Quelle est leur fréquence et durée ?",
+        "Y a-t-il des facteurs déclencheurs (café, stress, effort) ?",
+        "Ressentez-vous d'autres symptômes (vertige, douleur thoracique) ?",
+        "Avez-vous des antécédents cardiaques ?",
+        "Prenez-vous des médicaments ou substances stimulantes ?"
+      ],
+      "red_flags": [
+        "Palpitations avec douleur thoracique",
+        "Syncope ou pré-syncope",
+        "Dyspnée importante",
+        "Palpitations prolongées >30 min",
+        "Antécédents cardiaques",
+        "Œdèmes membres inférieurs"
+      ],
+      "when_to_consult": "Urgence si avec douleur thoracique, malaise, essoufflement. ECG si persistantes ou symptomatiques"
+    }
+  ]
+}

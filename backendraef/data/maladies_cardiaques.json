@@ -1,0 +1,377 @@
+{
+  "categorie": "Maladies cardiovasculaires",
+  "version": "2.0_enhanced",
+  "derniere_maj": "2025-01-02",
+  "total_maladies": 20,
+  "patients": [
+    {
+      "id": 1,
+      "maladie": "Infarctus du myocarde",
+      "synonymes": ["crise cardiaque", "attaque cardiaque", "IDM", "infarctus"],
+      "description": "Nécrose du muscle cardiaque due à l'obstruction d'une artère coronaire, urgence médicale absolue",
+      "categorie_pathologie": "syndrome coronarien aigu",
+      "symptomes": [
+        "Douleur thoracique intense et prolongée (plus de 20 minutes)",
+        "Sensation d'oppression ou d'écrasement dans la poitrine",
+        "Douleur irradiant vers le bras gauche, la mâchoire, le cou ou le dos",
+        "Sueurs froides profuses",
+        "Nausées et vomissements",
+        "Essoufflement important",
+        "Anxiété intense, sentiment de mort imminente",
+        "Pâleur cutanée",
+        "Faiblesse généralisée"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Douleur thoracique rétrosternale",
+          "synonymes_patient": ["serrement poitrine", "oppression", "écrasement", "poids sur la poitrine", "étau", "éléphant sur le torse"],
+          "intensite": "très sévère",
+          "echelle_1_10": "8-10",
+          "duree": "> 20 minutes",
+          "localisation": ["rétrosternale", "précordiale"],
+          "irradiation": ["bras gauche", "mâchoire", "dos", "cou", "épigastre"]
+        },
+        {
+          "symptome": "Sueurs froides",
+          "synonymes_patient": ["transpiration froide", "suée", "trempé de sueur"],
+          "intensite": "profuse",
+          "frequence": "80-90% des cas"
+        },
+        {
+          "symptome": "Dyspnée",
+          "synonymes_patient": ["essoufflement", "manque d'air", "respiration difficile", "souffle court"],
+          "intensite": "importante",
+          "frequence": "fréquent"
+        },
+        {
+          "symptome": "Angor",
+          "synonymes_patient": ["sentiment de mort", "angoisse terrible", "peur de mourir"],
+          "intensite": "intense",
+          "signe_distinctif": "caractéristique"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai une douleur terrible dans la poitrine",
+        "C'est comme si un éléphant était assis sur ma poitrine",
+        "J'ai mal dans le bras gauche et la poitrine",
+        "Je transpire à grosses gouttes et j'ai mal au cœur",
+        "J'ai peur de mourir, ma poitrine me fait très mal",
+        "La douleur descend dans mon bras et monte dans ma mâchoire"
+      ],
+      "questions_diagnostic": [
+        "Depuis combien de temps avez-vous cette douleur?",
+        "La douleur irradie-t-elle vers le bras gauche, la mâchoire ou le dos?",
+        "Transpirez-vous abondamment?",
+        "Avez-vous des nausées ou vomissements?",
+        "Êtes-vous essoufflé(e)?",
+        "Avez-vous un sentiment d'angoisse intense?",
+        "Avez-vous des antécédents cardiaques?",
+        "Avez-vous des facteurs de risque (diabète, hypertension, tabac)?"
+      ],
+      "arbre_decisionnel": {
+        "premiere_question": "Douleur thoracique > 20 minutes?",
+        "si_oui": {
+          "question_suivante": "Irradiation bras gauche/mâchoire?",
+          "si_oui": {
+            "probabilite_infarctus": "très élevée - 90%",
+            "action": "APPELER 15 IMMEDIATEMENT"
+          }
+        },
+        "si_sueurs_froides": {
+          "urgence": "CRITIQUE",
+          "action": "SAMU IMMEDIAT"
+        }
+      },
+      "profil_patient_type": {
+        "age_moyen": "55-70 ans",
+        "pic_frequence": "60-65 ans",
+        "sexe_predominant": "masculin (avant 70 ans)",
+        "ratio_homme_femme": "2:1",
+        "facteurs_risque_majeurs": ["tabac", "diabète", "hypertension", "hypercholestérolémie"]
+      },
+      "cas_cliniques_types": [
+        {
+          "cas": "Homme 58 ans, fumeur, diabétique. Douleur rétrosternale depuis 45min, irradiation bras gauche + mâchoire, sueurs +++, nausées, angoisse de mort",
+          "diagnostic": "Infarctus du myocarde STEMI probable",
+          "score_correspondance": 98,
+          "urgence": "VITALE"
+        },
+        {
+          "cas": "Femme 65 ans, HTA, douleur épigastrique intense + essoufflement + sueurs froides, pas de douleur typique",
+          "diagnostic": "Infarctus atypique (présentation féminine)",
+          "score_correspondance": 85,
+          "urgence": "VITALE"
+        }
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "score_gravite": {
+        "douleur": 9,
+        "urgence": 10,
+        "handicap": 10,
+        "risque_vital": 10,
+        "besoin_consultation": 10
+      },
+      "delai_intervention": "Immédiat - Chaque minute compte",
+      "golden_time": "90 minutes pour angioplastie",
+      "drapeaux_rouges": [
+        "Douleur > 20 minutes",
+        "Sueurs froides",
+        "Irradiation typique",
+        "Sentiment de mort imminente",
+        "Facteurs de risque multiples"
+      ],
+      "traitement": [
+        "Appel immédiat du 190 (SAMU)",
+        "Aspirine 300mg à croquer immédiatement",
+        "Angioplastie coronaire en urgence (moins de 90 minutes)",
+        "Pose de stent(s) coronaire(s)",
+        "Anticoagulants intraveineux (héparine)",
+        "Bêta-bloquants",
+        "Inhibiteurs de l'ECA",
+        "Statines à forte dose",
+        "Double antiagrégation plaquettaire",
+        "Surveillance en unité de soins intensifs cardiologiques (USIC)",
+        "Réadaptation cardiaque post-infarctus"
+      ],
+      "facteurs_risque": [
+        "Tabagisme",
+        "Hypertension artérielle",
+        "Diabète",
+        "Hypercholestérolémie",
+        "Obésité",
+        "Sédentarité",
+        "Stress chronique",
+        "Antécédents familiaux"
+      ],
+      "mots_cles_recherche": [
+        "infarctus", "crise cardiaque", "douleur poitrine", "oppression thorax",
+        "bras gauche mâchoire", "sueurs froides cœur", "IDM", "attaque cardiaque"
+      ]
+    },
+    {
+      "id": 2,
+      "maladie": "Angine de poitrine stable",
+      "synonymes": ["angor stable", "angine d'effort", "angor"],
+      "description": "Douleur thoracique prévisible survenant à l'effort due à un rétrécissement des artères coronaires",
+      "categorie_pathologie": "cardiopathie ischémique chronique",
+      "symptomes": [
+        "Douleur thoracique lors d'effort physique",
+        "Sensation de serrement dans la poitrine",
+        "Essoufflement à l'effort",
+        "Disparition des symptômes au repos (5-10 minutes)",
+        "Douleur reproductible au même niveau d'effort",
+        "Irradiation possible vers le bras gauche",
+        "Fatigue à l'effort"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Douleur d'effort",
+          "synonymes_patient": ["serrement à l'effort", "gêne quand je marche vite", "oppression en montant escaliers"],
+          "intensite": "modérée",
+          "echelle_1_10": "5-7",
+          "declencheur": "effort physique",
+          "duree": "< 10 minutes",
+          "soulagement": "repos immédiat"
+        },
+        {
+          "symptome": "Prévisibilité",
+          "synonymes_patient": ["toujours pareil", "même niveau d'effort", "je sais quand ça va venir"],
+          "caracteristique": "stable et reproductible"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai mal à la poitrine quand je monte les escaliers",
+        "Dès que je fais un effort, j'ai un serrement",
+        "La douleur passe quand je m'arrête",
+        "C'est toujours au même niveau d'effort",
+        "Je suis essoufflé quand je marche vite"
+      ],
+      "questions_diagnostic": [
+        "La douleur survient-elle toujours lors d'un effort?",
+        "Disparaît-elle rapidement au repos?",
+        "Survient-elle toujours au même niveau d'effort?",
+        "Combien de temps dure la douleur?",
+        "Avez-vous de la trinitrine? Est-elle efficace?",
+        "Avez-vous des facteurs de risque cardiovasculaire?"
+      ],
+      "profil_patient_type": {
+        "age_moyen": "55-75 ans",
+        "sexe_predominant": "masculin",
+        "contexte_declencheur": ["effort", "stress", "froid", "repas copieux"]
+      },
+      "cas_cliniques_types": [
+        {
+          "cas": "Homme 62 ans, HTA, cholestérol. Douleur thoracique chaque fois qu'il monte 2 étages, cède en 5min au repos, trinitrine efficace",
+          "diagnostic": "Angine de poitrine stable probable",
+          "score_correspondance": 95
+        }
+      ],
+      "urgence": false,
+      "niveau_urgence": "modéré",
+      "score_gravite": {
+        "douleur": 6,
+        "urgence": 4,
+        "handicap": 5,
+        "risque_vital": 3,
+        "besoin_consultation": 7
+      },
+      "delai_intervention": "Consultation cardiologique sous 48-72h",
+      "drapeaux_rouges": [
+        "Changement du pattern (angor instable)",
+        "Douleur au repos",
+        "Augmentation fréquence/intensité",
+        "Inefficacité trinitrine"
+      ],
+      "traitement": [
+        "Trinitrine sublinguale en cas de crise",
+        "Bêta-bloquants (métoprolol, bisoprolol)",
+        "Inhibiteurs calciques (amlodipine, diltiazem)",
+        "Statines pour contrôler le cholestérol",
+        "Aspirine à faible dose (antiagrégant)",
+        "Modification du mode de vie",
+        "Activité physique adaptée et progressive",
+        "Régime alimentaire équilibré (méditerranéen)",
+        "Arrêt du tabac obligatoire",
+        "Gestion du stress",
+        "Éventuellement angioplastie ou pontage si sévère"
+      ],
+      "mots_cles_recherche": [
+        "angine poitrine", "angor", "douleur effort", "serrement escaliers",
+        "essoufflement marche", "gêne thoracique effort"
+      ]
+    },
+    {
+      "id": 3,
+      "maladie": "Embolie pulmonaire",
+      "synonymes": ["EP", "caillot poumon", "thromboembolie pulmonaire"],
+      "description": "Obstruction d'une artère pulmonaire par un caillot sanguin, urgence vitale",
+      "categorie_pathologie": "urgence cardiovasculaire",
+      "symptomes": [
+        "Douleur thoracique soudaine et aiguë",
+        "Essoufflement brutal et intense",
+        "Tachycardie (fréquence cardiaque > 100/min)",
+        "Toux sèche ou avec crachats sanguinolents (hémoptysie)",
+        "Anxiété importante et agitation",
+        "Sueurs profuses",
+        "Sensation de malaise ou syncope",
+        "Cyanose (coloration bleutée des lèvres)",
+        "Douleur dans le mollet (thrombose veineuse)",
+        "Fièvre modérée"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Dyspnée brutale",
+          "synonymes_patient": ["essoufflement soudain", "manque d'air brutal", "ne peux plus respirer"],
+          "intensite": "sévère",
+          "echelle_1_10": "8-10",
+          "debut": "brutal",
+          "caracteristique": "disproportionné"
+        },
+        {
+          "symptome": "Douleur thoracique pleurale",
+          "synonymes_patient": ["douleur quand je respire", "point de côté intense", "pique dans le thorax"],
+          "intensite": "modérée à sévère",
+          "declencheur": "inspiration profonde"
+        },
+        {
+          "symptome": "Hémoptysie",
+          "synonymes_patient": ["cracher du sang", "expectoration sanglante"],
+          "intensite": "variable",
+          "frequence": "20-30% des cas",
+          "signe_gravite": "oui"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Je suis subitement essoufflé sans raison",
+        "J'ai une douleur dans la poitrine quand je respire",
+        "Je crache du sang",
+        "Mon cœur bat très vite",
+        "J'ai mal au mollet et je suis essoufflé"
+      ],
+      "questions_diagnostic": [
+        "L'essoufflement est-il apparu brutalement?",
+        "Avez-vous une douleur qui augmente à l'inspiration?",
+        "Toussez-vous du sang?",
+        "Votre cœur bat-il très rapidement?",
+        "Avez-vous une douleur ou gonflement du mollet?",
+        "Avez-vous fait un long voyage récemment?",
+        "Avez-vous été immobilisé(e) ou opéré(e) récemment?",
+        "Prenez-vous la pilule contraceptive?"
+      ],
+      "profil_patient_type": {
+        "age_moyen": "variable",
+        "facteurs_risque_majeurs": ["immobilisation", "chirurgie", "cancer", "contraception", "thrombophilie"]
+      },
+      "cas_cliniques_types": [
+        {
+          "cas": "Femme 35 ans, pilule, long vol avion. Dyspnée brutale + douleur thoracique latérale + tachycardie 120/min + mollet gonflé douloureux",
+          "diagnostic": "Embolie pulmonaire probable avec TVP",
+          "score_correspondance": 95,
+          "urgence": "VITALE"
+        }
+      ],
+      "urgence": true,
+      "niveau_urgence": "critique",
+      "score_gravite": {
+        "douleur": 7,
+        "urgence": 10,
+        "handicap": 9,
+        "risque_vital": 9,
+        "besoin_consultation": 10
+      },
+      "delai_intervention": "Immédiat - Urgence vitale",
+      "drapeaux_rouges": [
+        "Dyspnée brutale inexpliquée",
+        "Hémoptysie",
+        "Syncope",
+        "Tachycardie importante",
+        "Facteurs de risque présents"
+      ],
+      "traitement": [
+        "Hospitalisation immédiate en urgence",
+        "Oxygénothérapie à haut débit",
+        "Anticoagulants en urgence (héparine non fractionnée IV)",
+        "Thrombolyse si embolie massive (alteplase)",
+        "Embolectomie chirurgicale ou par cathéter si choc",
+        "Relais par anticoagulants oraux (3-6 mois minimum)",
+        "Surveillance étroite des signes vitaux",
+        "Repos strict au lit initial",
+        "Bas de contention",
+        "Recherche de thrombophilie si récidivant",
+        "Prévention secondaire à long terme"
+      ],
+      "mots_cles_recherche": [
+        "embolie pulmonaire", "EP", "essoufflement brutal", "crache sang",
+        "douleur respiration", "caillot poumon", "thrombose"
+      ]
+    }
+  ],
+  "legende": {
+    "niveau_urgence": {
+      "critique": "Appel immédiat du 190, pronostic vital engagé dans l'heure",
+      "élevé": "Consultation urgente ou hospitalisation rapide nécessaire (< 24h)",
+      "modéré": "Consultation médicale dans les jours suivants (24-72h)",
+      "faible": "Suivi médical régulier suffisant, consultation programmée"
+    },
+    "delai_intervention": {
+      "immediat": "< 15 minutes",
+      "urgent": "< 24 heures",
+      "rapide": "24-72 heures",
+      "programme": "1-4 semaines"
+    }
+  },
+  "numeros_urgence": {
+    "SAMU": "190",
+    "Pompiers": "197",
+    "Urgences_Europeennes": "112"
+  },
+  "metadata": {
+    "source": "Base enrichie Dr. MediBot v2.0",
+    "optimise_pour": "RAG + FAISS + Embeddings",
+    "langue": "français",
+    "niveau_detail": "clinique avancé",
+    "compatibilite_llm": "optimale"
+  },
+  "note_importante": "Ce document est fourni à titre informatif uniquement. En cas de symptômes cardiaques, consultez immédiatement un professionnel de santé. En cas de douleur thoracique intense, appelez le 15 sans délai."
+}

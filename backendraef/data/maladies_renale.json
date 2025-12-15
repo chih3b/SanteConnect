@@ -1,0 +1,101 @@
+{
+  "categorie": "Maladies rénales et urinaires",
+  "version": "2.0_enhanced",
+  "derniere_maj": "2025-01-02",
+  "total_maladies": 10,
+  "patients": [
+    {
+      "id": 1,
+      "maladie": "Insuffisance rénale chronique stade 4",
+      "synonymes": ["IRC", "maladie rénale", "reins qui fonctionnent mal"],
+      "description": "Diminution progressive et irréversible de la fonction rénale",
+      "symptomes": [
+        "Fatigue extrême",
+        "Perte d'appétit",
+        "Œdème des chevilles",
+        "Nausées",
+        "Hypertension artérielle"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Œdèmes",
+          "synonymes_patient": ["chevilles gonflées", "jambes enflées", "pieds qui gonflent"],
+          "intensite": "modérée à sévère"
+        }
+      ],
+      "questions_patients_typiques": [
+        "Je suis toujours fatigué(e)",
+        "Mes chevilles sont gonflées",
+        "Je n'ai plus d'appétit",
+        "J'ai des nausées fréquentes"
+      ],
+      "urgent": false,
+      "score_gravite": {
+        "douleur": 3,
+        "urgence": 4,
+        "handicap": 7,
+        "risque_vital": 6,
+        "besoin_consultation": 8
+      },
+      "traitements": [
+        "Restriction protéique",
+        "Contrôle de la pression artérielle (IEC/ARA2)",
+        "Supplémentation en fer et EPO",
+        "Surveillance régulière de la fonction rénale",
+        "Préparation à la dialyse"
+      ],
+      "mots_cles_recherche": [
+        "insuffisance rénale", "reins malades", "fatigue œdème", "IRC"
+      ]
+    },
+    {
+      "id": 2,
+      "maladie": "Colique néphrétique",
+      "synonymes": ["calcul rénal", "pierre au rein", "lithiase"],
+      "description": "Douleur intense due à un calcul bloquant l'uretère",
+      "symptomes": [
+        "Douleur sévère et brutale du flanc",
+        "Douleur irradiant vers l'aine",
+        "Hématurie (sang dans les urines)",
+        "Agitation",
+        "Nausées et vomissements"
+      ],
+      "symptomes_detailles": [
+        {
+          "symptome": "Douleur colique",
+          "synonymes_patient": ["douleur atroce flanc", "comme un coup de poignard", "insoutenable"],
+          "intensite": "extrêmement sévère",
+          "echelle_1_10": "9-10"
+        }
+      ],
+      "questions_patients_typiques": [
+        "J'ai une douleur terrible sur le côté",
+        "La douleur descend vers l'aine",
+        "J'ai du sang dans mes urines",
+        "Je ne tiens pas en place tellement ça fait mal"
+      ],
+      "urgent": true,
+      "score_gravite": {
+        "douleur": 10,
+        "urgence": 8,
+        "handicap": 9,
+        "risque_vital": 3,
+        "besoin_consultation": 9
+      },
+      "traitements": [
+        "Antalgiques puissants (morphiniques)",
+        "Anti-inflammatoires (AINS)",
+        "Antispasmodiques",
+        "Hydratation abondante",
+        "Lithotripsie ou urétéroscopie si nécessaire"
+      ],
+      "mots_cles_recherche": [
+        "colique néphrétique", "calcul rein", "douleur flanc atroce", "sang urines"
+      ]
+    }
+  ],
+  "metadata": {
+    "source": "Base enrichie Dr. MediBot v2.0",
+    "optimise_pour": "RAG + FAISS + Embeddings"
+  }
+}

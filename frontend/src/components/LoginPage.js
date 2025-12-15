@@ -43,15 +43,13 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-6 sm:p-8 card-glow mx-4 sm:mx-0">
-        {/* Logo - Same as main app */}
+        {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-primary rounded-lg mb-4">
-            <svg className="w-8 h-8 text-primary-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-              <path d="M2 17l10 5 10-5"/>
-              <path d="M2 12l10 5 10-5"/>
-            </svg>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="SanteConnect Logo" 
+            className="w-20 h-20 mx-auto mb-4 object-contain"
+          />
           <h1 className="text-2xl font-bold">SanteConnect</h1>
           <p className="text-muted-foreground mt-1 text-sm">Your AI Medical Assistant</p>
         </div>

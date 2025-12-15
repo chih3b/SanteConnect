@@ -1,0 +1,364 @@
+{
+  "emergency_cases": [
+    {
+      "id": "EMG001",
+      "condition": "Infarctus du myocarde",
+      "disease_id": "DIS002",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Chaque minute compte - Golden hour: 90 minutes",
+      "symptoms_to_detect": [
+        "douleur thoracique intense constrictive (serrement)",
+        "douleur irradiant au bras gauche, mâchoire, dos",
+        "essoufflement sévère",
+        "transpiration excessive (sueurs froides)",
+        "nausées et vomissements",
+        "anxiété intense (sentiment de mort imminente)",
+        "pâleur",
+        "malaise"
+      ],
+      "immediate_action": "APPELER LE 15 (SAMU) OU 112 IMMÉDIATEMENT",
+      "before_arrival": [
+        "Faire asseoir la personne en position semi-assise (dossier relevé 45°)",
+        "Desserrer col, cravate, ceinture",
+        "Pas d'effort physique - repos complet",
+        "Ne rien donner à boire ou manger",
+        "Si aspirine disponible et pas d'allergie: 250mg à croquer",
+        "Rassurer la personne, rester calme",
+        "Préparer les médicaments habituels pour les secours"
+      ],
+      "do_not": [
+        "Ne JAMAIS conduire soi-même à l'hôpital",
+        "Ne pas attendre que ça passe",
+        "Ne pas prendre de médicaments sans avis médical (sauf aspirine)",
+        "Ne pas allonger complètement (risque œdème pulmonaire)",
+        "Ne pas laisser la personne seule"
+      ],
+      "if_unconscious": [
+        "Vérifier respiration",
+        "Position latérale de sécurité si respire",
+        "Massage cardiaque + défibrillateur si arrêt cardiaque"
+      ],
+      "risk_indicators": [
+        "Homme >45 ans, femme >55 ans",
+        "Antécédents cardiaques",
+        "Diabète, HTA, tabac, cholestérol"
+      ]
+    },
+    {
+      "id": "EMG002",
+      "condition": "AVC (Accident Vasculaire Cérébral)",
+      "disease_id": "DIS_AVC",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Traitement efficace dans les 4h30 (thrombolyse)",
+      "symptoms_to_detect": [
+        "faiblesse ou paralysie soudaine d'un côté du corps",
+        "engourdissement soudain face/bras/jambe",
+        "difficulté à parler ou comprendre (aphasie)",
+        "trouble de la vision (un œil ou les deux)",
+        "perte d'équilibre soudaine, vertiges",
+        "mal de tête violent et soudain inhabituel",
+        "confusion, désorientation"
+      ],
+      "test_fast": {
+        "description": "Test FAST à faire immédiatement",
+        "F": "Face (visage) - Demander de sourire: asymétrie du visage?",
+        "A": "Arm (bras) - Lever les deux bras: un bras retombe?",
+        "S": "Speech (parole) - Répéter une phrase: difficulté à parler?",
+        "T": "Time (temps) - SI UN SEUL SIGNE: APPELER 15 IMMÉDIATEMENT"
+      },
+      "immediate_action": "APPELER LE 15 OU 112 IMMÉDIATEMENT - NE PAS ATTENDRE",
+      "before_arrival": [
+        "Noter l'heure EXACTE d'apparition des symptômes (crucial pour traitement)",
+        "Allonger la personne, tête légèrement surélevée (30°)",
+        "Position latérale de sécurité si inconsciente et respire",
+        "Ne RIEN donner à boire ou manger (risque fausse route)",
+        "Desserrer vêtements serrés",
+        "Rassurer la personne, parler calmement",
+        "Préparer liste médicaments et antécédents médicaux"
+      ],
+      "do_not": [
+        "Ne pas attendre l'amélioration des symptômes",
+        "Ne pas conduire soi-même",
+        "Ne pas donner aspirine ou médicament (peut aggraver si AVC hémorragique)",
+        "Ne pas laisser seul"
+      ],
+      "time_critical": "Chaque minute = 1,9 million de neurones perdus. Thrombectomie possible jusqu'à 24h dans certains cas.",
+      "types": {
+        "ischémique": "85% des AVC - obstruction artère cérébrale",
+        "hémorragique": "15% des AVC - rupture vaisseau cérébral"
+      }
+    },
+    {
+      "id": "EMG003",
+      "condition": "Appendicite aiguë",
+      "disease_id": "DIS005",
+      "urgency_level": "URGENT",
+      "time_window": "Chirurgie dans les 24-48h - Risque perforation après 48h",
+      "symptoms_to_detect": [
+        "douleur abdominale débutant au nombril puis migrant vers fosse iliaque droite (bas droit)",
+        "douleur s'aggravant progressivement",
+        "fièvre modérée (38-38.5°C)",
+        "nausées et vomissements",
+        "perte d'appétit",
+        "abdomen rigide à la palpation (défense musculaire)",
+        "douleur au saut ou à la marche (signe de Blumberg)",
+        "douleur accrue en position jambes allongées"
+      ],
+      "immediate_action": "SE RENDRE AUX URGENCES OU APPELER LE 15",
+      "before_arrival": [
+        "Ne rien manger ni boire (à jeun pour chirurgie)",
+        "Ne PAS prendre d'antalgiques ou anti-inflammatoires (masquent symptômes)",
+        "Rester au repos en position semi-assise",
+        "Noter l'heure de début des symptômes",
+        "Éviter toute pression sur l'abdomen"
+      ],
+      "do_not": [
+        "Ne pas prendre d'antalgiques (masquent diagnostic)",
+        "Ne pas manger ni boire",
+        "Ne pas appliquer de chaleur sur l'abdomen",
+        "Ne pas attendre - risque de perforation"
+      ],
+      "warning": "COMPLICATIONS GRAVES: Perforation → Péritonite → Sepsis → Décès possible",
+      "differential_diagnosis": [
+        "Salpingite chez la femme",
+        "Calcul rénal droit",
+        "Gastro-entérite"
+      ],
+      "signs_of_perforation": [
+        "Douleur soudaine très intense puis accalmie",
+        "Fièvre >39°C",
+        "Abdomen de bois (contracture)",
+        "Altération état général"
+      ]
+    },
+    {
+      "id": "EMG004",
+      "condition": "Crise d'asthme sévère",
+      "disease_id": "DIS004",
+      "urgency_level": "URGENT À CRITIQUE",
+      "time_window": "Intervention immédiate si pas d'amélioration en 15-20 min",
+      "symptoms_to_detect": [
+        "difficulté respiratoire majeure (dyspnée)",
+        "incapacité à parler en phrases complètes",
+        "sifflements respiratoires (wheezing)",
+        "tirage intercostal et sus-claviculaire",
+        "lèvres ou ongles bleutés (cyanose)",
+        "fréquence respiratoire >25/min",
+        "absence d'amélioration avec inhalateur habituel",
+        "agitation, anxiété, confusion (hypoxie)",
+        "sueurs, tachycardie"
+      ],
+      "severity_score": {
+        "modérée": "Parle en phrases, FR 20-25/min",
+        "sévère": "Parle en mots, FR >25/min, SpO2 <90%",
+        "critique": "Muet, épuisement respiratoire, cyanose, confusion"
+      },
+      "immediate_action": "1) Inhalateur IMMÉDIATEMENT 2) APPELER 15 si pas d'amélioration rapide",
+      "before_arrival": [
+        "Utiliser l'inhalateur de secours (salbutamol/ventoline): 4-10 bouffées",
+        "Répéter inhalateur toutes les 20 min si besoin",
+        "Asseoir la personne position assise ou semi-assise (JAMAIS allongée)",
+        "Pencher légèrement en avant, mains sur les genoux",
+        "Ouvrir fenêtres pour aérer",
+        "Retirer du déclencheur si identifié (fumée, allergène)",
+        "Rester calme, respiration lente et profonde",
+        "Desserrer vêtements serrés"
+      ],
+      "do_not": [
+        "Ne pas allonger la personne",
+        "Ne pas laisser seule",
+        "Ne pas sous-estimer la gravité",
+        "Ne pas attendre trop longtemps avant d'appeler"
+      ],
+      "call_15_if": [
+        "Pas d'amélioration après 2-3 bouffées d'inhalateur",
+        "Aggravation des symptômes",
+        "Épuisement respiratoire",
+        "Cyanose (lèvres bleues)",
+        "Confusion, somnolence"
+      ],
+      "hospital_treatment": "Oxygène, nébulisation salbutamol, corticoïdes IV, intubation si détresse"
+    },
+    {
+      "id": "EMG005",
+      "condition": "Hémorragie sévère",
+      "disease_id": "DIS_HEMORRHAGE",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Minutes cruciales - Risque choc hémorragique",
+      "symptoms_to_detect": [
+        "saignement abondant incoercible",
+        "sang rouge vif (artériel) ou noir (veineux)",
+        "pâleur intense",
+        "pouls rapide et faible (>100 bpm)",
+        "tension artérielle basse",
+        "vertiges, étourdissements",
+        "soif intense",
+        "confusion, agitation",
+        "perte de conscience",
+        "extrémités froides et moites"
+      ],
+      "blood_loss_estimate": {
+        "classe_1": "<15% (750ml) - tachycardie légère",
+        "classe_2": "15-30% (750-1500ml) - tachycardie, anxiété",
+        "classe_3": "30-40% (1500-2000ml) - choc, confusion",
+        "classe_4": ">40% (>2000ml) - choc sévère, léthargie"
+      },
+      "immediate_action": "APPELER 15 ET COMPRIMER LA PLAIE IMMÉDIATEMENT",
+      "before_arrival": [
+        "Compression DIRECTE sur la plaie avec tissu propre/compresse",
+        "Si hémorragie continue: compression plus forte ou deuxième pansement par-dessus",
+        "Allonger la personne à plat (sauf vomissements)",
+        "Surélever le membre blessé au-dessus du cœur si possible",
+        "Couvrir la personne (prévenir hypothermie)",
+        "Rassurer, garder conscient",
+        "Noter heure début hémorragie"
+      ],
+      "do_not": [
+        "Ne JAMAIS retirer un corps étranger enfoncé (couteau, barre) - stabiliser",
+        "Ne pas retirer le premier pansement (ajouter par-dessus)",
+        "Ne pas faire de garrot sauf hémorragie cataclysmique de membre",
+        "Ne pas donner à boire ou manger",
+        "Ne pas sous-estimer hémorragie interne"
+      ],
+      "tourniquet_when": [
+        "Hémorragie de membre non contrôlée par compression",
+        "Amputation traumatique",
+        "Plaies multiples ou sauveteur seul",
+        "Noter heure de pose du garrot"
+      ],
+      "internal_bleeding_signs": [
+        "Choc sans plaie visible",
+        "Abdomen distendu douloureux",
+        "Traumatisme violent",
+        "Vomissements/selles sanglantes"
+      ]
+    },
+    {
+      "id": "EMG006",
+      "condition": "Réaction allergique sévère (Anaphylaxie)",
+      "disease_id": "DIS_ANAPHYLAXIS",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Minutes à secondes - Évolution rapide possible",
+      "symptoms_to_detect": [
+        "difficulté respiratoire, respiration sifflante",
+        "gonflement rapide du visage, lèvres, langue, gorge (œdème de Quincke)",
+        "urticaire généralisée, démangeaisons intenses",
+        "sensation d'oppression thoracique",
+        "malaise, vertiges, étourdissements",
+        "nausées, vomissements, diarrhée",
+        "chute brutale de la tension artérielle",
+        "pouls rapide faible",
+        "perte de conscience possible"
+      ],
+      "triggers_common": [
+        "Aliments (arachides, fruits à coque, fruits de mer, œufs)",
+        "Piqûres d'insectes (guêpes, abeilles)",
+        "Médicaments (antibiotiques, AINS, anesthésiques)",
+        "Latex"
+      ],
+      "immediate_action": "1) ADRÉNALINE AUTO-INJECTEUR SI DISPONIBLE 2) APPELER 15 IMMÉDIATEMENT",
+      "before_arrival": [
+        "Utiliser stylo auto-injecteur d'épinéphrine/adrénaline (Anapen, Epipen) SI PRESCRIT",
+        "Injection IM face externe cuisse (à travers vêtements si nécessaire)",
+        "Allonger la personne, jambes surélevées 30 cm (améliore retour veineux)",
+        "Position semi-assise si difficultés respiratoires",
+        "Surveiller respiration et pouls",
+        "Préparer 2e injection (peut être nécessaire après 5-15 min)",
+        "Noter l'heure injection et allergène déclencheur",
+        "Retirer allergène si possible (dard d'insecte)"
+      ],
+      "do_not": [
+        "Ne pas faire asseoir ou lever brusquement (risque collapsus)",
+        "Ne pas donner à boire si difficulté à avaler",
+        "Ne pas attendre amélioration avant d'appeler",
+        "Ne pas sous-estimer: antihistaminiques seuls INSUFFISANTS"
+      ],
+      "adrenaline_injection": {
+        "dosage_adulte": "0,3-0,5 mg IM",
+        "dosage_enfant": "0,15 mg (< 30 kg) ou 0,3 mg (> 30 kg)",
+        "site": "Face externe cuisse (vaste externe)",
+        "repeat": "Possible après 5-15 min si pas d'amélioration"
+      },
+      "biphasic_reaction": "Récidive possible dans les 4-12h (20% des cas) → surveillance hospitalière nécessaire",
+      "if_unconscious": [
+        "Position latérale de sécurité si respire",
+        "RCP si arrêt cardio-respiratoire"
+      ]
+    },
+    {
+      "id": "EMG007",
+      "condition": "Détresse respiratoire aiguë",
+      "disease_id": "DIS009",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Intervention immédiate - Risque vital",
+      "symptoms_to_detect": [
+        "difficulté respiratoire majeure au repos",
+        "incapacité à parler",
+        "fréquence respiratoire >30/min ou <8/min",
+        "tirage thoracique intense",
+        "cyanose (lèvres/ongles bleus)",
+        "sueurs profuses",
+        "agitation ou confusion (hypoxie)",
+        "battement des ailes du nez",
+        "position assise obligatoire",
+        "épuisement respiratoire"
+      ],
+      "immediate_action": "APPELER 15 IMMÉDIATEMENT",
+      "before_arrival": [
+        "Position demi-assise (45-90°) - JAMAIS allongée",
+        "Ouvrir fenêtres, aérer",
+        "Desserrer vêtements",
+        "Calmer, rassurer",
+        "Oxygène si disponible",
+        "Si inhalateur prescrit: utiliser"
+      ],
+      "causes_possibles": [
+        "Pneumonie sévère",
+        "Œdème pulmonaire aigu",
+        "Embolie pulmonaire",
+        "Pneumothorax",
+        "Crise d'asthme sévère"
+      ]
+    },
+    {
+      "id": "EMG008",
+      "condition": "Coma/Perte de conscience",
+      "disease_id": "DIS_COMA",
+      "urgency_level": "CRITIQUE",
+      "time_window": "Évaluation immédiate - Minutes cruciales",
+      "symptoms_to_detect": [
+        "perte de conscience totale",
+        "absence de réaction aux stimuli",
+        "absence de réponse verbale",
+        "yeux fermés ou regard fixe",
+        "respiration anormale ou absente"
+      ],
+      "immediate_action": "APPELER 15 + ÉVALUER ABC (Airway-Breathing-Circulation)",
+      "before_arrival": [
+        "Vérifier état de conscience (appeler, stimuler)",
+        "Vérifier respiration (voir-écouter-sentir 10 sec)",
+        "SI RESPIRE: Position Latérale de Sécurité (PLS)",
+        "SI NE RESPIRE PAS: Massage cardiaque + défibrillateur",
+        "Libérer voies aériennes",
+        "Desserrer vêtements",
+        "Ne rien donner dans la bouche",
+        "Surveiller respiration jusqu'à arrivée secours"
+      ],
+      "pls_position": [
+        "1. Placer bras proche du corps perpendiculaire",
+        "2. Placer dos main opposée sous joue",
+        "3. Relever genou opposé",
+        "4. Faire rouler sur le côté",
+        "5. Ajuster jambe à 90° pour stabilité"
+      ],
+      "causes_frequentes": [
+        "AVC",
+        "Hypoglycémie (diabétique)",
+        "Intoxication/overdose",
+        "Traumatisme crânien",
+        "Épilepsie",
+        "Arrêt cardiaque"
+      ]
+    }
+  ]
+}

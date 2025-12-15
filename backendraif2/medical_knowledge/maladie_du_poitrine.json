@@ -1,0 +1,237 @@
+{
+  "maladies_poitrine": [
+    {
+      "id": 1,
+      "nom": "Infarctus du myocarde",
+      "description": "Crise cardiaque causée par l'obstruction d'une artère coronaire",
+      "symptomes": [
+        "Douleur intense dans la poitrine (oppression, serrement)",
+        "Douleur irradiant vers le bras gauche, la mâchoire ou le dos",
+        "Essoufflement",
+        "Sueurs froides",
+        "Nausées et vomissements",
+        "Anxiété intense"
+      ],
+      "urgence": "URGENCE VITALE",
+      "niveau_urgence": "critique",
+      "traitements": [
+        "Appeler immédiatement le 15 (SAMU)",
+        "Angioplastie en urgence",
+        "Thrombolyse (dissolution du caillot)",
+        "Médicaments antiplaquettaires (aspirine)",
+        "Hospitalisation en soins intensifs"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Angine de poitrine",
+      "description": "Douleur thoracique due à un manque d'oxygène au cœur",
+      "symptomes": [
+        "Douleur ou gêne dans la poitrine lors d'effort",
+        "Sensation de serrement",
+        "Essoufflement à l'effort",
+        "Douleur disparaissant au repos",
+        "Fatigue"
+      ],
+      "urgence": "URGENT si première fois ou si changement du pattern habituel",
+      "niveau_urgence": "modéré",
+      "traitements": [
+        "Trinitrine (sous la langue)",
+        "Bêta-bloquants",
+        "Antiagrégants plaquettaires",
+        "Statines",
+        "Modification du mode de vie (exercice, alimentation)",
+        "Éventuellement angioplastie ou pontage"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Embolie pulmonaire",
+      "description": "Obstruction d'une artère pulmonaire par un caillot sanguin",
+      "symptomes": [
+        "Douleur thoracique soudaine et aiguë",
+        "Essoufflement brutal",
+        "Toux parfois avec sang",
+        "Tachycardie (cœur rapide)",
+        "Anxiété",
+        "Malaise ou syncope"
+      ],
+      "urgence": "URGENCE VITALE",
+      "niveau_urgence": "critique",
+      "traitements": [
+        "Hospitalisation immédiate",
+        "Anticoagulants en urgence",
+        "Oxygénothérapie",
+        "Thrombolyse si embolie massive",
+        "Surveillance en soins intensifs",
+        "Traitement anticoagulant prolongé"
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Pneumothorax",
+      "description": "Présence d'air dans la cavité pleurale provoquant un collapsus pulmonaire",
+      "symptomes": [
+        "Douleur thoracique brutale et unilatérale",
+        "Essoufflement soudain",
+        "Difficulté à respirer profondément",
+        "Toux sèche",
+        "Tachycardie",
+        "Cyanose (coloration bleutée) si sévère"
+      ],
+      "urgence": "URGENT",
+      "niveau_urgence": "élevé",
+      "traitements": [
+        "Drainage pleural (pose d'un drain)",
+        "Oxygénothérapie",
+        "Hospitalisation",
+        "Chirurgie si récidivant (pleurodèse)",
+        "Repos strict"
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Péricardite",
+      "description": "Inflammation de l'enveloppe du cœur (péricarde)",
+      "symptomes": [
+        "Douleur thoracique aiguë, augmentant à l'inspiration",
+        "Douleur soulagée en position assise penchée en avant",
+        "Fièvre",
+        "Fatigue générale",
+        "Toux sèche",
+        "Essoufflement"
+      ],
+      "urgence": "Consultation rapide nécessaire (24-48h)",
+      "niveau_urgence": "modéré",
+      "traitements": [
+        "Anti-inflammatoires non stéroïdiens (AINS)",
+        "Colchicine",
+        "Repos",
+        "Éviter les efforts physiques",
+        "Surveillance échocardiographique",
+        "Corticoïdes si forme sévère"
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Reflux gastro-œsophagien (RGO)",
+      "description": "Remontée d'acide gastrique dans l'œsophage",
+      "symptomes": [
+        "Brûlures rétrosternales (derrière le sternum)",
+        "Douleur aggravée en position allongée",
+        "Régurgitations acides",
+        "Sensation de brûlure remontant vers la gorge",
+        "Toux nocturne",
+        "Goût acide dans la bouche"
+      ],
+      "urgence": "NON URGENT",
+      "niveau_urgence": "faible",
+      "traitements": [
+        "Inhibiteurs de la pompe à protons (IPP)",
+        "Antiacides",
+        "Modification alimentaire (éviter épices, alcool, café)",
+        "Surélever la tête du lit",
+        "Perdre du poids si nécessaire",
+        "Éviter les repas copieux le soir"
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Pleurésie (Pleurite)",
+      "description": "Inflammation de la plèvre, membrane entourant les poumons",
+      "symptomes": [
+        "Douleur thoracique latérale aiguë",
+        "Douleur augmentant à la respiration profonde",
+        "Toux sèche douloureuse",
+        "Fièvre",
+        "Essoufflement",
+        "Respiration superficielle"
+      ],
+      "urgence": "Consultation médicale dans les 24h",
+      "niveau_urgence": "modéré",
+      "traitements": [
+        "Anti-inflammatoires",
+        "Antalgiques (antidouleurs)",
+        "Antibiotiques si origine infectieuse",
+        "Ponction pleurale si épanchement important",
+        "Repos",
+        "Traitement de la cause sous-jacente"
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Pneumonie",
+      "description": "Infection du tissu pulmonaire",
+      "symptomes": [
+        "Douleur thoracique à la respiration",
+        "Toux productive (avec expectorations)",
+        "Fièvre élevée avec frissons",
+        "Essoufflement",
+        "Fatigue importante",
+        "Confusion (chez les personnes âgées)"
+      ],
+      "urgence": "Consultation rapide (24-48h), URGENT si détresse respiratoire",
+      "niveau_urgence": "modéré à élevé",
+      "traitements": [
+        "Antibiotiques",
+        "Antipyrétiques (contre la fièvre)",
+        "Hydratation importante",
+        "Repos",
+        "Hospitalisation si forme sévère",
+        "Oxygénothérapie si besoin"
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Costochondrite",
+      "description": "Inflammation du cartilage reliant les côtes au sternum",
+      "symptomes": [
+        "Douleur localisée sur le devant de la poitrine",
+        "Douleur au toucher du sternum",
+        "Augmentation de la douleur aux mouvements",
+        "Douleur à la pression de la zone affectée",
+        "Peut imiter une douleur cardiaque"
+      ],
+      "urgence": "NON URGENT (mais diagnostic différentiel avec problème cardiaque important)",
+      "niveau_urgence": "faible",
+      "traitements": [
+        "Anti-inflammatoires (ibuprofène)",
+        "Application de chaleur ou de glace",
+        "Repos et éviter les mouvements douloureux",
+        "Étirements doux",
+        "Amélioration spontanée en quelques semaines"
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Dissection aortique",
+      "description": "Déchirure de la paroi interne de l'aorte",
+      "symptomes": [
+        "Douleur thoracique brutale et déchirante",
+        "Douleur irradiant dans le dos",
+        "Sensation de déchirement",
+        "Différence de tension artérielle entre les deux bras",
+        "Pouls différent aux deux bras",
+        "Syncope possible",
+        "Essoufflement sévère"
+      ],
+      "urgence": "URGENCE VITALE ABSOLUE",
+      "niveau_urgence": "critique",
+      "traitements": [
+        "Appel immédiat du 15 (SAMU)",
+        "Chirurgie en urgence extrême",
+        "Contrôle strict de la tension artérielle",
+        "Hospitalisation en soins intensifs",
+        "Pronostic vital engagé",
+        "Surveillance en réanimation"
+      ]
+    }
+  ],
+  "legende_urgence": {
+    "critique": "Urgence vitale - Appeler le 15 immédiatement",
+    "élevé": "Urgent - Consultation en urgence aux urgences",
+    "modéré": "Consultation médicale rapide (24-48h)",
+    "faible": "Consultation médicale programmée"
+  },
+  "avertissement": "Ce document est fourni à titre informatif uniquement. En cas de douleur thoracique, consultez toujours un professionnel de santé. Si vous suspectez une urgence cardiaque, appelez immédiatement le 15 (SAMU)."
+}

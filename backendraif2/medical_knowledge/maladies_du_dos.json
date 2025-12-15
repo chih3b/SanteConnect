@@ -1,0 +1,816 @@
+{
+  "maladies_du_dos": [
+    {
+      "id": 1,
+      "nom": "Hernie discale lombaire",
+      "description": "Protrusion du noyau du disque intervertébral comprimant les racines nerveuses",
+      "symptomes": [
+        "Douleur intense dans le bas du dos (lombalgie)",
+        "Douleur irradiant dans la jambe (sciatique ou cruralgie)",
+        "Engourdissement ou picotements le long du trajet nerveux",
+        "Faiblesse musculaire dans la jambe ou le pied",
+        "Difficulté à se tenir debout ou marcher",
+        "Aggravation par la toux, l'éternuement ou l'effort",
+        "Soulagement relatif en position allongée",
+        "Perte de réflexes ostéotendineux",
+        "Dans les cas graves: troubles sphinctériens (urgence)",
+        "Syndrome de la queue de cheval (urgence chirurgicale)"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Critique si syndrome de la queue de cheval, sinon modéré",
+      "delai_intervention": "Immédiat si troubles sphinctériens, sinon consultation sous 48-72h",
+      "traitements": [
+        "Repos relatif (éviter l'alitement prolongé > 48h)",
+        "Anti-inflammatoires non stéroïdiens (AINS) - ibuprofène 400mg x3/jour",
+        "Antalgiques palier 1 à 3 selon intensité (paracétamol, tramadol, morphine)",
+        "Myorelaxants (thiocolchicoside)",
+        "Kinésithérapie après phase aiguë (renforcement, étirements)",
+        "Infiltrations épidurales de corticoïdes guidées par scanner",
+        "Ostéopathie après avis médical",
+        "Ergothérapie et conseils posturaux",
+        "Chirurgie (discectomie) en cas d'échec du traitement conservateur après 6-8 semaines",
+        "Chirurgie en urgence si syndrome de la queue de cheval",
+        "Rééducation post-opératoire intensive",
+        "École du dos pour prévention"
+      ],
+      "facteurs_risque": [
+        "Ports de charges lourdes répétés",
+        "Mouvements de torsion du tronc",
+        "Sédentarité et faiblesse musculaire",
+        "Surpoids et obésité",
+        "Tabagisme (diminue l'hydratation discale)"
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Lombalgie aiguë (lumbago)",
+      "description": "Douleur aiguë du bas du dos par contracture musculaire ou irritation articulaire",
+      "symptomes": [
+        "Douleur soudaine et intense dans le bas du dos",
+        "Raideur musculaire importante",
+        "Difficulté majeure à bouger",
+        "Spasmes musculaires douloureux",
+        "Douleur augmentée par les mouvements, la toux",
+        "Position antalgique (dos penché en avant)",
+        "Impossibilité de se redresser complètement",
+        "Pas d'irradiation dans les jambes"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent mais consultation recommandée si douleur persiste > 72h",
+      "delai_intervention": "Auto-traitement possible, consultation si > 3 jours",
+      "traitements": [
+        "Application de chaleur (bouillotte) ou de glace (première 48h)",
+        "Antalgiques (paracétamol 1g x4/jour)",
+        "Anti-inflammatoires (ibuprofène 400mg x3/jour pendant 5-7 jours)",
+        "Myorelaxants si spasmes importants",
+        "Repos de courte durée (24-48h maximum)",
+        "Reprise très progressive de l'activité dès amélioration",
+        "Exercices d'étirement doux après 48h",
+        "Massages légers",
+        "Éviter le port de charge pendant 1-2 semaines",
+        "Correction des gestes à risque",
+        "Retour au travail adapté si possible",
+        "Kinésithérapie si récidives fréquentes"
+      ],
+      "facteurs_risque": [
+        "Effort brusque ou inhabituel",
+        "Mauvaise posture",
+        "Stress psychologique",
+        "Faux mouvement"
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Scoliose",
+      "description": "Déviation tridimensionnelle de la colonne vertébrale avec rotation vertébrale",
+      "symptomes": [
+        "Courbure latérale visible de la colonne vertébrale",
+        "Épaules de hauteur inégale",
+        "Omoplate proéminente d'un côté (gibbosité)",
+        "Hanches asymétriques",
+        "Taille asymétrique",
+        "Douleurs dorsales (dans les cas sévères)",
+        "Fatigue musculaire du dos",
+        "Gêne esthétique",
+        "Dans les cas graves: troubles respiratoires",
+        "Déformation du thorax"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Suivi régulier nécessaire, surtout chez l'enfant en croissance",
+      "delai_intervention": "Consultation spécialisée sous 1-2 mois",
+      "traitements": [
+        "Surveillance médicale régulière tous les 4-6 mois",
+        "Radiographies de contrôle régulières",
+        "Kinésithérapie spécialisée et exercices spécifiques (méthode Schroth)",
+        "Port de corset orthopédique jour et nuit (scoliose 20-40° en croissance)",
+        "Natation et sports asymétriques contrôlés",
+        "Ostéopathie complémentaire",
+        "Chirurgie avec arthrodèse (scolioses sévères > 40-45 degrés)",
+        "Tiges de croissance chez l'enfant jeune",
+        "Activités physiques adaptées recommandées",
+        "Surveillance jusqu'à fin de croissance",
+        "Soutien psychologique si nécessaire",
+        "Ergothérapie pour adaptation du quotidien"
+      ],
+      "facteurs_risque": [
+        "Prédisposition génétique",
+        "Croissance rapide à l'adolescence",
+        "Sexe féminin (plus fréquent)",
+        "Maladies neuromusculaires"
+      ]
+    },
+    {
+      "id": 4,
+      "nom": "Spondylarthrite ankylosante",
+      "description": "Maladie inflammatoire chronique touchant principalement la colonne vertébrale et les sacro-iliaques",
+      "symptomes": [
+        "Douleur inflammatoire du bas du dos et des fesses",
+        "Raideur matinale prolongée (> 30 minutes à 1 heure)",
+        "Douleur s'améliorant avec l'exercice et le mouvement",
+        "Douleur nocturne réveillant le patient (deuxième partie de nuit)",
+        "Fatigue chronique importante",
+        "Perte de mobilité progressive de la colonne",
+        "Diminution de l'expansion thoracique",
+        "Uvéite (inflammation oculaire) dans 30% des cas",
+        "Enthésites (douleurs aux insertions tendineuses)",
+        "Atteinte des articulations périphériques possible"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Diagnostic précoce important pour éviter les complications",
+      "delai_intervention": "Consultation rhumatologique sous 2-4 semaines",
+      "traitements": [
+        "Anti-inflammatoires non stéroïdiens en continu à dose optimale",
+        "Kinésithérapie quotidienne (indispensable) - exercices d'extension",
+        "Exercices de posture et d'étirement réguliers",
+        "Biothérapies (anti-TNF: adalimumab, étanercept) dans les formes sévères",
+        "Inhibiteurs IL-17 (sécukinumab) si échec anti-TNF",
+        "Activité physique régulière et intensive (natation recommandée)",
+        "Maintien d'une posture correcte",
+        "Éviter les positions prolongées",
+        "Corticoïdes (uniquement pour uvéite ou arthrite périphérique)",
+        "Sulfasalazine si atteinte périphérique",
+        "Suivi rhumatologique régulier",
+        "IRM pour surveillance de l'inflammation"
+      ],
+      "facteurs_risque": [
+        "Présence du gène HLA-B27 (90% des patients)",
+        "Antécédents familiaux",
+        "Âge de début: 20-40 ans",
+        "Sexe masculin (3 hommes pour 1 femme)"
+      ]
+    },
+    {
+      "id": 5,
+      "nom": "Arthrose lombaire (lombarthrose)",
+      "description": "Usure dégénérative du cartilage des articulations vertébrales lombaires",
+      "symptomes": [
+        "Douleur mécanique (augmentée par l'effort, calmée par le repos)",
+        "Raideur après repos prolongé (dérouillage matinal < 30 min)",
+        "Craquements dans le dos lors des mouvements",
+        "Diminution progressive de la flexibilité",
+        "Douleur soulagée par le repos",
+        "Aggravation en fin de journée",
+        "Enraidissement progressif de la colonne",
+        "Pas de réveil nocturne"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent, évolution progressive",
+      "delai_intervention": "Consultation médicale programmée",
+      "traitements": [
+        "Antalgiques en cas de douleur (paracétamol, tramadol)",
+        "Anti-inflammatoires ponctuels lors des poussées",
+        "Kinésithérapie pour maintenir la mobilité et renforcer",
+        "Activité physique adaptée régulière (marche, natation, vélo)",
+        "Perte de poids si surcharge pondérale (chaque kilo compte)",
+        "Infiltrations facettaires si douleur persistante",
+        "Cures thermales",
+        "Chondroprotecteurs (efficacité discutée)",
+        "École du dos",
+        "Ergothérapie et aménagement du poste de travail",
+        "Application de chaleur",
+        "Éviter les positions statiques prolongées"
+      ],
+      "facteurs_risque": [
+        "Âge > 50 ans",
+        "Surpoids et obésité",
+        "Antécédents de traumatisme",
+        "Travaux physiques lourds",
+        "Anomalies rachidiennes préexistantes"
+      ]
+    },
+    {
+      "id": 6,
+      "nom": "Syndrome facettaire lombaire",
+      "description": "Inflammation ou arthrose des articulations facettaires postérieures de la colonne",
+      "symptomes": [
+        "Douleur localisée au niveau lombaire paramédian",
+        "Douleur augmentée par l'extension du dos (se pencher en arrière)",
+        "Raideur matinale modérée",
+        "Douleur irradiant vers les fesses et haut des cuisses",
+        "Pas de douleur sous le genou",
+        "Aggravation en position debout prolongée",
+        "Soulagement en flexion (penché en avant)"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent",
+      "delai_intervention": "Consultation médicale sous 1-2 semaines",
+      "traitements": [
+        "Anti-inflammatoires non stéroïdiens",
+        "Antalgiques (paracétamol, tramadol)",
+        "Kinésithérapie avec renforcement abdominal",
+        "Infiltrations facettaires sous scopie ou scanner",
+        "Thermocoagulation par radiofréquence en cas d'échec",
+        "Exercices de renforcement musculaire du tronc",
+        "Ostéopathie",
+        "Correction posturale",
+        "Éviter les hyperextensions",
+        "Perte de poids si nécessaire",
+        "Ergonomie du poste de travail",
+        "Ceinture lombaire temporaire si besoin"
+      ],
+      "facteurs_risque": [
+        "Hyperlordose lombaire",
+        "Dégénérescence discale",
+        "Âge",
+        "Sollicitations répétées en extension"
+      ]
+    },
+    {
+      "id": 7,
+      "nom": "Canal lombaire étroit (sténose)",
+      "description": "Rétrécissement du canal rachidien comprimant la moelle et les racines nerveuses",
+      "symptomes": [
+        "Douleur dans les jambes à la marche (claudication neurogène)",
+        "Nécessité de s'arrêter régulièrement pour soulager",
+        "Soulagement marqué en position penchée en avant",
+        "Amélioration en position assise ou au repos",
+        "Engourdissements des jambes à la marche",
+        "Faiblesse progressive des membres inférieurs",
+        "Périmètre de marche limité et décroissant",
+        "Aggravation en descente (extension du dos)",
+        "Sensation de jambes lourdes",
+        "Troubles sphinctériens dans les cas sévères (urgence)"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Urgent si apparition de troubles sphinctériens",
+      "delai_intervention": "Consultation sous 2-4 semaines, urgente si déficit neurologique",
+      "traitements": [
+        "Kinésithérapie avec travail en flexion",
+        "Anti-inflammatoires pour réduire l'œdème péri-radiculaire",
+        "Antalgiques selon paliers",
+        "Infiltrations épidurales de corticoïdes",
+        "Adaptation des activités (éviter marche prolongée)",
+        "Utilisation d'une canne ou déambulateur",
+        "Perte de poids si surcharge pondérale",
+        "Chirurgie de décompression (laminectomie) si échec du traitement médical",
+        "Chirurgie urgente si syndrome de la queue de cheval",
+        "Arthrodèse lombaire si instabilité associée",
+        "Rééducation post-opératoire intensive",
+        "Prévention de la récidive"
+      ],
+      "facteurs_risque": [
+        "Âge > 60 ans",
+        "Arthrose vertébrale sévère",
+        "Hypertrophie des ligaments jaunes",
+        "Spondylolisthésis associé",
+        "Canal lombaire constitutivement étroit"
+      ]
+    },
+    {
+      "id": 8,
+      "nom": "Fracture vertébrale ostéoporotique",
+      "description": "Tassement vertébral par fragilité osseuse liée à l'ostéoporose",
+      "symptomes": [
+        "Douleur dorsale ou lombaire aiguë et intense d'apparition brutale",
+        "Douleur apparue sans traumatisme majeur ou après effort minime",
+        "Perte de taille progressive (> 3 cm)",
+        "Dos vouté progressivement (cyphose)",
+        "Douleur à la palpation de la vertèbre fracturée",
+        "Limitation importante des mouvements",
+        "Parfois asymptomatique (découverte fortuite)",
+        "Douleurs à la respiration profonde",
+        "Impact sur la qualité de vie majeur"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Consultation rapide recommandée, surtout chez personne âgée",
+      "delai_intervention": "Consultation dans les 24-48h",
+      "traitements": [
+        "Repos relatif avec mobilisation précoce",
+        "Antalgiques puissants (palier 2 ou 3: tramadol, morphine)",
+        "Traitement de l'ostéoporose (calcium 1000mg/j + vitamine D 800-1000 UI/j)",
+        "Bisphosphonates (alendronate, risédronate) ou dénosumab",
+        "Vertébroplastie ou kyphoplastie (injection de ciment dans la vertèbre)",
+        "Port d'un corset rigide temporaire (4-6 semaines)",
+        "Kinésithérapie douce après phase aiguë",
+        "Renforcement musculaire progressif",
+        "Exercices d'extension du dos",
+        "Prévention des chutes (aménagement du domicile)",
+        "Évaluation et traitement hormonal si nécessaire",
+        "Densitométrie osseuse de contrôle"
+      ],
+      "facteurs_risque": [
+        "Ostéoporose sévère (T-score < -2,5)",
+        "Âge > 65 ans",
+        "Sexe féminin post-ménopausique",
+        "Corticothérapie prolongée",
+        "Carence en vitamine D et calcium"
+      ]
+    },
+    {
+      "id": 9,
+      "nom": "Spondylolisthésis",
+      "description": "Glissement antérieur d'une vertèbre sur celle située en dessous",
+      "symptomes": [
+        "Douleur lombaire chronique mécanique",
+        "Douleur irradiant dans les cuisses (bilatérale)",
+        "Raideur du bas du dos",
+        "Difficulté à se tenir debout longtemps",
+        "Sensation d'instabilité ou de dérobement",
+        "Aggravation par l'extension et la marche",
+        "Parfois asymptomatique pendant longtemps",
+        "Claudication neurogène si sténose associée",
+        "Déformation lombaire visible (hyperlordose)"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Surveillance régulière, urgent si déficit neurologique",
+      "delai_intervention": "Consultation spécialisée sous 2-4 semaines",
+      "traitements": [
+        "Kinésithérapie de renforcement de la sangle abdominale",
+        "Exercices de stabilisation lombaire (gainage)",
+        "Anti-inflammatoires lors des poussées",
+        "Antalgiques selon besoin",
+        "Éviter les sports à impact et hyperextensions",
+        "Port de ceinture lombaire lors d'efforts",
+        "Infiltrations épidurales si radiculalgie",
+        "Perte de poids si nécessaire",
+        "Chirurgie (arthrodèse lombaire) dans les formes sévères symptomatiques",
+        "Décompression + fusion vertébrale si sténose associée",
+        "Surveillance radiologique régulière",
+        "Adaptation des activités professionnelles et sportives"
+      ],
+      "facteurs_risque": [
+        "Lyse isthmique (spondylolyse)",
+        "Sport avec hyperextensions répétées (gymnastique)",
+        "Dégénérescence discale",
+        "Hyperlordose lombaire"
+      ]
+    },
+    {
+      "id": 10,
+      "nom": "Syndrome du piriforme",
+      "description": "Compression du nerf sciatique par le muscle piriforme en contracture",
+      "symptomes": [
+        "Douleur profonde dans la fesse",
+        "Douleur irradiant le long du nerf sciatique jusqu'au pied",
+        "Aggravation marquée en position assise prolongée",
+        "Douleur lors de la montée d'escaliers",
+        "Sensation de brûlure ou picotements dans la jambe",
+        "Douleur lors de la rotation interne de hanche",
+        "Soulagement en position debout ou en marchant",
+        "Crampes dans la fesse et la cuisse"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent",
+      "delai_intervention": "Consultation sous 1-2 semaines",
+      "traitements": [
+        "Étirements spécifiques du muscle piriforme (plusieurs fois par jour)",
+        "Kinésithérapie avec techniques manuelles",
+        "Massages thérapeutiques profonds",
+        "Anti-inflammatoires non stéroïdiens",
+        "Application de chaleur locale",
+        "Myorelaxants si spasme important",
+        "Infiltrations de corticoïdes dans le muscle piriforme en cas d'échec",
+        "Injection de toxine botulique (cas réfractaires)",
+        "Ostéopathie",
+        "Éviter les positions assises prolongées",
+        "Ergonomie du poste de travail (coussin adapté)",
+        "Renforcement des muscles fessiers (moyen et petit fessier)"
+      ],
+      "facteurs_risque": [
+        "Position assise prolongée",
+        "Course à pied excessive",
+        "Traumatisme de la fesse",
+        "Déséquilibre musculaire du bassin"
+      ]
+    },
+    {
+      "id": 11,
+      "nom": "Discopathie dégénérative",
+      "description": "Vieillissement et dégénérescence progressive des disques intervertébraux",
+      "symptomes": [
+        "Douleur lombaire chronique mécanique",
+        "Raideur matinale du dos",
+        "Douleur augmentée par les mouvements de flexion",
+        "Soulagement relatif en position allongée",
+        "Diminution de la mobilité rachidienne",
+        "Douleur lors du port de charges",
+        "Fatigue musculaire du dos",
+        "Irradiations douloureuses variables",
+        "Aggravation progressive sur plusieurs années"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Non urgent, chronique",
+      "delai_intervention": "Consultation programmée",
+      "traitements": [
+        "Activité physique régulière adaptée (natation, marche)",
+        "Kinésithérapie de renforcement musculaire",
+        "Antalgiques selon besoin (paracétamol, tramadol)",
+        "Anti-inflammatoires lors des poussées",
+        "Infiltrations discales en cas de douleur persistante",
+        "Perte de poids si surcharge pondérale",
+        "École du dos et éducation posturale",
+        "Ergonomie du travail et du domicile",
+        "Ostéopathie en complément",
+        "Cures thermales",
+        "Éviter les positions statiques prolongées",
+        "Prothèse discale ou arthrodèse en dernier recours"
+      ],
+      "facteurs_risque": [
+        "Âge (processus naturel de vieillissement)",
+        "Hérédité",
+        "Sollicitations mécaniques répétées",
+        "Tabagisme",
+        "Surpoids"
+      ]
+    },
+    {
+      "id": 12,
+      "nom": "Sacro-iliite",
+      "description": "Inflammation de l'articulation sacro-iliaque entre sacrum et os iliaque",
+      "symptomes": [
+        "Douleur dans le bas du dos et la fesse d'un ou des deux côtés",
+        "Douleur irradiant vers l'arrière de la cuisse",
+        "Douleur augmentée en station debout prolongée",
+        "Douleur à la montée d'escaliers",
+        "Raideur matinale",
+        "Douleur nocturne pouvant réveiller",
+        "Amélioration par le mouvement",
+        "Douleur au test de compression du bassin",
+        "Parfois associée à une spondylarthropathie"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré",
+      "delai_intervention": "Consultation sous 1-2 semaines",
+      "traitements": [
+        "Anti-inflammatoires non stéroïdiens",
+        "Kinésithérapie spécifique",
+        "Infiltrations intra-articulaires de corticoïdes",
+        "Ostéopathie",
+        "Application de glace puis chaleur",
+        "Exercices de stabilisation du bassin",
+        "Renforcement des muscles profonds du tronc",
+        "Ceinture pelvienne de maintien",
+        "Biothérapies si spondylarthrite associée",
+        "Adaptation des activités (éviter rotation du bassin)",
+        "Ergonomie posturale",
+        "IRM pour diagnostic et suivi"
+      ],
+      "facteurs_risque": [
+        "Spondylarthropathie (spondylarthrite ankylosante)",
+        "Traumatisme du bassin",
+        "Grossesse (relâchement ligamentaire)",
+        "Différence de longueur des jambes"
+      ]
+    },
+    {
+      "id": 13,
+      "nom": "Myofasciite dorsale",
+      "description": "Syndrome douloureux musculaire avec points trigger au niveau du dos",
+      "symptomes": [
+        "Douleurs musculaires diffuses du dos",
+        "Points douloureux à la palpation (trigger points)",
+        "Raideur musculaire généralisée",
+        "Douleurs référées à distance des points trigger",
+        "Fatigue musculaire importante",
+        "Limitation des mouvements",
+        "Douleur augmentée par le stress",
+        "Troubles du sommeil fréquents",
+        "Sensibilité au froid"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Faible",
+      "delai_intervention": "Consultation programmée",
+      "traitements": [
+        "Massages thérapeutiques profonds",
+        "Kinésithérapie avec techniques de relâchement myofascial",
+        "Points trigger therapy (pression ischémique)",
+        "Dry needling (aiguillage sec des points trigger)",
+        "Étirements réguliers",
+        "Application de chaleur",
+        "Exercices de relaxation et gestion du stress",
+        "Ostéopathie",
+        "Anti-inflammatoires locaux (gels)",
+        "Correction posturale",
+        "Activité physique régulière adaptée",
+        "Amélioration de l'ergonomie de travail"
+      ],
+      "facteurs_risque": [
+        "Stress chronique",
+        "Postures prolongées",
+        "Surutilisation musculaire",
+        "Déshydratation",
+        "Carence en magnésium"
+      ]
+    },
+    {
+      "id": 14,
+      "nom": "Maladie de Scheuermann (cyphose dorsale de l'adolescent)",
+      "description": "Déformation vertébrale avec cyphose thoracique excessive chez l'adolescent",
+      "symptomes": [
+        "Dos rond exagéré (cyphose thoracique > 45°)",
+        "Douleur dorsale modérée chez l'adolescent",
+        "Raideur du dos",
+        "Fatigue musculaire",
+        "Aspect esthétique avec dos vouté",
+        "Vertèbres cunéiformes à la radiographie",
+        "Parfois asymptomatique",
+        "Gêne lors du port de sac à dos",
+        "Limitation de l'extension thoracique"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré pendant la croissance",
+      "delai_intervention": "Consultation spécialisée sous 1 mois",
+      "traitements": [
+        "Kinésithérapie intensive avec exercices d'extension",
+        "Renforcement des muscles paravertébraux",
+        "Étirements des muscles pectoraux et ischio-jambiers",
+        "Port de corset orthopédique si cyphose > 50° en croissance",
+        "Natation (dos crawlé recommandé)",
+        "Éviter les sports en flexion (cyclisme, aviron)",
+        "Anti-inflammatoires si douleur",
+        "Surveillance radiologique régulière",
+        "Chirurgie rare (cyphose > 75° avec douleurs invalidantes)",
+        "Rééducation posturale globale",
+        "Ergonomie scolaire (hauteur bureau, sac à dos)",
+        "Maintien d'une activité physique régulière"
+      ],
+      "facteurs_risque": [
+        "Adolescence (10-16 ans)",
+        "Sexe masculin",
+        "Facteurs génétiques",
+        "Croissance rapide"
+      ]
+    },
+    {
+      "id": 15,
+      "nom": "Arthrite psoriasique axiale",
+      "description": "Atteinte inflammatoire de la colonne vertébrale associée au psoriasis cutané",
+      "symptomes": [
+        "Douleur inflammatoire du dos (réveil nocturne)",
+        "Raideur matinale prolongée (> 1h)",
+        "Amélioration par l'activité physique",
+        "Psoriasis cutané associé",
+        "Dactylite (doigts ou orteils en saucisse)",
+        "Enthésites (douleurs tendineuses)",
+        "Fatigue chronique",
+        "Atteinte des articulations périphériques",
+        "Uvéite possible",
+        "Atteinte des ongles (psoriasis unguéal)"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré",
+      "delai_intervention": "Consultation rhumatologique sous 2-4 semaines",
+      "traitements": [
+        "Anti-inflammatoires non stéroïdiens",
+        "Biothérapies (anti-TNF, anti-IL17, anti-IL23)",
+        "Méthotrexate si atteinte cutanée et articulaire",
+        "Kinésithérapie quotidienne",
+        "Exercices d'extension et de mobilité",
+        "Activité physique régulière",
+        "Traitement du psoriasis cutané",
+        "Photothérapie pour le psoriasis",
+        "Corticoïdes locaux pour la peau",
+        "Infiltrations si arthrite périphérique",
+        "Suivi multidisciplinaire (dermatologue + rhumatologue)",
+        "Maintien d'un poids santé"
+      ],
+      "facteurs_risque": [
+        "Psoriasis cutané",
+        "Antécédents familiaux",
+        "Facteurs génétiques (HLA-B27 dans 20%)",
+        "Traumatismes répétés"
+      ]
+    },
+    {
+      "id": 16,
+      "nom": "Spondylodiscite infectieuse",
+      "description": "Infection bactérienne du disque intervertébral et des vertèbres adjacentes",
+      "symptomes": [
+        "Douleur dorsale ou lombaire intense et d'aggravation progressive",
+        "Fièvre élevée (38-40°C)",
+        "Frissons",
+        "Sueurs nocturnes",
+        "Impossibilité de mobiliser le dos",
+        "Altération de l'état général",
+        "Perte de poids",
+        "Douleur non calmée par le repos",
+        "Signes neurologiques possibles si abcès",
+        "Raideur rachidienne majeure"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé - Urgence infectieuse",
+      "delai_intervention": "Hospitalisation urgente sous 24h",
+      "traitements": [
+        "Hospitalisation immédiate",
+        "Antibiothérapie intraveineuse prolongée (6-12 semaines)",
+        "Hémocultures et prélèvements bactériologiques",
+        "IRM rachidienne en urgence",
+        "Ponction-biopsie discale guidée si nécessaire",
+        "Repos strict au lit avec immobilisation",
+        "Antalgiques puissants (morphiniques)",
+        "Corset d'immobilisation",
+        "Drainage chirurgical si abcès",
+        "Arthrodèse si instabilité ou échec médical",
+        "Surveillance biologique (CRP, VS)",
+        "Kinésithérapie après guérison",
+        "Relais par antibiotiques oraux selon antibiogramme"
+      ],
+      "facteurs_risque": [
+        "Immunodépression",
+        "Diabète",
+        "Toxicomanie intraveineuse",
+        "Âge > 60 ans",
+        "Chirurgie rachidienne récente"
+      ]
+    },
+    {
+      "id": 17,
+      "nom": "Coccygodynie",
+      "description": "Douleur chronique du coccyx (extrémité inférieure de la colonne)",
+      "symptomes": [
+        "Douleur intense au niveau du coccyx",
+        "Douleur augmentée en position assise",
+        "Douleur lors du passage assis-debout",
+        "Douleur à la défécation",
+        "Impossibilité de rester assis longtemps",
+        "Douleur lors des rapports sexuels",
+        "Sensibilité au toucher du coccyx",
+        "Soulagement en position debout ou allongée"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Faible mais invalidant",
+      "delai_intervention": "Consultation sous 1-2 semaines",
+      "traitements": [
+        "Coussin en forme d'anneau pour s'asseoir",
+        "Éviter la position assise prolongée",
+        "Anti-inflammatoires non stéroïdiens",
+        "Antalgiques",
+        "Infiltrations locales de corticoïdes",
+        "Kinésithérapie (mobilisation du coccyx, travail du plancher pelvien)",
+        "Ostéopathie",
+        "Manipulation du coccyx (par voie rectale)",
+        "Application de glace",
+        "Bains de siège tièdes",
+        "Coccygectomie chirurgicale en dernier recours (rares cas)",
+        "Correction posturale"
+      ],
+      "facteurs_risque": [
+        "Chute sur les fesses",
+        "Accouchement difficile",
+        "Microtraumatismes répétés (cyclisme, équitation)",
+        "Obésité ou maigreur extrême"
+      ]
+    },
+    {
+      "id": 18,
+      "nom": "Tumeur vertébrale (métastase ou primitive)",
+      "description": "Lésion tumorale bénigne ou maligne affectant les vertèbres",
+      "symptomes": [
+        "Douleur dorsale ou lombaire progressive et persistante",
+        "Douleur nocturne intense non calmée par le repos",
+        "Douleur non soulagée par les antalgiques usuels",
+        "Altération de l'état général (fatigue, perte de poids)",
+        "Déficit neurologique progressif",
+        "Troubles sphinctériens tardifs",
+        "Fracture pathologique possible",
+        "Compression médullaire (urgence)",
+        "Antécédents de cancer dans 85% des cas (métastases)"
+      ],
+      "urgent": true,
+      "niveau_urgence": "Élevé à critique si compression neurologique",
+      "delai_intervention": "Consultation urgente sous 24-48h, immédiate si déficit neuro",
+      "traitements": [
+        "IRM rachidienne en urgence",
+        "Biopsie vertébrale pour diagnostic histologique",
+        "Corticothérapie à forte dose si compression médullaire",
+        "Radiothérapie",
+        "Chimiothérapie selon le type tumoral",
+        "Chirurgie de décompression et stabilisation en urgence",
+        "Cimentoplastie vertébrale (vertébroplastie)",
+        "Antalgiques puissants (morphiniques)",
+        "Traitement du cancer primitif",
+        "Bisphosphonates ou dénosumab",
+        "Rééducation neurologique si déficit",
+        "Soins palliatifs si stade avancé",
+        "Corset d'immobilisation temporaire"
+      ],
+      "facteurs_risque": [
+        "Antécédent de cancer (sein, prostate, poumon, rein, thyroïde)",
+        "Âge > 50 ans",
+        "Douleur nocturne inexpliquée",
+        "Perte de poids inexpliquée"
+      ]
+    },
+    {
+      "id": 19,
+      "nom": "Fibromyalgie avec douleurs dorsales",
+      "description": "Syndrome de douleurs musculo-squelettiques chroniques diffuses incluant le dos",
+      "symptomes": [
+        "Douleurs dorsales diffuses chroniques (> 3 mois)",
+        "Douleurs musculaires généralisées",
+        "Fatigue chronique intense",
+        "Troubles du sommeil non réparateur",
+        "Raideur matinale généralisée",
+        "Points douloureux multiples (tender points)",
+        "Troubles cognitifs (brouillard mental)",
+        "Hypersensibilité au toucher",
+        "Colopathie fonctionnelle associée",
+        "Céphalées fréquentes"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Faible (chronique)",
+      "delai_intervention": "Consultation spécialisée programmée",
+      "traitements": [
+        "Approche multidisciplinaire indispensable",
+        "Antidépresseurs (duloxétine, amitriptyline)",
+        "Prégabaline ou gabapentine",
+        "Activité physique progressive adaptée (aquagym, tai-chi)",
+        "Kinésithérapie douce",
+        "Thérapie cognitivo-comportementale",
+        "Techniques de relaxation et méditation",
+        "Amélioration de l'hygiène du sommeil",
+        "Gestion du stress",
+        "Balnéothérapie",
+        "Éviter les opioïdes (inefficaces)",
+        "Soutien psychologique",
+        "Éducation thérapeutique du patient"
+      ],
+      "facteurs_risque": [
+        "Sexe féminin (9 femmes pour 1 homme)",
+        "Stress chronique",
+        "Traumatisme physique ou psychologique",
+        "Troubles anxio-dépressifs"
+      ]
+    },
+    {
+      "id": 20,
+      "nom": "Mal de dos post-chirurgical (Failed Back Surgery Syndrome)",
+      "description": "Persistance ou récidive de douleurs dorsales après chirurgie rachidienne",
+      "symptomes": [
+        "Douleur lombaire persistante après chirurgie",
+        "Douleur radiculaire récidivante",
+        "Douleur différente de celle pré-opératoire",
+        "Limitation fonctionnelle importante",
+        "Douleur neuropathique (brûlures, décharges)",
+        "Raideur importante du dos",
+        "Faiblesse musculaire persistante",
+        "Troubles sensitifs",
+        "Impact psychologique majeur",
+        "Dépendance aux antalgiques possible"
+      ],
+      "urgent": false,
+      "niveau_urgence": "Modéré",
+      "delai_intervention": "Consultation spécialisée multidisciplinaire",
+      "traitements": [
+        "Évaluation multidisciplinaire (chirurgien, algologue, psychiatre)",
+        "IRM de contrôle pour éliminer complication",
+        "Antalgiques adaptés (palier 2-3)",
+        "Antiépileptiques pour douleurs neuropathiques (prégabaline)",
+        "Antidépresseurs (duloxétine, amitriptyline)",
+        "Infiltrations épidurales ciblées",
+        "Neurostimulation médullaire (stimulateur implantable)",
+        "Kinésithérapie de réadaptation intensive",
+        "Thérapie cognitivo-comportementale",
+        "Programme de réhabilitation pluridisciplinaire",
+        "Révision chirurgicale seulement si cause identifiable",
+        "Traitement de la douleur chronique",
+        "Sevrage progressif des opioïdes si nécessaire"
+      ],
+      "facteurs_risque": [
+        "Chirurgies multiples",
+        "Fibrose post-opératoire",
+        "Instabilité résiduelle",
+        "Facteurs psycho-sociaux",
+        "Attentes irréalistes pré-opératoires"
+      ]
+    }
+  ],
+  "notes_importantes": [
+    "Ces informations sont à titre éducatif uniquement et ne remplacent pas une consultation médicale",
+    "Consultez toujours un professionnel de santé pour un diagnostic précis",
+    "Les signaux d'alarme nécessitant une consultation urgente incluent: perte de contrôle sphinctérien, déficit moteur important, douleur insupportable, fièvre associée, traumatisme récent",
+    "Ne jamais s'auto-médiquer sans avis médical",
+    "L'activité physique adaptée est le meilleur traitement et prévention pour la plupart des maux de dos",
+    "Le repos prolongé au lit (> 48h) est contre-productif dans la majorité des cas"
+  ],
+  "prevention_generale": [
+    "Maintenir une activité physique régulière",
+    "Renforcer la musculature profonde du tronc (gainage)",
+    "Adopter de bonnes postures",
+    "Éviter le port de charges lourdes",
+    "Maintenir un poids santé",
+    "Arrêter le tabac",
+    "Gérer le stress",
+    "Ergonomie du poste de travail"
+  ]
+}

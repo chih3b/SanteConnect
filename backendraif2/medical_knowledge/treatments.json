@@ -1,0 +1,1566 @@
+{
+  "treatments": [
+    {
+      "id": "TRT001",
+      "disease_id": "DIS001",
+      "disease_name": "Grippe (Influenza)",
+      "treatment_type": "symptomatique et antiviral",
+      "severity": "modérée",
+      "medications": [
+        {
+          "name": "Paracétamol",
+          "dosage": "1g toutes les 6h (max 4g/jour)",
+          "purpose": "Réduire la fièvre et douleurs",
+          "precautions": "Respecter intervalle minimal 4h, attention insuffisance hépatique"
+        },
+        {
+          "name": "Ibuprofène",
+          "dosage": "400mg toutes les 8h (max 1200mg/jour)",
+          "purpose": "Anti-inflammatoire, antipyrétique",
+          "precautions": "Avec aliments, contre-indiqué si ulcère, insuffisance rénale"
+        },
+        {
+          "name": "Oseltamivir (Tamiflu)",
+          "dosage": "75mg × 2/jour pendant 5 jours",
+          "purpose": "Antiviral - réduit durée et complications",
+          "when": "Dans les 48h début symptômes, si patient à risque",
+          "precautions": "Sur prescription uniquement"
+        }
+      ],
+      "home_care": [
+        "Repos complet au lit pendant au moins 48-72h",
+        "Isolement pour éviter contagion (7 jours)",
+        "Hydratation abondante: 2-3 litres d'eau/jour",
+        "Humidifier l'air ambiant (40-60% humidité)",
+        "Éviter les contacts rapprochés avec autrui",
+        "Port du masque chirurgical si contact nécessaire",
+        "Aération régulière de la chambre",
+        "Lavage des mains fréquent"
+      ],
+      "diet_recommendations": [
+        "Bouillons chauds (poulet, légumes) - hydratation et réconfort",
+        "Fruits riches en vitamine C (oranges, kiwis, fraises)",
+        "Miel et citron dans boisson chaude (apaise gorge)",
+        "Aliments faciles à digérer (riz, compote, banane)",
+        "Éviter: alcool, tabac, aliments lourds"
+      ],
+      "duration": "7-10 jours pour guérison complète",
+      "contagion_period": "1 jour avant symptômes jusqu'à 5-7 jours après",
+      "follow_up": "Consulter si pas d'amélioration après 3 jours ou aggravation",
+      "warning_signs": [
+        "Fièvre persistante >5 jours ou réapparition",
+        "Difficultés respiratoires, essoufflement",
+        "Douleur thoracique",
+        "Confusion, somnolence",
+        "Vomissements persistants, déshydratation"
+      ],
+      "prevention": [
+        "Vaccination annuelle (septembre-novembre) - efficacité 40-60%",
+        "Lavage des mains régulier (20 secondes)",
+        "Port du masque en période épidémique",
+        "Éviter contacts avec personnes malades",
+        "Aération des lieux clos"
+      ]
+    },
+    {
+      "id": "TRT002",
+      "disease_id": "DIS002",
+      "disease_name": "Infarctus du myocarde",
+      "treatment_type": "urgence vitale - revascularisation",
+      "severity": "critique",
+      "immediate_management": {
+        "pre_hospital": [
+          "APPEL 15/SAMU IMMÉDIAT",
+          "Aspirine 250-500mg à croquer si disponible",
+          "Position semi-assise",
+          "Repos absolu",
+          "Oxygène si disponible",
+          "Monitoring cardiaque"
+        ],
+        "hospital_emergency": [
+          "ECG dans les 10 minutes",
+          "Double anti-agrégation plaquettaire (aspirine + clopidogrel/ticagrelor)",
+          "Angioplastie primaire (idéal <90 min)",
+          "Thrombolyse si angioplastie impossible (<12h)",
+          "Analgésie (morphine si douleur)",
+          "Anticoagulation (héparine)"
+        ]
+      },
+      "medications": {
+        "acute_phase": [
+          {
+            "name": "Aspirine",
+            "dosage": "250mg en urgence, puis 75-100mg/jour à vie",
+            "purpose": "Anti-agrégant plaquettaire"
+          },
+          {
+            "name": "Clopidogrel ou Ticagrelor",
+            "dosage": "Dose de charge puis 75mg/jour ou 90mg×2/jour",
+            "purpose": "Double anti-agrégation (12 mois minimum)",
+            "duration": "12 mois minimum après pose stent"
+          },
+          {
+            "name": "Bêtabloquants",
+            "dosage": "Selon tolérance (ex: bisoprolol 5-10mg/jour)",
+            "purpose": "Réduire travail cardiaque, prévenir récidive"
+          },
+          {
+            "name": "IEC ou ARA2",
+            "dosage": "Dose progressive (ex: ramipril 5-10mg/jour)",
+            "purpose": "Protection cardiaque, remodelage ventriculaire"
+          },
+          {
+            "name": "Statines haute intensité",
+            "dosage": "Atorvastatine 80mg/jour",
+            "purpose": "Réduction cholestérol LDL <0.55g/L"
+          }
+        ]
+      },
+      "hospitalization": {
+        "duration": "5-7 jours en moyenne",
+        "icu_stay": "24-48h surveillance USIC",
+        "monitoring": [
+          "ECG continu (rythme)",
+          "Enzymes cardiaques (troponine)",
+          "Échographie cardiaque (FEVG)",
+          "Bilan lipidique complet"
+        ]
+      },
+      "cardiac_rehabilitation": [
+        "Programme de 20-30 séances sur 3-6 mois",
+        "Réentraînement à l'effort progressif",
+        "Éducation thérapeutique",
+        "Soutien psychologique",
+        "Gestion des facteurs de risque"
+      ],
+      "lifestyle_changes": [
+        "Arrêt TOTAL et DÉFINITIF du tabac (priorité absolue)",
+        "Alimentation méditerranéenne (fruits, légumes, poisson, huile olive)",
+        "Exercice physique régulier: 150 min/semaine (marche, vélo)",
+        "Perte de poids si surpoids (IMC <25)",
+        "Réduction stress (relaxation, yoga)",
+        "Limitation alcool (<2 verres/jour)",
+        "Sommeil suffisant (7-8h/nuit)"
+      ],
+      "diet_recommendations": [
+        "Réduction sel <5g/jour",
+        "Réduction graisses saturées <10% apports",
+        "Augmentation fibres (30g/jour)",
+        "Poisson gras 2-3×/semaine (oméga-3)",
+        "Fruits et légumes 5 portions/jour",
+        "Limiter viandes rouges",
+        "Éviter: charcuterie, fritures, fast-food"
+      ],
+      "follow_up": [
+        "Consultation cardiologue à 1 mois puis tous les 3-6 mois",
+        "ECG et échographie cardiaque réguliers",
+        "Bilan lipidique tous les 3 mois jusqu'à objectif",
+        "Épreuve d'effort à 6-12 mois",
+        "Surveillance observance traitement"
+      ],
+      "long_term_prognosis": "Mortalité <5% à 1 an si revascularisation précoce. Qualité de vie normale possible.",
+      "return_to_work": "Généralement 4-8 semaines selon activité professionnelle",
+      "sexual_activity": "Reprise progressive après 2-4 semaines si stable"
+    },
+    {
+      "id": "TRT003",
+      "disease_id": "DIS003",
+      "disease_name": "Gastro-entérite virale",
+      "treatment_type": "hydratation et symptomatique",
+      "severity": "légère à modérée",
+      "key_principle": "L'hydratation est le traitement principal - Pas d'antibiotiques (viral)",
+      "medications": [
+        {
+          "name": "Solution de Réhydratation Orale (SRO)",
+          "dosage": "À volonté selon déshydratation",
+          "composition": "Sodium, potassium, glucose - WHO formula",
+          "purpose": "Prévenir/traiter la déshydratation",
+          "how_to_use": "Petites gorgées fréquentes, frais"
+        },
+        {
+          "name": "Antiémétiques (Dompéridone)",
+          "dosage": "10mg × 3/jour si besoin",
+          "purpose": "Réduire nausées et vomissements",
+          "precautions": "Limiter durée (risque cardiaque si prolongé)"
+        },
+        {
+          "name": "Lopéramide (Imodium)",
+          "dosage": "2mg après chaque selle (max 8mg/jour)",
+          "purpose": "Réduire diarrhée",
+          "contraindications": "Fièvre, sang dans selles, <12 ans"
+        },
+        {
+          "name": "Probiotiques",
+          "dosage": "Selon produit (ex: Saccharomyces boulardii)",
+          "purpose": "Réduire durée diarrhée",
+          "evidence": "Efficacité modeste mais sans risque"
+        }
+      ],
+      "hydration_protocol": {
+        "mild_dehydration": [
+          "SRO: 50-100 ml/kg sur 3-4h",
+          "Eau, bouillon clair en complément",
+          "Surveiller diurèse (urines claires)"
+        ],
+        "moderate_dehydration": [
+          "SRO: 100 ml/kg sur 4h",
+          "Consultation médicale recommandée",
+          "Possibilité perfusion si vomissements"
+        ],
+        "severe_dehydration": [
+          "URGENCE - Hospitalisation",
+          "Réhydratation IV",
+          "Surveillance électrolytes"
+        ]
+      },
+      "home_care": [
+        "Repos digestif 12-24h (jeûne relatif)",
+        "Réhydratation prioritaire et continue",
+        "Reprendre alimentation très progressivement",
+        "Hygiène des mains stricte (savon 20 sec)",
+        "Désinfection surfaces (eau de javel diluée)",
+        "Isolement des personnes fragiles",
+        "Lavage linge à 60°C minimum"
+      ],
+      "diet_recommendations": {
+        "phase_1_0_24h": [
+          "Jeûne alimentaire",
+          "SRO, eau, bouillon clair uniquement",
+          "Éviter lait, jus de fruits"
+        ],
+        "phase_2_24_48h": [
+          "Riz blanc bien cuit",
+          "Banane écrasée",
+          "Compote de pommes",
+          "Biscottes, pain grillé",
+          "Régime BRAT (Banana-Rice-Applesauce-Toast)"
+        ],
+        "phase_3_48_72h": [
+          "Pâtes, pommes de terre",
+          "Viande maigre (poulet, dinde)",
+          "Poisson blanc",
+          "Légumes cuits (carottes, courgettes)"
+        ],
+        "avoid_72h": [
+          "Produits laitiers (lactose mal toléré)",
+          "Aliments gras, frits",
+          "Épices, plats épicés",
+          "Alcool, café",
+          "Fruits crus, crudités",
+          "Boissons gazeuses"
+        ]
+      },
+      "duration": "2-3 jours habituellement, jusqu'à 5-7 jours",
+      "contagion": "Très contagieux - isolement pendant symptômes + 48h après",
+      "warning_signs": [
+        "Sang dans les selles (rectorragie)",
+        "Fièvre >39°C persistante >48h",
+        "Vomissements incoercibles (rien ne passe)",
+        "Signes de déshydratation sévère",
+        "Douleur abdominale intense localisée",
+        "Pas d'amélioration après 3 jours"
+      ],
+      "dehydration_signs_to_monitor": [
+        "Soif intense",
+        "Bouche sèche",
+        "Urines foncées rares (<3-4/jour)",
+        "Pli cutané persistant",
+        "Yeux creux",
+        "Fatigue importante"
+      ],
+      "when_to_consult": "Déshydratation, sang dans selles, fièvre élevée, nourrisson/personne âgée",
+      "prevention": [
+        "Lavage des mains fréquent et rigoureux",
+        "Cuisson complète des aliments",
+        "Eau potable",
+        "Désinfection surfaces",
+        "Éviter contacts si malade"
+      ]
+    },
+    {
+      "id": "TRT004",
+      "disease_id": "DIS004",
+      "disease_name": "Asthme",
+      "treatment_type": "traitement de fond et de crise",
+      "severity": "modérée à sévère",
+      "treatment_goals": [
+        "Contrôle des symptômes quotidiens",
+        "Prévenir les exacerbations",
+        "Maintenir fonction pulmonaire normale",
+        "Permettre activités normales"
+      ],
+      "medications": {
+        "crise_reliever": [
+          {
+            "name": "Salbutamol (Ventoline)",
+            "type": "Bronchodilatateur β2-agoniste courte durée (SABA)",
+            "dosage": "1-2 bouffées à la demande (max 8-10/jour)",
+            "purpose": "Soulagement rapide bronchospasme (5-10 min)",
+            "device": "Spray + chambre d'inhalation recommandée",
+            "technique": "Expirer, déclencher, inspirer lentement, apnée 10 sec"
+          }
+        ],
+        "fond_controller": [
+          {
+            "name": "Corticoïdes inhalés (CSI)",
+            "examples": "Béclométasone, Budésonide, Fluticasone",
+            "dosage": "Selon sévérité (faible/moyenne/forte dose)",
+            "purpose": "Anti-inflammatoire - traitement de base",
+            "precautions": "Rincer bouche après inhalation (prévenir candidose)",
+            "importance": "À prendre TOUS LES JOURS même si aucun symptôme"
+          },
+          {
+            "name": "β2-agonistes longue durée (LABA)",
+            "examples": "Salmétérol, Formotérol",
+            "dosage": "2×/jour",
+            "purpose": "Bronchodilatation prolongée (12h)",
+            "important": "TOUJOURS associé à un CSI (jamais seul)"
+          },
+          {
+            "name": "Association fixe CSI/LABA",
+            "examples": "Seretide, Symbicort, Foster",
+            "dosage": "1-2 inhalations × 2/jour",
+            "purpose": "Combinaison pratique fond + bronchodilatation",
+            "avantage": "Meilleure observance"
+          },
+          {
+            "name": "Antagonistes des leucotriènes",
+            "examples": "Montélukast (Singulair)",
+            "dosage": "10mg/jour le soir",
+            "purpose": "Anti-inflammatoire oral - asthme allergique",
+            "indication": "Complément CSI ou asthme d'effort"
+          }
+        ],
+        "severe_asthma": [
+          {
+            "name": "Biothérapies",
+            "examples": "Omalizumab (anti-IgE), Mépolizumab (anti-IL5)",
+            "indication": "Asthme sévère non contrôlé malgré traitement maximal",
+            "administration": "Injection SC tous les 15 jours à 4 semaines"
+          }
+        ]
+      },
+      "stepwise_approach": {
+        "step_1": "SABA à la demande seul",
+        "step_2": "CSI faible dose + SABA",
+        "step_3": "CSI moyenne dose OU CSI faible + LABA",
+        "step_4": "CSI moyenne/forte + LABA",
+        "step_5": "Ajout anti-leucotriènes, théophylline ou biothérapie"
+      },
+      "crisis_management": [
+        "Rester calme, rassurer",
+        "Position assise ou semi-assise",
+        "Inhalateur SABA: 4-10 bouffées (1 toutes les 30-60 sec)",
+        "Attendre 5-10 minutes",
+        "Si pas d'amélioration: répéter toutes les 20 min",
+        "APPELER 15 si pas d'amélioration ou crise sévère"
+      ],
+      "home_care": [
+        "Éviter les déclencheurs identifiés",
+        "Plan d'action écrit personnalisé",
+        "Débitmètre de pointe (peak flow) matin/soir si asthme instable",
+        "Technique d'inhalation correcte (formation)",
+        "Observance traitement de fond cruciale"
+      ],
+      "trigger_avoidance": [
+        "Acariens: housse anti-acariens, lavage literie 60°C/semaine",
+        "Animaux: éviter si allergie prouvée",
+        "Pollens: fenêtres fermées, lunettes, douche le soir",
+        "Tabac: ARRÊT ABSOLU (actif et passif)",
+        "Air froid: écharpe devant bouche/nez",
+        "Pollution: éviter pics de pollution",
+        "Infections: vaccination grippe annuelle"
+      ],
+      "lifestyle_recommendations": [
+        "Exercice physique régulier adapté (natation recommandée)",
+        "Échauffement avant sport",
+        "Inhalateur à portée lors d'activités",
+        "Perte de poids si surpoids (améliore contrôle)",
+        "Gestion du stress (relaxation, yoga)",
+        "Sommeil suffisant"
+      ],
+      "monitoring": [
+        "Tenir journal des symptômes",
+        "Mesure peak flow si asthme instable",
+        "Débit <80% meilleure valeur = zone jaune (vigilance)",
+        "Débit <60% = zone rouge (danger)",
+        "Compter utilisation SABA (>2×/semaine = mauvais contrôle)"
+      ],
+      "follow_up": [
+        "Consultation tous les 3-6 mois si contrôlé",
+        "Spirométrie annuelle (EFR)",
+        "Ajustement traitement selon contrôle",
+        "Vérification technique inhalation",
+        "Évaluation observance"
+      ],
+      "education_points": [
+        "Différence traitement de fond vs crise",
+        "Technique d'inhalation optimale",
+        "Reconnaissance signes d'aggravation",
+        "Plan d'action en cas de crise",
+        "Importance traitement régulier"
+      ],
+      "prognosis": "Excellent si bon contrôle. Vie normale possible. Asthme peut s'améliorer avec l'âge."
+    },
+    {
+      "id": "TRT005",
+      "disease_id": "DIS005",
+      "disease_name": "Appendicite aiguë",
+      "treatment_type": "chirurgical",
+      "severity": "sévère",
+      "immediate_management": [
+        "À JEUN STRICT (rien par voie orale)",
+        "Consultation urgente chirurgien",
+        "Bilan pré-opératoire (NFS, CRP, imagerie)",
+        "Perfusion IV (réhydratation)",
+        "Antalgiques IV (éviter morphine si possible)",
+        "Antibioprophylaxie pré-opératoire"
+      ],
+      "surgical_treatment": {
+        "appendicectomy": {
+          "laparoscopy": {
+            "description": "Cœlioscopie (3 petites incisions)",
+            "advantages": [
+              "Moins de douleur post-opératoire",
+              "Cicatrices minimes",
+              "Récupération plus rapide",
+              "Moins d'infections pariétales",
+              "Exploration complète abdomen"
+            ],
+            "duration": "30-60 minutes",
+            "preferred": "Technique de choix si disponible"
+          },
+          "laparotomy": {
+            "description": "Incision de McBurney (fosse iliaque droite)",
+            "when": "Péritonite, appendice rompu, conversion",
+            "duration": "45-90 minutes"
+          }
+        },
+        "timing": "Idéalement dans les 12-24h après diagnostic",
+        "anesthesia": "Anesthésie générale"
+      },
+      "medications": {
+        "pre_operative": [
+          {
+            "name": "Antibiotiques",
+            "examples": "Ceftriaxone + Métronidazole",
+            "timing": "30-60 min avant incision",
+            "purpose": "Prévention infections post-opératoires"
+          },
+          {
+            "name": "Antalgiques",
+            "examples": "Paracétamol IV, Néfopam",
+            "purpose": "Contrôle douleur pré-opératoire"
+          }
+        ],
+        "post_operative": [
+          {
+            "name": "Antalgiques palier 1-2",
+            "examples": "Paracétamol 1g/6h + Tramadol si besoin",
+            "duration": "3-7 jours selon douleur"
+          },
+          {
+            "name": "Antibiotiques",
+            "when": "Si appendice perforé ou péritonite",
+            "duration": "5-7 jours (amoxicilline-clavulanate)",
+            "route": "IV puis relais oral"
+          },
+          {
+            "name": "Anticoagulation préventive",
+            "examples": "HBPM (énoxaparine)",
+            "when": "Si facteurs de risque thrombotique",
+            "duration": "7-10 jours"
+          }
+        ]
+      },
+      "hospitalization": {
+        "uncomplicated": "24-48h (sortie J1 ou J2)",
+        "complicated_perforated": "3-7 jours",
+        "peritonitis": "7-14 jours avec antibiotiques IV"
+      },
+      "post_operative_care": [
+        "Reprise alimentation progressive (J0-J1): liquides → normal",
+        "Lever précoce (J0 quelques heures post-op)",
+        "Marche dès que possible",
+        "Pansement: ablation à J2-J3 ou avant sortie",
+        "Douche autorisée à J2 (pas de bain)",
+        "Surveillance: température, douleur, cicatrice"
+      ],
+      "diet_recommendations": {
+        "J0_post_op": "À jeun puis liquides clairs si transit",
+        "J1": "Alimentation légère (bouillon, yaourt, compote)",
+        "J2_onwards": "Reprise alimentation normale progressive",
+        "fiber_rich": "Augmenter fibres pour éviter constipation"
+      },
+      "activity_restrictions": [
+        "Arrêt travail: 7-15 jours (selon activité)",
+        "Pas de port de charges lourdes (>5kg) pendant 2-4 semaines",
+        "Pas d'activité physique intense pendant 4-6 semaines",
+        "Reprise sport progressive après 1 mois",
+        "Conduite automobile: après 1 semaine si confortable"
+      ],
+      "complications_to_monitor": [
+        "Infection de paroi (rougeur, douleur, fièvre)",
+        "Abcès intra-abdominal",
+        "Occlusion intestinale (post-opératoire)",
+        "Hémorragie",
+        "Éviscération (rare)"
+      ],
+      "warning_signs": [
+        "Fièvre >38.5°C après J3",
+        "Douleur abdominale augmentant",
+        "Rougeur/écoulement cicatrice",
+        "Vomissements persistants",
+        "Absence de selles/gaz prolongée"
+      ],
+      "follow_up": [
+        "Consultation chirurgien à J7-J10",
+        "Ablation fils/agrafes à J7-J10 (si non résorbables)",
+        "Résultats anatomo-pathologie",
+        "Pas de suivi à long terme si simple"
+      ],
+      "prognosis": {
+        "uncomplicated": "Guérison complète en 2-3 semaines",
+        "mortality": "<0.3% si non perforé, 1-5% si perforé",
+        "return_to_normal": "2-4 semaines pour activités normales"
+      },
+      "conservative_treatment": {
+        "when": "Cas sélectionnés (abcès appendiculaire encapsulé)",
+        "approach": "Antibiotiques IV + drainage si abcès",
+        "note": "Appendicectomie différée à 6-12 semaines recommandée"
+      }
+    },
+    {
+      "id": "TRT006",
+      "disease_id": "DIS006",
+      "disease_name": "Migraine",
+      "treatment_type": "préventif et curatif",
+      "severity": "modérée",
+      "treatment_strategy": {
+        "acute_crisis": "Traiter tôt et efficacement",
+        "preventive": "Si ≥4 crises/mois ou impact majeur"
+      },
+      "medications": {
+        "acute_treatment": {
+          "step_1_mild": [
+            {
+              "name": "Paracétamol",
+              "dosage": "1g dès début crise (max 3g/jour)",
+              "efficacy": "Modérée",
+              "advantage": "Bonne tolérance"
+            },
+            {
+              "name": "AINS (Ibuprofène, Naproxène)",
+              "dosage": "Ibuprofène 400-600mg ou Naproxène 500-1000mg",
+              "efficacy": "Bonne",
+              "advantage": "Plus efficace que paracétamol",
+              "precautions": "Avec aliments, max 10 jours/mois"
+            },
+            {
+              "name": "Aspirine",
+              "dosage": "900-1000mg effervescent",
+              "efficacy": "Bonne",
+              "advantage": "Absorption rapide"
+            }
+          ],
+          "step_2_moderate_severe": [
+            {
+              "name": "Triptans",
+              "examples": "Sumatriptan, Rizatriptan, Zolmitriptan",
+              "dosage": "Sumatriptan 50-100mg PO ou 6mg SC",
+              "mechanism": "Agoniste 5-HT1B/1D - vasoconstriction",
+              "when": "Dès début phase douloureuse (pas pendant aura)",
+              "efficacy": "Très bonne (60-70% répondeurs)",
+              "repeat": "Possible après 2h si pas d'amélioration",
+              "max_frequency": "Max 10 jours/mois (risque céphalée rebond)",
+              "contraindications": "Cardiopathie ischémique, HTA non contrôlée, AVC"
+            }
+          ],
+          "anti_emetics": [
+            {
+              "name": "Métoclopramide",
+              "dosage": "10mg",
+              "purpose": "Nausées + améliore absorption antalgiques",
+              "advantage": "Peut être pris avant antalgique"
+            }
+          ]
+        },
+        "preventive_treatment": {
+          "indications": [
+            "≥4 crises/mois",
+            "Crises très invalidantes",
+            "Échec/contre-indication triptans",
+            "Abus médicamenteux"
+          ],
+          "first_line": [
+            {
+              "name": "Bêtabloquants",
+              "examples": "Propranolol, Métoprolol",
+              "dosage": "Propranolol 80-240mg/jour",
+              "efficacy": "Réduction 50% crises chez 50% patients",
+              "precautions": "CI: asthme, bradycardie, hypotension"
+            },
+            {
+              "name": "Antiépileptiques",
+              "examples": "Topiramate, Valproate",
+              "dosage": "Topiramate 50-200mg/jour",
+              "efficacy": "Bonne",
+              "side_effects": "Paresthésies, perte poids, troubles cognitifs",
+              "contraindications": "Valproate: grossesse (tératogène)"
+            },
+            {
+              "name": "Antidépresseurs",
+              "examples": "Amitriptyline",
+              "dosage": "10-75mg/jour le soir",
+              "efficacy": "Bonne",
+              "advantage": "Utile si trouble sommeil/anxiété associé"
+            }
+          ],
+          "recent_innovation": [
+            {
+              "name": "Anticorps anti-CGRP",
+              "examples": "Erenumab, Galcanezumab, Fremanezumab",
+              "administration": "Injection SC 1×/mois ou trimestre",
+              "efficacy": "Excellente (réduction 50% chez 60%)",
+              "indication": "Migraine chronique ou échec autres traitements",
+              "advantage": "Très bonne tolérance, peu d'effets secondaires"
+            }
+          ],
+          "duration": "Traitement préventif: minimum 3-6 mois avant évaluation"
+        }
+      },
+      "home_care": [
+        "S'allonger dans une pièce sombre, calme, fraîche",
+        "Appliquer une compresse froide sur le front/nuque",
+        "Éviter les écrans (lumière bleue aggravante)",
+        "Techniques de relaxation (respiration profonde)",
+        "Massage doux des tempes",
+        "Repos absolu pendant la crise",
+        "Éviter bruits forts et lumières vives"
+      ],
+      "non_pharmacological": [
+        "Biofeedback et relaxation",
+        "Thérapie cognitive-comportementale",
+        "Acupuncture (efficacité modeste)",
+        "Yoga, méditation",
+        "Magnésium 400-600mg/jour",
+        "Vitamine B2 (riboflavine) 400mg/jour",
+        "Coenzyme Q10 300mg/jour"
+      ],
+      "prevention": {
+        "trigger_identification": [
+          "Tenir un journal des migraines (date, durée, intensité, déclencheurs)",
+          "Identifier et éviter les déclencheurs personnels"
+        ],
+        "common_triggers": [
+          "Stress (apprendre gestion stress)",
+          "Manque ou excès de sommeil (régularité 7-8h/nuit)",
+          "Repas sautés (manger régulièrement)",
+          "Déshydratation (boire 1.5-2L/jour)",
+          "Alcool (surtout vin rouge)",
+          "Aliments: chocolat, fromages affinés, charcuterie, glutamate",
+          "Caféine: excès ou sevrage brutal",
+          "Hormones: pilule, règles (migraine cataméniale)",
+          "Changements météo",
+          "Lumières vives, bruits"
+        ]
+      },
+      "lifestyle_changes": [
+        "Maintenir un rythme de sommeil régulier (coucher/lever mêmes heures)",
+        "Exercice physique régulier modéré (30 min/jour)",
+        "Éviter alcool et tabac",
+        "Alimentation régulière (ne pas sauter repas)",
+        "Hydratation suffisante",
+        "Gestion du stress (techniques relaxation, psychothérapie si besoin)",
+        "Luminothérapie si migraines hivernales"
+      ],
+      "diet_recommendations": [
+        "Régime équilibré varié",
+        "Identifier et éliminer aliments déclencheurs personnels",
+        "Éviter jeûne prolongé",
+        "Limiter caféine (<2 tasses/jour) et consommation régulière",
+        "Éviter alcool pendant crises",
+        "Magnésium: noix, légumes verts, céréales complètes"
+      ],
+      "warning_signs_consult": [
+        "Céphalée inhabituelle différente des migraines habituelles",
+        "Céphalée la plus intense de votre vie",
+        "Céphalée avec fièvre et raideur nuque",
+        "Déficit neurologique persistant après l'aura",
+        "Première migraine après 50 ans",
+        "Augmentation fréquence/intensité crises"
+      ],
+      "medication_overuse_headache": {
+        "definition": "Céphalée par abus médicamenteux (≥10-15 jours/mois)",
+        "risk": "Aggrave migraines, crée dépendance",
+        "treatment": "Sevrage médicamenteux progressif sous supervision",
+        "prevention": "Limiter antalgiques <10 jours/mois, triptans <10 jours/mois"
+      },
+      "follow_up": [
+        "Consultation neurologique si diagnostic incertain",
+        "Réévaluation à 3-6 mois si traitement préventif",
+        "Ajustement traitement selon réponse",
+        "Journal des crises à tenir régulièrement"
+      ],
+      "prognosis": "Chronique mais gérable. Amélioration fréquente avec l'âge (surtout après ménopause).",
+      "quality_of_life": "Impact majeur possible. Traitement adapté permet vie normale dans 70% cas."
+    },
+    {
+      "id": "TRT007",
+      "disease_id": "DIS007",
+      "disease_name": "Anémie ferriprive",
+      "treatment_type": "supplémentation",
+      "severity": "légère à modérée",
+      "key_principle": "Corriger la carence ET traiter la cause",
+      "medications": [
+        {
+          "name": "Fer oral (sulfate ferreux, fumarate ferreux)",
+          "dosage": "100-200mg de fer élément/jour",
+          "timing": "À jeun ou 1h avant repas (meilleure absorption)",
+          "duration": "3-6 mois (2-3 mois après normalisation pour reconstituer réserves)",
+          "purpose": "Corriger la carence en fer",
+          "precautions": [
+            "Prendre avec vitamine C (jus d'orange) pour améliorer absorption",
+            "Éviter thé/café/lait dans les 2h (inhibent absorption)",
+            "Selles noires (normal, fer non absorbé)"
+          ],
+          "side_effects": "Troubles digestifs (nausées, constipation, diarrhée) - fréquents",
+          "alternatives_if_intolerance": "Fer en 1 prise/2 jours (aussi efficace, mieux toléré)"
+        },
+        {
+          "name": "Vitamine C (acide ascorbique)",
+          "dosage": "200-500mg avec la prise de fer",
+          "purpose": "Améliorer l'absorption du fer (×2-3)",
+          "natural_sources": "Agrumes, kiwi, poivrons"
+        },
+        {
+          "name": "Fer intraveineux",
+          "examples": "Carboxymaltose ferrique (Ferinject)",
+          "when": [
+            "Intolérance fer oral",
+            "Malabsorption (maladie cœliaque, Crohn)",
+            "Saignement persistant non contrôlable",
+            "Besoin de correction rapide"
+          ],
+          "dosage": "Perfusion 500-1000mg selon poids",
+          "advantage": "Correction rapide, bien toléré",
+          "precautions": "Risque allergique (rare), surveillance"
+        }
+      ],
+      "diet_recommendations": {
+        "iron_rich_foods": {
+          "heme_iron_best_absorbed": [
+            "Viandes rouges (bœuf, agneau): 2-3mg/100g",
+            "Abats (foie): 10-15mg/100g (limiter à 1×/semaine)",
+            "Boudin noir: 20mg/100g",
+            "Viandes blanches (poulet): 1mg/100g",
+            "Poissons/fruits de mer: 1-3mg/100g",
+            "Absorption: 15-35%"
+          ],
+          "non_heme_iron_lower_absorption": [
+            "Légumes verts foncés (épinards, brocoli): 1-4mg/100g",
+            "Légumineuses (lentilles, haricots): 3-8mg/100g",
+            "Fruits secs (abricots, raisins): 2-5mg/100g",
+            "Céréales enrichies",
+            "Quinoa: 4mg/100g",
+            "Absorption: 2-10% (nécessite vitamine C)"
+          ]
+        },
+        "enhance_absorption": [
+          "Associer vitamine C à chaque repas (fruits, jus d'orange)",
+          "Cuisson dans poêle en fonte (augmente teneur)",
+          "Germination légumineuses (améliore biodisponibilité)"
+        ],
+        "avoid_with_iron": [
+          "Thé et café (tanins bloquent absorption): attendre 2h",
+          "Produits laitiers (calcium inhibe): séparer de 2h",
+          "Céréales complètes (phytates): avec vitamine C",
+          "Suppléments calcium/zinc: prendre à distance"
+        ]
+      },
+      "home_care": [
+        "Observance stricte du traitement (crucial)",
+        "Repos selon fatigue",
+        "Éviter les efforts intenses initialement",
+        "Surveillance de l'amélioration des symptômes",
+        "Noter les effets secondaires digestifs"
+      ],
+      "monitoring": [
+        "NFS de contrôle après 1 mois (hémoglobine devrait augmenter 1-2g/dL)",
+        "Ferritine à 3 mois (objectif >30-50 ng/mL)",
+        "Réticulocytes à J7-J10 (signe de réponse)",
+        "Surveillance clinique: fatigue, pâleur"
+      ],
+      "expected_improvement": {
+        "symptoms": "Amélioration fatigue en 2-4 semaines",
+        "hemoglobin": "Augmentation 1-2g/dL/mois",
+        "normalization": "2-3 mois pour normalisation",
+        "reserves": "3-6 mois pour reconstituer réserves (ferritine)"
+      },
+      "treat_underlying_cause": {
+        "women": [
+          "Ménorragies: traitement hormonal, DIU hormonal",
+          "Fibrome utérin: évaluation gynécologique"
+        ],
+        "digestive": [
+          "Saignement digestif: endoscopie haute et basse",
+          "Ulcère: IPP, éradication H. pylori",
+          "Maladie cœliaque: régime sans gluten",
+          "Maladie de Crohn: traitement spécifique"
+        ],
+        "dietary": "Correction régime alimentaire, végétariens: supplément systématique"
+      },
+      "special_populations": {
+        "pregnancy": [
+          "Besoins augmentés: 27-30mg/jour",
+          "Supplémentation systématique dès T2",
+          "Fer IV si anémie sévère (Hb <10g/dL)"
+        ],
+        "elderly": [
+          "Rechercher saignement digestif (cancer)",
+          "Fer mieux toléré si doses alternées",
+          "Surveillance interactions médicamenteuses"
+        ],
+        "athletes": [
+          "Pertes accrues (hémolyse, sueurs)",
+          "Dépistage régulier",
+          "Supplémentation préventive si besoin"
+        ]
+      },
+      "prevention": [
+        "Apport fer suffisant: 8-18mg/jour selon âge/sexe",
+        "Alimentation variée équilibrée",
+        "Vitamine C avec repas",
+        "Dépistage si facteurs de risque",
+        "Traitement règles abondantes"
+      ],
+      "when_to_consult": [
+        "Fatigue persistante malgré traitement",
+        "Intolérance fer oral",
+        "Pas d'amélioration après 1 mois",
+        "Saignements persistants",
+        "Anémie sévère (Hb <8g/dL)"
+      ],
+      "prognosis": "Excellent si traité et cause corrigée. Récidive fréquente si cause non traitée.",
+      "duration": "3-6 mois de traitement. Contrôle ferritine annuel si facteurs de risque."
+    },
+    {
+      "id": "TRT008",
+      "disease_id": "DIS010",
+      "disease_name": "Diabète de type 2",
+      "treatment_type": "modification du mode de vie + médicaments",
+      "severity": "modérée",
+      "treatment_goals": [
+        "HbA1c <7% (objectif général)",
+        "Glycémie à jeun: 0.80-1.30 g/L",
+        "Glycémie post-prandiale <1.80 g/L",
+        "Prévenir les complications micro et macrovasculaires",
+        "Réduire facteurs de risque cardiovasculaire"
+      ],
+      "stepwise_approach": {
+        "step_1": "Mesures hygiéno-diététiques seules (si HbA1c <7.5%)",
+        "step_2": "Metformine + MHD (si HbA1c 7-9%)",
+        "step_3": "Bithérapie orale ou GLP-1 (si HbA1c >7% après 3 mois)",
+        "step_4": "Trithérapie ou insuline (si HbA1c >8%)",
+        "duration_before_intensification": "3 mois"
+      },
+      "medications": {
+        "first_line": [
+          {
+            "name": "Metformine",
+            "dosage": "500mg puis augmentation progressive jusqu'à 2000-3000mg/jour",
+            "timing": "Pendant ou après repas (2-3 prises/jour)",
+            "mechanism": "Réduit production hépatique glucose, améliore sensibilité insuline",
+            "advantages": [
+              "Efficace (baisse HbA1c 1-2%)",
+              "Pas d'hypoglycémie",
+              "Perte de poids modeste",
+              "Protection cardiovasculaire",
+              "Peu coûteux"
+            ],
+            "side_effects": "Troubles digestifs (diarrhée, nausées) - transitoires",
+            "contraindications": "Insuffisance rénale sévère (DFG <30), insuffisance hépatique",
+            "precautions": "Arrêt avant produit de contraste iodé, vitamine B12 (surveillance)"
+          }
+        ],
+        "second_line": [
+          {
+            "name": "Sulfamides hypoglycémiants",
+            "examples": "Gliclazide, Glimépiride",
+            "dosage": "Gliclazide 30-120mg/jour",
+            "mechanism": "Stimule sécrétion insuline",
+            "efficacy": "Baisse HbA1c 1-1.5%",
+            "side_effects": "Hypoglycémie (risque), prise de poids",
+            "when": "Si intolérance metformine ou HbA1c >9%"
+          },
+          {
+            "name": "Inhibiteurs DPP-4 (gliptines)",
+            "examples": "Sitagliptine, Vildagliptine",
+            "dosage": "Sitagliptine 100mg/jour",
+            "mechanism": "Augmente sécrétion insuline glucose-dépendante",
+            "advantages": "Pas d'hypoglycémie, neutre sur poids, bonne tolérance",
+            "efficacy": "Baisse HbA1c 0.5-0.8%"
+          },
+          {
+            "name": "Agonistes GLP-1 (incrétinomimétiques)",
+            "examples": "Liraglutide, Sémaglutide, Dulaglutide",
+            "dosage": "Injection SC hebdomadaire ou quotidienne",
+            "mechanism": "Mime GLP-1: stimule insuline, inhibe glucagon, ralentit vidange gastrique",
+            "advantages": [
+              "Excellente efficacité (HbA1c -1 à -1.5%)",
+              "Perte de poids significative (3-5kg)",
+              "Protection cardiovasculaire prouvée",
+              "Pas d'hypoglycémie"
+            ],
+            "side_effects": "Nausées initiales (transitoires), risque pancréatite (rare)",
+            "indication": "Surpoids/obésité + diabète, prévention CV"
+          },
+          {
+            "name": "Inhibiteurs SGLT-2 (gliflozines)",
+            "examples": "Empagliflozine, Dapagliflozine, Canagliflozine",
+            "dosage": "Empagliflozine 10-25mg/jour",
+            "mechanism": "Augmente excrétion urinaire glucose",
+            "advantages": [
+              "Baisse HbA1c 0.5-1%",
+              "Perte de poids (2-3kg)",
+              "Baisse tension artérielle",
+              "Protection cardiaque et rénale ++",
+              "Pas d'hypoglycémie"
+            ],
+            "side_effects": "Mycoses génitales, infections urinaires, acidocétose (rare)",
+            "indication": "Insuffisance cardiaque ou rénale chronique associée"
+          }
+        ],
+        "insulin": {
+          "when": [
+            "HbA1c >10% ou glycémie >3g/L",
+            "Échec trithérapie orale",
+            "Contre-indication autres traitements",
+            "Décompensation aiguë"
+          ],
+          "types": {
+            "basal": "Insuline lente (glargine, détémir) - 1×/jour",
+            "bolus": "Insuline rapide aux repas",
+            "premix": "Mélange rapide/lente - 2×/jour"
+          },
+          "initiation": "Débuter par insuline basale + metformine",
+          "dosage": "0.1-0.2 UI/kg/jour initialement, ajuster selon glycémie",
+          "monitoring": "Autosurveillance glycémique quotidienne"
+        }
+      },
+      "lifestyle_modifications": {
+        "weight_loss": {
+          "target": "5-10% du poids initial (effet majeur sur glycémie)",
+          "approach": "Déficit calorique 500-750 kcal/jour",
+          "expected": "Peut induire rémission si perte ≥15kg et diabète récent"
+        },
+        "physical_activity": [
+          "150 min/semaine activité modérée (30 min × 5/semaine)",
+          "Exercice aérobie: marche rapide, vélo, natation",
+          "Renforcement musculaire 2-3×/semaine",
+          "Réduire sédentarité: se lever toutes les 30 min",
+          "Bénéfice: améliore sensibilité insuline, baisse HbA1c 0.5-1%"
+        ]
+      },
+      "diet_recommendations": {
+        "general_principles": [
+          "Pas de régime restrictif strict (inefficace long terme)",
+          "Approche méditerranéenne privilégiée",
+          "Répartition glucides sur 3 repas réguliers",
+          "Pas de grignotage entre repas"
+        ],
+        "carbohydrates": [
+          "Privilégier glucides complexes à IG bas",
+          "Céréales complètes (pain complet, riz brun, quinoa)",
+          "Légumineuses (lentilles, pois chiches, haricots)",
+          "Limiter sucres rapides (bonbons, sodas, pâtisseries)",
+          "Fruits entiers OK (fibres ralentissent absorption) - 2-3/jour",
+          "Éviter jus de fruits (pic glycémique)"
+        ],
+        "fiber": [
+          "30-40g/jour minimum",
+          "Légumes à volonté (1/2 assiette)",
+          "Ralentit absorption glucose"
+        ],
+        "protein": [
+          "Viandes maigres, poissons (2-3×/semaine)",
+          "Œufs, produits laitiers",
+          "Protéines végétales (légumineuses, tofu)"
+        ],
+        "fats": [
+          "Privilégier graisses insaturées (huile olive, avocat, noix)",
+          "Limiter graisses saturées (viandes grasses, charcuterie)",
+          "Éviter graisses trans (industrielles)"
+        ],
+        "portions": [
+          "Méthode assiette: 1/2 légumes, 1/4 protéines, 1/4 féculents",
+          "Diminuer progressivement tailles portions",
+          "Manger lentement, mastication"
+        ],
+        "avoid": [
+          "Sodas et boissons sucrées",
+          "Pâtisseries, viennoiseries",
+          "Fast-food, plats industriels",
+          "Charcuterie, viandes transformées",
+          "Alcool (max 1-2 verres/jour, jamais à jeun)"
+        ]
+      },
+      "monitoring": {
+        "hba1c": "Tous les 3 mois jusqu'à objectif, puis tous les 6 mois si stable",
+        "glycemie_capillaire": [
+          "Autosurveillance si insuline ou sulfamides",
+          "À jeun et 2h après repas",
+          "Fréquence selon traitement"
+        ],
+        "screening_complications": {
+          "annual": [
+            "Fond d'œil (rétinopathie)",
+            "Créatininémie + albuminurie (néphropathie)",
+            "Examen pieds (neuropathie, artériopathie)",
+            "Bilan lipidique",
+            "ECG"
+          ],
+          "regular": [
+            "Tension artérielle (chaque consultation)",
+            "Poids, IMC",
+            "Monofilament (sensibilité pieds)"
+          ]
+        }
+      },
+      "foot_care": [
+        "Examen quotidien des pieds (miroir)",
+        "Lavage quotidien, séchage entre orteils",
+        "Hydratation (crème, pas entre orteils)",
+        "Chaussures confortables adaptées",
+        "Pas de marche pieds nus",
+        "Coupe ongles droite",
+        "Consultation podologue si besoin"
+      ],
+      "cardiovascular_protection": [
+        "Contrôle tension artérielle (<130/80 mmHg)",
+        "Statine si LDL >1g/L (objectif <0.7g/L)",
+        "Aspirine si haut risque cardiovasculaire",
+        "Arrêt tabac ABSOLU",
+        "Contrôle tous facteurs de risque"
+      ],
+      "follow_up": [
+        "Consultation tous les 3 mois initialement",
+        "Tous les 6 mois si équilibre stable",
+        "Éducation thérapeutique",
+        "Diététicien(ne)",
+        "Activité physique adaptée (APA)"
+      ],
+      "complications_prevention": {
+        "microvascular": [
+          "Rétinopathie: équilibre glycémique strict",
+          "Néphropathie: contrôle TA, IEC/ARA2 si albuminurie",
+          "Neuropathie: équilibre glycémique, soins pieds"
+        ],
+        "macrovascular": [
+          "AVC, infarctus: statine, aspirine, TA",
+          "Artériopathie: arrêt tabac, exercice"
+        ]
+      },
+      "prognosis": "Bon si bien suivi et contrôle glycémique. Espérance de vie normale possible. Rémission possible si perte poids majeure et diabète récent.",
+      "remission_possible": "Perte poids >15kg peut induire rémission chez 46-86% si diabète <6 ans (étude DiRECT)"
+    },
+    {
+      "id": "TRT009",
+      "disease_id": "DIS009",
+      "disease_name": "Pneumonie communautaire",
+      "treatment_type": "antibiotiques + support",
+      "severity": "modérée à sévère",
+      "severity_assessment": {
+        "crb65_score": [
+          "C: Confusion mentale (1 point)",
+          "R: Respiratory rate ≥30/min (1 point)",
+          "B: Blood pressure <90 systolique ou ≤60 diastolique (1 point)",
+          "65: Âge ≥65 ans (1 point)"
+        ],
+        "decision": {
+          "0_point": "Ambulatoire (domicile)",
+          "1-2_points": "Hospitalisation courte ou surveillance rapprochée",
+          "3-4_points": "Hospitalisation, possible réanimation"
+        }
+      },
+      "medications": {
+        "ambulatory_mild": [
+          {
+            "name": "Amoxicilline",
+            "dosage": "1g × 3/jour pendant 7-10 jours",
+            "purpose": "Antibiotique bêta-lactamine - couvre pneumocoque",
+            "first_choice": "Première intention si pas d'allergie"
+          },
+          {
+            "name": "Macrolides (si allergie pénicilline)",
+            "examples": "Azithromycine, Clarithromycine",
+            "dosage": "Azithromycine 500mg J1, puis 250mg/jour J2-J5",
+            "purpose": "Alternative si allergie",
+            "note": "Couvre pneumocoque et atypiques"
+          }
+        ],
+        "hospitalized_moderate_severe": [
+          {
+            "name": "Amoxicilline-clavulanate IV",
+            "dosage": "1g × 3-4/jour",
+            "purpose": "Spectre élargi incluant anaérobies"
+          },
+          {
+            "name": "Ceftriaxone IV",
+            "dosage": "1-2g/jour",
+            "purpose": "Céphalosporine 3G - pneumocoque résistant",
+            "combination": "± Macrolide si suspicion atypique"
+          },
+          {
+            "name": "Fluoroquinolones respiratoires",
+            "examples": "Lévofloxacine, Moxifloxacine",
+            "dosage": "Lévofloxacine 500mg × 2/jour IV puis PO",
+            "when": "Alternative ou si allergie bêta-lactamines"
+          }
+        ],
+        "icu_severe": [
+          {
+            "name": "Association bêta-lactamine + macrolide",
+            "example": "Ceftriaxone 2g/jour + Azithromycine 500mg/jour",
+            "duration": "7-14 jours selon évolution"
+          },
+          {
+            "name": "Vancomycine (si SARM suspecté)",
+            "dosage": "15-20mg/kg × 2/jour IV",
+            "when": "Post-grippe, SARM connu"
+          }
+        ]
+      },
+      "supportive_care": {
+        "ambulatory": [
+          "Repos au lit pendant phase aiguë (7-10 jours)",
+          "Hydratation abondante: 2-3L/jour minimum",
+          "Antipyrétiques: paracétamol 1g/6h si fièvre",
+          "Antalgiques si douleur thoracique",
+          "Pas de suppression toux (aide expectoration)",
+          "Humidification air ambiant"
+        ],
+        "hospitalized": [
+          "Oxygénothérapie si SpO2 <90% (objectif >92%)",
+          "Perfusion IV si déshydratation ou vomissements",
+          "Monitoring: FC, TA, FR, SpO2, température",
+          "Kinésithérapie respiratoire",
+          "Mobilisation précoce si possible",
+          "Prévention thromboembolique (HBPM)"
+        ],
+        "icu": [
+          "Oxygène haut débit ou ventilation non invasive",
+          "Intubation et ventilation mécanique si détresse",
+          "Support hémodynamique si choc septique",
+          "Surveillance continue"
+        ]
+      },
+      "home_care": [
+        "Repos strict au lit pendant 7-10 jours",
+        "Position semi-assise pour faciliter respiration",
+        "Hydratation: eau, bouillons, tisanes (2-3L/jour)",
+        "Humidifier air (40-60%)",
+        "Aérer la chambre régulièrement",
+        "Exercices respiratoires doux (inspiration profonde)",
+        "Isolement si contagieux (masque)",
+        "Lavage mains fréquent"
+      ],
+      "diet_recommendations": [
+        "Alimentation légère digeste initialement",
+        "Bouillons nutritifs (poulet, légumes)",
+        "Fruits riches vitamine C (oranges, kiwis)",
+        "Protéines pour récupération (viande, poisson, œufs)",
+        "Miel (effet antitussif)",
+        "Éviter: alcool, tabac (ARRÊT OBLIGATOIRE)"
+      ],
+      "breathing_exercises": [
+        "Respiration diaphragmatique profonde (10× / 2h)",
+        "Spirométrie incitative si disponible",
+        "Toux contrôlée pour expectoration",
+        "Drainage postural si besoin"
+      ],
+      "duration": {
+        "antibiotics": "7-10 jours (ambulatoire), 7-14 jours (hospitalisé)",
+        "fever": "Chute en 48-72h sous antibiotiques",
+        "symptoms": "Amélioration 3-5 jours",
+        "radiological": "Normalisation radio en 4-6 semaines",
+        "full_recovery": "2-3 semaines pour récupération complète"
+      },
+      "monitoring_response": [
+        "Réévaluation clinique à 48-72h",
+        "Si pas d'amélioration: radio contrôle, changer antibiotique",
+        "Critères amélioration: baisse fièvre, diminution dyspnée, appétit",
+        "Radio thorax contrôle à 6 semaines (surtout >50 ans, fumeurs)"
+      ],
+      "warning_signs": [
+        "Aggravation dyspnée ou SpO2 <90%",
+        "Fièvre persistante >5 jours",
+        "Altération conscience, confusion",
+        "Douleur thoracique intense",
+        "Hémoptysie importante",
+        "Hypotension, tachycardie"
+      ],
+      "hospitalization_criteria": [
+        "Score CRB-65 ≥2",
+        "Hypoxémie SpO2 <90%",
+        "Comorbidités sévères",
+        "Âge >65 ans avec signes gravité",
+        "Impossibilité traitement oral",
+        "Isolement social, précarité"
+      ],
+      "follow_up": [
+        "Consultation contrôle à 48-72h si ambulatoire",
+        "Radio thorax contrôle à 6 semaines",
+        "Arrêt tabac si fumeur (PRIORITÉ)",
+        "Vaccination antigrippale et antipneumococcique",
+        "Rééducation respiratoire si besoin"
+      ],
+      "prevention": [
+        "Vaccination antigrippale annuelle",
+        "Vaccination antipneumococcique (>65 ans, comorbidités)",
+        "Prevenar 13 + Pneumovax 23",
+        "Arrêt tabac",
+        "Hygiène mains",
+        "Éviter contacts malades"
+      ],
+      "complications": [
+        "Pleurésie purulente (empyème)",
+        "Abcès pulmonaire",
+        "Sepsis, choc septique",
+        "Insuffisance respiratoire aiguë",
+        "Décès (1-5% ambulatoire, 10-30% hospitalisé)"
+      ],
+      "prognosis": {
+        "ambulatory": "Excellent, guérison >95%",
+        "hospitalized": "Bon si traité précocement, mortalité 5-10%",
+        "icu": "Réservé, mortalité 20-30%",
+        "factors": "Âge, comorbidités, précocité traitement"
+      },
+      "return_activities": {
+        "work": "2-3 semaines selon profession",
+        "sport": "Progressif après 4-6 semaines",
+        "full_recovery": "4-8 semaines"
+      }
+    },
+    {
+      "id": "TRT010",
+      "disease_id": "DIS011",
+      "disease_name": "COVID-19",
+      "treatment_type": "support + antiviraux si risque",
+      "severity": "légère à critique",
+      "severity_classification": {
+        "mild": "Symptômes sans dyspnée, SpO2 >94%",
+        "moderate": "Pneumonie, SpO2 90-94%",
+        "severe": "Pneumonie sévère, SpO2 <90%, FR >30",
+        "critical": "SDRA, choc septique, défaillance organes"
+      },
+      "medications": {
+        "antiviral": [
+          {
+            "name": "Paxlovid (Nirmatrelvir/Ritonavir)",
+            "dosage": "300mg/100mg × 2/jour pendant 5 jours",
+            "when": "Dans les 5 jours après début symptômes",
+            "indication": [
+              "Patients à risque de forme grave",
+              "Non vaccinés ou immunodéprimés",
+              "Âge >65 ans avec comorbidités"
+            ],
+            "efficacy": "Réduction hospitalisation/décès 89%",
+            "precautions": "Interactions médicamenteuses nombreuses",
+            "contraindications": "Insuffisance rénale/hépatique sévère"
+          },
+          {
+            "name": "Remdesivir (Veklury)",
+            "dosage": "200mg J1, puis 100mg/jour J2-J3",
+            "route": "Perfusion IV",
+            "when": "Hospitalisation, oxygène",
+            "efficacy": "Réduit durée hospitalisation"
+          }
+        ],
+        "monoclonal_antibodies": [
+          {
+            "name": "Anticorps monoclonaux",
+            "note": "Peu utilisés (résistance variants)",
+            "when": "Cas particuliers immunodéprimés"
+          }
+        ],
+        "corticosteroids": [
+          {
+            "name": "Dexaméthasone",
+            "dosage": "6mg/jour pendant 10 jours",
+            "route": "PO ou IV",
+            "when": "Si besoin d'oxygène (SpO2 <94%)",
+            "efficacy": "Réduction mortalité 30% si oxygène",
+            "important": "NE PAS donner si forme légère sans oxygène"
+          }
+        ],
+        "symptomatic": [
+          {
+            "name": "Paracétamol",
+            "dosage": "1g/6h si fièvre >38.5°C",
+            "purpose": "Antipyrétique, antalgique"
+          }
+        ]
+      },
+      "home_care": {
+        "mild_cases": [
+          "Isolement strict 5-7 jours",
+          "Repos au lit pendant phase aiguë",
+          "Hydratation abondante 2-3L/jour",
+          "Antipyrétiques si fièvre",
+          "Surveillance SpO2 si oxymètre disponible",
+          "Position prône (ventre) 2-3h/jour si essoufflement léger",
+          "Aération régulière chambre",
+          "Port masque chirurgical si contact nécessaire"
+        ],
+        "isolation_rules": [
+          "Isolement minimum 5 jours après début symptômes",
+          "Sortie possible si apyrexie 48h et amélioration",
+          "Port masque 48h supplémentaires",
+          "Éviter contacts personnes fragiles 10 jours"
+        ]
+      },
+      "oxygen_therapy": {
+        "when": "SpO2 <94% (objectif 92-96%)",
+        "types": [
+          "Lunettes nasales: 1-5 L/min",
+          "Masque haute concentration: 10-15 L/min",
+          "Oxygène haut débit nasal: si échec",
+          "Ventilation non invasive: si détresse"
+        ]
+      },
+      "hospitalization_criteria": [
+        "SpO2 <94% air ambiant",
+        "Fréquence respiratoire >30/min",
+        "Comorbidités + aggravation",
+        "Impossibilité surveillance domicile",
+        "Immunodépression sévère"
+      ],
+      "icu_criteria": [
+        "SpO2 <90% malgré oxygène",
+        "SDRA",
+        "Choc septique",
+        "Défaillance multi-organes"
+      ],
+      "diet_recommendations": [
+        "Alimentation équilibrée riche en protéines",
+        "Fruits et légumes (vitamines)",
+        "Hydratation maximale",
+        "Supplémentation vitamine D si carence (améliore immunité)",
+        "Zinc, vitamine C (bénéfice modeste)"
+      ],
+      "monitoring_at_home": [
+        "Température 2×/jour",
+        "Oxymétrie si disponible (SpO2 >94%)",
+        "Fréquence respiratoire (<24/min)",
+        "État général, fatigue",
+        "Appétit, hydratation"
+      ],
+      "warning_signs_er": [
+        "Difficulté respiratoire importante",
+        "SpO2 <94% ou baisse progressive",
+        "Douleur thoracique persistante",
+        "Confusion, somnolence",
+        "Lèvres/visage bleutés",
+        "Incapacité à s'alimenter/s'hydrater"
+      ],
+      "post_covid_long_covid": {
+        "definition": "Symptômes persistants >4 semaines après infection",
+        "common_symptoms": [
+          "Fatigue intense invalidante",
+          "Dyspnée d'effort",
+          "Troubles cognitifs (brain fog)",
+          "Douleurs",
+          "Troubles du sommeil",
+          "Palpitations"
+        ],
+        "management": [
+          "Repos adapté (pacing)",
+          "Rééducation respiratoire progressive",
+          "Soutien psychologique",
+          "Traitement symptomatique",
+          "Suivi multidisciplinaire"
+        ],
+        "prognosis": "Amélioration progressive sur 6-12 mois généralement"
+      },
+      "prevention": [
+        "Vaccination complète + rappels (efficacité 70-90% formes graves)",
+        "Port masque FFP2 en lieu clos si épidémie",
+        "Aération régulière (renouvellement air)",
+        "Lavage mains fréquent",
+        "Distanciation physique si possible",
+        "Test antigénique si symptômes"
+      ],
+      "vaccination": {
+        "schedule": "2 doses primovaccination + rappels annuels (groupes à risque)",
+        "efficacy": "Réduit formes graves 70-95%",
+        "recommendation": "Vaccination recommandée à tous >12 ans"
+      },
+      "follow_up": [
+        "Consultation si symptômes >7 jours",
+        "Consultation si symptômes persistants >4 semaines (COVID long)",
+        "Surveillance complications: thromboses, myocardite (rares)"
+      ],
+      "prognosis": {
+        "mild": "Guérison 7-14 jours dans 80% cas",
+        "moderate": "Bon avec traitement adapté",
+        "severe": "Mortalité 10-30% selon âge/comorbidités",
+        "long_covid": "10-30% présentent symptômes prolongés"
+      },
+      "return_activities": {
+        "work": "Après apyrexie 48h et amélioration",
+        "sport": "Progressif après 2-4 semaines si forme légère",
+        "caution": "Repos si myocardite suspectée"
+      }
+    },
+    {
+      "id": "TRT011",
+      "disease_id": "DIS012",
+      "disease_name": "Angine bactérienne (streptococcique)",
+      "treatment_type": "antibiotiques si TDR positif",
+      "severity": "modérée",
+      "diagnosis": {
+        "tdr_rapid_test": {
+          "indication": "Score de McIsaac ≥2",
+          "mcisaac_score": [
+            "Fièvre >38°C: 1 point",
+            "Absence de toux: 1 point",
+            "Adénopathies cervicales sensibles: 1 point",
+            "Exsudat amygdalien (pus): 1 point",
+            "Âge 3-14 ans: +1 / 15-44 ans: 0 / >45 ans: -1"
+          ],
+          "decision": [
+            "Score 0-1: Pas de TDR ni antibiotique",
+            "Score 2-3: TDR recommandé",
+            "Score ≥4: TDR fortement recommandé"
+          ],
+          "result": "Antibiotiques UNIQUEMENT si TDR positif (streptocoque A)"
+        }
+      },
+      "medications": {
+        "first_line": [
+          {
+            "name": "Amoxicilline",
+            "dosage_adult": "1g × 2/jour pendant 6 jours",
+            "dosage_child": "50mg/kg/jour en 2 prises pendant 6 jours",
+            "purpose": "Antibiotique de choix",
+            "note": "Respecter la durée (prévention RAA)"
+          }
+        ],
+        "if_allergy": [
+          {
+            "name": "Macrolides",
+            "examples": "Azithromycine, Clarithromycine",
+            "dosage": "Azithromycine 500mg J1, puis 250mg J2-J5",
+            "note": "Alternative si allergie pénicilline"
+          },
+          {
+            "name": "Céphalosporines 2G/3G",
+            "examples": "Céfuroxime, Cefpodoxime",
+            "dosage": "Cefpodoxime 200mg × 2/jour pendant 5 jours",
+            "caution": "Allergie croisée pénicilline (5-10%)"
+          }
+        ],
+        "symptomatic": [
+          {
+            "name": "Paracétamol",
+            "dosage": "1g × 3-4/jour (adulte)",
+            "purpose": "Antalgique, antipyrétique"
+          },
+          {
+            "name": "AINS (Ibuprofène)",
+            "dosage": "400mg × 3/jour",
+            "purpose": "Anti-inflammatoire, antalgique",
+            "duration": "3-5 jours maximum",
+            "caution": "Surveillance si angine (risque phlegmon)"
+          },
+          {
+            "name": "Anesthésiques locaux",
+            "examples": "Pastilles, spray (lidocaïne)",
+            "purpose": "Soulagement local gorge"
+          }
+        ]
+      },
+      "home_care": [
+        "Repos pendant 24-48h",
+        "Hydratation abondante (apaise gorge)",
+        "Boissons tièdes/froides (selon confort)",
+        "Alimentation molle, froide (glace, yaourt, compote)",
+        "Éviter aliments irritants (épices, acides)",
+        "Gargarismes eau salée tiède (soulagement)",
+        "Humidifier air ambiant",
+        "Isolement 24h après début antibiotique"
+      ],
+      "diet_recommendations": [
+        "Aliments mous faciles à avaler: purée, soupe, compote",
+        "Yaourts, glaces (effet anesthésiant froid)",
+        "Miel (effet apaisant, antibactérien léger)",
+        "Boissons tièdes: tisane miel-citron",
+        "Éviter: jus acides (orange), aliments épicés ou croquants"
+      ],
+      "natural_remedies": [
+        "Miel (1 cuillère): apaise et effet antibactérien",
+        "Gargarisme eau salée (1 c.à.c sel/verre eau tiède)",
+        "Tisanes (thym, sauge): effet apaisant",
+        "Pastilles miel/propolis"
+      ],
+      "contagion": [
+        "Très contagieuse avant traitement",
+        "Isolement jusqu'à 24h après début antibiotique",
+        "Éviter contacts rapprochés, partage couverts",
+        "Lavage mains fréquent",
+        "Éternuer dans coude"
+      ],
+      "duration": {
+        "antibiotics": "6-10 jours (respecter IMPÉRATIVEMENT)",
+        "symptoms": "Amélioration 24-48h après début antibiotique",
+        "fever": "Chute en 24-48h",
+        "full_recovery": "3-5 jours",
+        "contagion_end": "24h après première prise antibiotique"
+      },
+      "complications_if_untreated": [
+        "Rhumatisme articulaire aigu (RAA) - grave",
+        "Glomérulonéphrite post-streptococcique",
+        "Abcès péri-amygdalien (phlegmon)",
+        "Scarlatine",
+        "Sepsis (rare)"
+      ],
+      "warning_signs": [
+        "Pas d'amélioration après 48h d'antibiotiques",
+        "Aggravation douleur ou dysphagie",
+        "Trismus (difficulté ouvrir bouche) - phlegmon",
+        "Dyspnée, stridor",
+        "Déshydratation (refus boisson)",
+        "Éruption cutanée (scarlatine possible)"
+      ],
+      "when_to_consult": [
+        "Pas d'amélioration 48h après antibiotiques",
+        "Dysphagie empêchant hydratation",
+        "Difficulté respiratoire",
+        "Gonflement cou important",
+        "Fièvre >39°C persistante >3 jours"
+      ],
+      "follow_up": [
+        "Pas de consultation de contrôle si amélioration",
+        "Importance de finir les antibiotiques (prévention complications)",
+        "Reconsulter si pas d'amélioration ou aggravation"
+      ],
+      "prevention": [
+        "Hygiène des mains rigoureuse",
+        "Éviter partage objets personnels/couverts",
+        "Aération régulière",
+        "Isolement si malade",
+        "Pas de vaccination disponible contre streptocoque A"
+      ],
+      "prognosis": {
+        "with_antibiotics": "Guérison complète en 3-5 jours",
+        "without_treatment": "Résolution spontanée en 7-10 jours mais risque complications",
+        "complications": "Très rares si traitement antibiotique adapté"
+      },
+      "return_activities": {
+        "school_work": "Après 24h d'antibiotiques et apyrexie",
+        "normal_activities": "Dès amélioration (J2-J3)"
+      }
+    }
+  ]
+}
