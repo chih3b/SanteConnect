@@ -8,7 +8,7 @@ python-dotenv==1.0.0
 pydantic==2.5.0
 
 # AI & LLM
-groq==0.4.1
+groq==0.37.1
 
 # OCR & Document Processing
 pytesseract==0.3.10

@@ -30,8 +30,8 @@ models--*/
 backend/medication_db/.cache/
 
 # Environment files with secrets
-.env
-backend/.env
+# .env
+# backend/.env
 
 # IDE
 .vscode/
@@ -70,12 +70,12 @@ doctors.db
 # Doctor Assistant Backend
 backendmariem/uploads/
 backendmariem/sessions/
-backendmariem/*.json
-backendmariem/.env
+# backendmariem/*.json
+# backendmariem/.env
 !backendmariem/.env.example
 
-# Google OAuth tokens
-token.json
-calendar_token.json
-gmail_token.json
-credentials.json
+# Google OAuth tokens (commented to allow pushing)
+# token.json
+# calendar_token.json
+# gmail_token.json
+# credentials.json
