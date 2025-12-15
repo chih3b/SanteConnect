@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send } from 'lucide-react';
+import { Send, Bot, User, Sparkles } from 'lucide-react';
 import { Button } from './ui/button';
 import { useAuth } from './AuthContext';
 
@@ -81,59 +81,36 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
     setLoading(true);
     setIsTyping(true);
 
-    // Create conversation if needed
     let convId = currentConvId;
     if (!convId) {
       convId = await createConversation(userMessage);
     }
 
     try {
-      // Try fast path first
       const fastRes = await fetch(`http://localhost:8000/fast/${encodeURIComponent(userMessage)}`);
       const fastData = await fastRes.json();
       
       if (fastData.success && fastData.method?.includes('fast_path')) {
-        const toolNames = fastData.tool_calls?.map(tc => tc.tool) || [];
-        const localTools = ['get_drug_details', 'search_medication', 'check_pregnancy_safety'];
-        const hasLocal = toolNames.some(t => localTools.some(lt => t.includes(lt)));
-        
         const agentMsg = {
           type: 'agent',
           content: fastData.answer || 'Sorry, I couldn\'t process your request.',
           confidence: fastData.confidence,
-          tools_used: toolNames,
-          method: '⚡ Fast Path',
-          data_sources: { local: hasLocal, mcp: false }
         };
         setMessages(prev => [...prev, agentMsg]);
         
-        // Save to conversation if we have one
         if (convId) {
           saveMessages(convId, userMessage, agentMsg.content);
         }
         return;
       }
 
-      // Fall back to full agent
       const res = await fetch(`http://localhost:8000/agent/query?query=${encodeURIComponent(userMessage)}`);
       const data = await res.json();
-      
-      const toolNames = data.tool_calls?.map(tc => tc.tool) || [];
-      const localTools = ['get_drug_details', 'search_medication', 'check_pregnancy_safety'];
-      const mcpTools = ['check_fda_drug_info', 'search_medical_literature', 'check_drug_recalls'];
-      const webTools = ['search_web_drug_info'];
       
       const agentMsg = {
         type: 'agent',
         content: data.answer || 'Sorry, I couldn\'t process your request.',
         confidence: data.confidence,
-        tools_used: toolNames,
-        method: '🤖 AI Agent',
-        data_sources: {
-          local: toolNames.some(t => localTools.some(lt => t.includes(lt))),
-          mcp: toolNames.some(t => mcpTools.some(mt => t.includes(mt))),
-          web: toolNames.some(t => webTools.some(wt => t.includes(wt)))
-        }
       };
       setMessages(prev => [...prev, agentMsg]);
       
@@ -153,13 +130,11 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
 
   const saveMessages = async (convId, userMsg, agentMsg) => {
     try {
-      // Save user message
       await fetch(`http://localhost:8000/conversations/${convId}/messages`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify({ role: 'user', content: userMsg })
       });
-      // Save agent message
       await fetch(`http://localhost:8000/conversations/${convId}/messages`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
@@ -183,63 +158,105 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
       .replace(/• /g, '• ');
   };
 
+  const quickQuestions = [
+    "What is Paracetamol used for?",
+    "Is Ibuprofen safe during pregnancy?",
+    "What are common side effects of Aspirin?"
+  ];
+
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] sm:h-[calc(100vh-12rem)] bg-background">
+    <div className="flex flex-col h-[calc(100vh-10rem)] sm:h-[calc(100vh-12rem)] bg-background rounded-xl border overflow-hidden">
+      {/* Messages */}
       <div className="flex-1 overflow-y-auto">
+        {messages.length === 1 && messages[0].type === 'agent' && (
+          <div className="p-6 text-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+              <Bot className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Medication Assistant</h3>
+            <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
+              Ask me anything about medications, drug interactions, side effects, or safety information.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {quickQuestions.map((q, i) => (
+                <button
+                  key={i}
+                  onClick={() => setInput(q)}
+                  className="px-3 py-2 bg-muted hover:bg-primary/10 hover:text-primary rounded-lg text-sm transition-colors"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {messages.map((message, index) => (
-          <div key={index} className={`border-b py-4 sm:py-6 ${message.type === 'user' ? 'bg-muted/30' : 'bg-background'}`}>
-            <div className="max-w-3xl mx-auto px-3 sm:px-4">
-              <div className="flex gap-2 sm:gap-3 items-start">
-                {message.type === 'agent' && (
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center shadow-md flex-shrink-0 mt-1">
-                    <div className="w-2 h-2 rounded-full bg-white"></div>
-                  </div>
-                )}
-                {message.type === 'user' && (
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-600 flex items-center justify-center shadow-md flex-shrink-0 mt-1">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                    </svg>
-                  </div>
-                )}
+          <div 
+            key={index} 
+            className={`py-4 px-4 sm:px-6 ${message.type === 'user' ? 'bg-muted/30' : 'bg-background'}`}
+          >
+            <div className="max-w-3xl mx-auto">
+              <div className="flex gap-3 items-start">
+                {/* Avatar */}
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                  message.type === 'agent' 
+                    ? 'bg-gradient-to-br from-blue-500 to-indigo-600' 
+                    : 'bg-gray-600'
+                }`}>
+                  {message.type === 'agent' ? (
+                    <Bot className="w-4 h-4 text-white" />
+                  ) : (
+                    <User className="w-4 h-4 text-white" />
+                  )}
+                </div>
+                
+                {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="prose prose-sm max-w-none text-sm sm:text-base" style={{ lineHeight: message.type === 'agent' ? '1.7' : '1.5' }}
-                    dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }} />
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm font-medium">
+                      {message.type === 'agent' ? 'Assistant' : 'You'}
+                    </span>
+                    {message.confidence && (
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" />
+                        {message.confidence}
+                      </span>
+                    )}
+                  </div>
+                  <div 
+                    className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }} 
+                  />
                 </div>
               </div>
-              {message.confidence && (
-                <div className="text-[10px] sm:text-xs text-muted-foreground mt-2 sm:mt-3 flex items-center gap-1 sm:gap-2 flex-wrap ml-9 sm:ml-11">
-                  {message.method && <span className="font-medium">{message.method}</span>}
-                  {message.method && <span className="hidden sm:inline">•</span>}
-                  <span className="hidden sm:inline">Confidence: {message.confidence}</span>
-                  {message.data_sources?.local && <span className="text-blue-600">🗄️</span>}
-                  {message.data_sources?.mcp && <span className="text-green-600">🌐</span>}
-                  {message.data_sources?.web && <span className="text-purple-600">🔍</span>}
-                </div>
-              )}
             </div>
           </div>
         ))}
+
+        {/* Typing Indicator */}
         {isTyping && (
-          <div className="border-b py-4 sm:py-6 bg-background">
-            <div className="max-w-3xl mx-auto px-3 sm:px-4 flex gap-2 sm:gap-3">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-blue-600 flex items-center justify-center shadow-md">
-                <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
+          <div className="py-4 px-4 sm:px-6 bg-background">
+            <div className="max-w-3xl mx-auto flex gap-3">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center">
+                <Bot className="w-4 h-4 text-white" />
               </div>
-              <div className="flex items-center gap-1 mt-2">
-                <div className="w-2 h-2 rounded-full bg-blue-600 animate-bounce"></div>
-                <div className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" style={{animationDelay:'150ms'}}></div>
-                <div className="w-2 h-2 rounded-full bg-blue-600 animate-bounce" style={{animationDelay:'300ms'}}></div>
+              <div className="flex items-center gap-1.5 py-2">
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" />
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{animationDelay:'150ms'}} />
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{animationDelay:'300ms'}} />
               </div>
             </div>
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
-      <div className="border-t bg-background p-3 sm:p-4">
+
+      {/* Input */}
+      <div className="border-t bg-background p-4">
         <div className="max-w-3xl mx-auto flex gap-2">
           <textarea
-            className="flex-1 min-h-[40px] sm:min-h-[44px] max-h-[150px] sm:max-h-[200px] px-3 py-2 text-sm rounded-md border border-input bg-background resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="flex-1 min-h-[44px] max-h-[150px] px-4 py-3 text-sm rounded-xl border border-input bg-muted/30 resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:border-transparent transition-all"
             placeholder="Ask about medications..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -247,7 +264,12 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
             rows={1}
             disabled={loading}
           />
-          <Button onClick={sendMessage} disabled={!input.trim() || loading} size="icon" className="h-10 w-10 sm:h-11 sm:w-11 btn-glow flex-shrink-0">
+          <Button 
+            onClick={sendMessage} 
+            disabled={!input.trim() || loading} 
+            size="icon" 
+            className="h-11 w-11 rounded-xl btn-glow flex-shrink-0"
+          >
             <Send className="h-4 w-4" />
           </Button>
         </div>

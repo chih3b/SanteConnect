@@ -613,16 +613,11 @@ export default function DoctorDashboard() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Mobile Menu Button */}
-      <button onClick={() => setMobileMenuOpen(true)} className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white border rounded-lg shadow-md">
-        <Menu size={24} />
-      </button>
-
       {/* Mobile Overlay */}
       {mobileMenuOpen && <div className="lg:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileMenuOpen(false)} />}
 
-      {/* Chat History Sidebar */}
-      <aside className={`fixed lg:static left-0 top-0 h-screen w-64 bg-white border-r flex flex-col z-50 transition-transform duration-300 ${showHistory ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
+      {/* Chat History Sidebar - hidden on mobile by default */}
+      <aside className={`fixed lg:static left-0 top-0 h-screen w-64 bg-white border-r flex flex-col z-50 transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
         <div className="flex items-center justify-between gap-3 p-4 border-b">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
@@ -698,9 +693,24 @@ export default function DoctorDashboard() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Header */}
-        <header className="bg-white border-b px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between pl-12 lg:pl-0">
+        {/* Mobile Header with Logo and Menu Button */}
+        <div className="lg:hidden bg-white border-b px-4 py-3 flex items-center gap-3">
+          <button
+            onClick={() => setMobileMenuOpen(true)}
+            className="p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <Menu size={22} />
+          </button>
+          <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+          <div className="flex flex-col">
+            <span className="font-bold text-sm">SanteConnect</span>
+            <span className="text-xs text-gray-500">Doctor Portal</span>
+          </div>
+        </div>
+        
+        {/* Header - Desktop only */}
+        <header className="bg-white border-b px-4 sm:px-6 py-4 hidden lg:block">
+          <div className="flex items-center justify-between">
             <div>
               <h1 className="text-lg font-semibold flex items-center gap-2">
                 <Bot className="w-5 h-5 text-primary" />

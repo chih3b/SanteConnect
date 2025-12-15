@@ -7,6 +7,7 @@ import DoctorLoginPage from "./components/DoctorLoginPage";
 import DoctorDashboard from "./components/DoctorDashboard";
 import Sidebar from "./components/Sidebar";
 import ChatbotPopup from "./components/ChatbotPopup";
+import { Menu } from "lucide-react";
 
 const ImageUpload = React.lazy(() => import("./components/ImageUpload"));
 const ChatInterface = React.lazy(() => import("./components/ChatInterface"));
@@ -64,8 +65,20 @@ function PatientApp() {
         refreshTrigger={refreshTrigger}
       />
       <main className="flex-1 flex flex-col min-h-screen lg:ml-64 ml-0">
-        <header className="bg-card border-b px-4 sm:px-6 py-4">
-          <div className="max-w-6xl mx-auto pl-12 lg:pl-0">
+        {/* Mobile Header with Logo and Menu Button */}
+        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center gap-3">
+          <button
+            onClick={() => window.openMobileSidebar?.()}
+            className="p-2 hover:bg-muted rounded-lg"
+          >
+            <Menu size={22} />
+          </button>
+          <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+          <span className="font-bold text-sm">SanteConnect</span>
+        </div>
+        
+        <header className="bg-card border-b px-4 sm:px-6 py-4 hidden lg:block">
+          <div className="max-w-6xl mx-auto">
             <h1 className="text-lg sm:text-xl font-semibold">
               {titles[activeTab]}
             </h1>

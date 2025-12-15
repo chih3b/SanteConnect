@@ -1,13 +1,16 @@
 import React, { useState, useRef } from 'react';
-import { Upload, Image as ImageIcon, Camera, X } from 'lucide-react';
+import { Upload, Camera, X, Pill, Sparkles, Loader2, Eye } from 'lucide-react';
 import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent } from './ui/card';
 
 const ImageUpload = ({ setResult, setLoading }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [dragOver, setDragOver] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [stream, setStream] = useState(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [analyzeProgress, setAnalyzeProgress] = useState(0);
+  const [analyzeStage, setAnalyzeStage] = useState('');
   const fileInputRef = useRef(null);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -51,7 +54,7 @@ const ImageUpload = ({ setResult, setLoading }) => {
     try {
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
         video: { 
-          facingMode: 'environment', // Use back camera on mobile
+          facingMode: 'environment',
           width: { ideal: 1920 },
           height: { ideal: 1080 }
         } 
@@ -59,7 +62,6 @@ const ImageUpload = ({ setResult, setLoading }) => {
       setStream(mediaStream);
       setCameraActive(true);
       
-      // Wait for video element to be ready
       setTimeout(() => {
         if (videoRef.current) {
           videoRef.current.srcObject = mediaStream;
@@ -85,15 +87,12 @@ const ImageUpload = ({ setResult, setLoading }) => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     
-    // Set canvas size to match video
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     
-    // Draw video frame to canvas
     const context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     
-    // Convert canvas to blob and create file
     canvas.toBlob((blob) => {
       const file = new File([blob], 'camera-capture.jpg', { type: 'image/jpeg' });
       handleImageSelect(file);
@@ -101,11 +100,37 @@ const ImageUpload = ({ setResult, setLoading }) => {
     }, 'image/jpeg', 0.95);
   };
 
+  const removeImage = () => {
+    setSelectedImage(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   const identifyMedication = async () => {
     if (!selectedImage) return;
 
     setLoading(true);
+    setIsAnalyzing(true);
     setResult(null);
+
+    // Simulate progress
+    const stages = [
+      { progress: 20, stage: '📷 Processing image...' },
+      { progress: 40, stage: '🔍 Detecting medication...' },
+      { progress: 60, stage: '💊 Analyzing packaging...' },
+      { progress: 80, stage: '📚 Searching database...' },
+      { progress: 95, stage: '✨ Finalizing...' },
+    ];
+    
+    let currentStage = 0;
+    const progressInterval = setInterval(() => {
+      if (currentStage < stages.length) {
+        setAnalyzeProgress(stages[currentStage].progress);
+        setAnalyzeStage(stages[currentStage].stage);
+        currentStage++;
+      }
+    }, 600);
 
     const formData = new FormData();
     formData.append('file', selectedImage.file);
@@ -121,13 +146,20 @@ const ImageUpload = ({ setResult, setLoading }) => {
       });
 
       clearTimeout(timeoutId);
+      clearInterval(progressInterval);
+      setAnalyzeProgress(100);
+      setAnalyzeStage('✅ Complete!');
+      
+      await new Promise(r => setTimeout(r, 500));
+      
       const data = await response.json();
       setResult(data);
     } catch (error) {
+      clearInterval(progressInterval);
       if (error.name === 'AbortError') {
         setResult({
           success: false,
-          answer: 'Request timed out. The image may be too complex or the AI model is busy. Please try again or use the Search feature.',
+          answer: 'Request timed out. The image may be too complex. Please try again or use the Search feature.',
           error: 'Timeout'
         });
       } else {
@@ -139,24 +171,31 @@ const ImageUpload = ({ setResult, setLoading }) => {
       }
     } finally {
       setLoading(false);
+      setIsAnalyzing(false);
+      setAnalyzeProgress(0);
+      setAnalyzeStage('');
     }
   };
 
   return (
-    <Card className="card-glow">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <ImageIcon className="h-5 w-5 text-blue-600" />
-          Upload Medication Image
-        </CardTitle>
-        <CardDescription>
-          Take a clear photo of your medication box, bottle, or pill
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <Card className="card-glow overflow-hidden">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-violet-600 to-purple-600 p-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-white/20 rounded-lg backdrop-blur">
+            <Pill className="w-6 h-6 text-white" />
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-white">Medication Identifier</h2>
+            <p className="text-violet-100 text-sm">AI-powered image recognition</p>
+          </div>
+        </div>
+      </div>
+
+      <CardContent className="p-6">
         {cameraActive ? (
           <div className="space-y-4">
-            <div className="relative rounded-lg overflow-hidden bg-black">
+            <div className="relative rounded-xl overflow-hidden bg-black">
               <video
                 ref={videoRef}
                 autoPlay
@@ -167,7 +206,7 @@ const ImageUpload = ({ setResult, setLoading }) => {
             </div>
             <div className="flex gap-2">
               <Button 
-                className="flex-1"
+                className="flex-1 bg-gradient-to-r from-violet-600 to-purple-600"
                 onClick={capturePhoto}
               >
                 <Camera className="h-4 w-4 mr-2" />
@@ -182,41 +221,40 @@ const ImageUpload = ({ setResult, setLoading }) => {
               </Button>
             </div>
           </div>
-        ) : (
-          <>
+        ) : !selectedImage ? (
+          <div className="space-y-4">
+            {/* Upload Area */}
             <div
-              className={`border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-colors ${
+              className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
                 dragOver 
-                  ? 'border-primary bg-primary/5' 
-                  : 'border-border hover:border-primary/50 bg-muted/30'
+                  ? 'border-primary bg-primary/10 scale-[1.02]' 
+                  : 'border-muted-foreground/25 hover:border-primary/50 hover:bg-muted/30'
               }`}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onClick={() => fileInputRef.current?.click()}
             >
-              {selectedImage?.preview ? (
-                <div>
-                  <img 
-                    src={selectedImage.preview} 
-                    alt="Selected medication" 
-                    className="max-w-full max-h-96 mx-auto rounded-lg border"
-                  />
-                  <p className="text-sm text-muted-foreground mt-4">
-                    Click to change image or drag a new one
-                  </p>
+              <div className={`transition-transform duration-300 ${dragOver ? 'scale-110' : 'group-hover:scale-105'}`}>
+                <div className="relative inline-block">
+                  <Upload className={`w-16 h-16 mx-auto mb-4 transition-colors duration-300 ${dragOver ? 'text-primary' : 'text-muted-foreground'}`} />
+                  <Sparkles className={`absolute -top-1 -right-1 w-5 h-5 text-violet-500 ${dragOver ? 'animate-spin' : 'animate-pulse'}`} />
                 </div>
-              ) : (
-                <div>
-                  <Upload className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-base font-medium mb-2">
-                    Drop image here or click to select
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    Supports JPG, PNG, WEBP
-                  </p>
-                </div>
-              )}
+              </div>
+              
+              <p className="text-lg font-semibold mb-2">Drop medication image here</p>
+              <p className="text-sm text-muted-foreground mb-4">
+                or click to browse • PNG, JPG, WEBP supported
+              </p>
+              
+              <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <Eye className="w-3 h-3" /> AI Vision
+                </span>
+                <span className="flex items-center gap-1">
+                  <Pill className="w-3 h-3" /> Drug Detection
+                </span>
+              </div>
             </div>
 
             <input
@@ -227,27 +265,107 @@ const ImageUpload = ({ setResult, setLoading }) => {
               className="hidden"
             />
 
-            <div className="flex gap-2 mt-4">
-              <Button 
-                variant="outline"
-                className="flex-1"
-                onClick={startCamera}
-              >
-                <Camera className="h-4 w-4 mr-2" />
-                Take Photo
-              </Button>
+            {/* Camera Button */}
+            <Button 
+              variant="outline"
+              className="w-full"
+              onClick={startCamera}
+            >
+              <Camera className="h-4 w-4 mr-2" />
+              Take Photo with Camera
+            </Button>
+
+            {/* Tips */}
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { icon: '📦', title: 'Box/Bottle', desc: 'Show the label' },
+                { icon: '💊', title: 'Pills', desc: 'Clear close-up' },
+                { icon: '💡', title: 'Good Light', desc: 'Avoid shadows' }
+              ].map((tip, i) => (
+                <div key={i} className="flex flex-col items-center gap-1 p-3 bg-muted/50 rounded-lg text-center">
+                  <span className="text-xl">{tip.icon}</span>
+                  <p className="text-xs font-medium">{tip.title}</p>
+                  <p className="text-xs text-muted-foreground">{tip.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {/* Image Preview */}
+            <div className="relative rounded-xl overflow-hidden border-2 border-primary/30 shadow-lg">
+              <img 
+                src={selectedImage.preview} 
+                alt="Selected medication" 
+                className={`w-full max-h-80 object-contain bg-gray-50 transition-all duration-300 ${isAnalyzing ? 'opacity-80' : ''}`}
+              />
+              
+              {/* Analyzing Overlay */}
+              {isAnalyzing && (
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-500/10 to-violet-500/20 flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-violet-500 to-transparent" 
+                         style={{ top: `${analyzeProgress}%`, transition: 'top 0.5s ease-out' }} />
+                  </div>
+                  <div className="bg-white/95 backdrop-blur px-6 py-4 rounded-xl shadow-xl">
+                    <div className="flex items-center gap-3">
+                      <Loader2 className="w-6 h-6 text-violet-600 animate-spin" />
+                      <div>
+                        <p className="font-semibold text-violet-900">{analyzeStage}</p>
+                        <div className="w-48 h-2 bg-gray-200 rounded-full mt-2 overflow-hidden">
+                          <div 
+                            className="h-full bg-gradient-to-r from-violet-500 to-purple-600 rounded-full transition-all duration-500"
+                            style={{ width: `${analyzeProgress}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {!isAnalyzing && (
+                <Button
+                  onClick={removeImage}
+                  size="sm"
+                  variant="destructive"
+                  className="absolute top-3 right-3 shadow-lg"
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              )}
             </div>
 
-            {selectedImage && (
+            {/* Action Buttons */}
+            <div className="flex gap-3">
               <Button 
-                className="w-full mt-2 btn-glow"
+                className="flex-1 h-12 text-base bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 btn-glow"
                 onClick={identifyMedication}
+                disabled={isAnalyzing}
               >
-                <ImageIcon className="h-4 w-4 mr-2" />
-                Identify Medication
+                {isAnalyzing ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Analyzing...
+                  </>
+                ) : (
+                  <>
+                    <Pill className="w-5 h-5 mr-2" />
+                    Identify Medication
+                  </>
+                )}
               </Button>
-            )}
-          </>
+              <Button 
+                variant="outline"
+                onClick={removeImage}
+                disabled={isAnalyzing}
+                className="h-12"
+              >
+                <X className="w-4 h-4 mr-2" />
+                Clear
+              </Button>
+            </div>
+          </div>
         )}
       </CardContent>
     </Card>

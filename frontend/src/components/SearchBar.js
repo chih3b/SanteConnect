@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { Search, Pill, Sparkles, TrendingUp, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent } from './ui/card';
 
 const SearchBar = ({ setResult, setLoading }) => {
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const searchMedications = async () => {
-    if (!query.trim()) return;
+  const popularSearches = [
+    'Doliprane', 'Paracétamol', 'Aspirin', 'Ibuprofen', 'Amoxicilline'
+  ];
+
+  const searchMedications = async (searchQuery = query) => {
+    if (!searchQuery.trim()) return;
 
     setLoading(true);
+    setIsSearching(true);
     setResult(null);
     setSearchResults([]);
 
     try {
-      const response = await fetch(`http://localhost:8000/search/${encodeURIComponent(query)}`);
+      const response = await fetch(`http://localhost:8000/search/${encodeURIComponent(searchQuery)}`);
       const data = await response.json();
       
       if (data.results && data.results.length > 0) {
@@ -24,7 +30,7 @@ const SearchBar = ({ setResult, setLoading }) => {
       } else {
         setResult({
           success: false,
-          answer: `No medications found for "${query}".\n\nTips:\n• Try the generic name (e.g., "paracetamol" instead of brand name)\n• Check spelling\n• Try searching by active ingredient\n• Use the AI Assistant for help`
+          answer: `No medications found for "${searchQuery}".\n\nTips:\n• Try the generic name (e.g., "paracetamol" instead of brand name)\n• Check spelling\n• Try searching by active ingredient`
         });
       }
     } catch (error) {
@@ -35,6 +41,7 @@ const SearchBar = ({ setResult, setLoading }) => {
       });
     } finally {
       setLoading(false);
+      setIsSearching(false);
     }
   };
 
@@ -64,83 +71,142 @@ const SearchBar = ({ setResult, setLoading }) => {
     }
   };
 
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Search className="h-5 w-5" />
-          Search Medications
-        </CardTitle>
-        <CardDescription>
-          Search by name, active ingredient, or condition
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div className="flex gap-2">
-          <Input
-            placeholder="e.g., Paracétamol, pain relief, headache..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
-            className="flex-1"
-          />
-          <Button 
-            onClick={searchMedications}
-            disabled={!query.trim()}
-          >
-            <Search className="h-4 w-4 mr-2" />
-            Search
-          </Button>
-        </div>
+  const handleQuickSearch = (term) => {
+    setQuery(term);
+    searchMedications(term);
+  };
 
-        {searchResults.length > 0 && (
-          <div className="mt-6 space-y-3">
-            <h3 className="text-base font-semibold">
-              Search Results ({searchResults.length})
+  return (
+    <div className="space-y-6">
+      {/* Search Card */}
+      <Card className="card-glow overflow-hidden">
+        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-white/20 rounded-lg backdrop-blur">
+              <Search className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-white">Search Medications</h2>
+              <p className="text-emerald-100 text-sm">Find information about any medication</p>
+            </div>
+          </div>
+        </div>
+        
+        <CardContent className="p-6 space-y-4">
+          {/* Search Input */}
+          <div className="flex gap-2">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+              <Input
+                placeholder="Search by name, ingredient, or condition..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
+                className="pl-10 h-12 text-base"
+              />
+            </div>
+            <Button 
+              onClick={() => searchMedications()}
+              disabled={!query.trim() || isSearching}
+              className="h-12 px-6 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700"
+            >
+              {isSearching ? (
+                <Loader2 className="w-5 h-5 animate-spin" />
+              ) : (
+                <>
+                  <Search className="w-4 h-4 mr-2" />
+                  Search
+                </>
+              )}
+            </Button>
+          </div>
+
+          {/* Popular Searches */}
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+              <TrendingUp className="w-4 h-4 text-muted-foreground" />
+              <span className="text-sm text-muted-foreground">Popular searches</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {popularSearches.map((term) => (
+                <button
+                  key={term}
+                  onClick={() => handleQuickSearch(term)}
+                  className="px-3 py-1.5 bg-muted hover:bg-primary/10 hover:text-primary rounded-full text-sm font-medium transition-colors"
+                >
+                  {term}
+                </button>
+              ))}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Search Results */}
+      {searchResults.length > 0 && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-emerald-600" />
+              Found {searchResults.length} medication(s)
             </h3>
-            <p className="text-sm text-muted-foreground mb-4">
-              Click on any result for detailed information
-            </p>
+            <span className="text-sm text-muted-foreground">Click for details</span>
+          </div>
+          
+          <div className="grid gap-3">
             {searchResults.map((result, index) => {
-              // Color code by similarity
-              const similarityColor = 
-                result.similarity_score >= 80 ? 'text-green-600' :
-                result.similarity_score >= 60 ? 'text-yellow-600' :
-                'text-orange-600';
+              const matchColor = 
+                result.similarity_score >= 80 ? 'from-green-500 to-emerald-500' :
+                result.similarity_score >= 60 ? 'from-yellow-500 to-amber-500' :
+                'from-orange-500 to-red-500';
               
               return (
                 <Card 
                   key={index}
-                  className="cursor-pointer hover:border-primary transition-colors"
+                  className="cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden group"
                   onClick={() => getMedicationDetails(result.drug_name)}
                 >
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-base text-primary">
-                        {result.drug_name}
-                      </CardTitle>
-                      <span className={`text-xs font-semibold ${similarityColor}`}>
-                        {result.similarity_score}% match
-                      </span>
+                  <div className="flex">
+                    {/* Match indicator */}
+                    <div className={`w-1.5 bg-gradient-to-b ${matchColor}`} />
+                    
+                    <div className="flex-1 p-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                            <Pill className="w-5 h-5 text-emerald-600" />
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-primary group-hover:underline">
+                              {result.drug_name}
+                            </h4>
+                            <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
+                              {result.info.usage}
+                            </p>
+                            {result.info.dosage && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                💊 {result.info.dosage}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="text-right flex-shrink-0">
+                          <span className={`inline-block px-2.5 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${matchColor}`}>
+                            {result.similarity_score}%
+                          </span>
+                          <p className="text-xs text-muted-foreground mt-1">match</p>
+                        </div>
+                      </div>
                     </div>
-                  </CardHeader>
-                  <CardContent className="space-y-1 text-sm">
-                    <p><span className="font-medium">Usage:</span> {result.info.usage}</p>
-                    <p><span className="font-medium">Dosage:</span> {result.info.dosage}</p>
-                    {result.info.manufacturer && (
-                      <p><span className="font-medium">Manufacturer:</span> {result.info.manufacturer}</p>
-                    )}
-                    <p className="text-primary text-xs mt-2">
-                      Click for detailed information →
-                    </p>
-                  </CardContent>
+                  </div>
                 </Card>
               );
             })}
           </div>
-        )}
-      </CardContent>
-    </Card>
+        </div>
+      )}
+    </div>
   );
 };
 
