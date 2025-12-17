@@ -67,7 +67,7 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
           <img 
             src="/logo.png" 
             alt="SanteConnect Logo" 
-            className="w-10 h-10 object-contain"
+            className="w-10 h-10 object-contain dark:brightness-0 dark:invert"
           />
           <div className="flex flex-col min-w-0">
             <span className="text-sm font-bold">SanteConnect</span>

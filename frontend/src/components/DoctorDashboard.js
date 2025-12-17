@@ -624,7 +624,7 @@ export default function DoctorDashboard() {
       <aside className={`fixed lg:static left-0 top-0 h-screen w-64 bg-card border-r flex flex-col z-50 transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
         <div className="flex items-center justify-between gap-3 p-4 border-b">
           <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
+            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain dark:brightness-0 dark:invert" />
             <div className="flex flex-col">
               <span className="text-sm font-semibold">SanteConnect</span>
               <span className="text-xs text-muted-foreground">Doctor Portal</span>
@@ -729,7 +729,7 @@ export default function DoctorDashboard() {
             >
               <Menu size={22} />
             </button>
-            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain dark:brightness-0 dark:invert" />
             <div className="flex flex-col">
               <span className="font-bold text-sm">SanteConnect</span>
               <span className="text-xs text-muted-foreground">Doctor Portal</span>

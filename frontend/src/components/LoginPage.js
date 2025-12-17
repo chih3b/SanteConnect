@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import ThemeToggle from "./ThemeToggle";
 import { ArrowLeft, Heart, Shield, Clock } from "lucide-react";
 
 const LoginPage = ({ onBack }) => {
@@ -89,20 +90,25 @@ const LoginPage = ({ onBack }) => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain" />
+            <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain dark:brightness-0 dark:invert" />
             <span className="text-xl font-bold">SanteConnect</span>
           </div>
 
-          {/* Back Button */}
-          {onBack && (
-            <button
-              onClick={onBack}
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
-            >
-              <ArrowLeft size={18} />
-              <span className="text-sm">Back to home</span>
-            </button>
-          )}
+          {/* Theme Toggle & Back Button */}
+          <div className="flex items-center justify-between mb-6">
+            {onBack ? (
+              <button
+                onClick={onBack}
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft size={18} />
+                <span className="text-sm">Back to home</span>
+              </button>
+            ) : <div />}
+            <ThemeToggle />
+          </div>
+
+
 
           <Card className="p-6 sm:p-8 card-glow">
             {/* Header */}

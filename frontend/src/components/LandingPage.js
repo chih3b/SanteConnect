@@ -181,11 +181,11 @@ export default function LandingPage({ onSelectRole }) {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain" />
+              <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain dark:brightness-0 dark:invert" />
               <span className="text-xl font-bold text-foreground">SanteConnect</span>
             </div>
 
@@ -273,7 +273,7 @@ export default function LandingPage({ onSelectRole }) {
           <div key={index} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             <div className="absolute inset-0">
               <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70" />
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70 dark:from-blue-900/95 dark:to-blue-800/85" />
             </div>
             <div className="relative h-full flex items-center">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -317,7 +317,7 @@ export default function LandingPage({ onSelectRole }) {
       </section>
 
       {/* Stats */}
-      <section id="stats-section" data-animate className="py-16 bg-primary">
+      <section id="stats-section" data-animate className="py-16 bg-primary dark:bg-blue-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -561,7 +561,7 @@ export default function LandingPage({ onSelectRole }) {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-primary relative overflow-hidden">
+      <section className="py-24 bg-primary dark:bg-blue-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />

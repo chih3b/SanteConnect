@@ -76,7 +76,7 @@ function PatientApp() {
             >
               <Menu size={22} />
             </button>
-            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain dark:brightness-0 dark:invert" />
             <span className="font-bold text-sm">SanteConnect</span>
           </div>
           <ThemeToggle />

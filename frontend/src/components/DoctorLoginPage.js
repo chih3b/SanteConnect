@@ -109,7 +109,7 @@ const DoctorLoginPage = ({ onBack }) => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-3 mb-8">
-            <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain" />
+            <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain dark:brightness-0 dark:invert" />
             <span className="text-xl font-bold">SanteConnect</span>
           </div>
 
