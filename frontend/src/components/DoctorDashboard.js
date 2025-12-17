@@ -721,18 +721,21 @@ export default function DoctorDashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header with Logo and Menu Button */}
-        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center gap-3">
-          <button
-            onClick={() => setMobileMenuOpen(true)}
-            className="p-2 hover:bg-muted rounded-lg"
-          >
-            <Menu size={22} />
-          </button>
-          <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
-          <div className="flex flex-col">
-            <span className="font-bold text-sm">SanteConnect</span>
-            <span className="text-xs text-muted-foreground">Doctor Portal</span>
+        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="p-2 hover:bg-muted rounded-lg"
+            >
+              <Menu size={22} />
+            </button>
+            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+            <div className="flex flex-col">
+              <span className="font-bold text-sm">SanteConnect</span>
+              <span className="text-xs text-muted-foreground">Doctor Portal</span>
+            </div>
           </div>
+          <ThemeToggle />
         </div>
         
         {/* Header - Desktop only */}

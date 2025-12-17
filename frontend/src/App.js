@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card } from "./components/ui/card";
 import { AuthProvider, useAuth } from "./components/AuthContext";
 import { ThemeProvider } from "./components/ThemeContext";
+import ThemeToggle from "./components/ThemeToggle";
 import LoginPage from "./components/LoginPage";
 import LandingPage from "./components/LandingPage";
 import DoctorLoginPage from "./components/DoctorLoginPage";
@@ -67,25 +68,31 @@ function PatientApp() {
       />
       <main className="flex-1 flex flex-col min-h-screen lg:ml-64 ml-0">
         {/* Mobile Header with Logo and Menu Button */}
-        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center gap-3">
-          <button
-            onClick={() => window.openMobileSidebar?.()}
-            className="p-2 hover:bg-muted rounded-lg"
-          >
-            <Menu size={22} />
-          </button>
-          <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
-          <span className="font-bold text-sm">SanteConnect</span>
+        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => window.openMobileSidebar?.()}
+              className="p-2 hover:bg-muted rounded-lg"
+            >
+              <Menu size={22} />
+            </button>
+            <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
+            <span className="font-bold text-sm">SanteConnect</span>
+          </div>
+          <ThemeToggle />
         </div>
         
         <header className="bg-card border-b px-4 sm:px-6 py-4 hidden lg:block">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-lg sm:text-xl font-semibold">
-              {titles[activeTab]}
-            </h1>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
-              {subtitles[activeTab]}
-            </p>
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <div>
+              <h1 className="text-lg sm:text-xl font-semibold">
+                {titles[activeTab]}
+              </h1>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+                {subtitles[activeTab]}
+              </p>
+            </div>
+            <ThemeToggle />
           </div>
         </header>
 
