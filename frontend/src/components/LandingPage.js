@@ -112,18 +112,18 @@ const doctorFeatures = [
   },
   {
     icon: FileText,
-    title: "Document Analysis",
-    description: "Upload medical documents for AI-powered OCR and risk assessment with SMS alerts",
+    title: "Mané Document Analysis",
+    description: "OCR extraction, AI risk assessment, rehospitalization scoring, and automatic SMS alerts to doctors",
   },
   {
     icon: Calendar,
     title: "Appointment Management",
-    description: "View, add, and manage your schedule seamlessly with calendar integration",
+    description: "View, add, and manage your schedule seamlessly with Google Calendar integration",
   },
   {
     icon: Mail,
     title: "Patient Communication",
-    description: "Send emails to patients directly from your dashboard",
+    description: "Send emails to patients directly from your dashboard via Gmail",
   },
 ];
 
@@ -610,9 +610,10 @@ export default function LandingPage({ onSelectRole }) {
               <h4 className="font-semibold mb-4">For Doctors</h4>
               <ul className="space-y-2 text-background/70">
                 <li>AI Assistant</li>
-                <li>Appointment Management</li>
-                <li>Patient Communication</li>
-                <li>Document Processing</li>
+                <li>Mané Document Analysis</li>
+                <li>Risk Assessment Dashboard</li>
+                <li>SMS Alerts</li>
+                <li>Google Calendar Integration</li>
               </ul>
             </div>
 
