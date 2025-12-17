@@ -112,8 +112,8 @@ const doctorFeatures = [
   },
   {
     icon: FileText,
-    title: "Mané Document Analysis",
-    description: "OCR extraction, AI risk assessment, rehospitalization scoring, and automatic SMS alerts to doctors",
+    title: "Document Analysis",
+    description: "AI-powered OCR, risk assessment, rehospitalization scoring, and automatic SMS alerts",
   },
   {
     icon: Calendar,
@@ -610,10 +610,10 @@ export default function LandingPage({ onSelectRole }) {
               <h4 className="font-semibold mb-4">For Doctors</h4>
               <ul className="space-y-2 text-background/70">
                 <li>AI Assistant</li>
-                <li>Mané Document Analysis</li>
+                <li>Document Analysis</li>
                 <li>Risk Assessment Dashboard</li>
-                <li>SMS Alerts</li>
-                <li>Google Calendar Integration</li>
+                <li>SMS Notifications</li>
+                <li>Calendar Integration</li>
               </ul>
             </div>
 
