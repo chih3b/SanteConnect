@@ -589,7 +589,7 @@ export default function LandingPage({ onSelectRole }) {
       </section>
 
       {/* Footer */}
-      <footer className="bg-foreground text-background py-16">
+      <footer className="bg-slate-900 dark:bg-slate-950 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
@@ -597,14 +597,14 @@ export default function LandingPage({ onSelectRole }) {
                 <img src="/logo.png" alt="SanteConnect" className="w-10 h-10 object-contain brightness-0 invert" />
                 <span className="text-xl font-bold">SanteConnect</span>
               </div>
-              <p className="text-background/70">
+              <p className="text-slate-400">
                 Making healthcare accessible, simple, and smart for everyone.
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-4">For Patients</h4>
-              <ul className="space-y-2 text-background/70">
+              <ul className="space-y-2 text-slate-400">
                 <li>Medical Chatbot</li>
                 <li>Symptom Checker</li>
                 <li>Medication Identifier</li>
@@ -614,7 +614,7 @@ export default function LandingPage({ onSelectRole }) {
 
             <div>
               <h4 className="font-semibold mb-4">For Doctors</h4>
-              <ul className="space-y-2 text-background/70">
+              <ul className="space-y-2 text-slate-400">
                 <li>AI Assistant</li>
                 <li>Document Analysis</li>
                 <li>Risk Assessment Dashboard</li>
@@ -625,7 +625,7 @@ export default function LandingPage({ onSelectRole }) {
 
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-background/70">
+              <ul className="space-y-2 text-slate-400">
                 <li>support@santeconnect.com</li>
                 <li>+216 XX XXX XXX</li>
                 <li>Tunis, Tunisia</li>
@@ -633,7 +633,7 @@ export default function LandingPage({ onSelectRole }) {
             </div>
           </div>
 
-          <div className="border-t border-background/20 mt-12 pt-8 text-center text-background/70">
+          <div className="border-t border-slate-700 mt-12 pt-8 text-center text-slate-400">
             <p>&copy; {new Date().getFullYear()} SanteConnect. All rights reserved.</p>
           </div>
         </div>
