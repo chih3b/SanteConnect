@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useAuth } from "./AuthContext";
 import { Button } from "./ui/button";
+import DocumentAnalysis from "./DocumentAnalysis";
 import {
   Upload,
   Send,
@@ -28,6 +29,7 @@ import {
   Layers,
   Sparkles,
   BarChart3,
+  FileText,
 } from "lucide-react";
 
 const API_BASE = "http://localhost:8003/api/assistant";
@@ -327,6 +329,7 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
 // Main Dashboard Component
 export default function DoctorDashboard() {
   const { user, token, logout } = useAuth();
+  const [activeTab, setActiveTab] = useState("chat"); // "chat" or "documents"
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -631,11 +634,34 @@ export default function DoctorDashboard() {
           </button>
         </div>
 
-        <div className="p-3 border-b">
-          <Button onClick={startNewChat} className="w-full btn-glow">
-            <Plus size={18} className="mr-2" />
-            New Chat
-          </Button>
+        {/* Navigation Tabs */}
+        <div className="p-3 border-b space-y-2">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setActiveTab("chat")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "chat" ? "bg-primary text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              <Bot size={16} />
+              Assistant
+            </button>
+            <button
+              onClick={() => setActiveTab("documents")}
+              className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                activeTab === "documents" ? "bg-primary text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              <FileText size={16} />
+              Documents
+            </button>
+          </div>
+          {activeTab === "chat" && (
+            <Button onClick={startNewChat} className="w-full btn-glow">
+              <Plus size={18} className="mr-2" />
+              New Chat
+            </Button>
+          )}
         </div>
 
         {/* Chat History List */}
@@ -713,34 +739,53 @@ export default function DoctorDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-lg font-semibold flex items-center gap-2">
-                <Bot className="w-5 h-5 text-primary" />
-                AI Medical Assistant
+                {activeTab === "chat" ? (
+                  <>
+                    <Bot className="w-5 h-5 text-primary" />
+                    AI Medical Assistant
+                  </>
+                ) : (
+                  <>
+                    <FileText className="w-5 h-5 text-purple-600" />
+                    Document Analysis
+                  </>
+                )}
               </h1>
-              <p className="text-xs text-muted-foreground">Powered by Groq • Google Calendar Connected</p>
+              <p className="text-xs text-muted-foreground">
+                {activeTab === "chat" ? "Powered by Groq • Google Calendar Connected" : "OCR + AI Risk Assessment • Mané Integration"}
+              </p>
             </div>
 
             <div className="flex items-center gap-3">
-              <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${serverStatus === "connected" ? "bg-green-50 text-green-700" : serverStatus === "checking" ? "bg-gray-50 text-gray-500" : "bg-red-50 text-red-700"}`}>
-                <div className={`w-2 h-2 rounded-full ${serverStatus === "connected" ? "bg-green-500 animate-pulse" : serverStatus === "checking" ? "bg-gray-400" : "bg-red-500"}`} />
-                {serverStatus === "connected" ? "Online" : serverStatus === "checking" ? "Connecting..." : "Offline"}
-              </div>
+              {activeTab === "chat" && (
+                <>
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${serverStatus === "connected" ? "bg-green-50 text-green-700" : serverStatus === "checking" ? "bg-gray-50 text-gray-500" : "bg-red-50 text-red-700"}`}>
+                    <div className={`w-2 h-2 rounded-full ${serverStatus === "connected" ? "bg-green-500 animate-pulse" : serverStatus === "checking" ? "bg-gray-400" : "bg-red-500"}`} />
+                    {serverStatus === "connected" ? "Online" : serverStatus === "checking" ? "Connecting..." : "Offline"}
+                  </div>
 
-              <button onClick={openGoogleCalendar} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Open Google Calendar">
-                <Calendar className="w-5 h-5 text-gray-500" />
-              </button>
+                  <button onClick={openGoogleCalendar} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Open Google Calendar">
+                    <Calendar className="w-5 h-5 text-gray-500" />
+                  </button>
 
-              <button onClick={checkServerStatus} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Refresh">
-                <RefreshCw className="w-5 h-5 text-gray-500" />
-              </button>
+                  <button onClick={checkServerStatus} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Refresh">
+                    <RefreshCw className="w-5 h-5 text-gray-500" />
+                  </button>
 
-              <button onClick={() => setShowXAI(!showXAI)} className={`p-2 rounded-lg transition-colors flex items-center gap-1.5 ${showXAI ? "bg-purple-100 text-purple-700" : "hover:bg-gray-100 text-gray-500"}`} title="Toggle XAI Panel">
-                <Brain className="w-5 h-5" />
-              </button>
+                  <button onClick={() => setShowXAI(!showXAI)} className={`p-2 rounded-lg transition-colors flex items-center gap-1.5 ${showXAI ? "bg-purple-100 text-purple-700" : "hover:bg-gray-100 text-gray-500"}`} title="Toggle XAI Panel">
+                    <Brain className="w-5 h-5" />
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </header>
 
-        {/* Chat Area */}
+        {/* Document Analysis Tab */}
+        {activeTab === "documents" && <DocumentAnalysis />}
+
+        {/* Chat Area - Only show when chat tab is active */}
+        {activeTab === "chat" && (
         <div className="flex-1 flex overflow-hidden">
           <div className="flex-1 flex flex-col min-w-0">
             {/* Messages */}
@@ -829,6 +874,7 @@ export default function DoctorDashboard() {
           {/* XAI Panel */}
           <XAIPanel trace={currentXAITrace} isVisible={showXAI} onClose={() => setShowXAI(false)} />
         </div>
+        )}
       </div>
     </div>
   );

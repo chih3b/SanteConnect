@@ -1,0 +1,7 @@
+
+[2025-12-17 17:05:10.819024] SMS REEL
+SID: SMbcba689e2386ae67da1d88d792e2cd88
+À: +21654708360
+Status: sent
+Message: MedAI: Nouveau diagnostic - Patient: Patient - Score: 20% - Diag: Document mdical partiellement - Consultez dashboard
+==================================================

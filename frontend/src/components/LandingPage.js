@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import {
   Stethoscope,
@@ -111,6 +111,11 @@ const doctorFeatures = [
     description: "Your smart helper that understands medical context and assists with daily tasks",
   },
   {
+    icon: FileText,
+    title: "Document Analysis",
+    description: "Upload medical documents for AI-powered OCR and risk assessment with SMS alerts",
+  },
+  {
     icon: Calendar,
     title: "Appointment Management",
     description: "View, add, and manage your schedule seamlessly with calendar integration",
@@ -119,11 +124,6 @@ const doctorFeatures = [
     icon: Mail,
     title: "Patient Communication",
     description: "Send emails to patients directly from your dashboard",
-  },
-  {
-    icon: FileText,
-    title: "Document Processing",
-    description: "Upload and extract text from medical documents automatically",
   },
 ];
 
