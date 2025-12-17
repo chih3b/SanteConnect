@@ -188,11 +188,11 @@ const ChatbotPopup = () => {
   };
 
   const getUrgencyColor = (urgency) => {
-    if (!urgency) return 'bg-gray-100 text-gray-700';
+    if (!urgency) return 'bg-muted text-foreground';
     const u = urgency.toLowerCase();
     if (u.includes('critique')) return 'bg-red-500 text-white animate-pulse';
     if (u.includes('élevé') || u.includes('eleve')) return 'bg-orange-500 text-white';
-    if (u.includes('modéré') || u.includes('modere')) return 'bg-yellow-500 text-gray-900';
+    if (u.includes('modéré') || u.includes('modere')) return 'bg-yellow-500 text-foreground';
     return 'bg-green-500 text-white';
   };
 
@@ -231,7 +231,7 @@ const ChatbotPopup = () => {
       {/* Chat Window */}
       {isOpen && (
         <div
-          className={`fixed bg-white dark:bg-gray-900 shadow-2xl z-50 flex flex-col transition-all duration-300 border border-gray-200 dark:border-gray-700 ${
+          className={`fixed bg-card dark:bg-gray-900 shadow-2xl z-50 flex flex-col transition-all duration-300 border border-border dark:border-gray-700 ${
             isMinimized 
               ? 'bottom-4 right-4 w-64 sm:w-72 h-14 rounded-2xl' 
               : isExpanded 
@@ -242,7 +242,7 @@ const ChatbotPopup = () => {
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-primary rounded-t-2xl">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-card/20 flex items-center justify-center">
                 <Stethoscope size={18} className="text-white" />
               </div>
               <div>
@@ -255,7 +255,7 @@ const ChatbotPopup = () => {
               {!isMinimized && (
                 <button
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="hidden sm:block p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                  className="hidden sm:block p-1.5 hover:bg-card/20 rounded-lg transition-colors"
                   title={isExpanded ? "Réduire" : "Agrandir"}
                 >
                   {isExpanded ? <ChevronDown size={16} className="text-white" /> : <ChevronUp size={16} className="text-white" />}
@@ -264,13 +264,13 @@ const ChatbotPopup = () => {
               {/* Minimize button - hidden on mobile */}
               <button
                 onClick={() => setIsMinimized(!isMinimized)}
-                className="hidden sm:block p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                className="hidden sm:block p-1.5 hover:bg-card/20 rounded-lg transition-colors"
               >
                 {isMinimized ? <Maximize2 size={16} className="text-white" /> : <Minimize2 size={16} className="text-white" />}
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                className="p-1.5 hover:bg-card/20 rounded-lg transition-colors"
               >
                 <X size={16} className="text-white" />
               </button>
@@ -283,11 +283,11 @@ const ChatbotPopup = () => {
               {/* Messages Panel */}
               <div className={`flex flex-col min-h-0 ${isExpanded ? 'flex-1' : 'flex-1'}`}>
                 {/* Phase Progress Bar */}
-                <div className="flex-shrink-0 px-3 py-2 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 px-3 py-2 bg-muted dark:bg-gray-800 border-b border-border dark:border-gray-700">
                   <div className="flex items-center justify-between text-xs">
                     <div className="flex items-center gap-1">
                       <Activity size={12} className="text-primary" />
-                      <span className="text-gray-600 dark:text-gray-400">Phase: {getPhaseLabel(phase)}</span>
+                      <span className="text-muted-foreground dark:text-muted-foreground">Phase: {getPhaseLabel(phase)}</span>
                     </div>
                     {urgencyLevel && (
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getUrgencyColor(urgencyLevel)}`}>
@@ -326,7 +326,7 @@ const ChatbotPopup = () => {
                             ? 'bg-primary text-white rounded-br-md'
                             : msg.isError
                             ? 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-bl-md'
-                            : 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-md'
+                            : 'bg-muted dark:bg-gray-800 text-foreground dark:text-gray-200 rounded-bl-md'
                         }`}
                       >
                         <div className="flex items-start gap-2">
@@ -351,7 +351,7 @@ const ChatbotPopup = () => {
                             <User size={14} className="mt-0.5 flex-shrink-0 text-white/70" />
                           )}
                         </div>
-                        <p className={`text-xs mt-1 ${msg.type === 'user' ? 'text-white/60' : 'text-gray-400'}`}>
+                        <p className={`text-xs mt-1 ${msg.type === 'user' ? 'text-white/60' : 'text-muted-foreground'}`}>
                           {msg.timestamp}
                         </p>
                       </div>
@@ -360,10 +360,10 @@ const ChatbotPopup = () => {
                   
                   {loading && (
                     <div className="flex justify-start">
-                      <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl rounded-bl-md px-4 py-3">
+                      <div className="bg-muted dark:bg-gray-800 rounded-2xl rounded-bl-md px-4 py-3">
                         <div className="flex items-center gap-2">
                           <Loader2 size={16} className="animate-spin text-primary" />
-                          <span className="text-sm text-gray-500">Dr. Raif analyse...</span>
+                          <span className="text-sm text-muted-foreground">Dr. Raif analyse...</span>
                         </div>
                       </div>
                     </div>
@@ -386,7 +386,7 @@ const ChatbotPopup = () => {
                 )}
 
                 {/* Input */}
-                <div className="flex-shrink-0 p-3 border-t border-gray-200 dark:border-gray-700">
+                <div className="flex-shrink-0 p-3 border-t border-border dark:border-gray-700">
                   <div className="flex items-center gap-2">
                     <input
                       ref={inputRef}
@@ -396,7 +396,7 @@ const ChatbotPopup = () => {
                       onKeyDown={handleKeyDown}
                       placeholder={shouldEnd ? "Consultation terminée" : "Décrivez vos symptômes..."}
                       disabled={loading || shouldEnd}
-                      className="flex-1 px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white"
+                      className="flex-1 px-3 py-2 text-sm border border-border dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-800 dark:text-white"
                     />
                     <button
                       onClick={sendMessage}
@@ -427,11 +427,11 @@ const ChatbotPopup = () => {
 
               {/* Info Panel (expanded mode or toggle) */}
               {(isExpanded || showInfoPanel) && (detectedSymptoms.length > 0 || identifiedDisease) && (
-                <div className={`${isExpanded ? 'sm:w-72 sm:border-l border-t sm:border-t-0' : 'border-t'} border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 overflow-y-auto max-h-48 sm:max-h-none`}>
+                <div className={`${isExpanded ? 'sm:w-72 sm:border-l border-t sm:border-t-0' : 'border-t'} border-border dark:border-gray-700 bg-muted dark:bg-gray-800 overflow-y-auto max-h-48 sm:max-h-none`}>
                   <div className="p-3 space-y-3">
                     {/* Symptoms */}
                     {detectedSymptoms.length > 0 && (
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm">
+                      <div className="bg-card dark:bg-gray-900 rounded-lg p-3 shadow-sm">
                         <h4 className="text-xs font-semibold text-red-600 flex items-center gap-1 mb-2">
                           <AlertCircle size={12} />
                           Symptômes détectés ({detectedSymptoms.length})
@@ -448,17 +448,17 @@ const ChatbotPopup = () => {
 
                     {/* Disease */}
                     {identifiedDisease && (
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm">
+                      <div className="bg-card dark:bg-gray-900 rounded-lg p-3 shadow-sm">
                         <h4 className="text-xs font-semibold text-green-600 flex items-center gap-1 mb-2">
                           <Heart size={12} />
                           Diagnostic probable
                         </h4>
-                        <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
+                        <p className="text-sm font-medium text-foreground dark:text-gray-200">
                           {identifiedDisease.name}
                         </p>
                         {identifiedDisease.confidence && (
                           <div className="mt-2">
-                            <div className="flex justify-between text-xs text-gray-500 mb-1">
+                            <div className="flex justify-between text-xs text-muted-foreground mb-1">
                               <span>Confiance</span>
                               <span>{Math.round(identifiedDisease.confidence * 100)}%</span>
                             </div>
@@ -475,16 +475,16 @@ const ChatbotPopup = () => {
 
                     {/* Possible diseases */}
                     {possibleDiseases.length > 0 && (
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm">
+                      <div className="bg-card dark:bg-gray-900 rounded-lg p-3 shadow-sm">
                         <h4 className="text-xs font-semibold text-blue-600 flex items-center gap-1 mb-2">
                           <Stethoscope size={12} />
                           Diagnostics différentiels
                         </h4>
                         <div className="space-y-1">
                           {possibleDiseases.slice(0, 3).map((d, i) => (
-                            <div key={i} className="text-xs text-gray-600 dark:text-gray-400 flex justify-between">
+                            <div key={i} className="text-xs text-muted-foreground dark:text-muted-foreground flex justify-between">
                               <span>{d.name}</span>
-                              <span className="text-gray-400">{Math.round((d.confidence || 0) * 100)}%</span>
+                              <span className="text-muted-foreground">{Math.round((d.confidence || 0) * 100)}%</span>
                             </div>
                           ))}
                         </div>
@@ -493,14 +493,14 @@ const ChatbotPopup = () => {
 
                     {/* Treatments */}
                     {treatments.length > 0 && (
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm">
+                      <div className="bg-card dark:bg-gray-900 rounded-lg p-3 shadow-sm">
                         <h4 className="text-xs font-semibold text-blue-600 flex items-center gap-1 mb-2">
                           <Pill size={12} />
                           Traitements recommandés
                         </h4>
                         <ul className="space-y-1">
                           {treatments.slice(0, 5).map((t, i) => (
-                            <li key={i} className="text-xs text-gray-600 dark:text-gray-400 flex items-start gap-1">
+                            <li key={i} className="text-xs text-muted-foreground dark:text-muted-foreground flex items-start gap-1">
                               <span className="text-blue-500">•</span>
                               {t}
                             </li>
@@ -527,10 +527,10 @@ const ChatbotPopup = () => {
 
                     {/* Report generated */}
                     {shouldEnd && (
-                      <div className="bg-white dark:bg-gray-900 rounded-lg p-3 shadow-sm text-center">
+                      <div className="bg-card dark:bg-gray-900 rounded-lg p-3 shadow-sm text-center">
                         <FileText size={24} className="mx-auto text-primary mb-2" />
-                        <p className="text-xs font-semibold text-gray-800 dark:text-gray-200">Rapport Médical</p>
-                        <p className="text-xs text-gray-500">Généré et envoyé au médecin</p>
+                        <p className="text-xs font-semibold text-foreground dark:text-gray-200">Rapport Médical</p>
+                        <p className="text-xs text-muted-foreground">Généré et envoyé au médecin</p>
                       </div>
                     )}
                   </div>

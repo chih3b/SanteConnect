@@ -804,7 +804,7 @@ const MediBot = () => {
                       {[...Array(5)].map((_, i) => (
                         <div
                           key={i}
-                          className="w-1 bg-white rounded-full animate-pulse"
+                          className="w-1 bg-card rounded-full animate-pulse"
                           style={{
                             height: `${8 + Math.random() * 8}px`,
                             animationDelay: `${i * 100}ms`,
@@ -851,7 +851,7 @@ const MediBot = () => {
                     isSpeaking ? 'bg-purple-500' : loading ? 'bg-yellow-500' : 'bg-green-500'
                   }`}
                 >
-                  <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-card animate-pulse" />
                   {isSpeaking ? 'Parle...' : loading ? 'Réfléchit...' : 'En ligne'}
                 </div>
                 {/* Bot Voice Activity */}
@@ -860,7 +860,7 @@ const MediBot = () => {
                     {[...Array(5)].map((_, i) => (
                       <div
                         key={i}
-                        className="w-1 bg-white rounded-full animate-pulse"
+                        className="w-1 bg-card rounded-full animate-pulse"
                         style={{
                           height: `${12 + Math.random() * 12}px`,
                           animationDelay: `${i * 100}ms`,
@@ -944,7 +944,7 @@ const MediBot = () => {
                   </div>
                 </div>
                 {voiceModeEnabled && input && (
-                  <div className="mt-3 p-2 bg-white/20 rounded-lg">
+                  <div className="mt-3 p-2 bg-card/20 rounded-lg">
                     <p className="text-sm">{input || 'En attente...'}</p>
                   </div>
                 )}

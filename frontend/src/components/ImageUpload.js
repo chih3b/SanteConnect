@@ -182,7 +182,7 @@ const ImageUpload = ({ setResult, setLoading }) => {
       {/* Header */}
       <div className="bg-gradient-to-r from-violet-600 to-purple-600 p-4">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-white/20 rounded-lg backdrop-blur">
+          <div className="p-2 bg-card/20 rounded-lg backdrop-blur">
             <Pill className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -297,7 +297,7 @@ const ImageUpload = ({ setResult, setLoading }) => {
               <img 
                 src={selectedImage.preview} 
                 alt="Selected medication" 
-                className={`w-full max-h-80 object-contain bg-gray-50 transition-all duration-300 ${isAnalyzing ? 'opacity-80' : ''}`}
+                className={`w-full max-h-80 object-contain bg-muted transition-all duration-300 ${isAnalyzing ? 'opacity-80' : ''}`}
               />
               
               {/* Analyzing Overlay */}
@@ -307,7 +307,7 @@ const ImageUpload = ({ setResult, setLoading }) => {
                     <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-violet-500 to-transparent" 
                          style={{ top: `${analyzeProgress}%`, transition: 'top 0.5s ease-out' }} />
                   </div>
-                  <div className="bg-white/95 backdrop-blur px-6 py-4 rounded-xl shadow-xl">
+                  <div className="bg-card/95 backdrop-blur px-6 py-4 rounded-xl shadow-xl">
                     <div className="flex items-center gap-3">
                       <Loader2 className="w-6 h-6 text-violet-600 animate-spin" />
                       <div>

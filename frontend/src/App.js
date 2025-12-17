@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "./components/ui/card";
 import { AuthProvider, useAuth } from "./components/AuthContext";
+import { ThemeProvider } from "./components/ThemeContext";
 import LoginPage from "./components/LoginPage";
 import LandingPage from "./components/LandingPage";
 import DoctorLoginPage from "./components/DoctorLoginPage";
@@ -179,8 +180,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

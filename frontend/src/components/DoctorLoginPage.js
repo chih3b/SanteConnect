@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
+import ThemeToggle from "./ThemeToggle";
 import { ArrowLeft, Stethoscope, Calendar, Mail, Brain } from "lucide-react";
 
 const DoctorLoginPage = ({ onBack }) => {
@@ -112,14 +113,17 @@ const DoctorLoginPage = ({ onBack }) => {
             <span className="text-xl font-bold">SanteConnect</span>
           </div>
 
-          {/* Back Button */}
-          <button
-            onClick={onBack}
-            className="flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6 transition-colors"
-          >
-            <ArrowLeft size={18} />
-            <span className="text-sm">Back to home</span>
-          </button>
+          {/* Theme Toggle & Back Button */}
+          <div className="flex items-center justify-between mb-6">
+            <button
+              onClick={onBack}
+              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <ArrowLeft size={18} />
+              <span className="text-sm">Back to home</span>
+            </button>
+            <ThemeToggle />
+          </div>
 
           <Card className="p-6 sm:p-8 card-glow">
             {/* Header */}

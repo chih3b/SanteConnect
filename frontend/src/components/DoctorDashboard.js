@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useAuth } from "./AuthContext";
 import { Button } from "./ui/button";
 import DocumentAnalysis from "./DocumentAnalysis";
+import ThemeToggle from "./ThemeToggle";
 import {
   Upload,
   Send,
@@ -80,20 +81,20 @@ const EmailPreviewCard = ({ content, onSend, onCancel }) => {
         Email Preview - Review Before Sending
       </div>
 
-      <div className="bg-white rounded-lg p-3 mb-3 border border-amber-200">
+      <div className="bg-card rounded-lg p-3 mb-3 border border-amber-200">
         <div className="flex items-center gap-2 text-sm mb-2">
-          <span className="font-medium text-gray-500 w-16">To:</span>
-          <span className="text-gray-800 font-medium">{emailData.to}</span>
+          <span className="font-medium text-muted-foreground w-16">To:</span>
+          <span className="text-foreground font-medium">{emailData.to}</span>
         </div>
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-medium text-gray-500 w-16">Subject:</span>
-          <span className="text-gray-800">{emailData.subject}</span>
+          <span className="font-medium text-muted-foreground w-16">Subject:</span>
+          <span className="text-foreground">{emailData.subject}</span>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-4 border border-amber-200 mb-4">
+      <div className="bg-card rounded-lg p-4 border border-amber-200 mb-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">Message</span>
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Message</span>
           {!isEditing && (
             <button onClick={handleStartEdit} className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-700 font-medium">
               <Edit3 className="w-3 h-3" />
@@ -112,13 +113,13 @@ const EmailPreviewCard = ({ content, onSend, onCancel }) => {
               <button onClick={() => setIsEditing(false)} className="px-3 py-1.5 bg-blue-600 text-white text-xs rounded-lg">
                 Done
               </button>
-              <button onClick={() => setIsEditing(false)} className="px-3 py-1.5 bg-gray-200 text-gray-700 text-xs rounded-lg">
+              <button onClick={() => setIsEditing(false)} className="px-3 py-1.5 bg-gray-200 text-foreground text-xs rounded-lg">
                 Cancel
               </button>
             </div>
           </div>
         ) : (
-          <div className="whitespace-pre-wrap text-sm text-gray-700 leading-relaxed mt-2 max-h-64 overflow-y-auto">
+          <div className="whitespace-pre-wrap text-sm text-foreground leading-relaxed mt-2 max-h-64 overflow-y-auto">
             {editedMessage || emailData.message}
           </div>
         )}
@@ -133,7 +134,7 @@ const EmailPreviewCard = ({ content, onSend, onCancel }) => {
           <Edit3 className="w-4 h-4" />
           Edit
         </button>
-        <button onClick={onCancel} className="px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all font-medium flex items-center justify-center gap-2">
+        <button onClick={onCancel} className="px-4 py-3 bg-muted text-foreground rounded-lg hover:bg-muted transition-all font-medium flex items-center justify-center gap-2">
           <X className="w-4 h-4" />
           Discard
         </button>
@@ -181,8 +182,8 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
   ];
 
   return (
-    <div className="w-80 bg-white border-l border-gray-200 flex flex-col h-full overflow-hidden">
-      <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-purple-50 to-blue-50">
+    <div className="w-80 bg-card border-l border-border flex flex-col h-full overflow-hidden">
+      <div className="p-4 border-b border-border bg-gradient-to-r from-purple-50 to-blue-50">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <Brain className="w-5 h-5 text-purple-600" />
@@ -194,24 +195,24 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
         </div>
         {hasTrace && (
           <div className="grid grid-cols-3 gap-2 mt-3">
-            <div className="bg-white rounded-lg p-2 text-center border">
-              <div className="text-lg font-bold text-gray-800">{trace.reasoning_chain?.length || 0}</div>
-              <div className="text-xs text-gray-500">Steps</div>
+            <div className="bg-card rounded-lg p-2 text-center border">
+              <div className="text-lg font-bold text-foreground">{trace.reasoning_chain?.length || 0}</div>
+              <div className="text-xs text-muted-foreground">Steps</div>
             </div>
-            <div className="bg-white rounded-lg p-2 text-center border">
-              <div className="text-lg font-bold text-gray-800">{trace.tool_decisions?.length || 0}</div>
-              <div className="text-xs text-gray-500">Tools</div>
+            <div className="bg-card rounded-lg p-2 text-center border">
+              <div className="text-lg font-bold text-foreground">{trace.tool_decisions?.length || 0}</div>
+              <div className="text-xs text-muted-foreground">Tools</div>
             </div>
-            <div className="bg-white rounded-lg p-2 text-center border">
-              <div className="text-lg font-bold text-gray-800">{trace.duration_ms?.toFixed(0) || 0}ms</div>
-              <div className="text-xs text-gray-500">Time</div>
+            <div className="bg-card rounded-lg p-2 text-center border">
+              <div className="text-lg font-bold text-foreground">{trace.duration_ms?.toFixed(0) || 0}ms</div>
+              <div className="text-xs text-muted-foreground">Time</div>
             </div>
           </div>
         )}
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200">
+      <div className="flex border-b border-border">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (
@@ -219,7 +220,7 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex-1 px-3 py-2.5 text-xs font-medium flex items-center justify-center gap-1.5 transition-colors ${
-                activeTab === tab.id ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50" : "text-gray-500 hover:text-gray-700"
+                activeTab === tab.id ? "text-blue-600 border-b-2 border-blue-600 bg-blue-50" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -233,15 +234,15 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
         {!hasTrace ? (
           <div className="h-full flex flex-col items-center justify-center text-center px-4">
             <Brain className="w-12 h-12 text-purple-200 mb-4" />
-            <h4 className="font-semibold text-gray-700 mb-2">No AI Trace Yet</h4>
-            <p className="text-sm text-gray-400">Send a message to see AI reasoning</p>
+            <h4 className="font-semibold text-foreground mb-2">No AI Trace Yet</h4>
+            <p className="text-sm text-muted-foreground">Send a message to see AI reasoning</p>
           </div>
         ) : activeTab === "overview" ? (
           <div className="space-y-4">
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100">
               <div className="flex items-center gap-2 mb-3">
                 <Target className="w-4 h-4 text-blue-600" />
-                <span className="font-medium text-gray-800 text-sm">Detected Intent</span>
+                <span className="font-medium text-foreground text-sm">Detected Intent</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-blue-700 font-semibold capitalize">{trace.intent?.replace(/_/g, " ") || "Unknown"}</span>
@@ -250,16 +251,16 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
             </div>
 
             {trace.entities && Object.keys(trace.entities).length > 0 && (
-              <div className="bg-white rounded-xl p-4 border border-gray-200">
+              <div className="bg-card rounded-xl p-4 border border-border">
                 <div className="flex items-center gap-2 mb-3">
                   <Layers className="w-4 h-4 text-purple-600" />
-                  <span className="font-medium text-gray-800 text-sm">Extracted Entities</span>
+                  <span className="font-medium text-foreground text-sm">Extracted Entities</span>
                 </div>
                 <div className="space-y-2">
                   {Object.entries(trace.entities).map(([key, value]) => (
                     <div key={key} className="flex items-center justify-between text-sm">
-                      <span className="text-gray-500 capitalize">{key.replace(/_/g, " ")}</span>
-                      <span className="font-medium text-gray-800 bg-gray-100 px-2 py-0.5 rounded">
+                      <span className="text-muted-foreground capitalize">{key.replace(/_/g, " ")}</span>
+                      <span className="font-medium text-foreground bg-muted px-2 py-0.5 rounded">
                         {typeof value === "object" ? JSON.stringify(value) : value}
                       </span>
                     </div>
@@ -272,9 +273,9 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
               <div className="bg-amber-50 rounded-xl p-4 border border-amber-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="w-4 h-4 text-amber-600" />
-                  <span className="font-medium text-gray-800 text-sm">AI Explanation</span>
+                  <span className="font-medium text-foreground text-sm">AI Explanation</span>
                 </div>
-                <p className="text-sm text-gray-700 leading-relaxed">{trace.summary}</p>
+                <p className="text-sm text-foreground leading-relaxed">{trace.summary}</p>
               </div>
             )}
           </div>
@@ -282,16 +283,16 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
           <div className="space-y-3">
             {trace.reasoning_chain?.length > 0 ? (
               trace.reasoning_chain.map((step, index) => (
-                <div key={index} className="bg-white rounded-lg border p-3">
+                <div key={index} className="bg-card rounded-lg border p-3">
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-medium text-gray-800 text-sm">{step.action}</span>
+                    <span className="font-medium text-foreground text-sm">{step.action}</span>
                     <ConfidenceBadge level={step.confidence > 0.85 ? "high" : step.confidence > 0.6 ? "medium" : "low"} score={step.confidence} />
                   </div>
-                  <p className="text-xs text-gray-500">{step.reasoning}</p>
+                  <p className="text-xs text-muted-foreground">{step.reasoning}</p>
                 </div>
               ))
             ) : (
-              <div className="text-center py-8 text-gray-400">
+              <div className="text-center py-8 text-muted-foreground">
                 <Activity className="w-8 h-8 mx-auto mb-2 opacity-50" />
                 <p className="text-sm">No reasoning steps recorded</p>
               </div>
@@ -301,19 +302,19 @@ const XAIPanel = ({ trace, isVisible, onClose }) => {
           <div className="space-y-3">
             {trace.tool_decisions?.length > 0 ? (
               trace.tool_decisions.map((decision, index) => (
-                <div key={index} className="bg-white rounded-lg border p-3">
+                <div key={index} className="bg-card rounded-lg border p-3">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${decision.selected ? "bg-green-500" : "bg-gray-300"}`} />
-                      <span className="font-medium text-gray-800 text-sm">{decision.tool}</span>
+                      <span className="font-medium text-foreground text-sm">{decision.tool}</span>
                     </div>
                     <ConfidenceBadge level={decision.confidence > 0.85 ? "high" : "medium"} score={decision.confidence} />
                   </div>
-                  <p className="text-xs text-gray-500">{decision.reasoning}</p>
+                  <p className="text-xs text-muted-foreground">{decision.reasoning}</p>
                 </div>
               ))
             ) : (
-              <div className="text-center py-8 text-gray-400">
+              <div className="text-center py-8 text-muted-foreground">
                 <Cpu className="w-8 h-8 mx-auto mb-2 opacity-50" />
                 <p className="text-sm">No tools were used</p>
               </div>
@@ -561,12 +562,12 @@ export default function DoctorDashboard() {
               isUser
                 ? "bg-primary text-white rounded-tr-sm"
                 : msg.isEmailPreview
-                ? "bg-amber-50 border-2 border-amber-300 text-gray-900 rounded-tl-sm"
+                ? "bg-amber-50 border-2 border-amber-300 text-foreground rounded-tl-sm"
                 : msg.isError
-                ? "bg-red-50 border border-red-200 text-gray-900 rounded-tl-sm"
+                ? "bg-red-50 border border-red-200 text-foreground rounded-tl-sm"
                 : msg.isSuccess
-                ? "bg-green-50 border border-green-200 text-gray-900 rounded-tl-sm"
-                : "bg-white border border-gray-200 text-gray-900 rounded-tl-sm shadow-sm"
+                ? "bg-green-50 border border-green-200 text-foreground rounded-tl-sm"
+                : "bg-card border border-border text-foreground rounded-tl-sm shadow-sm"
             }`}
           >
             {msg.isEmailPreview ? (
@@ -578,7 +579,7 @@ export default function DoctorDashboard() {
             )}
 
             {!isUser && msg.isScheduleRelated && (
-              <div className="mt-3 pt-3 border-t border-gray-200">
+              <div className="mt-3 pt-3 border-t border-border">
                 <button onClick={openGoogleCalendar} className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 font-medium">
                   <Calendar className="w-4 h-4" />
                   Open Google Calendar
@@ -588,7 +589,7 @@ export default function DoctorDashboard() {
             )}
 
             {!isUser && msg.xaiTrace && (
-              <div className="mt-2 pt-2 border-t border-gray-100">
+              <div className="mt-2 pt-2 border-t border-border">
                 <button
                   onClick={() => {
                     setCurrentXAITrace(msg.xaiTrace);
@@ -602,7 +603,7 @@ export default function DoctorDashboard() {
               </div>
             )}
           </div>
-          <div className={`text-xs text-gray-400 mt-1 ${isUser ? "text-right" : ""}`}>{formatTime(msg.timestamp)}</div>
+          <div className={`text-xs text-muted-foreground mt-1 ${isUser ? "text-right" : ""}`}>{formatTime(msg.timestamp)}</div>
         </div>
       </div>
     );
@@ -615,12 +616,12 @@ export default function DoctorDashboard() {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-muted">
       {/* Mobile Overlay */}
       {mobileMenuOpen && <div className="lg:hidden fixed inset-0 bg-black/50 z-40" onClick={() => setMobileMenuOpen(false)} />}
 
       {/* Chat History Sidebar - hidden on mobile by default */}
-      <aside className={`fixed lg:static left-0 top-0 h-screen w-64 bg-white border-r flex flex-col z-50 transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
+      <aside className={`fixed lg:static left-0 top-0 h-screen w-64 bg-card border-r flex flex-col z-50 transition-transform duration-300 ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}>
         <div className="flex items-center justify-between gap-3 p-4 border-b">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
@@ -640,7 +641,7 @@ export default function DoctorDashboard() {
             <button
               onClick={() => setActiveTab("chat")}
               className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                activeTab === "chat" ? "bg-primary text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                activeTab === "chat" ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               }`}
             >
               <Bot size={16} />
@@ -649,7 +650,7 @@ export default function DoctorDashboard() {
             <button
               onClick={() => setActiveTab("documents")}
               className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
-                activeTab === "documents" ? "bg-primary text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                activeTab === "documents" ? "bg-primary text-white" : "bg-muted text-muted-foreground hover:bg-muted"
               }`}
             >
               <FileText size={16} />
@@ -673,25 +674,25 @@ export default function DoctorDashboard() {
           {chatHistory.length === 0 ? (
             <div className="text-center py-8 px-4">
               <History className="w-8 h-8 mx-auto text-gray-200 mb-2" />
-              <p className="text-xs text-gray-400">No conversations yet</p>
+              <p className="text-xs text-muted-foreground">No conversations yet</p>
             </div>
           ) : (
             chatHistory.map((session) => (
               <div
                 key={session.id}
                 onClick={() => loadSession(session)}
-                className={`group mb-2 p-3 rounded-lg cursor-pointer transition-all ${currentSessionId === session.id ? "bg-blue-50 border-2 border-blue-200" : "bg-gray-50 hover:bg-gray-100 border-2 border-transparent"}`}
+                className={`group mb-2 p-3 rounded-lg cursor-pointer transition-all ${currentSessionId === session.id ? "bg-blue-50 border-2 border-blue-200" : "bg-muted hover:bg-muted border-2 border-transparent"}`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-gray-800 truncate">{session.title}</div>
+                    <div className="text-sm font-medium text-foreground truncate">{session.title}</div>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs text-gray-400">{formatDate(session.timestamp)}</span>
+                      <span className="text-xs text-muted-foreground">{formatDate(session.timestamp)}</span>
                       <span className="text-xs text-gray-300">•</span>
-                      <span className="text-xs text-gray-400">{session.messageCount || 0} msgs</span>
+                      <span className="text-xs text-muted-foreground">{session.messageCount || 0} msgs</span>
                     </div>
                   </div>
-                  <button onClick={(e) => deleteSession(session.id, e)} className="opacity-0 group-hover:opacity-100 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded transition-all">
+                  <button onClick={(e) => deleteSession(session.id, e)} className="opacity-0 group-hover:opacity-100 p-1.5 text-muted-foreground hover:text-red-500 hover:bg-red-50 rounded transition-all">
                     <Trash2 className="w-4 h-4" />
                   </button>
                 </div>
@@ -720,25 +721,25 @@ export default function DoctorDashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header with Logo and Menu Button */}
-        <div className="lg:hidden bg-white border-b px-4 py-3 flex items-center gap-3">
+        <div className="lg:hidden bg-card border-b px-4 py-3 flex items-center gap-3">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="p-2 hover:bg-gray-100 rounded-lg"
+            className="p-2 hover:bg-muted rounded-lg"
           >
             <Menu size={22} />
           </button>
           <img src="/logo.png" alt="SanteConnect" className="w-8 h-8 object-contain" />
           <div className="flex flex-col">
             <span className="font-bold text-sm">SanteConnect</span>
-            <span className="text-xs text-gray-500">Doctor Portal</span>
+            <span className="text-xs text-muted-foreground">Doctor Portal</span>
           </div>
         </div>
         
         {/* Header - Desktop only */}
-        <header className="bg-white border-b px-4 sm:px-6 py-4 hidden lg:block">
+        <header className="bg-card border-b px-4 sm:px-6 py-4 hidden lg:block">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-lg font-semibold flex items-center gap-2">
+              <h1 className="text-lg font-semibold flex items-center gap-2 text-foreground">
                 {activeTab === "chat" ? (
                   <>
                     <Bot className="w-5 h-5 text-primary" />
@@ -752,27 +753,28 @@ export default function DoctorDashboard() {
                 )}
               </h1>
               <p className="text-xs text-muted-foreground">
-                {activeTab === "chat" ? "Powered by Groq • Google Calendar Connected" : "OCR + AI Risk Assessment • Mané Integration"}
+                {activeTab === "chat" ? "Powered by Groq • Google Calendar Connected" : "OCR + AI Risk Assessment"}
               </p>
             </div>
 
             <div className="flex items-center gap-3">
+              <ThemeToggle />
               {activeTab === "chat" && (
                 <>
-                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${serverStatus === "connected" ? "bg-green-50 text-green-700" : serverStatus === "checking" ? "bg-gray-50 text-gray-500" : "bg-red-50 text-red-700"}`}>
-                    <div className={`w-2 h-2 rounded-full ${serverStatus === "connected" ? "bg-green-500 animate-pulse" : serverStatus === "checking" ? "bg-gray-400" : "bg-red-500"}`} />
+                  <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium ${serverStatus === "connected" ? "bg-green-500/10 text-green-600 dark:text-green-400" : serverStatus === "checking" ? "bg-muted text-muted-foreground" : "bg-red-500/10 text-red-600 dark:text-red-400"}`}>
+                    <div className={`w-2 h-2 rounded-full ${serverStatus === "connected" ? "bg-green-500 animate-pulse" : serverStatus === "checking" ? "bg-muted-foreground" : "bg-red-500"}`} />
                     {serverStatus === "connected" ? "Online" : serverStatus === "checking" ? "Connecting..." : "Offline"}
                   </div>
 
-                  <button onClick={openGoogleCalendar} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Open Google Calendar">
-                    <Calendar className="w-5 h-5 text-gray-500" />
+                  <button onClick={openGoogleCalendar} className="p-2 hover:bg-muted rounded-lg transition-colors" title="Open Google Calendar">
+                    <Calendar className="w-5 h-5 text-muted-foreground" />
                   </button>
 
-                  <button onClick={checkServerStatus} className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Refresh">
-                    <RefreshCw className="w-5 h-5 text-gray-500" />
+                  <button onClick={checkServerStatus} className="p-2 hover:bg-muted rounded-lg transition-colors" title="Refresh">
+                    <RefreshCw className="w-5 h-5 text-muted-foreground" />
                   </button>
 
-                  <button onClick={() => setShowXAI(!showXAI)} className={`p-2 rounded-lg transition-colors flex items-center gap-1.5 ${showXAI ? "bg-purple-100 text-purple-700" : "hover:bg-gray-100 text-gray-500"}`} title="Toggle XAI Panel">
+                  <button onClick={() => setShowXAI(!showXAI)} className={`p-2 rounded-lg transition-colors flex items-center gap-1.5 ${showXAI ? "bg-purple-500/10 text-purple-600 dark:text-purple-400" : "hover:bg-muted text-muted-foreground"}`} title="Toggle XAI Panel">
                     <Brain className="w-5 h-5" />
                   </button>
                 </>
@@ -795,14 +797,14 @@ export default function DoctorDashboard() {
                   <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
                     <Stethoscope className="w-10 h-10 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2">Welcome, Dr. {user?.name?.split(" ")[0] || "Doctor"}</h3>
-                  <p className="text-gray-500 mb-8 max-w-md">I'm your AI assistant. I can help you manage appointments, process documents, and communicate with patients.</p>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Welcome, Dr. {user?.name?.split(" ")[0] || "Doctor"}</h3>
+                  <p className="text-muted-foreground mb-8 max-w-md">I'm your AI assistant. I can help you manage appointments, process documents, and communicate with patients.</p>
 
                   <div className="flex flex-wrap gap-3 justify-center">
                     {quickActions.map((action, i) => {
                       const Icon = action.icon;
                       return (
-                        <button key={i} onClick={() => setInput(action.query)} className="flex items-center gap-2 px-4 py-2.5 bg-white border border-gray-200 rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all text-sm text-gray-700">
+                        <button key={i} onClick={() => setInput(action.query)} className="flex items-center gap-2 px-4 py-2.5 bg-card border border-border rounded-lg hover:border-primary/30 hover:bg-primary/5 transition-all text-sm text-foreground">
                           <Icon className="w-4 h-4 text-primary" />
                           {action.label}
                         </button>
@@ -818,8 +820,8 @@ export default function DoctorDashboard() {
                       <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-blue-600 flex items-center justify-center">
                         <Bot className="w-4 h-4 text-white" />
                       </div>
-                      <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
-                        <div className="flex items-center gap-2 text-gray-500">
+                      <div className="bg-card border border-border rounded-2xl rounded-tl-sm px-4 py-3 shadow-sm">
+                        <div className="flex items-center gap-2 text-muted-foreground">
                           <Loader className="w-4 h-4 animate-spin" />
                           <span className="text-sm">Thinking...</span>
                         </div>
@@ -832,13 +834,13 @@ export default function DoctorDashboard() {
             </div>
 
             {/* Input Area */}
-            <div className="bg-white border-t p-4">
+            <div className="bg-card border-t p-4">
               {messages.length > 0 && (
                 <div className="flex gap-2 mb-3 overflow-x-auto pb-2">
                   {quickActions.map((action, i) => {
                     const Icon = action.icon;
                     return (
-                      <button key={i} onClick={() => setInput(action.query)} className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-gray-50 border border-gray-200 rounded-full hover:border-primary/30 hover:bg-primary/5 transition-all text-xs text-gray-600">
+                      <button key={i} onClick={() => setInput(action.query)} className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 bg-muted border border-border rounded-full hover:border-primary/30 hover:bg-primary/5 transition-all text-xs text-muted-foreground">
                         <Icon className="w-3 h-3 text-primary" />
                         {action.label}
                       </button>
@@ -850,8 +852,8 @@ export default function DoctorDashboard() {
               <div className="flex gap-3">
                 <input type="file" ref={fileInputRef} onChange={handleFileUpload} className="hidden" accept=".pdf,.jpg,.jpeg,.png,.txt,.doc,.docx" />
 
-                <button onClick={() => fileInputRef.current?.click()} disabled={uploading} className="p-3 bg-gray-100 hover:bg-gray-200 rounded-xl transition-colors disabled:opacity-50" title="Upload document">
-                  {uploading ? <Loader className="w-5 h-5 animate-spin text-gray-500" /> : <Upload className="w-5 h-5 text-gray-500" />}
+                <button onClick={() => fileInputRef.current?.click()} disabled={uploading} className="p-3 bg-muted hover:bg-muted rounded-xl transition-colors disabled:opacity-50" title="Upload document">
+                  {uploading ? <Loader className="w-5 h-5 animate-spin text-muted-foreground" /> : <Upload className="w-5 h-5 text-muted-foreground" />}
                 </button>
 
                 <input
@@ -860,7 +862,7 @@ export default function DoctorDashboard() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && !e.shiftKey && sendMessage()}
                   placeholder="Ask about schedules, appointments, or upload documents..."
-                  className="flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   disabled={loading}
                 />
 

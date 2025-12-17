@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import ThemeToggle from "./ThemeToggle";
 import {
   Stethoscope,
   Users,
@@ -197,6 +198,7 @@ export default function LandingPage({ onSelectRole }) {
 
             {/* Desktop Buttons */}
             <div className="hidden md:flex items-center gap-3">
+              <ThemeToggle />
               <Button variant="ghost" onClick={() => onSelectRole("patient")} className="text-foreground hover:text-primary">
                 Patient Login
               </Button>
@@ -241,6 +243,10 @@ export default function LandingPage({ onSelectRole }) {
               Reviews
             </a>
             <div className="pt-3 border-t border-border space-y-2">
+              <div className="flex items-center justify-between px-3 py-2">
+                <span className="text-sm text-muted-foreground">Theme</span>
+                <ThemeToggle />
+              </div>
               <Button 
                 variant="outline" 
                 onClick={() => { onSelectRole("patient"); closeMobileMenu(); }} 

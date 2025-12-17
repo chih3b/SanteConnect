@@ -82,7 +82,7 @@ const SearchBar = ({ setResult, setLoading }) => {
       <Card className="card-glow overflow-hidden">
         <div className="bg-gradient-to-r from-emerald-600 to-teal-600 p-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-white/20 rounded-lg backdrop-blur">
+            <div className="p-2 bg-card/20 rounded-lg backdrop-blur">
               <Search className="w-6 h-6 text-white" />
             </div>
             <div>

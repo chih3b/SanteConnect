@@ -232,12 +232,12 @@ export default function DocumentAnalysis() {
 
   // Stats Card Component
   const StatCard = ({ icon: Icon, title, value, label, trend, color = "blue" }) => (
-    <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+    <div className="bg-card rounded-xl p-4 border border-border shadow-sm">
       <div className="flex items-center justify-between">
         <div>
           <div className={`text-2xl font-bold text-${color}-600`}>{value}</div>
-          <div className="text-sm text-gray-600">{title}</div>
-          {label && <div className="text-xs text-gray-400 mt-1">{label}</div>}
+          <div className="text-sm text-muted-foreground">{title}</div>
+          {label && <div className="text-xs text-muted-foreground mt-1">{label}</div>}
         </div>
         <div className={`w-12 h-12 bg-${color}-100 rounded-xl flex items-center justify-center`}>
           <Icon className={`w-6 h-6 text-${color}-600`} />
@@ -254,17 +254,17 @@ export default function DocumentAnalysis() {
 
   // Chart Card Component
   const ChartCard = ({ title, icon: Icon, children }) => (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="p-4 border-b border-gray-100 flex items-center gap-2">
+    <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+      <div className="p-4 border-b border-border flex items-center gap-2">
         <Icon className="w-5 h-5 text-purple-600" />
-        <h3 className="font-semibold text-gray-800">{title}</h3>
+        <h3 className="font-semibold text-foreground">{title}</h3>
       </div>
       <div className="p-4">{children}</div>
     </div>
   );
 
   return (
-    <div className="h-full overflow-y-auto p-4 sm:p-6 bg-gray-50">
+    <div className="h-full overflow-y-auto p-4 sm:p-6 bg-muted">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header with View Toggle */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -273,17 +273,17 @@ export default function DocumentAnalysis() {
               <Brain className="w-7 h-7 text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-800">Mané - Analyse Médicale</h2>
-              <p className="text-gray-500 text-sm">OCR + IA pour évaluer les risques</p>
+              <h2 className="text-xl font-bold text-foreground">Mané - Analyse Médicale</h2>
+              <p className="text-muted-foreground text-sm">OCR + IA pour évaluer les risques</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="bg-white rounded-lg p-1 border border-gray-200 flex">
+            <div className="bg-card rounded-lg p-1 border border-border flex">
               <button
                 onClick={() => setActiveView("analysis")}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                  activeView === "analysis" ? "bg-purple-600 text-white" : "text-gray-600 hover:bg-gray-100"
+                  activeView === "analysis" ? "bg-purple-600 text-white" : "text-muted-foreground hover:bg-muted"
                 }`}
               >
                 <FileText className="w-4 h-4 inline mr-2" />
@@ -292,7 +292,7 @@ export default function DocumentAnalysis() {
               <button
                 onClick={() => setActiveView("dashboard")}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
-                  activeView === "dashboard" ? "bg-purple-600 text-white" : "text-gray-600 hover:bg-gray-100"
+                  activeView === "dashboard" ? "bg-purple-600 text-white" : "text-muted-foreground hover:bg-muted"
                 }`}
               >
                 <BarChart3 className="w-4 h-4 inline mr-2" />
@@ -302,26 +302,26 @@ export default function DocumentAnalysis() {
             
             <button
               onClick={fetchDashboardData}
-              className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+              className="p-2 bg-card border border-border rounded-lg hover:bg-muted"
               title="Rafraîchir"
             >
-              <RefreshCw className={`w-5 h-5 text-gray-500 ${dashboardLoading ? "animate-spin" : ""}`} />
+              <RefreshCw className={`w-5 h-5 text-muted-foreground ${dashboardLoading ? "animate-spin" : ""}`} />
             </button>
             
             <button
               onClick={() => setShowSmsPanel(!showSmsPanel)}
-              className={`p-2 border rounded-lg ${showSmsPanel ? "bg-purple-100 border-purple-300" : "bg-white border-gray-200 hover:bg-gray-50"}`}
+              className={`p-2 border rounded-lg ${showSmsPanel ? "bg-purple-100 border-purple-300" : "bg-card border-border hover:bg-muted"}`}
               title="Configuration SMS"
             >
-              <Smartphone className={`w-5 h-5 ${showSmsPanel ? "text-purple-600" : "text-gray-500"}`} />
+              <Smartphone className={`w-5 h-5 ${showSmsPanel ? "text-purple-600" : "text-muted-foreground"}`} />
             </button>
           </div>
         </div>
 
         {/* SMS Configuration Panel */}
         {showSmsPanel && (
-          <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-            <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+          <div className="bg-card rounded-xl border border-border p-4 shadow-sm">
+            <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2">
               <Phone className="w-5 h-5 text-purple-600" />
               Notifications SMS Médecin
             </h3>
@@ -331,7 +331,7 @@ export default function DocumentAnalysis() {
                 value={doctorPhone}
                 onChange={(e) => setDoctorPhone(e.target.value)}
                 placeholder="+21672345678"
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               />
               <button
                 onClick={saveDoctorPhone}
@@ -417,7 +417,7 @@ export default function DocumentAnalysis() {
                       </BarChart>
                     </ResponsiveContainer>
                   ) : (
-                    <div className="h-[250px] flex items-center justify-center text-gray-400">
+                    <div className="h-[250px] flex items-center justify-center text-muted-foreground">
                       Aucune donnée disponible
                     </div>
                   )}
@@ -436,7 +436,7 @@ export default function DocumentAnalysis() {
                       </LineChart>
                     </ResponsiveContainer>
                   ) : (
-                    <div className="h-[250px] flex items-center justify-center text-gray-400">
+                    <div className="h-[250px] flex items-center justify-center text-muted-foreground">
                       Aucune donnée disponible
                     </div>
                   )}
@@ -465,7 +465,7 @@ export default function DocumentAnalysis() {
                       </RechartsPie>
                     </ResponsiveContainer>
                   ) : (
-                    <div className="h-[250px] flex items-center justify-center text-gray-400">
+                    <div className="h-[250px] flex items-center justify-center text-muted-foreground">
                       Aucune donnée disponible
                     </div>
                   )}
@@ -484,7 +484,7 @@ export default function DocumentAnalysis() {
                       </BarChart>
                     </ResponsiveContainer>
                   ) : (
-                    <div className="h-[250px] flex items-center justify-center text-gray-400">
+                    <div className="h-[250px] flex items-center justify-center text-muted-foreground">
                       Aucune donnée disponible
                     </div>
                   )}
@@ -493,34 +493,34 @@ export default function DocumentAnalysis() {
             )}
 
             {/* Recent Analyses Table */}
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-              <div className="p-4 border-b border-gray-100 flex items-center gap-2">
+            <div className="bg-card rounded-xl border border-border shadow-sm overflow-hidden">
+              <div className="p-4 border-b border-border flex items-center gap-2">
                 <Activity className="w-5 h-5 text-purple-600" />
-                <h3 className="font-semibold text-gray-800">Dernières Analyses</h3>
+                <h3 className="font-semibold text-foreground">Dernières Analyses</h3>
               </div>
               {recentAnalyses.length > 0 ? (
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-muted">
                       <tr>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Diagnostic</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Score</th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Risques</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">ID</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Diagnostic</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Score</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Risques</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {recentAnalyses.slice().reverse().map((analysis) => (
-                        <tr key={analysis.id} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 font-medium text-gray-800">#{analysis.id}</td>
-                          <td className="px-4 py-3 text-gray-600 max-w-xs truncate">{analysis.diagnostic?.substring(0, 40)}</td>
+                        <tr key={analysis.id} className="hover:bg-muted">
+                          <td className="px-4 py-3 font-medium text-foreground">#{analysis.id}</td>
+                          <td className="px-4 py-3 text-muted-foreground max-w-xs truncate">{analysis.diagnostic?.substring(0, 40)}</td>
                           <td className="px-4 py-3">
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${getScoreColor(analysis.score)}`}>
                               {analysis.score}%
                             </span>
                           </td>
                           <td className="px-4 py-3">
-                            <span className="flex items-center gap-1 text-gray-600">
+                            <span className="flex items-center gap-1 text-muted-foreground">
                               <AlertTriangle className="w-4 h-4 text-amber-500" />
                               {analysis.risks_count}
                             </span>
@@ -531,7 +531,7 @@ export default function DocumentAnalysis() {
                   </table>
                 </div>
               ) : (
-                <div className="p-8 text-center text-gray-400">
+                <div className="p-8 text-center text-muted-foreground">
                   Aucune analyse pour le moment.
                 </div>
               )}
@@ -545,12 +545,12 @@ export default function DocumentAnalysis() {
           <div className="space-y-6">
             {/* Upload Area */}
             {!result && (
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+              <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
                 <div
                   onClick={() => fileInputRef.current?.click()}
                   onDrop={handleDrop}
                   onDragOver={(e) => e.preventDefault()}
-                  className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-purple-400 hover:bg-purple-50/50 transition-all"
+                  className="border-2 border-dashed border-border rounded-xl p-8 text-center cursor-pointer hover:border-purple-400 hover:bg-purple-50/50 transition-all"
                 >
                   {preview ? (
                     <div>
@@ -559,9 +559,9 @@ export default function DocumentAnalysis() {
                     </div>
                   ) : (
                     <>
-                      <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-semibold text-gray-700 mb-2">Glissez-déposez votre document</h3>
-                      <p className="text-gray-500 text-sm">Image (JPG, PNG) ou PDF</p>
+                      <Upload className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                      <h3 className="text-lg font-semibold text-foreground mb-2">Glissez-déposez votre document</h3>
+                      <p className="text-muted-foreground text-sm">Image (JPG, PNG) ou PDF</p>
                       {file && <p className="text-green-600 mt-2 font-medium">{file.name}</p>}
                     </>
                   )}
@@ -575,7 +575,7 @@ export default function DocumentAnalysis() {
                 </div>
 
                 <div className="mt-6">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     <FileText className="w-4 h-4 inline mr-2" />
                     Résumé additionnel (optionnel)
                   </label>
@@ -583,7 +583,7 @@ export default function DocumentAnalysis() {
                     value={resumeText}
                     onChange={(e) => setResumeText(e.target.value)}
                     placeholder="Ajoutez des informations complémentaires..."
-                    className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none h-32"
+                    className="w-full p-4 border border-border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none h-32"
                   />
                 </div>
 
@@ -619,21 +619,21 @@ export default function DocumentAnalysis() {
               <div className="space-y-6">
                 {/* Extracted Text Card (from OCR) */}
                 {result.extracted_text && (
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+                  <div className="bg-card rounded-2xl shadow-lg border border-border overflow-hidden">
                     <button
                       onClick={() => setShowDetails(!showDetails)}
-                      className="w-full p-4 flex items-center justify-between text-left hover:bg-gray-50"
+                      className="w-full p-4 flex items-center justify-between text-left hover:bg-muted"
                     >
-                      <span className="font-medium text-gray-700 flex items-center gap-2">
+                      <span className="font-medium text-foreground flex items-center gap-2">
                         <FileText className="w-5 h-5 text-blue-600" />
                         Texte Extrait (OCR)
-                        <span className="text-xs text-gray-400 ml-2">Méthode: {result.ocr_method}</span>
+                        <span className="text-xs text-muted-foreground ml-2">Méthode: {result.ocr_method}</span>
                       </span>
                       {showDetails ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                     </button>
                     {showDetails && (
-                      <div className="p-4 border-t border-gray-200 bg-gray-50">
-                        <pre className="text-sm text-gray-600 whitespace-pre-wrap font-mono max-h-48 overflow-auto">{result.extracted_text}</pre>
+                      <div className="p-4 border-t border-border bg-muted">
+                        <pre className="text-sm text-muted-foreground whitespace-pre-wrap font-mono max-h-48 overflow-auto">{result.extracted_text}</pre>
                       </div>
                     )}
                   </div>
@@ -641,9 +641,9 @@ export default function DocumentAnalysis() {
 
                 {/* Score Card */}
                 {result.analyse_complete?.score_rehospitalisation && (
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+                  <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                      <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
                         <TrendingUp className="w-5 h-5 text-purple-600" />
                         Risque de Réhospitalisation
                       </h3>
@@ -652,15 +652,15 @@ export default function DocumentAnalysis() {
                       </span>
                     </div>
                     {result.analyse_complete.explication_score && (
-                      <p className="text-gray-600 text-sm">{result.analyse_complete.explication_score}</p>
+                      <p className="text-muted-foreground text-sm">{result.analyse_complete.explication_score}</p>
                     )}
                   </div>
                 )}
 
                 {/* Diagnosis Card */}
                 {result.analyse_complete?.diagnostic_principal && (
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2 mb-4">
+                  <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                       <Activity className="w-5 h-5 text-blue-600" />
                       Diagnostic Principal
                     </h3>
@@ -675,8 +675,8 @@ export default function DocumentAnalysis() {
 
                 {/* Red Flags */}
                 {result.analyse_complete?.drapeaux_rouges?.length > 0 && (
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2 mb-4">
+                  <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                       <AlertTriangle className="w-5 h-5 text-red-600" />
                       Alertes Cliniques ({result.analyse_complete.drapeaux_rouges.length})
                     </h3>
@@ -690,7 +690,7 @@ export default function DocumentAnalysis() {
                                 <p className="text-sm opacity-75 mt-1">Source: {flag.source_donnees}</p>
                               )}
                             </div>
-                            <span className="text-xs font-semibold uppercase px-2 py-1 rounded-full bg-white/50">
+                            <span className="text-xs font-semibold uppercase px-2 py-1 rounded-full bg-card/50">
                               {flag.urgence}
                             </span>
                           </div>
@@ -702,13 +702,13 @@ export default function DocumentAnalysis() {
 
                 {/* Medical Synthesis */}
                 {result.synthese_medecin && (
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2 mb-4">
+                  <div className="bg-card rounded-2xl shadow-lg border border-border p-6">
+                    <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 mb-4">
                       <FileText className="w-5 h-5 text-green-600" />
                       Synthèse Médicale
                     </h3>
                     <div className="bg-green-50 rounded-xl p-4 border border-green-200">
-                      <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">{result.synthese_medecin}</p>
+                      <p className="text-foreground whitespace-pre-wrap leading-relaxed">{result.synthese_medecin}</p>
                     </div>
                   </div>
                 )}
@@ -716,7 +716,7 @@ export default function DocumentAnalysis() {
                 {/* New Analysis Button */}
                 <button
                   onClick={resetForm}
-                  className="w-full py-4 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-muted text-foreground rounded-xl font-semibold hover:bg-muted flex items-center justify-center gap-2"
                 >
                   <Upload className="w-5 h-5" />
                   Nouvelle Analyse

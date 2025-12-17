@@ -67,7 +67,7 @@ const MedicationCard = ({ result }) => {
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-white/20 rounded-lg backdrop-blur">
+            <div className="p-2 bg-card/20 rounded-lg backdrop-blur">
               <Heart className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -92,7 +92,7 @@ const MedicationCard = ({ result }) => {
                 <p className="text-sm text-orange-700 mt-1">{result.note}</p>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {result.similar_medications.map((med, index) => (
-                    <span key={index} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-lg border border-orange-200 text-sm">
+                    <span key={index} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card rounded-lg border border-orange-200 text-sm">
                       <Pill className="w-3.5 h-3.5 text-orange-600" />
                       {med.name}
                       {med.dosage && <span className="text-muted-foreground">({med.dosage})</span>}
