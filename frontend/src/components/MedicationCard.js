@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { CheckCircle2, AlertTriangle, XCircle, Heart, ChevronDown, ChevronUp, Copy, Check, Pill } from 'lucide-react';
+import { useState } from 'react';
+import { CheckCircle2, AlertTriangle, XCircle, Heart, ChevronDown, ChevronUp, Copy, Check, Pill, Brain, Zap } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 
@@ -136,15 +136,16 @@ const MedicationCard = ({ result }) => {
           />
         </div>
 
-        {/* Collapsible Details */}
-        {(result.tool_calls?.length > 0 || result.reasoning) && (
+        {/* XAI Explainability Section */}
+        {(result.tool_calls?.length > 0 || result.reasoning || result.xai) && (
           <div className="border rounded-xl overflow-hidden">
             <button
               onClick={() => setShowDetails(!showDetails)}
               className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors"
             >
-              <span className="text-sm font-medium text-muted-foreground">
-                {showDetails ? 'Hide' : 'Show'} technical details
+              <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <Brain className="w-4 h-4" />
+                {showDetails ? 'Hide' : 'Show'} AI reasoning
               </span>
               {showDetails ? (
                 <ChevronUp className="w-4 h-4 text-muted-foreground" />
@@ -155,15 +156,46 @@ const MedicationCard = ({ result }) => {
             
             {showDetails && (
               <div className="p-4 space-y-4 border-t bg-muted/10">
+                {/* XAI Reasoning Chain */}
+                {result.xai?.reasoning_steps && (
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                      <Brain className="w-3 h-3" /> Reasoning Chain
+                    </p>
+                    <div className="space-y-2">
+                      {result.xai.reasoning_steps.map((step, index) => (
+                        <div key={index} className="flex items-start gap-2 p-2 bg-background rounded-lg">
+                          <span className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            {step.step}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-xs">{step.action}</div>
+                            <div className="text-xs text-muted-foreground">{step.reasoning}</div>
+                          </div>
+                          <span className={`px-1.5 py-0.5 rounded text-xs flex-shrink-0 ${
+                            step.confidence >= 0.8 ? 'bg-green-100 text-green-700' :
+                            step.confidence >= 0.5 ? 'bg-yellow-100 text-yellow-700' :
+                            'bg-red-100 text-red-700'
+                          }`}>
+                            {Math.round(step.confidence * 100)}%
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
                 {/* Tools Used */}
                 {result.tool_calls && result.tool_calls.length > 0 && (
                   <div>
-                    <p className="text-xs font-medium text-muted-foreground mb-2">Data sources used:</p>
+                    <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                      <Zap className="w-3 h-3" /> Tools Used
+                    </p>
                     <div className="flex flex-wrap gap-1.5">
                       {result.tool_calls.map((tool, index) => (
                         <span 
                           key={index}
-                          className="px-2 py-1 bg-muted rounded text-xs"
+                          className="px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs"
                         >
                           {tool.tool.replace(/_/g, ' ')}
                         </span>
@@ -172,11 +204,25 @@ const MedicationCard = ({ result }) => {
                   </div>
                 )}
                 
-                {/* Reasoning */}
-                {result.reasoning && (
+                {/* Summary */}
+                {result.xai?.summary && (
+                  <div className="p-2 bg-blue-50 rounded-lg text-xs text-blue-800">
+                    <span className="font-medium">Summary:</span> {result.xai.summary}
+                  </div>
+                )}
+                
+                {/* Reasoning (fallback) */}
+                {!result.xai && result.reasoning && (
                   <div>
                     <p className="text-xs font-medium text-muted-foreground mb-2">AI reasoning:</p>
                     <p className="text-sm text-muted-foreground">{result.reasoning}</p>
+                  </div>
+                )}
+                
+                {/* Duration */}
+                {result.xai?.duration_ms && (
+                  <div className="text-xs text-muted-foreground pt-2 border-t">
+                    ⏱️ Response time: {Math.round(result.xai.duration_ms)}ms
                   </div>
                 )}
               </div>

@@ -1,7 +1,100 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Send, Bot, User, Sparkles, ChevronDown, ChevronUp, Brain, Zap, Stethoscope, Pill, Shield, Search } from 'lucide-react';
 import { Button } from './ui/button';
 import { useAuth } from './AuthContext';
+
+// XAI Explainability Component
+const XAISection = ({ xai }) => {
+  const [expanded, setExpanded] = useState(false);
+  
+  if (!xai || !xai.reasoning_steps) return null;
+  
+  const confidenceColor = xai.confidence_level === 'high' ? 'text-green-600 bg-green-100' 
+    : xai.confidence_level === 'medium' ? 'text-yellow-600 bg-yellow-100' 
+    : 'text-red-600 bg-red-100';
+  
+  return (
+    <div className="mt-3 p-3 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-100">
+      <button 
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center gap-2 text-xs text-purple-700 hover:text-purple-900 transition-colors w-full"
+      >
+        <Brain className="w-4 h-4" />
+        <span className="font-medium">🧠 Why this answer?</span>
+        <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${confidenceColor}`}>
+          {Math.round((xai.final_confidence || 0) * 100)}% confident
+        </span>
+        <span className="ml-auto flex items-center gap-1 text-purple-500">
+          {expanded ? 'Hide' : 'Show'} details
+          {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </span>
+      </button>
+      
+      {/* Always show summary preview */}
+      {!expanded && xai.summary && (
+        <div className="mt-2 text-xs text-purple-600 pl-6">
+          {xai.summary}
+        </div>
+      )}
+      
+      {expanded && (
+        <div className="mt-3 space-y-3 text-xs animate-in fade-in slide-in-from-top-2">
+          {/* Summary */}
+          {xai.summary && (
+            <div className="p-2 bg-blue-50 rounded-lg text-blue-800">
+              <span className="font-medium">Summary:</span> {xai.summary}
+            </div>
+          )}
+          
+          {/* Reasoning Steps */}
+          <div className="space-y-2">
+            <span className="font-medium text-muted-foreground">Reasoning Chain:</span>
+            {xai.reasoning_steps?.map((step, i) => (
+              <div key={i} className="flex items-start gap-2 p-2 bg-muted/50 rounded-lg">
+                <span className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold flex-shrink-0">
+                  {step.step}
+                </span>
+                <div className="flex-1">
+                  <div className="font-medium text-foreground">{step.action}</div>
+                  <div className="text-muted-foreground">{step.reasoning}</div>
+                </div>
+                <span className={`px-1.5 py-0.5 rounded text-xs ${
+                  step.confidence >= 0.8 ? 'bg-green-100 text-green-700' :
+                  step.confidence >= 0.5 ? 'bg-yellow-100 text-yellow-700' :
+                  'bg-red-100 text-red-700'
+                }`}>
+                  {Math.round(step.confidence * 100)}%
+                </span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Tools Used */}
+          {xai.tool_decisions?.length > 0 && (
+            <div className="space-y-1">
+              <span className="font-medium text-muted-foreground">Tools Used:</span>
+              <div className="flex flex-wrap gap-1">
+                {xai.tool_decisions.filter(t => t.selected).map((tool, i) => (
+                  <span key={i} className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-800 rounded-full">
+                    <Zap className="w-3 h-3" />
+                    {tool.display_name || tool.tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Duration */}
+          {xai.duration_ms && (
+            <div className="text-muted-foreground">
+              ⏱️ Response time: {Math.round(xai.duration_ms)}ms
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const ChatInterface = ({ conversation, onConversationCreated }) => {
   const [messages, setMessages] = useState([]);
@@ -87,41 +180,111 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
     }
 
     try {
-      const fastRes = await fetch(`http://localhost:8000/fast/${encodeURIComponent(userMessage)}`);
-      const fastData = await fastRes.json();
+      // Use streaming endpoint
+      const response = await fetch(`http://localhost:8000/agent/query/stream?query=${encodeURIComponent(userMessage)}`);
       
-      if (fastData.success && fastData.method?.includes('fast_path')) {
-        const agentMsg = {
-          type: 'agent',
-          content: fastData.answer || 'Sorry, I couldn\'t process your request.',
-          confidence: fastData.confidence,
-        };
-        setMessages(prev => [...prev, agentMsg]);
-        
-        if (convId) {
-          saveMessages(convId, userMessage, agentMsg.content);
-        }
-        return;
+      if (!response.ok) {
+        throw new Error('Stream failed');
       }
 
-      const res = await fetch(`http://localhost:8000/agent/query?query=${encodeURIComponent(userMessage)}`);
-      const data = await res.json();
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
       
-      const agentMsg = {
-        type: 'agent',
-        content: data.answer || 'Sorry, I couldn\'t process your request.',
-        confidence: data.confidence,
-      };
-      setMessages(prev => [...prev, agentMsg]);
+      let streamedContent = '';
+      let confidence = null;
+      let xaiData = null;
       
-      if (convId) {
-        saveMessages(convId, userMessage, agentMsg.content);
+      // Add empty agent message that we'll update
+      setMessages(prev => [...prev, { type: 'agent', content: '', isStreaming: true }]);
+      setIsTyping(false);
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value);
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            try {
+              const data = JSON.parse(line.slice(6));
+              
+              if (data.type === 'metadata') {
+                confidence = data.confidence;
+                xaiData = data.xai;
+              } else if (data.type === 'content') {
+                streamedContent += data.content;
+                // Update the last message with streamed content
+                setMessages(prev => {
+                  const newMessages = [...prev];
+                  const lastIdx = newMessages.length - 1;
+                  if (lastIdx >= 0 && newMessages[lastIdx].type === 'agent') {
+                    newMessages[lastIdx] = {
+                      ...newMessages[lastIdx],
+                      content: streamedContent,
+                      isStreaming: true
+                    };
+                  }
+                  return newMessages;
+                });
+              } else if (data.type === 'done') {
+                // Finalize the message
+                setMessages(prev => {
+                  const newMessages = [...prev];
+                  const lastIdx = newMessages.length - 1;
+                  if (lastIdx >= 0 && newMessages[lastIdx].type === 'agent') {
+                    newMessages[lastIdx] = {
+                      ...newMessages[lastIdx],
+                      content: streamedContent,
+                      confidence: confidence,
+                      xai: xaiData,
+                      isStreaming: false
+                    };
+                  }
+                  return newMessages;
+                });
+              }
+            } catch (e) {
+              // Skip invalid JSON
+            }
+          }
+        }
+      }
+
+      // Save to conversation history
+      if (convId && streamedContent) {
+        saveMessages(convId, userMessage, streamedContent);
       }
     } catch (error) {
-      setMessages(prev => [...prev, {
-        type: 'agent',
-        content: 'Sorry, I\'m having trouble connecting to the server.'
-      }]);
+      console.error('Streaming error:', error);
+      // Fallback to non-streaming
+      try {
+        const res = await fetch(`http://localhost:8000/agent/query?query=${encodeURIComponent(userMessage)}`);
+        const data = await res.json();
+        
+        setMessages(prev => {
+          // Remove the streaming placeholder if exists
+          const filtered = prev.filter(m => !m.isStreaming);
+          return [...filtered, {
+            type: 'agent',
+            content: data.answer || 'Sorry, I couldn\'t process your request.',
+            confidence: data.confidence,
+          }];
+        });
+        
+        if (convId) {
+          saveMessages(convId, userMessage, data.answer);
+        }
+      } catch (fallbackError) {
+        setMessages(prev => {
+          const filtered = prev.filter(m => !m.isStreaming);
+          return [...filtered, {
+            type: 'agent',
+            content: 'Sorry, I\'m having trouble connecting to the server.'
+          }];
+        });
+      }
     } finally {
       setLoading(false);
       setIsTyping(false);
@@ -169,24 +332,55 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto">
         {messages.length === 1 && messages[0].type === 'agent' && (
-          <div className="p-6 text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-              <Bot className="w-8 h-8 text-white" />
+          <div className="p-8 flex flex-col items-center justify-center min-h-[400px]">
+            {/* Professional Medical Icon - using platform primary color */}
+            <div className="relative mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-lg">
+                <Stethoscope className="w-8 h-8 text-primary-foreground" />
+              </div>
             </div>
-            <h3 className="text-lg font-semibold mb-2">Medication Assistant</h3>
-            <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-              Ask me anything about medications, drug interactions, side effects, or safety information.
+            
+            <h3 className="text-xl font-semibold mb-2 text-foreground">
+              Medication Assistant
+            </h3>
+            <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto text-center">
+              Get reliable information about medications, drug interactions, dosages, and safety guidelines.
             </p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {quickQuestions.map((q, i) => (
-                <button
-                  key={i}
-                  onClick={() => setInput(q)}
-                  className="px-3 py-2 bg-muted hover:bg-primary/10 hover:text-primary rounded-lg text-sm transition-colors"
-                >
-                  {q}
-                </button>
-              ))}
+            
+            {/* Feature Cards - all using primary color */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 w-full max-w-xl">
+              <div className="flex flex-col items-center p-3 bg-primary/5 rounded-lg border border-primary/10">
+                <Pill className="w-5 h-5 text-primary mb-1" />
+                <span className="text-xs text-muted-foreground">Drug Info</span>
+              </div>
+              <div className="flex flex-col items-center p-3 bg-primary/5 rounded-lg border border-primary/10">
+                <Shield className="w-5 h-5 text-primary mb-1" />
+                <span className="text-xs text-muted-foreground">Interactions</span>
+              </div>
+              <div className="flex flex-col items-center p-3 bg-primary/5 rounded-lg border border-primary/10">
+                <Brain className="w-5 h-5 text-primary mb-1" />
+                <span className="text-xs text-muted-foreground">AI Analysis</span>
+              </div>
+              <div className="flex flex-col items-center p-3 bg-primary/5 rounded-lg border border-primary/10">
+                <Search className="w-5 h-5 text-primary mb-1" />
+                <span className="text-xs text-muted-foreground">Search</span>
+              </div>
+            </div>
+            
+            {/* Quick Questions */}
+            <div className="w-full max-w-lg">
+              <p className="text-xs text-muted-foreground mb-3 text-center font-medium">Suggested questions</p>
+              <div className="space-y-2">
+                {quickQuestions.map((q, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setInput(q)}
+                    className="w-full px-4 py-3 bg-muted/30 hover:bg-primary/5 border border-border hover:border-primary/30 rounded-lg text-sm text-left transition-all duration-200"
+                  >
+                    <span className="text-muted-foreground">{q}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -199,15 +393,15 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
             <div className="max-w-3xl mx-auto">
               <div className="flex gap-3 items-start">
                 {/* Avatar */}
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
                   message.type === 'agent' 
-                    ? 'bg-gradient-to-br from-blue-500 to-indigo-600' 
-                    : 'bg-gray-600'
+                    ? 'bg-primary' 
+                    : 'bg-muted'
                 }`}>
                   {message.type === 'agent' ? (
-                    <Bot className="w-4 h-4 text-white" />
+                    <Stethoscope className="w-4 h-4 text-primary-foreground" />
                   ) : (
-                    <User className="w-4 h-4 text-white" />
+                    <User className="w-4 h-4 text-muted-foreground" />
                   )}
                 </div>
                 
@@ -226,8 +420,17 @@ const ChatInterface = ({ conversation, onConversationCreated }) => {
                   </div>
                   <div 
                     className="prose prose-sm max-w-none text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }} 
-                  />
+                  >
+                    <span dangerouslySetInnerHTML={{ __html: formatMessage(message.content) }} />
+                    {message.isStreaming && (
+                      <span className="inline-block w-2 h-4 bg-blue-500 ml-1 animate-pulse" />
+                    )}
+                  </div>
+                  
+                  {/* XAI Explainability Section */}
+                  {message.type === 'agent' && message.xai && !message.isStreaming && (
+                    <XAISection xai={message.xai} />
+                  )}
                 </div>
               </div>
             </div>

@@ -30,16 +30,48 @@ def init_db():
     conn = get_db()
     cursor = conn.cursor()
     
-    # Users table
+    # Users table with profile fields
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
             name TEXT NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            profile_image TEXT,
+            phone TEXT,
+            date_of_birth TEXT,
+            gender TEXT,
+            address TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    
+    # Add new columns if they don't exist (for existing databases)
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN profile_image TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN phone TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN date_of_birth TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN gender TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN address TEXT")
+    except:
+        pass
+    try:
+        cursor.execute("ALTER TABLE users ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    except:
+        pass
     
     # Conversations table
     cursor.execute('''
@@ -97,12 +129,24 @@ def verify_token(token: str) -> Optional[Dict]:
         # Get user from database
         conn = get_db()
         cursor = conn.cursor()
-        cursor.execute("SELECT id, email, name FROM users WHERE id = ?", (user_id,))
+        cursor.execute("""
+            SELECT id, email, name, profile_image, phone, date_of_birth, gender, address 
+            FROM users WHERE id = ?
+        """, (user_id,))
         user = cursor.fetchone()
         conn.close()
         
         if user:
-            return {"id": user["id"], "email": user["email"], "name": user["name"]}
+            return {
+                "id": user["id"], 
+                "email": user["email"], 
+                "name": user["name"],
+                "profile_image": user["profile_image"],
+                "phone": user["phone"],
+                "date_of_birth": user["date_of_birth"],
+                "gender": user["gender"],
+                "address": user["address"]
+            }
         return None
     except:
         return None
@@ -302,6 +346,78 @@ def delete_conversation(conversation_id: int, user_id: int) -> Dict:
     conn.close()
     
     return {"success": True}
+
+
+def update_user_profile(user_id: int, **kwargs) -> Dict:
+    """Update user profile"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    # Build update query dynamically
+    allowed_fields = ['name', 'profile_image', 'phone', 'date_of_birth', 'gender', 'address']
+    updates = []
+    values = []
+    
+    for field in allowed_fields:
+        if field in kwargs and kwargs[field] is not None:
+            updates.append(f"{field} = ?")
+            values.append(kwargs[field])
+    
+    if not updates:
+        conn.close()
+        return {"success": False, "error": "No fields to update"}
+    
+    updates.append("updated_at = CURRENT_TIMESTAMP")
+    values.append(user_id)
+    
+    query = f"UPDATE users SET {', '.join(updates)} WHERE id = ?"
+    cursor.execute(query, values)
+    conn.commit()
+    
+    # Get updated user
+    cursor.execute("""
+        SELECT id, email, name, profile_image, phone, date_of_birth, gender, address 
+        FROM users WHERE id = ?
+    """, (user_id,))
+    user = cursor.fetchone()
+    conn.close()
+    
+    if user:
+        return {
+            "success": True,
+            "user": {
+                "id": user["id"],
+                "email": user["email"],
+                "name": user["name"],
+                "profile_image": user["profile_image"],
+                "phone": user["phone"],
+                "date_of_birth": user["date_of_birth"],
+                "gender": user["gender"],
+                "address": user["address"]
+            }
+        }
+    return {"success": False, "error": "User not found"}
+
+
+def change_password(user_id: int, old_password: str, new_password: str) -> Dict:
+    """Change user password"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    # Verify old password
+    old_hash = hash_password(old_password)
+    cursor.execute("SELECT id FROM users WHERE id = ? AND password_hash = ?", (user_id, old_hash))
+    if not cursor.fetchone():
+        conn.close()
+        return {"success": False, "error": "Current password is incorrect"}
+    
+    # Update password
+    new_hash = hash_password(new_password)
+    cursor.execute("UPDATE users SET password_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?", (new_hash, user_id))
+    conn.commit()
+    conn.close()
+    
+    return {"success": True, "message": "Password updated successfully"}
 
 
 # Initialize database on import

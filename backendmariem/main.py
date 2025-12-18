@@ -4,6 +4,7 @@ Port 8003
 """
 from fastapi import FastAPI, HTTPException, Header, Depends, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 import os
@@ -15,7 +16,8 @@ import uvicorn
 
 from config import HOST, PORT, UPLOAD_DIR
 from doctor_auth import (
-    register_doctor, login_doctor, verify_token, update_doctor_profile, init_db
+    register_doctor, login_doctor, verify_token, update_doctor_profile, 
+    change_doctor_password, init_db
 )
 from doctor_assistant import get_doctor_assistant
 from mcp_tools import get_mcp_tools
@@ -40,6 +42,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve uploaded files
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 
 # ==================== MODELS ====================
@@ -67,6 +72,10 @@ class ProfileUpdateRequest(BaseModel):
     clinic_address: Optional[str] = None
     working_hours_start: Optional[str] = None
     working_hours_end: Optional[str] = None
+
+class PasswordChangeRequest(BaseModel):
+    old_password: str
+    new_password: str
 
 
 # ==================== AUTH DEPENDENCY ====================
@@ -149,6 +158,36 @@ async def update_profile(request: ProfileUpdateRequest, doctor: dict = Depends(g
         working_hours_end=request.working_hours_end
     )
     
+    if not result["success"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+@app.post("/auth/doctor/profile/image")
+async def upload_profile_image(file: UploadFile = File(...), doctor: dict = Depends(get_current_doctor)):
+    """Upload doctor profile image"""
+    if not doctor:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    import uuid
+    ext = file.filename.split('.')[-1] if '.' in file.filename else 'jpg'
+    filename = f"doctor_{doctor['id']}_{uuid.uuid4().hex[:8]}.{ext}"
+    file_path = Path(UPLOAD_DIR) / filename
+    
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    image_url = f"http://localhost:{PORT}/uploads/{filename}"
+    result = update_doctor_profile(doctor["id"], profile_image=image_url)
+    
+    return result
+
+@app.post("/auth/doctor/password")
+async def change_password(request: PasswordChangeRequest, doctor: dict = Depends(get_current_doctor)):
+    """Change doctor password"""
+    if not doctor:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    result = change_doctor_password(doctor["id"], request.old_password, request.new_password)
     if not result["success"]:
         raise HTTPException(status_code=400, detail=result["error"])
     return result

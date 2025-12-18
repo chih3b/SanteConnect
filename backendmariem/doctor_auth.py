@@ -82,7 +82,7 @@ def verify_token(token: str) -> Optional[Dict]:
         cursor = conn.cursor()
         cursor.execute("""
             SELECT id, email, name, specialization, phone, clinic_name, clinic_address,
-                   working_hours_start, working_hours_end
+                   working_hours_start, working_hours_end, profile_image
             FROM doctors WHERE id = ? AND is_active = 1
         """, (doctor_id,))
         doctor = cursor.fetchone()
@@ -99,6 +99,7 @@ def verify_token(token: str) -> Optional[Dict]:
                 "clinic_address": doctor["clinic_address"],
                 "working_hours_start": doctor["working_hours_start"],
                 "working_hours_end": doctor["working_hours_end"],
+                "profile_image": doctor["profile_image"],
                 "role": "doctor"
             }
         return None
@@ -174,7 +175,7 @@ def update_doctor_profile(doctor_id: int, **kwargs) -> Dict:
     cursor = conn.cursor()
     
     allowed_fields = ['name', 'specialization', 'phone', 'clinic_name', 'clinic_address',
-                      'working_hours_start', 'working_hours_end']
+                      'working_hours_start', 'working_hours_end', 'profile_image']
     
     updates = []
     values = []
@@ -190,9 +191,67 @@ def update_doctor_profile(doctor_id: int, **kwargs) -> Dict:
     values.append(doctor_id)
     cursor.execute(f"UPDATE doctors SET {', '.join(updates)} WHERE id = ?", values)
     conn.commit()
+    
+    # Fetch updated doctor
+    cursor.execute("""
+        SELECT id, email, name, specialization, phone, clinic_name, clinic_address,
+               working_hours_start, working_hours_end, profile_image
+        FROM doctors WHERE id = ?
+    """, (doctor_id,))
+    doctor = cursor.fetchone()
+    conn.close()
+    
+    if doctor:
+        return {
+            "success": True,
+            "user": {
+                "id": doctor["id"],
+                "email": doctor["email"],
+                "name": doctor["name"],
+                "specialization": doctor["specialization"],
+                "phone": doctor["phone"],
+                "clinic_name": doctor["clinic_name"],
+                "clinic_address": doctor["clinic_address"],
+                "working_hours_start": doctor["working_hours_start"],
+                "working_hours_end": doctor["working_hours_end"],
+                "profile_image": doctor["profile_image"],
+                "role": "doctor"
+            }
+        }
+    return {"success": True}
+
+
+def change_doctor_password(doctor_id: int, old_password: str, new_password: str) -> Dict:
+    """Change doctor password"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    old_hash = hash_password(old_password)
+    cursor.execute("SELECT id FROM doctors WHERE id = ? AND password_hash = ?", (doctor_id, old_hash))
+    if not cursor.fetchone():
+        conn.close()
+        return {"success": False, "error": "Current password is incorrect"}
+    
+    new_hash = hash_password(new_password)
+    cursor.execute("UPDATE doctors SET password_hash = ? WHERE id = ?", (new_hash, doctor_id))
+    conn.commit()
     conn.close()
     
     return {"success": True}
 
+
+def add_profile_image_column():
+    """Add profile_image column if it doesn't exist"""
+    conn = get_db()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("ALTER TABLE doctors ADD COLUMN profile_image TEXT")
+        conn.commit()
+    except:
+        pass  # Column already exists
+    conn.close()
+
+
 # Initialize database on import
 init_db()
+add_profile_image_column()

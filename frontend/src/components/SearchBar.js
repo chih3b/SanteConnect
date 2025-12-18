@@ -1,8 +1,66 @@
-import React, { useState } from 'react';
-import { Search, Pill, Sparkles, TrendingUp, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { Search, Pill, Sparkles, TrendingUp, Loader2, Brain, ChevronDown, ChevronUp, Zap } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Card, CardContent } from './ui/card';
+
+// XAI Component for Search
+const SearchXAI = ({ query, resultsCount, topScore }) => {
+  const [expanded, setExpanded] = useState(false);
+  
+  const confidence = topScore >= 80 ? 'high' : topScore >= 50 ? 'medium' : 'low';
+  const confidenceColor = confidence === 'high' ? 'text-green-600 bg-green-100' 
+    : confidence === 'medium' ? 'text-yellow-600 bg-yellow-100' 
+    : 'text-red-600 bg-red-100';
+  
+  return (
+    <div className="mt-4 p-3 bg-muted/50 rounded-lg">
+      <button 
+        onClick={() => setExpanded(!expanded)}
+        className="flex items-center gap-2 text-xs text-muted-foreground hover:text-primary transition-colors w-full"
+      >
+        <Brain className="w-3.5 h-3.5" />
+        <span>How we found these results</span>
+        <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${confidenceColor}`}>
+          {topScore}% best match
+        </span>
+        <span className="ml-auto">
+          {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+        </span>
+      </button>
+      
+      {expanded && (
+        <div className="mt-3 space-y-2 text-xs animate-in fade-in">
+          <div className="flex items-start gap-2 p-2 bg-background rounded">
+            <span className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">1</span>
+            <div>
+              <div className="font-medium">Query Analysis</div>
+              <div className="text-muted-foreground">Searched for "{query}" in medication database</div>
+            </div>
+          </div>
+          <div className="flex items-start gap-2 p-2 bg-background rounded">
+            <span className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">2</span>
+            <div>
+              <div className="font-medium">Fuzzy Matching</div>
+              <div className="text-muted-foreground">Used Levenshtein distance algorithm to find similar names</div>
+            </div>
+          </div>
+          <div className="flex items-start gap-2 p-2 bg-background rounded">
+            <span className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">3</span>
+            <div>
+              <div className="font-medium">Results Ranking</div>
+              <div className="text-muted-foreground">Found {resultsCount} matches, ranked by similarity score</div>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 pt-2 border-t">
+            <Zap className="w-3 h-3 text-purple-500" />
+            <span className="text-muted-foreground">Tool: search_similar_drugs (local database)</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const SearchBar = ({ setResult, setLoading }) => {
   const [query, setQuery] = useState('');
@@ -152,6 +210,13 @@ const SearchBar = ({ setResult, setLoading }) => {
             </h3>
             <span className="text-sm text-muted-foreground">Click for details</span>
           </div>
+          
+          {/* XAI Explanation */}
+          <SearchXAI 
+            query={query} 
+            resultsCount={searchResults.length} 
+            topScore={searchResults[0]?.similarity_score || 0} 
+          />
           
           <div className="grid gap-3">
             {searchResults.map((result, index) => {

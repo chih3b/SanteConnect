@@ -185,6 +185,11 @@ def fast_query(query: str, image: Optional[Image.Image] = None) -> Optional[Dict
     Process query using fast path (no agent, no LLM)
     Returns None if query is too complex and needs the agent
     """
+    from services.explainable_ai import get_xai
+    xai = get_xai()
+    
+    # Start XAI trace
+    xai.start_trace(query, "fast_query")
     
     # Can't bypass agent if there's an image
     if image:
@@ -218,6 +223,10 @@ def fast_query(query: str, image: Optional[Image.Image] = None) -> Optional[Dict
     drug_info = get_drug_info(drug_name)
     
     if drug_info:
+        xai.add_drug_match(drug_name, drug_name, 100, is_exact=True)
+        xai.add_tool_decision("get_drug_details_tool", True, "Exact match found in database", 0.95, [drug_name])
+        xai_trace = xai.finalize_trace(success=True)
+        
         return {
             "answer": format_drug_response(drug_name, drug_info, query),
             "drug_name": drug_name,
@@ -225,7 +234,8 @@ def fast_query(query: str, image: Optional[Image.Image] = None) -> Optional[Dict
             "confidence": "high",
             "method": "fast_path",
             "tool_calls": [{"tool": "get_drug_details_tool", "args": {"drug_name": drug_name}}],
-            "reasoning": "Direct database lookup (fast path)"
+            "reasoning": "Direct database lookup (fast path)",
+            "xai": xai_trace
         }
     
     # Try fuzzy search
@@ -234,8 +244,13 @@ def fast_query(query: str, image: Optional[Image.Image] = None) -> Optional[Dict
     if similar and similar[0]["similarity_score"] >= 60:
         # Found a good match
         best_match = similar[0]
+        original_query = drug_name
         drug_name = best_match["drug_name"]
         drug_info = best_match["info"]
+        
+        xai.add_drug_match(original_query, drug_name, best_match['similarity_score'], is_exact=False)
+        xai.add_tool_decision("search_medication_tool", True, f"Fuzzy match: {best_match['similarity_score']}% similar", 0.8, [original_query])
+        xai_trace = xai.finalize_trace(success=True)
         
         response = f"Je pense que vous cherchez **{drug_name}** (similarité: {best_match['similarity_score']}%)\n\n"
         response += format_drug_response(drug_name, drug_info, query)
@@ -247,19 +262,24 @@ def fast_query(query: str, image: Optional[Image.Image] = None) -> Optional[Dict
             "confidence": "medium",
             "method": "fast_path_fuzzy",
             "tool_calls": [{"tool": "search_medication_tool", "args": {"query": drug_name}}],
-            "reasoning": "Fuzzy search match (fast path)"
+            "reasoning": "Fuzzy search match (fast path)",
+            "xai": xai_trace
         }
     
     # No good match found
     if similar:
         suggestions = ", ".join([s["drug_name"] for s in similar[:3]])
+        xai.add_database_search(drug_name, len(similar))
+        xai_trace = xai.finalize_trace(success=False)
+        
         return {
             "answer": f"Je n'ai pas trouvé '{drug_name}' dans la base de données.\n\nVouliez-vous dire: {suggestions}?",
             "success": False,
             "confidence": "low",
             "method": "fast_path_no_match",
             "tool_calls": [{"tool": "search_medication_tool", "args": {"query": drug_name}}],
-            "reasoning": "No match found (fast path)"
+            "reasoning": "No match found (fast path)",
+            "xai": xai_trace
         }
     
     return None

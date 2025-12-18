@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { Plus, MessageSquare, Trash2, LogOut, Image, Search, Menu, X, FileText, Stethoscope, Bot } from 'lucide-react';
+import { Plus, MessageSquare, Trash2, LogOut, Image, Search, X, FileText, Stethoscope, Bot, Settings } from 'lucide-react';
 import { Button } from './ui/button';
+import ProfileSettings from './ProfileSettings';
 
 export default function Sidebar({ activeTab, onTabChange, currentConversation, onSelectConversation, refreshTrigger }) {
   const [conversations, setConversations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showProfileSettings, setShowProfileSettings] = useState(false);
   const { user, token, logout } = useAuth();
 
   useEffect(() => {
@@ -163,17 +165,26 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
       <div className="p-4 border-t bg-muted/30">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 min-w-0">
-            <div className="w-9 h-9 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-primary-foreground text-sm font-semibold flex-shrink-0 shadow-sm">
-              {user?.name?.charAt(0).toUpperCase() || 'U'}
+            <div className="w-9 h-9 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-primary-foreground text-sm font-semibold flex-shrink-0 shadow-sm overflow-hidden">
+              {user?.profile_image ? (
+                <img src={user.profile_image} alt="" className="w-full h-full object-cover" />
+              ) : (
+                user?.name?.charAt(0).toUpperCase() || 'U'
+              )}
             </div>
             <div className="text-sm min-w-0">
               <div className="font-medium truncate">{user?.name}</div>
               <div className="text-muted-foreground text-xs truncate">{user?.email}</div>
             </div>
           </div>
-          <Button variant="ghost" size="icon" onClick={logout} title="Logout" className="flex-shrink-0 hover:bg-destructive/10 hover:text-destructive">
-            <LogOut size={18} />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" onClick={() => setShowProfileSettings(true)} title="Settings" className="flex-shrink-0 hover:bg-muted">
+              <Settings size={18} />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={logout} title="Logout" className="flex-shrink-0 hover:bg-destructive/10 hover:text-destructive">
+              <LogOut size={18} />
+            </Button>
+          </div>
         </div>
       </div>
     </>
@@ -201,6 +212,11 @@ export default function Sidebar({ activeTab, onTabChange, currentConversation, o
 
       {/* Export mobile toggle function via window for external access */}
       {typeof window !== 'undefined' && (window.openMobileSidebar = () => setMobileOpen(true))}
+
+      {/* Profile Settings Modal */}
+      {showProfileSettings && (
+        <ProfileSettings onClose={() => setShowProfileSettings(false)} />
+      )}
     </>
   );
 }

@@ -945,15 +945,21 @@ Réponse: Utiliser les informations web avec disclaimer
             "image_data": image_data
         }
         
-        # Run the agent
+        # Run the agent with XAI tracing
+        from services.explainable_ai import get_xai
+        xai = get_xai()
+        xai.start_trace(query, "agent_query")
+        
         try:
+            xai.add_reasoning_step("Query Analysis", f"Processing query: '{query[:50]}...'", 0.9)
+            
             final_state = self.graph.invoke(initial_state)
             
             # Extract results
             messages = final_state["messages"]
             final_message = messages[-1]
             
-            # Collect tool calls
+            # Collect tool calls and add to XAI
             tool_calls = []
             for msg in messages:
                 if hasattr(msg, "tool_calls") and msg.tool_calls:
@@ -962,6 +968,14 @@ Réponse: Utiliser les informations web avec disclaimer
                             "tool": tc["name"],
                             "args": tc["args"]
                         })
+                        # Add tool decision to XAI
+                        xai.add_tool_decision(
+                            tc["name"], 
+                            True, 
+                            f"Called with args: {list(tc['args'].keys())}", 
+                            0.85,
+                            list(tc["args"].values())[:2] if tc["args"] else []
+                        )
             
             # Get tool results
             tool_results = []
@@ -972,21 +986,34 @@ Réponse: Utiliser les informations web avec disclaimer
                         "result": msg.content
                     })
             
+            # Add final reasoning step
+            if tool_results:
+                xai.add_reasoning_step("Response Generation", f"Generated response using {len(tool_calls)} tool(s)", 0.9)
+            else:
+                xai.add_reasoning_step("Direct Response", "LLM generated response without tools", 0.6)
+            
+            # Finalize XAI trace
+            xai_trace = xai.finalize_trace(success=True)
+            
             return {
                 "answer": final_message.content,
                 "tool_calls": tool_calls,
                 "tool_results": tool_results,
                 "reasoning": f"Used {len(tool_calls)} tool(s) to answer",
                 "confidence": "high" if tool_results else "medium",
-                "success": True
+                "success": True,
+                "xai": xai_trace
             }
         
         except Exception as e:
+            xai.add_reasoning_step("Error", f"Processing failed: {str(e)}", 0.1)
+            xai_trace = xai.finalize_trace(success=False)
             return {
                 "answer": f"Erreur lors du traitement: {str(e)}",
                 "error": str(e),
                 "success": False,
-                "confidence": "low"
+                "confidence": "low",
+                "xai": xai_trace
             }
     
     def stream_response(self, query: str, image: Optional[Image.Image] = None):

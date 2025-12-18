@@ -1,13 +1,15 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException, Header, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import uvicorn
+import asyncio
 from services.vision import identify_medication
 from services.drug_db import get_drug_info
 from services.auth import (
     register_user, login_user, verify_token,
     create_conversation, get_conversations, get_conversation_messages,
-    add_message, delete_conversation
+    add_message, delete_conversation, update_user_profile, change_password
 )
 from PIL import Image
 import io
@@ -108,13 +110,13 @@ async def get_prescription_agent_system():
             from backend.agent_system import get_agent_system
             _prescription_agent_system = await get_agent_system()
             print("✅ Prescription Agent System initialized")
-        except Exception as e:
+        except Exception as e:  
             print(f"⚠️ Failed to initialize Prescription Agent System: {e}")
             return None
     return _prescription_agent_system
 
 
-@app.post("/prescription/scan")
+@app.post("/prescription/scan") 
 async def scan_prescription(
     file: UploadFile = File(...),
     filter_phi: bool = True
@@ -253,6 +255,81 @@ async def get_me(user: dict = Depends(get_current_user)):
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
     return {"user": user}
+
+
+# ============== PROFILE ENDPOINTS ==============
+
+class ProfileUpdateRequest(BaseModel):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    date_of_birth: Optional[str] = None
+    gender: Optional[str] = None
+    address: Optional[str] = None
+
+class PasswordChangeRequest(BaseModel):
+    old_password: str
+    new_password: str
+
+@app.put("/auth/profile")
+async def update_profile(request: ProfileUpdateRequest, user: dict = Depends(get_current_user)):
+    """Update user profile"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    result = update_user_profile(
+        user["id"],
+        name=request.name,
+        phone=request.phone,
+        date_of_birth=request.date_of_birth,
+        gender=request.gender,
+        address=request.address
+    )
+    
+    if not result["success"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+@app.post("/auth/profile/image")
+async def upload_profile_image(file: UploadFile = File(...), user: dict = Depends(get_current_user)):
+    """Upload profile image"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    # Validate file type
+    if not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="File must be an image")
+    
+    # Read and encode image as base64
+    contents = await file.read()
+    
+    # Resize image to max 200x200 for storage efficiency
+    image = Image.open(io.BytesIO(contents))
+    image.thumbnail((200, 200))
+    
+    # Convert to base64
+    buffer = io.BytesIO()
+    image.save(buffer, format="PNG")
+    image_base64 = base64.b64encode(buffer.getvalue()).decode()
+    profile_image = f"data:image/png;base64,{image_base64}"
+    
+    result = update_user_profile(user["id"], profile_image=profile_image)
+    
+    if not result["success"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+@app.post("/auth/password")
+async def change_user_password(request: PasswordChangeRequest, user: dict = Depends(get_current_user)):
+    """Change user password"""
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    result = change_password(user["id"], request.old_password, request.new_password)
+    
+    if not result["success"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
 
 # ============== CONVERSATION ENDPOINTS ==============
 
@@ -492,12 +569,23 @@ async def agent_identify(
         file: Image file of medication
         query: Question about the medication
     """
+    from services.explainable_ai import get_xai
+    
     try:
+        xai = get_xai()
+        xai.start_trace(query, "identification")
+        
         contents = await file.read()
         image = Image.open(io.BytesIO(contents))
         
         # Step 1: Use vision to identify the medication
+        xai.add_reasoning_step("Image Processing", "Preprocessing image for OCR extraction", 0.9)
         vision_result = identify_medication(image)
+        
+        # Record OCR result
+        ocr_text = vision_result.get("extracted_text", vision_result.get("ocr_text", ""))
+        ocr_confidence = vision_result.get("confidence", 0.5)
+        xai.add_ocr_result(ocr_text, ocr_confidence, "LLaVA Vision Model")
         
         # Step 2: If medication identified, get detailed info using FAST PATH
         if vision_result.get("drug_name"):
@@ -505,36 +593,41 @@ async def agent_identify(
             from services.drug_db import get_drug_info, search_similar_drugs
             
             drug_name = vision_result.get("drug_name")
+            xai.add_reasoning_step("Drug Detection", f"Detected medication name: '{drug_name}'", 0.85)
             
             # Try exact match first
             drug_info = get_drug_info(drug_name)
             
             # Get all similar medications (might be multiple variants like "Inflamyl" and "Inflamyl Fort")
             similar = search_similar_drugs(drug_name, limit=5)
+            xai.add_database_search(drug_name, len(similar) if similar else 0, similar[0]["drug_name"] if similar else None)
             
             # If not found, try fuzzy search
             if not drug_info and similar and similar[0]["similarity_score"] >= 50:
                 # Use the best match
                 drug_name = similar[0]["drug_name"]
                 drug_info = similar[0]["info"]
+                xai.add_drug_match(vision_result.get("drug_name"), drug_name, similar[0]["similarity_score"], False)
                 print(f"✅ Fuzzy match: '{vision_result.get('drug_name')}' → '{drug_name}' (score: {similar[0]['similarity_score']})")
+            elif drug_info:
+                xai.add_drug_match(drug_name, drug_name, 100, True)
             
             if drug_info:
                 # Found the drug - use fast path for formatting
+                xai.add_tool_decision("get_drug_details_tool", True, "Retrieved drug details from database", 0.9, ["drug_name_matched"])
                 fast_result = fast_query(drug_name)
                 
                 # Build response with alternatives if multiple similar drugs found
                 response_base = {
                     "success": True,
                     "drug_name": drug_name,
-                    "ocr_text": vision_result.get("extracted_text", ""),
-                    "vision_confidence": vision_result.get("confidence", 0),
+                    "ocr_text": ocr_text,
+                    "vision_confidence": ocr_confidence,
                 }
                 
                 # Only show similar medications if:
                 # 1. OCR confidence is low (<70%) AND there are multiple close matches
                 # 2. OR there are multiple matches with same similarity score (genuine ambiguity)
-                ocr_confidence = vision_result.get("confidence", 1.0)
                 show_alternatives = False
                 
                 if similar and len(similar) > 1:
@@ -554,6 +647,7 @@ async def agent_identify(
                             for s in close_matches[:3]
                         ]
                         response_base["note"] = f"⚠️ Image quality is low. Multiple medications match '{vision_result.get('original_ocr', drug_name)}'. Please verify which one you have."
+                        xai.add_reasoning_step("Ambiguity Detection", f"Found {len(close_matches)} similar medications due to low OCR confidence", 0.6)
                 
                 # Add fuzzy match info if applicable
                 if vision_result.get("fuzzy_match"):
@@ -563,13 +657,17 @@ async def agent_identify(
                         "confidence": vision_result.get("fuzzy_score", 0)
                     }
                 
+                # Finalize XAI trace
+                xai_trace = xai.finalize_trace(success=True)
+                
                 if fast_result and fast_result.get("success"):
                     response_base.update({
                         "answer": fast_result.get("answer"),
                         "tool_calls": fast_result.get("tool_calls", []),
                         "reasoning": f"Vision OCR + Fast database lookup",
                         "confidence": fast_result.get("confidence", "high"),
-                        "method": "vision + fast_path"
+                        "method": "vision + fast_path",
+                        "xai": xai_trace
                     })
                     return response_base
                 else:
@@ -580,29 +678,36 @@ async def agent_identify(
                         "tool_calls": [{"tool": "get_drug_info", "args": {"drug_name": drug_name}}],
                         "reasoning": "Vision OCR + Direct database lookup",
                         "confidence": "high",
-                        "method": "vision + database"
+                        "method": "vision + database",
+                        "xai": xai_trace
                     })
                     return response_base
             else:
                 # Drug not found in database
+                xai.add_reasoning_step("Database Lookup", f"Drug '{drug_name}' not found in local database", 0.3)
+                xai_trace = xai.finalize_trace(success=False)
                 return {
                     "success": False,
                     "drug_name": drug_name,
-                    "ocr_text": vision_result.get("extracted_text", ""),
-                    "vision_confidence": vision_result.get("confidence", 0),
+                    "ocr_text": ocr_text,
+                    "vision_confidence": ocr_confidence,
                     "answer": f"Médicament '{drug_name}' identifié mais non trouvé dans la base de données.",
                     "confidence": "low",
-                    "method": "vision_only"
+                    "method": "vision_only",
+                    "xai": xai_trace
                 }
         else:
             # No medication identified
+            xai.add_reasoning_step("OCR Failed", "Could not detect medication name in image", 0.2)
+            xai_trace = xai.finalize_trace(success=False)
             return {
                 "success": False,
                 "answer": "Je n'ai pas pu identifier le médicament dans l'image. Veuillez fournir une image plus claire montrant le nom du médicament.",
                 "ocr_text": vision_result.get("ocr_text", ""),
                 "confidence": "low",
                 "tool_calls": [{"tool": "identify_medication", "args": {}}],
-                "reasoning": "Vision OCR did not detect medication name"
+                "reasoning": "Vision OCR did not detect medication name",
+                "xai": xai_trace
             }
         
     except Exception as e:
@@ -612,6 +717,78 @@ async def agent_identify(
             "error": str(e),
             "confidence": "low"
         }
+
+# ============== STREAMING ENDPOINT ==============
+
+async def stream_response(query: str):
+    """Generator that streams the response word by word"""
+    from cache_manager import get_cache
+    from fast_query import fast_query, should_use_fast_path
+    from agent_langgraph import ask_langgraph_agent
+    import json
+    
+    cache = get_cache()
+    result = None
+    
+    # Try fast path first
+    if should_use_fast_path(query):
+        cached = cache.get(query)
+        if cached:
+            result = cached
+        else:
+            result = fast_query(query)
+            if result:
+                cache.set(query, result)
+    
+    # Fall back to agent
+    if not result:
+        cached = cache.get(query)
+        if cached:
+            result = cached
+        else:
+            result = ask_langgraph_agent(query)
+            if result.get("success", True):
+                cache.set(query, result)
+    
+    # Stream the answer word by word
+    answer = result.get("answer", "Sorry, I couldn't process your request.")
+    words = answer.split(" ")
+    
+    # Send metadata first (including XAI)
+    metadata = {
+        "type": "metadata",
+        "confidence": result.get("confidence", "medium"),
+        "tool_calls": result.get("tool_calls", []),
+        "xai": result.get("xai")  # Include XAI trace
+    }
+    yield f"data: {json.dumps(metadata)}\n\n"
+    
+    # Stream words with small delay for effect
+    for i, word in enumerate(words):
+        chunk = {"type": "content", "content": word + " "}
+        yield f"data: {json.dumps(chunk)}\n\n"
+        await asyncio.sleep(0.02)  # 20ms delay between words
+    
+    # Send done signal
+    yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+
+@app.get("/agent/query/stream")
+async def agent_query_stream(query: str):
+    """
+    Streaming version of agent query - returns response word by word
+    Uses Server-Sent Events (SSE)
+    """
+    return StreamingResponse(
+        stream_response(query),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "Connection": "keep-alive",
+            "X-Accel-Buffering": "no"
+        }
+    )
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

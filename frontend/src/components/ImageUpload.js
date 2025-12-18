@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Upload, Camera, X, Pill, Sparkles, Loader2, Eye } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
