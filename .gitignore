@@ -30,7 +30,9 @@ models--*/
 backend/medication_db/.cache/
 
 # Environment files with secrets
-# .env
+.env
+*/.env
+**/.env
 # backend/.env
 
 # IDE
