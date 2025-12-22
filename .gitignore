@@ -33,6 +33,7 @@ backend/medication_db/.cache/
 .env
 */.env
 **/.env
+**/.env.example
 # backend/.env
 
 # IDE
@@ -76,8 +77,8 @@ backendmariem/sessions/
 # backendmariem/.env
 !backendmariem/.env.example
 
-# Google OAuth tokens (commented to allow pushing)
-# token.json
-# calendar_token.json
-# gmail_token.json
-# credentials.json
+# Google OAuth tokens and credentials (sensitive)
+**/credentials.json
+**/token.json
+**/calendar_token.json
+**/gmail_token.json

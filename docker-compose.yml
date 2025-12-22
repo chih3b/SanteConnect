@@ -10,7 +10,7 @@ services:
       - "8000:8000"
     environment:
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
-      - ESPRIT_API_KEY=sk-e16d16a054744585bfb2ef09bb52315c
+      - ESPRIT_API_KEY=${ESPRIT_API_KEY}
       - PYTHONUNBUFFERED=1
     volumes:
       # Mount data directory for persistence

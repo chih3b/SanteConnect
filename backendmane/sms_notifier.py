@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 
 class SMSNotifier:
     def __init__(self):
-        self.account_sid = os.getenv("TWILIO_ACCOUNT_SID", "ACc468699f38a279ce08c85a483904afeb")
-        self.auth_token = os.getenv("TWILIO_AUTH_TOKEN", "4da9e532d95830cbdedbb4f9aa3e881e")
-        self.twilio_number = os.getenv("TWILIO_PHONE_NUMBER", "+14345058619")
+        self.account_sid = os.getenv("TWILIO_ACCOUNT_SID", "")
+        self.auth_token = os.getenv("TWILIO_AUTH_TOKEN", "")
+        self.twilio_number = os.getenv("TWILIO_PHONE_NUMBER", "")
         
         print(f"🔧 Initialisation SMS Notifier...")
         print(f"   De: {self.twilio_number}")
@@ -120,11 +120,21 @@ class SMSNotifier:
             return True
             
         except Exception as e:
+            error_msg = str(e)
             print(f"   ❌ ERREUR Twilio: {type(e).__name__}")
-            print(f"   Message: {str(e)}")
+            print(f"   Message: {error_msg}")
             
-            # Mode simulation en cas d'erreur
-            return self._log_simulation(doctor_phone, sms_body)
+            # Check for common Twilio errors
+            if "unverified" in error_msg.lower():
+                print("   💡 Le numéro de destination n'est pas vérifié sur Twilio (compte trial)")
+            elif "authenticate" in error_msg.lower():
+                print("   💡 Erreur d'authentification - vérifiez les clés Twilio")
+            elif "not a valid phone" in error_msg.lower():
+                print("   💡 Format de numéro invalide")
+            
+            # Log simulation but return False to indicate failure
+            self._log_simulation(doctor_phone, sms_body)
+            return False
     
     def _log_simulation(self, phone, message):
         """Log une simulation de SMS"""
