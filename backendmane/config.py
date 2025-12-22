@@ -13,11 +13,11 @@ API_PORT = 8004
 
 # LLaVA / TokenFactory Configuration
 LLAVA_API_KEY = os.getenv("LLAVA_API_KEY", "")
-LLAVA_BASE_URL = os.getenv("LLAVA_BASE_URL", "https://tokenfactory.esprit.tn/api")
+LLAVA_BASE_URL = os.getenv("LLAVA_BASE_URL")
 
 # SambaNova Configuration
 SAMBANOVA_API_KEY = os.getenv("SAMBANOVA_API_KEY", "")
-SAMBANOVA_BASE_URL = os.getenv("SAMBANOVA_BASE_URL", "https://api.sambanova.ai/v1")
+SAMBANOVA_BASE_URL = os.getenv("SAMBANOVA_BASE_URL")
 
 # Twilio SMS Configuration
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID", "")
